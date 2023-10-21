@@ -21,5 +21,19 @@ namespace DumbSrum {
         public MainWindow() {
             InitializeComponent();
         }
+        private void Window_Loaded(object sender, RoutedEventArgs e) {
+            var signInWindow = new SignInWindow();
+            var result = signInWindow.ShowDialog();
+        }
+
+        private void btnSignIn_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void btnSignUp_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        
     }
 }

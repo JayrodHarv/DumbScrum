@@ -5,8 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DumbSrum"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="800" Width="1200" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Padding="20px, 0px">
+            <MenuItem x:Name="mnuFile" Header="File" Padding="6,3,6,3">
+                <MenuItem x:Name="mnuExit" Header="Exit"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mnuEdit" Header="Edit" Padding="6,3,6,3">
+                <MenuItem x:Name="mnuPreferences" Header="Preferences"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="mnuHelp" Header="Help" Padding="6,3,6,3">
+                <MenuItem x:Name="mnuAbout" Header="About"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="125px"/>
+                <ColumnDefinition Width="125px"/>
+            </Grid.ColumnDefinitions>
+
+
+
+            <Button x:Name="btnSignIn" Content="Sign In"
+                    Grid.Column="1" FontWeight="Bold" Height="35px" Margin="5" Click="btnSignIn_Click" />
+            <Button x:Name="btnSignUp" Content="Sign Up"
+                    Grid.Column="2" Grid.RowSpan="2"
+                    FontWeight="Bold" Height="35px" Margin="5" Click="btnSignUp_Click" />
+        </Grid>
+
+        <TabControl x:Name="tabsetMain" Grid.Row="3">
+            <TabItem x:Name="tabAbout" Header="About" FontSize="14">
+                <Label Content="about section for dumb scrum"/>
+            </TabItem>
+
+        </TabControl>
     </Grid>
 </Window>
