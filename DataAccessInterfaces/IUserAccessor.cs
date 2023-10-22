@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessInterfaces
-{
+namespace DataAccessInterfaces {
     public interface IUserAccessor {
 
     }

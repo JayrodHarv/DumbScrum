@@ -5,8 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DumbSrum"
         mc:Ignorable="d"
-        Title="SignInWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+        Title="Sign In" Height="800" Width="1200" WindowStartupLocation="CenterScreen" Topmost="True">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="350"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="700"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label x:Name="lblEmail" Grid.Row="2" Content="Email:"></Label>
+            <TextBox x:Name="txtEmail" Grid.Row="3">
+                
+            </TextBox>
+        </Grid>
     </Grid>
 </Window>
