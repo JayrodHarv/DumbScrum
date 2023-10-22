@@ -20,20 +20,30 @@
         
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="20"/>
+                <RowDefinition />
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="25"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label x:Name="lblEmail" Grid.Row="2" Content="Email:"></Label>
-            <TextBox x:Name="txtEmail" Grid.Row="3">
-                
+            <Label x:Name="lblEmail" Grid.Row="1" Content="Email:" FontWeight="Bold" ></Label>
+            <TextBox x:Name="txtEmail" Grid.Row="2" Margin="5, 0"
+                     HorizontalContentAlignment="Left" VerticalContentAlignment="Center">
             </TextBox>
+
+            <Label x:Name="lblPassword" Grid.Row="4" Content="Password:" FontWeight="Bold"></Label>
+            <PasswordBox x:Name="pwdPassword" Grid.Row="5" Margin="5, 0"
+                     HorizontalContentAlignment="Left" VerticalContentAlignment="Center">
+            </PasswordBox>
+            <Label x:Name="lblForgotPassword" Grid.Row="6" Content="Forgot your password?" FontWeight="Light" Foreground="#FF0139CC"></Label>
+            <Button x:Name="btnLogin" Grid.Row="8" Content="Log In" Margin="5, 0"></Button>
+            <Label x:Name="lblAccount" Grid.Row="9" Content="Don't have an account? Sign Up" FontWeight="Light" Foreground="#FF0139CC"></Label>
         </Grid>
     </Grid>
 </Window>
