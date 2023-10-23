@@ -14,25 +14,21 @@ using System.Windows.Shapes;
 
 namespace DumbSrum {
     /// <summary>
-    /// Interaction logic for SignInWindow.xaml
+    /// Interaction logic for SignUpWindow.xaml
     /// </summary>
-    public partial class SignInWindow : Window {
-        public SignInWindow() {
+    public partial class SignUpWindow : Window {
+        public SignUpWindow() {
             InitializeComponent();
         }
 
-        private void btnSignIn_Click(object sender, RoutedEventArgs e) {
+        private void btnSignUp_Click(object sender, RoutedEventArgs e) {
 
         }
 
-        private void hypSignIn_Click(object sender, RoutedEventArgs e) {
-            var signUpWindow = new SignUpWindow();
+        private void hypSignUp_Click(object sender, RoutedEventArgs e) {
+            var signInWindow = new SignInWindow();
             this.Close();
-            signUpWindow.ShowDialog();
-        }
-
-        private void hypForgotPassword_Click(object sender, RoutedEventArgs e) {
-
+            signInWindow.ShowDialog();
         }
     }
 }
