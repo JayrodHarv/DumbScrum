@@ -26,7 +26,8 @@ CREATE TABLE [dbo].[User] (
 	[PasswordHash]	[nvarchar] 	(100)					NOT NULL	DEFAULT
 		'9c9064c59f1ffa2e174ee754d2979be80dd30db552ec03e7e327e9b1a4bd594e',
 	[DisplayName]	[nvarchar] 	(50)					NOT NULL,
-	[Bio]			[nvarchar]	(255)					NULL,		
+	[Bio]			[nvarchar]	(255)					NULL,
+	[Active]		[bit]								NOT NULL	DEFAULT 1,
 	CONSTRAINT [pk_UserID] PRIMARY KEY ([UserID]),
 	CONSTRAINT [ak_User_Email] UNIQUE([Email])
 )
@@ -147,4 +148,34 @@ CREATE TABLE [dbo].[Chat] (
 		REFERENCES	[dbo].[Message] ([MessageID]),
 	CONSTRAINT [pk_ChatID] PRIMARY KEY ([ChatID])
 )
+GO
+
+/* Stored Procedures */
+print '' print '*** creating sp_authenticate_user ***'
+GO
+CREATE PROCEDURE [dbo].[sp_authenticate_user] (
+	@Email			[nvarchar] (100),
+	@PasswordHash	[nvarchar] (100)
+)
+AS
+	BEGIN
+		SELECT COUNT([UserID]) AS 'Authenticated'
+		FROM [User]
+		WHERE @Email = [Email]
+			AND @PasswordHash = [PasswordHash]
+			AND [Active] = 1
+	END
+GO
+
+print '' print '*** creating sp_select_user_by_email ***'
+GO
+CREATE PROCEDURE [dbo].[sp_select_user_by_email] (
+	@Email			[nvarchar] (100)
+)
+AS
+	BEGIN
+		SELECT [UserID], [DisplayName], [Email], [Bio], [Active]
+		FROM [User]
+		WHERE @Email = [Email]
+	END
 GO
