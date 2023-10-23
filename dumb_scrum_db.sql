@@ -179,3 +179,15 @@ AS
 		WHERE @Email = [Email]
 	END
 GO
+
+
+/* Insert test records */
+print '' print '*** inserting User test records ***'
+GO
+INSERT INTO [dbo].[User]
+		([DisplayName], [Email], [Bio])
+	VALUES
+		('Jared Harvey', 'jared.harvey10@gmail.com', 'I am programmer'),
+		('Joe Winters', 'joe-winters@weatherchannel.com', 'I am weather man'),
+		('Barack Obama', 'barack-obama@whitehouse.org', 'I am former president')
+GO
