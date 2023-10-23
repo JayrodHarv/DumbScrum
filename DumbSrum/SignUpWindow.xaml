@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DumbSrum"
         mc:Ignorable="d"
-        Title="SignUpWindow" Height="800" Width="1200" WindowStartupLocation="CenterScreen">
+        Title="Sign Up" Height="385" Width="715" WindowStartupLocation="CenterScreen" MinHeight="385" MinWidth="715">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LogicLayerTests {
     [TestClass]
-    public class Class1 {
+    public class UserManagerTests {
 
     }
 

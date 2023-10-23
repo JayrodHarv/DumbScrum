@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DumbSrum"
         mc:Ignorable="d"
-        Title="Sign In" Height="800" Width="1200" WindowStartupLocation="CenterScreen" Topmost="True">
+        Title="Sign In" Height="385" Width="715" WindowStartupLocation="CenterScreen" Topmost="True" MinWidth="715" MinHeight="385" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -32,7 +32,7 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label x:Name="lblMessage" Grid.Row="1" Content="Sign into Dumb Scrum Account" FontWeight="Bold"
+            <Label x:Name="lblMessage" Grid.Row="1" Content="Sign in to Dumb Scrum account" FontWeight="Bold"
                    HorizontalContentAlignment="Center" FontSize="16"></Label>
             <Label x:Name="lblEmail" Grid.Row="2" Content="Email:" FontWeight="DemiBold" FontSize="14" Margin="15,0" ></Label>
             <TextBox x:Name="txtEmail" Grid.Row="3" Margin="20, 0"

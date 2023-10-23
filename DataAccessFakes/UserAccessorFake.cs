@@ -36,6 +36,50 @@ namespace DataAccessFakes {
         }
 
         public int AuthenticateUserWithEmailAndPasswordHash(string email, string passwordHash) {
+            int numAuthenticated = 0;
+
+            // check for user records in the fake data
+            for (int i = 0; i < fakeUsers.Count; i++) {
+                if (passwordHashes[i] == passwordHash &&
+                    fakeUsers[i].Email == email) {
+                    numAuthenticated++;
+                }
+            }
+            return numAuthenticated;
+        }
+
+        public bool InsertUser(string email, string passwordHash) {
+            throw new NotImplementedException();
+        }
+
+        public List<UserVM> SelectMembersByProjectID(string projectID) {
+            throw new NotImplementedException();
+        }
+
+        public List<Project> SelectProjectsByUserID(int userID) {
+            throw new NotImplementedException();
+        }
+
+        public UserVM SelectUserVMByEmail(string email) {
+            UserVM userVM = null;
+
+            foreach (var fakeUser in fakeUsers) {
+                if (fakeUser.Email == email) {
+                    userVM = fakeUser;
+                }
+            }
+            if (userVM == null) {
+                throw new ApplicationException("User not found");
+            }
+
+            return userVM;
+        }
+
+        public int UpdateDisplayName(int userID, string newDisplayName) {
+            throw new NotImplementedException();
+        }
+
+        public int UpdatePasswordHash(string email, string oldPasswordHash, string newPasswordHash) {
             throw new NotImplementedException();
         }
     }

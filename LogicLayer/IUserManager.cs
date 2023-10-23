@@ -7,8 +7,9 @@ using DataObjects;
 
 namespace LogicLayer {
     public interface IUserManager {
+        bool AuthenticateUser(string email, string password);
         UserVM SignInUser(string email, string password);
         string HashSha256(string password);
-        UserVM GetUserByEmail(string email);
+        UserVM GetUserVMByEmail(string email);
     }
 }
