@@ -66,6 +66,8 @@ namespace LogicLayer {
             try {
                 if (AuthenticateUser(email, password)) {
                     userVM = GetUserVMByEmail(email);
+                } else {
+                    throw new ApplicationException("Bad email or password");
                 }
 
             } catch (Exception ex) {

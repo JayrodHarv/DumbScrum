@@ -60,7 +60,55 @@ namespace DataAccessLayer {
         }
 
         public UserVM SelectUserVMByEmail(string email) {
-            throw new NotImplementedException();
+            UserVM userVM = new UserVM();
+
+            // connection
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // command text
+            var cmdText = "sp_select_user_by_email";
+
+            // create command
+            var cmd = new SqlCommand(cmdText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // add parameters to command
+            cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 100);
+
+            // set parameter values
+            cmd.Parameters["@Email"].Value = email;
+
+            try {
+                // open connection
+                conn.Open();
+
+                // execute command
+                var reader = cmd.ExecuteReader();
+
+                // process results
+                if (reader.HasRows) {
+                    if (reader.Read()) { // use while loop if multiple rows are returned
+                        userVM.UserID = reader.GetInt32(0);
+                        userVM.DisplayName = reader.GetString(1);
+                        userVM.Email = reader.GetString(2);
+                        userVM.Bio = reader.GetString(3);
+                        userVM.Active = reader.GetBoolean(4);
+                        // null example
+                        //employeeVM.EmployeeID = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
+                    }
+                } else {
+                    throw new ArgumentException("User not found");
+                }
+
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+
+            return userVM;
         }
 
         public int UpdateDisplayName(int userID, string newDisplayName) {

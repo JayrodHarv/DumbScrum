@@ -11,6 +11,7 @@ namespace DataObjects
         public string DisplayName { get; set; }
         public string Email { get; set; }
         public string Bio { get; set; }
+        public bool Active { get; set; }
     }
 
     public class UserVM : User { 
