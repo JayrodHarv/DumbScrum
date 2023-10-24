@@ -27,6 +27,21 @@ namespace LogicLayer {
             return result;
         }
 
+        public bool ChangePassword(string email, string newPassword) {
+            bool result = false;
+
+            newPassword = HashSha256(newPassword);
+
+            try {
+                result = (1 == _userAccessor.UpdatePasswordHash(email, newPassword));
+            } catch (Exception ex) {
+
+                throw new ArgumentException("User or password not found.", ex);
+            }
+
+            return result;
+        }
+
         public UserVM GetUserVMByEmail(string email) {
             UserVM userVM = null;
 

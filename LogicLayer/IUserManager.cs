@@ -11,5 +11,6 @@ namespace LogicLayer {
         UserVM SignInUser(string email, string password);
         string HashSha256(string password);
         UserVM GetUserVMByEmail(string email);
+        bool ChangePassword(string email, string newPassword);
     }
 }

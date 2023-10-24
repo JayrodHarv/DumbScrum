@@ -12,7 +12,7 @@ namespace DataAccessInterfaces {
         List<UserVM> SelectMembersByProjectID(string projectID);
         List<Project> SelectProjectsByUserID(int userID); // might be in seperate accessor
         bool InsertUser(string email, string passwordHash);
-        int UpdatePasswordHash(string email, string oldPasswordHash, string newPasswordHash);
+        int UpdatePasswordHash(string email, string newPasswordHash);
         int UpdateDisplayName(int userID, string newDisplayName);
     }
 }

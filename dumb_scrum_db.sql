@@ -180,6 +180,21 @@ AS
 	END
 GO
 
+print '' print '*** creating sp_update_PasswordHash ***'
+GO
+CREATE PROCEDURE [dbo].[sp_update_PasswordHash] (
+	@Email				[nvarchar] (100),
+	@NewPasswordHash	[nvarchar] (100)
+)
+AS
+	BEGIN
+		UPDATE [User]
+		SET [PasswordHash] = @NewPasswordHash
+		WHERE @Email = [Email]
+		RETURN @@ROWCOUNT
+	END
+GO
+
 
 /* Insert test records */
 print '' print '*** inserting User test records ***'

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DumbSrum"
         mc:Ignorable="d"
-        Title="Welcome To Dumb Scrum" Height="385" Width="715" WindowStartupLocation="CenterScreen" Topmost="True" MinWidth="715" MinHeight="385" Loaded="Window_Loaded">
+        Title="Welcome To Dumb Scrum" Height="385" Width="715" WindowStartupLocation="CenterScreen" MinWidth="715" MinHeight="385" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -21,7 +21,7 @@
         <Grid Grid.Row="1" Grid.Column="1" Background="WhiteSmoke">
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="35"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="10"/>

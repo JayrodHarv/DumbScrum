@@ -115,8 +115,48 @@ namespace DataAccessLayer {
             throw new NotImplementedException();
         }
 
-        public int UpdatePasswordHash(string email, string oldPasswordHash, string newPasswordHash) {
-            throw new NotImplementedException();
+        public int UpdatePasswordHash(string email, string newPasswordHash) {
+            int rows = 0;
+
+            // create connection object
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // set the command text
+            var commandText = "sp_update_PasswordHash";
+
+            // create command object
+            var cmd = new SqlCommand(commandText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // add parameters to command
+            cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 100);
+            cmd.Parameters.Add("@NewPasswordHash", SqlDbType.NVarChar, 100);
+
+            // set parameter values
+            cmd.Parameters["@Email"].Value = email;
+            cmd.Parameters["@NewPasswordHash"].Value = newPasswordHash;
+
+            try {
+
+                conn.Open();
+
+                // an update is executed nonquery (returns an int)
+                rows = cmd.ExecuteNonQuery();
+
+                if (rows == 0) {
+                    // treat failed update as exception
+                    throw new ArgumentException("Bad email or password");
+                }
+
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+
+            return rows;
         }
     }
 }

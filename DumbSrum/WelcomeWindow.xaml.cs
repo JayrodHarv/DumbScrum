@@ -112,7 +112,20 @@ namespace DumbSrum {
         }
 
         private void hypForgotPassword_Click(object sender, RoutedEventArgs e) {
-
+            try {
+                var passwordWindow = new ChangePasswordWindow();
+                var result = passwordWindow.ShowDialog();
+                if (result == true) {
+                    MessageBox.Show("Password changed.", "Success",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                } else {
+                    MessageBox.Show("Password not changed", "Operation Aborted",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
+                    "Update failed", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         
