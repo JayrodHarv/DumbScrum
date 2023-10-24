@@ -71,6 +71,7 @@ namespace DumbSrum {
                 // try to sign in the user
                 try {
                     loggedInUser = _userManager.SignInUser(email, password);
+                    SignIn(loggedInUser);
                 } catch (Exception ex) {
                     MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
                         "Sign In Failed", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -82,6 +83,12 @@ namespace DumbSrum {
             } else {
                 // sign up user
             }
+        }
+
+        private void SignIn(UserVM loggedInUser) {
+            var mainWindow = new MainWindow(loggedInUser);
+            this.Close();
+            mainWindow.ShowDialog();
         }
 
         private void hypSignIn_Click(object sender, RoutedEventArgs e) {
