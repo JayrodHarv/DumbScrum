@@ -110,6 +110,7 @@ namespace LogicLayer {
                 if(0 == _userAccessor.CheckIfEmailHasBeenUsedAlready(email)) { // new email
                     password = HashSha256(password);
                     _userAccessor.InsertUser(email, password);
+                    userVM = GetUserVMByEmail(email);
                 } else {
                     throw new ApplicationException("An account already exists with this email");
                 }

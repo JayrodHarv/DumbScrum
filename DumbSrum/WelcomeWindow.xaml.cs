@@ -72,8 +72,7 @@ namespace DumbSrum {
                 // sign up user
 
                 try {
-                    _userManager.SignUpUser(email, password);
-                    loggedInUser = _userManager.GetUserVMByEmail(email);
+                    loggedInUser = _userManager.SignUpUser(email, password);
                     SignIn(loggedInUser);
                 } catch (Exception ex) {
                     MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,

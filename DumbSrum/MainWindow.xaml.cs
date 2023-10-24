@@ -10,6 +10,7 @@ namespace DumbSrum {
     public partial class MainWindow : Window {
         UserManager _userManager = new UserManager();
         UserVM loggedInUser = null;
+        string tab = "Home";
         public MainWindow(UserVM user) {
             InitializeComponent();
             loggedInUser = user;
@@ -19,8 +20,9 @@ namespace DumbSrum {
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e) { 
-
+        private void Window_Loaded(object sender, RoutedEventArgs e) {
+            txtDisplayName.Text = loggedInUser.DisplayName;
+            lblTab.Content = tab;
         }
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e) {
@@ -52,6 +54,18 @@ namespace DumbSrum {
 
         private void ButtonClose_Click(object sender, RoutedEventArgs e) {
             this.Close();
+        }
+
+        private void btnHome_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void btnProjects_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void btnChats_Click(object sender, RoutedEventArgs e) {
+
         }
     }
 }

@@ -19,21 +19,24 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="160"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Border Grid.ColumnSpan="2" 
+        <Border Grid.Column="1" 
                 Background="#FF969696">
             <Grid HorizontalAlignment="Stretch">
-                <Label Content="Projects / *ProjectName*" 
-                       Foreground="White"
-                       FontWeight="SemiBold"
-                       FontSize="20"/>
+                <Label x:Name="lblTab" Content="Home" Foreground="White" 
+                       FontWeight="SemiBold" FontSize="20"/>
 
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-
-                    <Image Source="C:\Users\Jared\Desktop\Coding Projects\.NET II Final Project\DumbSrum\server-icon.png" />
+                    <TextBlock x:Name="txtDisplayName" Text="Jared Harvey" VerticalAlignment="Center" Padding="5"></TextBlock>
+                    <Ellipse Height="35" Width="35">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="C:\Users\Jared\Desktop\Coding Projects\.NET II Final Project\DumbSrum\server-icon.png"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    
 
                 </StackPanel>
             </Grid>
@@ -43,10 +46,9 @@
               Grid.Row="1">
             <Border BorderBrush="Black" BorderThickness="0">
                 <StackPanel VerticalAlignment="Top" Orientation="Vertical">
-                    <Button x:Name="btnDashboard" Content="Dashboard" Height="60" FontSize="12" Background="LightGray" BorderThickness="0"/>
-                    <Button x:Name="btnProjectBacklog" Content="Backlog" Height="60" FontSize="12" Background="LightGray" BorderThickness="0"/>
-                    <Button x:Name="btnBoard" Content="Board" Height="60" FontSize="12" Background="LightGray" BorderThickness="0"/>
-                    <Button x:Name="btnBurndown" Content="Burndown" Height="60" FontSize="12" Background="LightGray" BorderThickness="0"/>
+                    <Button x:Name="btnHome" Content="Home" Height="30" FontSize="12" Background="Black" BorderThickness="0" Cursor="Arrow" Foreground="White" Click="btnHome_Click"/>
+                    <Button x:Name="btnProjects" Content="Projects" Height="30" FontSize="12" Background="LightGray" BorderThickness="0" Click="btnProjects_Click"/>
+                    <Button x:Name="btnChats" Content="Chats" Height="30" FontSize="12" Background="LightGray" BorderThickness="0" Click="btnChats_Click"/>
                 </StackPanel>
             </Border>
         </Grid>
