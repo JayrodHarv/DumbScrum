@@ -47,6 +47,50 @@ namespace DataAccessLayer {
             return rows;
         }
 
+        public int CheckIfEmailHasBeenUsedAlready(string email) {
+            int rows = 0;
+
+            // create connection object
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // set the command text
+            var commandText = "sp_select_user_by_email";
+
+            // create command object
+            var cmd = new SqlCommand(commandText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // add parameters to command
+            cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 100);
+
+            // set parameter values
+            cmd.Parameters["@Email"].Value = email;
+
+            try {
+                // open connection
+                conn.Open();
+
+                // execute command
+                var reader = cmd.ExecuteReader();
+
+                // process results
+                if (reader.HasRows) {
+                    rows++;
+                } else {
+                    rows = 0;
+                }
+
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+
+            return rows;
+        }
+
         public int InsertUser(string email, string passwordHash) {
             int rows = 0;
 
@@ -126,7 +170,7 @@ namespace DataAccessLayer {
                         userVM.UserID = reader.GetInt32(0);
                         userVM.DisplayName = reader.GetString(1);
                         userVM.Email = reader.GetString(2);
-                        userVM.Bio = reader.GetString(3);
+                        userVM.Bio = reader.IsDBNull(3) ? "" : reader.GetString(3); // took me an hour to slove
                         userVM.Active = reader.GetBoolean(4);
                         // null example
                         //employeeVM.EmployeeID = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
@@ -145,7 +189,47 @@ namespace DataAccessLayer {
         }
 
         public int UpdateDisplayName(int userID, string newDisplayName) {
-            throw new NotImplementedException();
+            int rows = 0;
+
+            // create connection object
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // set the command text
+            var commandText = "sp_update_DisplayName";
+
+            // create command object
+            var cmd = new SqlCommand(commandText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // add parameters to command
+            cmd.Parameters.Add("@UserID", SqlDbType.NVarChar, 100);
+            cmd.Parameters.Add("@DisplayName", SqlDbType.NVarChar, 100);
+
+            // set parameter values
+            cmd.Parameters["@UserID"].Value = userID;
+            cmd.Parameters["@DisplayName"].Value = newDisplayName;
+
+            try {
+
+                conn.Open();
+
+                // an update is executed nonquery (returns an int)
+                rows = cmd.ExecuteNonQuery();
+
+                if (rows == 0) {
+                    // treat failed update as exception
+                    throw new ArgumentException("Update Failed");
+                }
+
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+
+            return rows;
         }
 
         public int UpdatePasswordHash(string email, string newPasswordHash) {

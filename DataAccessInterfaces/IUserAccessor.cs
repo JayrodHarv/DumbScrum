@@ -12,6 +12,7 @@ namespace DataAccessInterfaces {
         List<UserVM> SelectMembersByProjectID(string projectID);
         List<Project> SelectProjectsByUserID(int userID); // might be in seperate accessor
         int InsertUser(string email, string passwordHash);
+        int CheckIfEmailHasBeenUsedAlready(string email);
         int UpdatePasswordHash(string email, string newPasswordHash);
         int UpdateDisplayName(int userID, string newDisplayName);
     }

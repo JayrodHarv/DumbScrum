@@ -27,6 +27,17 @@ namespace LogicLayer {
             return result;
         }
 
+        public bool ChangeDisplayName(int userID, string newDisplayName) {
+            bool result = false;
+
+            try {
+                result = (1 == _userAccessor.UpdateDisplayName(userID, newDisplayName));
+            } catch (Exception ex) {
+                throw new ArgumentException("Display name change failed", ex);
+            }
+            return result;
+        }
+
         public bool ChangePassword(string email, string newPassword) {
             bool result = false;
 
@@ -35,7 +46,6 @@ namespace LogicLayer {
             try {
                 result = (1 == _userAccessor.UpdatePasswordHash(email, newPassword));
             } catch (Exception ex) {
-
                 throw new ArgumentException("User or password not found.", ex);
             }
 
@@ -91,26 +101,22 @@ namespace LogicLayer {
             return userVM;
         }
 
-        public bool SignUpUser(string email, string password) {
-            bool result = false;
+        public UserVM SignUpUser(string email, string password) {
+            UserVM userVM = null;
 
             // check to see if an account already belongs to the email
 
             try {
-
-            } catch (Exception) {
-
-                throw;
-            }
-
-
-            password = HashSha256(password);
-            try {
-                result = (1 == _userAccessor.InsertUser(email, password));
+                if(0 == _userAccessor.CheckIfEmailHasBeenUsedAlready(email)) { // new email
+                    password = HashSha256(password);
+                    _userAccessor.InsertUser(email, password);
+                } else {
+                    throw new ApplicationException("An account already exists with this email");
+                }
             } catch (Exception ex) {
                 throw new ApplicationException("Sign Up Failed", ex);
             }
-            return result;
+            return userVM;
         }
     }
 }

@@ -196,6 +196,21 @@ AS
 	END
 GO
 
+print '' print '*** creating sp_update_DisplayName ***'
+GO
+CREATE PROCEDURE [dbo].[sp_update_DisplayName] (
+	@UserID				[int],
+	@DisplayName		[nvarchar] (100)
+)
+AS
+	BEGIN
+		UPDATE [User]
+		SET [DisplayName] = @DisplayName
+		WHERE @UserID = [UserID]
+		RETURN @@ROWCOUNT
+	END
+GO
+
 print '' print '*** creating sp_insert_user ***'
 GO
 CREATE PROCEDURE [dbo].[sp_insert_user] (

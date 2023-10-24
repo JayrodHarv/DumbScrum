@@ -48,6 +48,10 @@ namespace DataAccessFakes {
             return numAuthenticated;
         }
 
+        public int CheckIfEmailHasBeenUsedAlready(string email) {
+            throw new NotImplementedException();
+        }
+
         public bool InsertUser(string email, string passwordHash) {
             throw new NotImplementedException();
         }

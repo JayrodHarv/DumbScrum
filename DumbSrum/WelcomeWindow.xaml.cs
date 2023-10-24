@@ -66,18 +66,15 @@ namespace DumbSrum {
                 } catch (Exception ex) {
                     MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
                         "Sign In Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                    pwdPassword.Clear();
-                    txtEmail.Clear();
-                    txtEmail.Focus();
                     return;
                 }
             } else {
                 // sign up user
 
                 try {
-                    if(_userManager.SignUpUser(txtEmail.Text, pwdPassword.Password)) {
-                        MessageBox.Show("Sign Up Successful");
-                    }
+                    _userManager.SignUpUser(email, password);
+                    loggedInUser = _userManager.GetUserVMByEmail(email);
+                    SignIn(loggedInUser);
                 } catch (Exception ex) {
                     MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
                         "Sign Up Failed", MessageBoxButton.OK, MessageBoxImage.Error);
