@@ -47,8 +47,41 @@ namespace DataAccessLayer {
             return rows;
         }
 
-        public bool InsertUser(string email, string passwordHash) {
-            throw new NotImplementedException();
+        public int InsertUser(string email, string passwordHash) {
+            int rows = 0;
+
+            // create connection object
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // set the command text
+            var commandText = "sp_insert_user";
+
+            // create command object
+            var cmd = new SqlCommand(commandText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // add parameters to command
+            cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 100);
+            cmd.Parameters.Add("@PasswordHash", SqlDbType.NVarChar, 100);
+
+            // set parameter values
+            cmd.Parameters["@Email"].Value = email;
+            cmd.Parameters["@PasswordHash"].Value = passwordHash;
+
+            try {
+                // open connection
+                conn.Open();
+
+                // execute command
+                rows = cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return rows;
         }
 
         public List<UserVM> SelectMembersByProjectID(string projectID) {

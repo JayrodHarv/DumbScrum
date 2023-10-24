@@ -90,5 +90,27 @@ namespace LogicLayer {
             }
             return userVM;
         }
+
+        public bool SignUpUser(string email, string password) {
+            bool result = false;
+
+            // check to see if an account already belongs to the email
+
+            try {
+
+            } catch (Exception) {
+
+                throw;
+            }
+
+
+            password = HashSha256(password);
+            try {
+                result = (1 == _userAccessor.InsertUser(email, password));
+            } catch (Exception ex) {
+                throw new ApplicationException("Sign Up Failed", ex);
+            }
+            return result;
+        }
     }
 }

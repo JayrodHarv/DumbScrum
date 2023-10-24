@@ -25,7 +25,8 @@ CREATE TABLE [dbo].[User] (
 	[Email]			[nvarchar] 	(100)					NOT NULL,
 	[PasswordHash]	[nvarchar] 	(100)					NOT NULL	DEFAULT
 		'9c9064c59f1ffa2e174ee754d2979be80dd30db552ec03e7e327e9b1a4bd594e',
-	[DisplayName]	[nvarchar] 	(50)					NOT NULL,
+	[DisplayName]	[nvarchar] 	(50)					NOT NULL	DEFAULT
+		'New User',
 	[Bio]			[nvarchar]	(255)					NULL,
 	[Active]		[bit]								NOT NULL	DEFAULT 1,
 	CONSTRAINT [pk_UserID] PRIMARY KEY ([UserID]),
@@ -192,6 +193,21 @@ AS
 		SET [PasswordHash] = @NewPasswordHash
 		WHERE @Email = [Email]
 		RETURN @@ROWCOUNT
+	END
+GO
+
+print '' print '*** creating sp_insert_user ***'
+GO
+CREATE PROCEDURE [dbo].[sp_insert_user] (
+	@Email				[nvarchar] (100),
+	@PasswordHash		[nvarchar] (100)
+)
+AS
+	BEGIN
+		INSERT INTO [dbo].[User]
+			([Email], [PasswordHash])
+		VALUES
+			(@Email, @PasswordHash)
 	END
 GO
 

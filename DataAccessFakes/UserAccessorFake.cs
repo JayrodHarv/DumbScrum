@@ -86,5 +86,9 @@ namespace DataAccessFakes {
         public int UpdatePasswordHash(string email, string newPasswordHash) {
             throw new NotImplementedException();
         }
+
+        int IUserAccessor.InsertUser(string email, string passwordHash) {
+            throw new NotImplementedException();
+        }
     }
 }
