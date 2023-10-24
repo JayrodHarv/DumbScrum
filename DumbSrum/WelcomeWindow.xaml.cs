@@ -33,6 +33,8 @@ namespace DumbSrum {
 
             // real code that uses database
             _userManager = new UserManager();
+            btnSignIn.IsDefault = true;
+            txtEmail.Focus();
         }
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e) {
@@ -57,9 +59,6 @@ namespace DumbSrum {
             }
 
             if (btnSignIn.Content.ToString() == "Sign In") {
-                // sign in user
-                
-
                 // try to sign in the user
                 try {
                     loggedInUser = _userManager.SignInUser(email, password);
