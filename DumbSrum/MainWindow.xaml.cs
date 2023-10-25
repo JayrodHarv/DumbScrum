@@ -25,7 +25,6 @@ namespace DumbSrum {
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             txtDisplayName.Text = loggedInUser.DisplayName;
             lblTab.Content = tab;
-            btnHome.IsChecked = true;
         }
 
         private void btnHome_Click(object sender, RoutedEventArgs e) {

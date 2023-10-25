@@ -6,34 +6,52 @@
              xmlns:local="clr-namespace:DumbSrum.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Grid.Row="1" Grid.Column="1">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
-            <RowDefinition/>
+            <RowDefinition Height="60"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
-                <TextBlock Text="135"/>
-                <TextBlock Text="Active Projects" Height="20"/>
-            </StackPanel>
-            <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
-                <TextBlock Text="4"/>
-                <TextBlock Text="Completed Projects" Height="20"/>
-            </StackPanel>
-            <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
-                <TextBlock Text="1,230"/>
-                <TextBlock Text="Open Tasks" Height="20"/>
-            </StackPanel>
-            <StackPanel Grid.Column="3" Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
-                <TextBlock Text="169"/>
-                <TextBlock Text="Open Issues" Height="20"/>
-            </StackPanel>
-        </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Name="lblWelcome" Content="Welcome *DisplayName*" 
+               FontSize="16" VerticalAlignment="Center" Margin="20,0,20,0"/>
+        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Border Background="#FF34BFEC" Width="60" Height="40" CornerRadius="5,0,0,5">
+                <TextBlock Text="My Tasks" Foreground="white" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border Width="80" Height="40" BorderThickness="0.5" BorderBrush="Gray">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Open" Foreground="LightGreen" Margin="5"/>
+                    <TextBlock Text="0" Margin="5"/>
+                </StackPanel>
+            </Border>
+            <Border Width="80" Height="40" BorderThickness="0.5" BorderBrush="Gray" CornerRadius="0,5,5,0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Closed" Foreground="Red" Margin="5"/>
+                    <TextBlock Text="0" Margin="5"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Border Background="#FFED7171" Width="60" Height="40" CornerRadius="5,0,0,5">
+                <TextBlock Text="My Issues" Foreground="white" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border Width="80" Height="40" BorderThickness="0.5" BorderBrush="Gray">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Open" Foreground="LightGreen" Margin="5"/>
+                    <TextBlock Text="0" Margin="5"/>
+                </StackPanel>
+            </Border>
+            <Border Width="80" Height="40" BorderThickness="0.5" BorderBrush="Gray" CornerRadius="0,5,5,0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Closed" Foreground="Red" Margin="5"/>
+                    <TextBlock Text="0" Margin="5"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
     </Grid>
 </UserControl>

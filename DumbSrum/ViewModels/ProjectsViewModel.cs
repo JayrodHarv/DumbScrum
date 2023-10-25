@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DumbSrum.ViewModels {
-    public class HomeViewModel {
-        
+    public class ProjectsViewModel {
     }
 }

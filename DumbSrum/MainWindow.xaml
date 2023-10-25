@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DumbSrum"
+        xmlns:viewModels="clr-namespace:DumbSrum.ViewModels"
         mc:Ignorable="d"
         Title="Dumb Scrum" 
         Height="650" Width="1200" 
@@ -11,6 +12,11 @@
         WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen" 
         Loaded="Window_Loaded">
+
+    <Window.DataContext >
+        <viewModels:MainViewModel/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -38,20 +44,20 @@
             </Grid>
         </Border>
 
-        <Grid Background="white"
-              Grid.Row="1">
+        <Grid Background="white" Grid.Row="1">
             <Border BorderBrush="Black" BorderThickness="0">
                 <StackPanel VerticalAlignment="Top" Orientation="Vertical">
-                    <RadioButton x:Name="btnHome" Content="Home" Height="30" Click="btnHome_Click" Style="{StaticResource MenuButtonTheme}"/>
-                    <RadioButton x:Name="btnProjects" Content="Projects" Height="30" Click="btnProjects_Click" Style="{StaticResource MenuButtonTheme}"/>
+                    <RadioButton x:Name="btnHome" Content="Home" Height="30" IsChecked="True" Click="btnHome_Click" 
+                                 Command="{Binding HomeViewCommand}" Style="{StaticResource MenuButtonTheme}"/>
+                    <RadioButton x:Name="btnProjects" Content="Projects" Height="30" Click="btnProjects_Click" 
+                                 Command="{Binding ProjectsViewCommand}" Style="{StaticResource MenuButtonTheme}"/>
                     <RadioButton x:Name="btnChats" Content="Chats" Height="30" Click="btnChats_Click" Style="{StaticResource MenuButtonTheme}"/>
                 </StackPanel>
             </Border>
         </Grid>
 
-        <ContentControl Grid.Row="1"
-                            Grid.Column="1">
-
+        <ContentControl Grid.Row="1" Grid.Column="1" Content="{Binding CurrentView}">
+            
         </ContentControl>
 
         <Grid Grid.Row="2" Grid.Column="0">
