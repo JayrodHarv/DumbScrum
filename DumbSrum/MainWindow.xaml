@@ -51,7 +51,6 @@
                                  Command="{Binding HomeViewCommand}" Style="{StaticResource MenuButtonTheme}"/>
                     <RadioButton x:Name="btnProjects" Content="Projects" Height="30" Click="btnProjects_Click" 
                                  Command="{Binding ProjectsViewCommand}" Style="{StaticResource MenuButtonTheme}"/>
-                    <RadioButton x:Name="btnChats" Content="Chats" Height="30" Click="btnChats_Click" Style="{StaticResource MenuButtonTheme}"/>
                 </StackPanel>
             </Border>
         </Grid>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DumbSrum"
         mc:Ignorable="d"
-        Title="Welcome To Dumb Scrum" Height="385" Width="715" WindowStartupLocation="CenterScreen" MinWidth="715" MinHeight="385" Loaded="Window_Loaded">
+        Title="Welcome To Dumb Scrum" Height="385" Width="715" WindowStartupLocation="CenterScreen" MinWidth="715" MinHeight="385" Loaded="Window_Loaded" WindowStyle="ToolWindow">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />

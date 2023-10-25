@@ -53,5 +53,11 @@
                 </StackPanel>
             </Border>
         </StackPanel>
+        <Border Grid.Row="2" Grid.Column="0" BorderBrush="Gray" BorderThickness="0.5" Margin="15">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <Label Content="My Tasks" BorderBrush="Gray" BorderThickness="0,0,0,0.5"/>
+                
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="ListViewItem" x:Key="TaskItemTheme">
+        <Setter Property="Template">
+            <Setter.Value>
+                <StackPanel Orientation="Horizontal">
+                    <!--<Label Content="{Binding }"  needs finished-->
+                </StackPanel>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

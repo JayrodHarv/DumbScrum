@@ -10,7 +10,6 @@ namespace DumbSrum.ViewModels {
 
         public RelayCommand HomeViewCommand { get; set; }
         public RelayCommand ProjectsViewCommand { get; set; }
-
         public HomeViewModel HomeVM { get; set; }
 		public ProjectsViewModel ProjectsVM { get; set; }
 
