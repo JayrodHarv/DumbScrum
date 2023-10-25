@@ -26,18 +26,14 @@
         <Border Grid.Column="1" 
                 Background="#FF969696">
             <Grid HorizontalAlignment="Stretch">
-                <Label x:Name="lblTab" Content="Home" Foreground="White" 
-                       FontWeight="SemiBold" FontSize="20"/>
-
+                <Label x:Name="lblTab" Content="Home" Foreground="White" FontWeight="SemiBold" FontSize="20"/>
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                     <TextBlock x:Name="txtDisplayName" Text="Jared Harvey" VerticalAlignment="Center" Padding="5"></TextBlock>
                     <Ellipse Height="35" Width="35">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="C:\Users\Jared\Desktop\Coding Projects\.NET II Final Project\DumbSrum\server-icon.png"/>
+                            <ImageBrush x:Name="imgPfp"  ImageSource="C:\Users\Jared\Desktop\Coding Projects\.NET II Final Project\DumbSrum\DumbSrum\bin\Debug\data\server-icon.png"/>
                         </Ellipse.Fill>
                     </Ellipse>
-                    
-
                 </StackPanel>
             </Grid>
         </Border>
@@ -46,22 +42,21 @@
               Grid.Row="1">
             <Border BorderBrush="Black" BorderThickness="0">
                 <StackPanel VerticalAlignment="Top" Orientation="Vertical">
-                    <Button x:Name="btnHome" Content="Home" Height="30" FontSize="12" Background="Black" BorderThickness="0" Cursor="Arrow" Foreground="White" Click="btnHome_Click"/>
-                    <Button x:Name="btnProjects" Content="Projects" Height="30" FontSize="12" Background="LightGray" BorderThickness="0" Click="btnProjects_Click"/>
-                    <Button x:Name="btnChats" Content="Chats" Height="30" FontSize="12" Background="LightGray" BorderThickness="0" Click="btnChats_Click"/>
+                    <RadioButton x:Name="btnHome" Content="Home" Height="30" Click="btnHome_Click" Style="{StaticResource MenuButtonTheme}"/>
+                    <RadioButton x:Name="btnProjects" Content="Projects" Height="30" Click="btnProjects_Click" Style="{StaticResource MenuButtonTheme}"/>
+                    <RadioButton x:Name="btnChats" Content="Chats" Height="30" Click="btnChats_Click" Style="{StaticResource MenuButtonTheme}"/>
                 </StackPanel>
             </Border>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+
+        <ContentControl Grid.Row="1"
+                            Grid.Column="1">
+
+        </ContentControl>
+
+        <Grid Grid.Row="2" Grid.Column="0">
             
         </Grid>
+        
     </Grid>
 </Window>

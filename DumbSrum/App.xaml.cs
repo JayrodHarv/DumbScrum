@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataObjects;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -11,5 +12,6 @@ namespace DumbSrum {
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application {
+        
     }
 }
