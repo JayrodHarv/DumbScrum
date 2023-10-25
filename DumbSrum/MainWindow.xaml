@@ -37,7 +37,7 @@
                     <TextBlock x:Name="txtDisplayName" Text="Jared Harvey" VerticalAlignment="Center" Padding="5"></TextBlock>
                     <Ellipse Height="35" Width="35">
                         <Ellipse.Fill>
-                            <ImageBrush x:Name="imgPfp"  ImageSource="C:\Users\Jared\Desktop\Coding Projects\.NET II Final Project\DumbSrum\DumbSrum\bin\Debug\data\server-icon.png"/>
+                            <ImageBrush x:Name="imgPfp"  ImageSource="Images/Sample_User_Icon.png"/>
                         </Ellipse.Fill>
                     </Ellipse>
                 </StackPanel>
