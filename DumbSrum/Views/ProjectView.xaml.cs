@@ -10,14 +10,15 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DumbSrum {
+namespace DumbSrum.Views {
     /// <summary>
-    /// Interaction logic for ProjectWindow.xaml
+    /// Interaction logic for ProjectView.xaml
     /// </summary>
-    public partial class ProjectWindow : Window {
-        public ProjectWindow() {
+    public partial class ProjectView : UserControl {
+        public ProjectView() {
             InitializeComponent();
         }
     }

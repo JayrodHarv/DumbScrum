@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,6 @@ namespace DataObjects {
 
     public class ProjectVM : Project { 
         public List<User> Members { get; set; }
-
+        public List<TaskVM> Tasks { get; set; }
     }
 }

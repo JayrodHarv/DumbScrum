@@ -1,6 +1,8 @@
-﻿using DumbSrum.Core;
+﻿using DataObjects;
+using DumbSrum.Core;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ namespace DumbSrum.ViewModels {
         public RelayCommand ProjectsViewCommand { get; set; }
         public HomeViewModel HomeVM { get; set; }
 		public ProjectsViewModel ProjectsVM { get; set; }
+		public ObservableCollection<ProjectVM> Projects { get; set; }
 
         private object _currentView;
 
@@ -36,6 +39,8 @@ namespace DumbSrum.ViewModels {
             ProjectsViewCommand = new RelayCommand(o => {
                 CurrentView = ProjectsVM;
             });
+
+			Projects = new ObservableCollection<ProjectVM>();
         }
     }
 }

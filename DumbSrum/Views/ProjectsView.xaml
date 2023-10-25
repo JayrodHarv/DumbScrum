@@ -7,20 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="5"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Stretch"  Background="#FFE0E0E0">
-            <TextBlock Padding="20" Text="Project Backlog" VerticalAlignment="Center" FontSize="18"></TextBlock>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Stretch"  Background="#FFE0E0E0">
-            <TextBlock Padding="20" Text="Sprint Backlog" VerticalAlignment="Center" FontSize="18"></TextBlock>
-        </StackPanel>
+        <ListView>
+            
+        </ListView>
     </Grid>
 </UserControl>
