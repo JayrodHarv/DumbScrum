@@ -17,6 +17,12 @@ GO
 USE [dumb_scrum_db]
 GO
 
+/* =================================================================================
+
+									Create Table Statements
+ 
+==================================================================================*/
+
 /* creating user table */
 print '' print '*** creating user table ***'
 GO
@@ -151,7 +157,13 @@ CREATE TABLE [dbo].[Chat] (
 )
 GO
 
-/* Stored Procedures */
+/* =================================================================================
+
+									Stored Procedures
+ 
+==================================================================================*/
+
+/*----- User Stored Procedures -----*/
 print '' print '*** creating sp_authenticate_user ***'
 GO
 CREATE PROCEDURE [dbo].[sp_authenticate_user] (
@@ -226,8 +238,24 @@ AS
 	END
 GO
 
+/*----- Project Stored Procedures -----*/
+print '' print '*** creating sp_select_all_projects ***'
+GO
+CREATE PROCEDURE [dbo].[sp_select_all_projects]
+AS
+	BEGIN
+		SELECT *
+		FROM [Project]
+	END
+GO
 
-/* Insert test records */
+
+/* =================================================================================
+
+									Insert Test Data
+ 
+==================================================================================*/
+
 print '' print '*** inserting User test records ***'
 GO
 INSERT INTO [dbo].[User]
@@ -236,4 +264,14 @@ INSERT INTO [dbo].[User]
 		('Jared Harvey', 'jared.harvey10@gmail.com', 'I am programmer'),
 		('Joe Winters', 'joe-winters@weatherchannel.com', 'I am weather man'),
 		('Barack Obama', 'barack-obama@whitehouse.org', 'I am former president')
+GO
+
+print '' print '*** inserting Project test records ***'
+GO
+INSERT INTO [dbo].[Project]
+		([ProjectID], [ProjectOwner], [DateCreated], [Status], [Description])
+	VALUES
+		('Dumb Scrum 1', 'Jared Harvey', GETDATE(), 'In Progress', 'Test description'),
+		('Dumb Scrum 2', 'Joe Winters', GETDATE(), 'In Progress', 'Test description'),
+		('Dumb Scrum 3', 'Barack Obama', GETDATE(), 'Completed', 'Test description')
 GO

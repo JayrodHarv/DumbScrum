@@ -22,8 +22,12 @@ namespace LogicLayer {
 
         public bool AuthenticateUser(string email, string password) {
             bool result = false;
-            password = HashSha256(password);
-            result = (1 == _userAccessor.AuthenticateUserWithEmailAndPasswordHash(email, password));
+            try {
+                password = HashSha256(password);
+                result = (1 == _userAccessor.AuthenticateUserWithEmailAndPasswordHash(email, password));
+            } catch (Exception ex) {
+                throw new ArgumentException("Authentication Failed", ex);
+            }
             return result;
         }
 

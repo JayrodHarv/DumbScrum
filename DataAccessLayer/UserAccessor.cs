@@ -132,10 +132,6 @@ namespace DataAccessLayer {
             throw new NotImplementedException();
         }
 
-        public List<Project> SelectProjectsByUserID(int userID) {
-            throw new NotImplementedException();
-        }
-
         public UserVM SelectUserVMByEmail(string email) {
             UserVM userVM = new UserVM();
 
