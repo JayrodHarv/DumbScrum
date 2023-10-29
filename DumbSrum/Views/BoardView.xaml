@@ -28,8 +28,31 @@
 
 
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
-            <TextBlock Text="TO DO" Background="Red" Foreground="white" FontWeight="Bold" 
-                       Padding="3" Width="50" TextAlignment="Center"/>
+            <StackPanel Background="Red" HorizontalAlignment="Center" Orientation="Horizontal" >
+                <TextBlock Text="To Do" Foreground="white" Padding="3" FontWeight="SemiBold" />
+                <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <StackPanel Background="Orange" HorizontalAlignment="Center" Orientation="Horizontal" >
+                <TextBlock Text="In Progress" Foreground="white" Padding="3" FontWeight="SemiBold" />
+                <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical">
+            <StackPanel Background="Gold" HorizontalAlignment="Center" Orientation="Horizontal" >
+                <TextBlock Text="Design Phase" Foreground="white" Padding="3" FontWeight="SemiBold" />
+                <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Vertical">
+            <StackPanel Background="Green" HorizontalAlignment="Center" Orientation="Horizontal" >
+                <TextBlock Text="Complete" Foreground="white" Padding="3" FontWeight="SemiBold" />
+                <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

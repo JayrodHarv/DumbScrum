@@ -5,9 +5,6 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 
 namespace DumbSrum {
     /// <summary>
@@ -95,7 +92,7 @@ namespace DumbSrum {
         private void btnMyProjects_Click(object sender, RoutedEventArgs e) {
             GetUserProjects();
             CurrentView = myProjectsView;
-            lblTab.Content = "Projects";
+            lblTab.Content = "My Projects";
         }
     }
 }
