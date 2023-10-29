@@ -38,21 +38,22 @@
                 </StackPanel>
             </Grid>
         </Border>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel VerticalAlignment="Top" Orientation="Vertical">
+                <RadioButton x:Name="btnHome" Content="Home" Height="30" IsChecked="True" Click="btnHome_Click"
+                                     Style="{StaticResource MenuButtonTheme}"/>
+                <RadioButton x:Name="btnBrowseProjects" Content="Browse Projects" Height="30" Click="btnBrowseProjects_Click" 
+                                     Style="{StaticResource MenuButtonTheme}"/>
+                <RadioButton x:Name="btnMyProjects" Content="My Projects" Height="30" Click="btnMyProjects_Click" 
+                                     Style="{StaticResource MenuButtonTheme}"/>
+            </StackPanel>
+        </ScrollViewer>
 
-        <Grid Background="white" Grid.Row="1">
-            <Border BorderBrush="Black" BorderThickness="0">
-                <StackPanel VerticalAlignment="Top" Orientation="Vertical">
-                    <RadioButton x:Name="btnHome" Content="Home" Height="30" IsChecked="True" Click="btnHome_Click"
-                                 Style="{StaticResource MenuButtonTheme}"/>
-                    <RadioButton x:Name="btnProjects" Content="Projects" Height="30" Click="btnProjects_Click" 
-                                 Style="{StaticResource MenuButtonTheme}"/>
-                </StackPanel>
-            </Border>
-        </Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="1">
+            <ContentControl Content="{Binding CurrentView}">
 
-        <ContentControl Grid.Row="1" Grid.Column="1" Content="{Binding CurrentView}">
-            
-        </ContentControl>
+            </ContentControl>
+        </ScrollViewer>
 
         <Grid Grid.Row="2" Grid.Column="0">
             

@@ -112,22 +112,22 @@ CREATE TABLE [dbo].[Sprint] (
 )
 GO
 
-/* creating sprintitem table */
-print '' print '*** creating sprintitem table ***'
+/* creating task table */
+print '' print '*** creating task table ***'
 GO
-CREATE TABLE [dbo].[SprintItem] (
-	[ItemID]		[int]								NOT NULL,
+CREATE TABLE [dbo].[Task] (
+	[TaskID]		[int]								NOT NULL,
 	[SprintID]		[int]								NOT NULL,
 	[StoryID]		[int]								NOT NULL,
 	[UserID]		[int]								NOT NULL,
 	[Status]		[nvarchar]							NOT NULL,
-	CONSTRAINT	[fk_SprintItem_SprintID]	FOREIGN KEY ([SprintID])
+	CONSTRAINT	[fk_Task_SprintID]	FOREIGN KEY ([SprintID])
 		REFERENCES	[dbo].[Sprint] ([SprintID]),
-	CONSTRAINT	[fk_SprintItem_StoryID]	FOREIGN KEY ([StoryID])
+	CONSTRAINT	[fk_Task_StoryID]	FOREIGN KEY ([StoryID])
 		REFERENCES	[dbo].[UserStory] ([StoryID]),
-	CONSTRAINT	[fk_SprintItem_UserID]	FOREIGN KEY ([UserID])
+	CONSTRAINT	[fk_Task_UserID]	FOREIGN KEY ([UserID])
 		REFERENCES	[dbo].[User] ([UserID]),
-	CONSTRAINT [pk_ItemID] PRIMARY KEY ([ItemID])
+	CONSTRAINT [pk_TaskID] PRIMARY KEY ([TaskID])
 )
 GO
 
@@ -246,6 +246,20 @@ AS
 	BEGIN
 		SELECT *
 		FROM [Project]
+	END
+GO
+
+print '' print '*** creating sp_select_user_projects ***'
+GO
+CREATE PROCEDURE [dbo].[sp_select_user_projects] (
+	@UserID		[int]
+)
+AS
+	BEGIN
+		SELECT *
+		FROM [Project]
+		INNER JOIN [ProjectMember]
+		ON [ProjectMember].[UserID] = @UserID
 	END
 GO
 

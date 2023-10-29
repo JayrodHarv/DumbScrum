@@ -15,10 +15,10 @@ using System.Windows.Shapes;
 
 namespace DumbSrum.Views {
     /// <summary>
-    /// Interaction logic for ProjectView.xaml
+    /// Interaction logic for BoardView.xaml
     /// </summary>
-    public partial class ProjectView : UserControl {
-        public ProjectView() {
+    public partial class BoardView : UserControl {
+        public BoardView() {
             InitializeComponent();
         }
     }

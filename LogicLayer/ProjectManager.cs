@@ -33,8 +33,14 @@ namespace LogicLayer {
             throw new NotImplementedException();
         }
 
-        public List<Project> GetProjectsByUserID(string userID) {
-            throw new NotImplementedException();
+        public List<Project> GetProjectsByUserID(int userID) {
+            List<Project> result = new List<Project>();
+            try {
+                result = _projectAccessor.SelectProjectsByUserID(userID);
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return result;
         }
     }
 }

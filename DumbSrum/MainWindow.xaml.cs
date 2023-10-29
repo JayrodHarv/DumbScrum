@@ -18,6 +18,7 @@ namespace DumbSrum {
         // Views
         public HomeView homeView { get; set; }
         public ProjectListView projectListView { get; set; }
+        public MyProjectsView myProjectsView { get; set; }
 
         public UserVM LoggedInUser { get; set; }
 
@@ -42,9 +43,6 @@ namespace DumbSrum {
             set { _projects = value; }
         }
 
-
-        string tab = "Home";
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public MainWindow(UserVM user) {
@@ -53,15 +51,15 @@ namespace DumbSrum {
             // View stuff
             homeView = new HomeView();
             projectListView = new ProjectListView();
+            myProjectsView = new MyProjectsView();
             CurrentView = homeView; // this has to go before InitializeComponent
 
             InitializeComponent();
             LoggedInUser = user;
-            GetProjects();
             AppData.DataPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "data";
         }
 
-        private void GetProjects() {
+        private void GetAllProjects() {
             try {
                 _projects = new ObservableCollection<Project>(_projectManager.GetAllProjects());
             } catch (Exception ex) {
@@ -69,17 +67,35 @@ namespace DumbSrum {
             }
         }
 
+        private void GetUserProjects() {
+            try {
+                _projects = new ObservableCollection<Project>(_projectManager.GetProjectsByUserID(LoggedInUser.UserID));
+            } catch (Exception) {
+
+                throw;
+            }
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             txtDisplayName.Text = LoggedInUser.DisplayName;
-            lblTab.Content = tab;
+            lblTab.Content = "Home";
         }
 
         private void btnHome_Click(object sender, RoutedEventArgs e) {
             CurrentView = homeView;
+            lblTab.Content = "Home";
         }
 
-        private void btnProjects_Click(object sender, RoutedEventArgs e) {
+        private void btnBrowseProjects_Click(object sender, RoutedEventArgs e) {
+            GetAllProjects();
             CurrentView = projectListView;
+            lblTab.Content = "Browse All Projects";
+        }
+
+        private void btnMyProjects_Click(object sender, RoutedEventArgs e) {
+            GetUserProjects();
+            CurrentView = myProjectsView;
+            lblTab.Content = "Projects";
         }
     }
 }
