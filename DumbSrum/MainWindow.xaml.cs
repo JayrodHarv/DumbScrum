@@ -102,7 +102,7 @@ namespace DumbSrum {
         }
 
         private void expMyProjects_Expanded(object sender, RoutedEventArgs e) {
-            GetUserProjects();
+            GetAllProjects();
         }
     }
 }

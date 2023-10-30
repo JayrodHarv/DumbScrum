@@ -40,8 +40,8 @@
 
         <ScrollViewer Grid.Row="0" Grid.RowSpan="2" VerticalScrollBarVisibility="Auto" Background="#FF3A3A3A">
             <StackPanel VerticalAlignment="Top" Orientation="Vertical">
-                <Label Height="40" Content="Dumb Scrum" FontSize="18" FontWeight="Bold" HorizontalAlignment="Stretch" 
-                       VerticalAlignment="Center" Foreground="white" HorizontalContentAlignment="Center"/>
+                <Label Height="40" Content="Dumb Scrum" FontSize="18" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalContentAlignment="Center"
+                       Foreground="white" BorderBrush="Gray" BorderThickness="0,0,0,0.5" Padding="20,0,0,0"/>
                 <RadioButton x:Name="btnHome" Content="Home" Height="30" IsChecked="True" Click="btnHome_Click"
                                      Style="{StaticResource MenuButtonTheme}"/>
                 <RadioButton x:Name="btnBrowseProjects" Content="Browse Projects" Height="30" Click="btnBrowseProjects_Click" 
@@ -49,9 +49,13 @@
                 <RadioButton x:Name="btnMyProjects" Content="My Projects" Height="30" Click="btnMyProjects_Click" 
                                      Style="{StaticResource MenuButtonTheme}"/>
                 <Expander x:Name="expMyProjects" Header="My Projects" Foreground="white" Margin="20, 0,0,0" Expanded="expMyProjects_Expanded">
-                    <ListView Background="Transparent" ItemsSource="{Binding Projects}" SelectionMode="Single">
-                        <TextBlock Foreground="white" HorizontalAlignment="Center" Text="{Binding ProjectID}"/>
-                    </ListView>
+                    <ItemsControl ItemsSource="{Binding Projects}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ProjectID}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </Expander>
             </StackPanel>
         </ScrollViewer>

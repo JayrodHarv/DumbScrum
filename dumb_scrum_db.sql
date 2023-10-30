@@ -53,6 +53,17 @@ CREATE TABLE [dbo].[Project] (
 )
 GO
 
+/* creating scrumgroup table */
+print '' print '*** creating project table ***'
+GO
+CREATE TABLE [dbo].[ScrumGroup] (
+	[GroupID]		[int]		IDENTITY(100000, 1)		NOT NULL,
+	[ProjectID]		[nvarchar] 	(50)					NOT NULL,
+	[Name]			[nvarchar]	(50)					NOT NULL,		
+	CONSTRAINT [pk_GroupID] PRIMARY KEY ([GroupID])
+)
+GO
+
 /* creating feature table */
 print '' print '*** creating feature table ***'
 GO
@@ -88,9 +99,12 @@ print '' print '*** creating sprint table ***'
 GO
 CREATE TABLE [dbo].[Sprint] (
 	[SprintID]		[int]		IDENTITY(100000, 1)		NOT NULL,
+	[GroupID]		[int]								NOT NULL,
 	[FeatureID]		[int]								NOT NULL,
 	[StartDate]		[date]								NOT NULL,	
-	[EndDate]		[date]								NOT NULL,
+	[EndDate]		[date]								NULL,
+	CONSTRAINT	[fk_Sprint_GroupID]	FOREIGN KEY ([GroupID])
+		REFERENCES	[dbo].[ScrumGroup] ([GroupID]),
 	CONSTRAINT	[fk_Sprint_FeatureID]	FOREIGN KEY ([FeatureID])
 		REFERENCES	[dbo].[Feature] ([FeatureID]),
 	CONSTRAINT [pk_SprintID] PRIMARY KEY ([SprintID])
@@ -101,14 +115,18 @@ GO
 print '' print '*** creating projectmember table ***'
 GO
 CREATE TABLE [dbo].[ProjectMember] (
-	[UserID]		[int]		IDENTITY(100000, 1)		NOT NULL,
+	[MemberID]		[int]		IDENTITY(100000, 1)		NOT NULL,
+	[UserID]		[int]								NOT NULL,
 	[ProjectID]		[nvarchar] 	(50)					NOT NULL,
+	[GroupID]		[int]								NOT NULL,
 	[Role]			[nvarchar]	(50)					NOT NULL,	
 	CONSTRAINT	[fk_ProjectMember_UserID]	FOREIGN KEY ([UserID])
 		REFERENCES	[dbo].[User] ([UserID]),
 	CONSTRAINT	[fk_ProjectMember_ProjectID]	FOREIGN KEY ([ProjectID])
 		REFERENCES	[dbo].[Project] ([ProjectID]),
-	CONSTRAINT [pk_ProjectMember] PRIMARY KEY ([UserID], [ProjectID])
+		CONSTRAINT	[fk_ProjectMember_GroupID]	FOREIGN KEY ([GroupID])
+		REFERENCES	[dbo].[ScrumGroup] ([GroupID]),
+	CONSTRAINT [pk_MemberID] PRIMARY KEY ([MemberID])
 )
 GO
 
@@ -290,6 +308,32 @@ INSERT INTO [dbo].[Project]
 		('Dumb Scrum 3', 'Barack Obama', GETDATE(), 'Completed', 'Test description')
 GO
 
+print '' print '*** inserting ScrumGroup test records ***'
+GO
+INSERT INTO [dbo].[ScrumGroup]
+		([ProjectID], [Name])
+	VALUES
+		('Dumb Scrum 1', 'Scrum Group 1'),
+		('Dumb Scrum 1', 'Scrum Group 2'),
+		('Dumb Scrum 1', 'Scrum Group 3'),
+		('Dumb Scrum 2', 'Scrum Group 1'),
+		('Dumb Scrum 2', 'Scrum Group 2'),
+		('Dumb Scrum 2', 'Scrum Group 3'),
+		('Dumb Scrum 3', 'Scrum Group 1'),
+		('Dumb Scrum 3', 'Scrum Group 2'),
+		('Dumb Scrum 3', 'Scrum Group 3')
+GO
+
+print '' print '*** inserting ProjectMember test records ***'
+GO
+INSERT INTO [dbo].[ProjectMember]
+		([UserID], [ProjectID], [GroupID], [Role])
+	VALUES
+		('100000', 'Dumb Scrum 2', '100000', 'Scrum Team Member'),
+		('100001', 'Dumb Scrum 3', '100001', 'Scrum Team Member'),
+		('100002', 'Dumb Scrum 1', '100002', 'Scrum Team Member')
+GO
+
 print '' print '*** inserting Feature test records ***'
 GO
 INSERT INTO [dbo].[Feature]
@@ -314,10 +358,9 @@ GO
 print '' print '*** inserting Sprint test records ***'
 GO
 INSERT INTO [dbo].[Sprint]
-		([FeatureID], [StartDate], [EndDate])
+		([GroupID], [FeatureID], [StartDate])
 	VALUES
-		('100000', 'User', 'Signs up for Dumb Scrum 1', 'So that they can access and use the app.'),
-		('100000', 'User', 'Signs into their Dumb Scrum account', 'So that they can access their account an use the app.'),
-		('100001', 'User', 'View a list of my projects', 'So that I can view my projects'),
-		('100002', 'User', 'View a list of my tasks', 'So that I can view the tasks that I have to do')
+		('100000', '100000', GETDATE()),
+		('100001', '100001', GETDATE()),
+		('100002', '100002', GETDATE())
 GO
