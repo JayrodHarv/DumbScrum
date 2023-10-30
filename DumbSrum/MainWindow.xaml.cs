@@ -32,12 +32,18 @@ namespace DumbSrum {
             }
         }
 
-
         private ObservableCollection<Project> _projects;
 
         public ObservableCollection<Project> Projects {
             get { return _projects; }
             set { _projects = value; }
+        }
+
+        private ObservableCollection<Project> _myProjects;
+
+        public ObservableCollection<Project> MyProjects {
+            get { return _myProjects; }
+            set { _myProjects = value; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -66,7 +72,7 @@ namespace DumbSrum {
 
         private void GetUserProjects() {
             try {
-                _projects = new ObservableCollection<Project>(_projectManager.GetProjectsByUserID(LoggedInUser.UserID));
+                _myProjects = new ObservableCollection<Project>(_projectManager.GetProjectsByUserID(LoggedInUser.UserID));
             } catch (Exception) {
 
                 throw;
@@ -93,6 +99,10 @@ namespace DumbSrum {
             GetUserProjects();
             CurrentView = myProjectsView;
             lblTab.Content = "My Projects";
+        }
+
+        private void expMyProjects_Expanded(object sender, RoutedEventArgs e) {
+            GetUserProjects();
         }
     }
 }

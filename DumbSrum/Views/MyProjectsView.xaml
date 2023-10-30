@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ListView Background="Transparent" ItemsSource="{Binding Projects}">
+        <ListView Background="Transparent" ItemsSource="{Binding MyProjects}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Project Name">

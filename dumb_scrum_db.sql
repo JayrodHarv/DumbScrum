@@ -53,33 +53,18 @@ CREATE TABLE [dbo].[Project] (
 )
 GO
 
-/* creating projectmember table */
-print '' print '*** creating projectmember table ***'
-GO
-CREATE TABLE [dbo].[ProjectMember] (
-	[UserID]		[int]								NOT NULL,
-	[ProjectID]		[nvarchar] 	(50)					NOT NULL,
-	[Role]			[nvarchar]	(50)					NOT NULL,	
-	CONSTRAINT	[fk_ProjectMember_UserID]	FOREIGN KEY ([UserID])
-		REFERENCES	[dbo].[User] ([UserID]),
-	CONSTRAINT	[fk_ProjectMember_ProjectID]	FOREIGN KEY ([ProjectID])
-		REFERENCES	[dbo].[Project] ([ProjectID]),
-	CONSTRAINT [pk_ProjectMember] PRIMARY KEY ([UserID], [ProjectID])
-)
-GO
-
 /* creating feature table */
 print '' print '*** creating feature table ***'
 GO
 CREATE TABLE [dbo].[Feature] (
-	[FeatureID]		[int]								NOT NULL,
+	[FeatureID]		[int]		IDENTITY(100000, 1)		NOT NULL,
 	[ProjectID]		[nvarchar] 	(50)					NOT NULL,
 	[Name]			[nvarchar]	(50)					NOT NULL,	
 	[Description]	[nvarchar]	(255)					NOT NULL,
 	[Status]		[nvarchar]	(50)					NOT NULL,
 	CONSTRAINT	[fk_Feature_ProjectID]	FOREIGN KEY ([ProjectID])
 		REFERENCES	[dbo].[Project] ([ProjectID]),
-	CONSTRAINT [pk_Feature] PRIMARY KEY ([FeatureID])
+	CONSTRAINT [pk_FeatureID] PRIMARY KEY ([FeatureID])
 )
 GO
 
@@ -87,11 +72,11 @@ GO
 print '' print '*** creating userstory table ***'
 GO
 CREATE TABLE [dbo].[UserStory] (
-	[StoryID]		[int]								NOT NULL,
+	[StoryID]		[int]		IDENTITY(100000, 1)		NOT NULL,
 	[FeatureID]		[int]								NOT NULL,
-	[Person]		[nvarchar]	(50)					NOT NULL,	
-	[Action]		[nvarchar]	(50)					NOT NULL,
-	[Reason]		[nvarchar]	(50)					NOT NULL,
+	[Person]		[nvarchar]	(100)					NOT NULL,	
+	[Action]		[nvarchar]	(255)					NOT NULL,
+	[Reason]		[nvarchar]	(255)					NOT NULL,
 	CONSTRAINT	[fk_UserStory_FeatureID]	FOREIGN KEY ([FeatureID])
 		REFERENCES	[dbo].[Feature] ([FeatureID]),
 	CONSTRAINT [pk_StoryID] PRIMARY KEY ([StoryID])
@@ -102,7 +87,7 @@ GO
 print '' print '*** creating sprint table ***'
 GO
 CREATE TABLE [dbo].[Sprint] (
-	[SprintID]		[int]								NOT NULL,
+	[SprintID]		[int]		IDENTITY(100000, 1)		NOT NULL,
 	[FeatureID]		[int]								NOT NULL,
 	[StartDate]		[date]								NOT NULL,	
 	[EndDate]		[date]								NOT NULL,
@@ -112,15 +97,30 @@ CREATE TABLE [dbo].[Sprint] (
 )
 GO
 
+/* creating projectmember table */
+print '' print '*** creating projectmember table ***'
+GO
+CREATE TABLE [dbo].[ProjectMember] (
+	[UserID]		[int]		IDENTITY(100000, 1)		NOT NULL,
+	[ProjectID]		[nvarchar] 	(50)					NOT NULL,
+	[Role]			[nvarchar]	(50)					NOT NULL,	
+	CONSTRAINT	[fk_ProjectMember_UserID]	FOREIGN KEY ([UserID])
+		REFERENCES	[dbo].[User] ([UserID]),
+	CONSTRAINT	[fk_ProjectMember_ProjectID]	FOREIGN KEY ([ProjectID])
+		REFERENCES	[dbo].[Project] ([ProjectID]),
+	CONSTRAINT [pk_ProjectMember] PRIMARY KEY ([UserID], [ProjectID])
+)
+GO
+
 /* creating task table */
 print '' print '*** creating task table ***'
 GO
 CREATE TABLE [dbo].[Task] (
-	[TaskID]		[int]								NOT NULL,
+	[TaskID]		[int]		IDENTITY(100000, 1)		NOT NULL,
 	[SprintID]		[int]								NOT NULL,
 	[StoryID]		[int]								NOT NULL,
 	[UserID]		[int]								NOT NULL,
-	[Status]		[nvarchar]							NOT NULL,
+	[Status]		[nvarchar]	(50)					NOT NULL,
 	CONSTRAINT	[fk_Task_SprintID]	FOREIGN KEY ([SprintID])
 		REFERENCES	[dbo].[Sprint] ([SprintID]),
 	CONSTRAINT	[fk_Task_StoryID]	FOREIGN KEY ([StoryID])
@@ -135,9 +135,9 @@ GO
 print '' print '*** creating message table ***'
 GO
 CREATE TABLE [dbo].[Message] (
-	[MessageID]		[int]								NOT NULL,
+	[MessageID]		[int]		IDENTITY(100000, 1)		NOT NULL,
 	[UserID]		[int]								NOT NULL,
-	[Text]			[nvarchar]							NOT NULL,
+	[Text]			[Text]								NOT NULL,
 	[DateTime]		[datetime]							NOT NULL,
 	CONSTRAINT	[fk_Message_UserID]	FOREIGN KEY ([UserID])
 		REFERENCES	[dbo].[User] ([UserID]),
@@ -149,7 +149,7 @@ GO
 print '' print '*** creating chat table ***'
 GO
 CREATE TABLE [dbo].[Chat] (
-	[ChatID]		[int]								NOT NULL,
+	[ChatID]		[int]		IDENTITY(100000, 1)		NOT NULL,
 	[MessageID]		[int]								NOT NULL,
 	CONSTRAINT	[fk_Chat_MessageID]	FOREIGN KEY ([MessageID])
 		REFERENCES	[dbo].[Message] ([MessageID]),
@@ -288,4 +288,36 @@ INSERT INTO [dbo].[Project]
 		('Dumb Scrum 1', 'Jared Harvey', GETDATE(), 'In Progress', 'Test description'),
 		('Dumb Scrum 2', 'Joe Winters', GETDATE(), 'In Progress', 'Test description'),
 		('Dumb Scrum 3', 'Barack Obama', GETDATE(), 'Completed', 'Test description')
+GO
+
+print '' print '*** inserting Feature test records ***'
+GO
+INSERT INTO [dbo].[Feature]
+		([ProjectID], [Name], [Description], [Status])
+	VALUES
+		('Dumb Scrum 1', 'Sign In/Sign Up', 'Test description', 'In Progress'),
+		('Dumb Scrum 2', 'Project Management', 'Test description', 'In Progress'),
+		('Dumb Scrum 3', 'Task Management', 'Test description', 'In Progress')
+GO
+
+print '' print '*** inserting UserStory test records ***'
+GO
+INSERT INTO [dbo].[UserStory]
+		([FeatureID], [Person], [Action], [Reason])
+	VALUES
+		('100000', 'User', 'Signs up for Dumb Scrum 1', 'So that they can access and use the app.'),
+		('100000', 'User', 'Signs into their Dumb Scrum account', 'So that they can access their account an use the app.'),
+		('100001', 'User', 'View a list of my projects', 'So that I can view my projects'),
+		('100002', 'User', 'View a list of my tasks', 'So that I can view the tasks that I have to do')
+GO
+
+print '' print '*** inserting Sprint test records ***'
+GO
+INSERT INTO [dbo].[Sprint]
+		([FeatureID], [StartDate], [EndDate])
+	VALUES
+		('100000', 'User', 'Signs up for Dumb Scrum 1', 'So that they can access and use the app.'),
+		('100000', 'User', 'Signs into their Dumb Scrum account', 'So that they can access their account an use the app.'),
+		('100001', 'User', 'View a list of my projects', 'So that I can view my projects'),
+		('100002', 'User', 'View a list of my tasks', 'So that I can view the tasks that I have to do')
 GO
