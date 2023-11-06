@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FeatureManager.cs" />
+    <Compile Include="IFeatureManager.cs" />
     <Compile Include="IProjectManager.cs" />
     <Compile Include="IUserManager.cs" />
     <Compile Include="ProjectManager.cs" />

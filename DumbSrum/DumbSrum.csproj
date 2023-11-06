@@ -58,6 +58,9 @@
     <Compile Include="ChangePasswordWindow.xaml.cs">
       <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\FeatureListItem.xaml.cs">
+      <DependentUpon>FeatureListItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\SrumBoardItem.xaml.cs">
       <DependentUpon>SrumBoardItem.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\TaskItemTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\FeatureListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

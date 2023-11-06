@@ -44,7 +44,7 @@ GO
 print '' print '*** creating project table ***'
 GO
 CREATE TABLE [dbo].[Project] (
-	[ProjectID]		[nvarchar]	(50)					NOT NULL,
+	[ProjectID]		[nvarchar]	(50) 					NOT NULL,
 	[ProjectOwner]	[nvarchar] 	(50)					NOT NULL,
 	[DateCreated]	[date]								NOT NULL,
 	[Status]		[nvarchar] 	(50)					NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE [dbo].[Project] (
 GO
 
 /* creating scrumgroup table */
-print '' print '*** creating project table ***'
+print '' print '*** creating scrumgroup table ***'
 GO
 CREATE TABLE [dbo].[ScrumGroup] (
 	[GroupID]		[int]		IDENTITY(100000, 1)		NOT NULL,
@@ -281,6 +281,19 @@ AS
 	END
 GO
 
+/*----- Feature Stored Procedures -----*/
+print '' print '*** creating sp_select_project_features ***'
+GO
+CREATE PROCEDURE [dbo].[sp_select_project_features] (
+	@ProjectID		[nvarchar] (50)
+)
+AS
+	BEGIN
+		SELECT *
+		FROM [Feature]
+		WHERE [Feature].[ProjectID] = @ProjectID
+	END
+GO
 
 /* =================================================================================
 

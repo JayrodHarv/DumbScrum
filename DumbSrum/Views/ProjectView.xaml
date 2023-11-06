@@ -17,6 +17,7 @@
                 <RadioButton x:Name="btnFeed" Content="Feed" Height="50" Style="{StaticResource ProjectButtonTheme}" Click="btnFeed_Click"/>
                 <RadioButton x:Name="btnBacklog" Content="Backlog" Height="50" Style="{StaticResource ProjectButtonTheme}" Click="btnBacklog_Click"/>
                 <RadioButton x:Name="btnBoard" Content="Board" Height="50" Style="{StaticResource ProjectButtonTheme}" Click="btnBoard_Click"/>
+                <RadioButton x:Name="btnIssues" Content="Issues" Height="50" Style="{StaticResource ProjectButtonTheme}" Click="btnIssues_Click"/>
             </StackPanel>
         </Border>
         <ContentControl Grid.Column="1" Content="{Binding CurrentProjectView}">
