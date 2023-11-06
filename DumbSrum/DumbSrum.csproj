@@ -70,6 +70,12 @@
     <Compile Include="Views\MyProjectsView.xaml.cs">
       <DependentUpon>MyProjectsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProjectDashboardView.xaml.cs">
+      <DependentUpon>ProjectDashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectFeedView.xaml.cs">
+      <DependentUpon>ProjectFeedView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProjectListView.xaml.cs">
       <DependentUpon>ProjectListView.xaml</DependentUpon>
     </Compile>
@@ -131,6 +137,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MyProjectsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectDashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectFeedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

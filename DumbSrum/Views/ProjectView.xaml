@@ -13,10 +13,10 @@
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="0,0,1,0">
             <StackPanel Orientation="Vertical" Background="#FFEAE9E2">
-                <RadioButton Content="Dashboard" Height="50" IsChecked="True" Style="{StaticResource ProjectButtonTheme}"/>
-                <RadioButton Content="Feed" Height="50" Style="{StaticResource ProjectButtonTheme}"/>
-                <RadioButton Content="Backlog" Height="50" Style="{StaticResource ProjectButtonTheme}"/>
-                <RadioButton Content="Board" Height="50" Style="{StaticResource ProjectButtonTheme}"/>
+                <RadioButton x:Name="btnDashboard" Content="Dashboard" Height="50" IsChecked="True" Style="{StaticResource ProjectButtonTheme}" Click="btnDashboard_Click"/>
+                <RadioButton x:Name="btnFeed" Content="Feed" Height="50" Style="{StaticResource ProjectButtonTheme}" Click="btnFeed_Click"/>
+                <RadioButton x:Name="btnBacklog" Content="Backlog" Height="50" Style="{StaticResource ProjectButtonTheme}" Click="btnBacklog_Click"/>
+                <RadioButton x:Name="btnBoard" Content="Board" Height="50" Style="{StaticResource ProjectButtonTheme}" Click="btnBoard_Click"/>
             </StackPanel>
         </Border>
         <ContentControl Grid.Column="1" Content="{Binding CurrentProjectView}">
