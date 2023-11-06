@@ -44,7 +44,7 @@
                     <ColumnDefinition />
                     <ColumnDefinition Width="35"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="txtDisplayName" Text="Jared Harvey" Foreground="white" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="5"/>
+                <TextBlock x:Name="txtDisplayName" Text="{Binding LoggedInUser.DisplayName}" Foreground="white" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="5"/>
                 <Ellipse Grid.Column="1">
                     <Ellipse.Fill>
                         <ImageBrush x:Name="imgPfp"  ImageSource="Images/Sample_User_Icon.png"/>

@@ -95,7 +95,7 @@ namespace DumbSrum {
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
-            // txtDisplayName.Text = LoggedInUser.DisplayName;
+            txtDisplayName.Text = LoggedInUser.DisplayName;
         }
 
         private void mnuHome_Click(object sender, RoutedEventArgs e) {
