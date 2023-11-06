@@ -11,13 +11,17 @@ namespace DumbSrum.Views {
 
         public BacklogView backlogView { get; set; }
         public BoardView boardView { get; set; }
+        public ProjectFeedView feedView { get; set; }
+        public ProjectDashboardView dashboardView { get; set; }
 
         public ProjectView(Project project) {
             DataContext = this;
             backlogView = new BacklogView();
             boardView = new BoardView();
+            feedView = new ProjectFeedView();
+            dashboardView = new ProjectDashboardView();
 
-            CurrentProjectView = backlogView;
+            CurrentProjectView = dashboardView;
             InitializeComponent();
             _project = project;
         }
@@ -36,11 +40,11 @@ namespace DumbSrum.Views {
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void btnDashboard_Click(object sender, System.Windows.RoutedEventArgs e) {
-
+            CurrentProjectView = dashboardView;
         }
 
         private void btnFeed_Click(object sender, System.Windows.RoutedEventArgs e) {
-
+            CurrentProjectView = feedView;
         }
 
         private void btnBacklog_Click(object sender, System.Windows.RoutedEventArgs e) {
