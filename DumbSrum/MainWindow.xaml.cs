@@ -49,6 +49,11 @@ namespace DumbSrum {
             set { _myProjects = value; }
         }
 
+        // temp constructor to save time
+        public MainWindow() {
+
+        }
+
         public MainWindow(UserVM user) {
             DataContext = this;
 
@@ -83,7 +88,7 @@ namespace DumbSrum {
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
-            txtDisplayName.Text = LoggedInUser.DisplayName;
+            // txtDisplayName.Text = LoggedInUser.DisplayName;
         }
 
         private void btnHome_Click(object sender, RoutedEventArgs e) {

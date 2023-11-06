@@ -10,27 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DumbSrum {
+namespace DumbSrum.Views {
     /// <summary>
-    /// Interaction logic for NewUIWindow.xaml
+    /// Interaction logic for ProjectView.xaml
     /// </summary>
-    public partial class NewUIWindow : Window {
-        public NewUIWindow() {
+    public partial class ProjectView : UserControl {
+        public ProjectView() {
             InitializeComponent();
-        }
-
-        private void btnHome_Click(object sender, RoutedEventArgs e) {
-
-        }
-
-        private void btnBrowseProjects_Click(object sender, RoutedEventArgs e) {
-
-        }
-
-        private void btnMyProjects_Click(object sender, RoutedEventArgs e) {
-
         }
     }
 }
