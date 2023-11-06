@@ -10,7 +10,7 @@ namespace DataObjects {
         public string Description { get; set; }
     }
 
-    public class ProjectVM : Project { 
+    public class ProjectVM : Project {
         public List<User> Members { get; set; }
         public List<TaskVM> Tasks { get; set; }
     }

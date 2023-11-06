@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace DataObjects
-{
+namespace DataObjects {
     public class User {
         public int UserID { get; set; }
         public string DisplayName { get; set; }
@@ -14,7 +9,7 @@ namespace DataObjects
         public bool Active { get; set; }
     }
 
-    public class UserVM : User { 
-        
+    public class UserVM : User {
+        public List<Task> Tasks { get; set; }
     }
 }

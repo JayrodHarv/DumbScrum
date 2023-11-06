@@ -12,9 +12,6 @@ namespace DumbSrum.Views {
         }
 
         private void btnOpenProject_Click(object sender, RoutedEventArgs e) {
-            Project project = (Project)lvProjects.SelectedItem;
-            var projectWindow = new ProjectWindow(project);
-            projectWindow.ShowDialog();
         }
     }
 }
