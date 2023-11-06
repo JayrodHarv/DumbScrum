@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataObjects;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DumbSrum.Views {
     /// <summary>
@@ -20,6 +9,11 @@ namespace DumbSrum.Views {
     public partial class MyProjectsView : UserControl {
         public MyProjectsView() {
             InitializeComponent();
+        }
+
+        private void btnOpenProject_Click(object sender, RoutedEventArgs e) {
+            MainWindow parentWindow = (MainWindow) Window.GetWindow(this);
+            parentWindow.CurrentView = new ProjectView((Project)lvProjects.SelectedItem);
         }
     }
 }

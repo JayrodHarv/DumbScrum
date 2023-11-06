@@ -51,7 +51,14 @@ namespace DumbSrum {
 
         // temp constructor to save time
         public MainWindow() {
+            DataContext = this;
 
+            homeView = new HomeView();
+            projectListView = new ProjectListView();
+            myProjectsView = new MyProjectsView();
+
+            CurrentView = homeView;
+            InitializeComponent();
         }
 
         public MainWindow(UserVM user) {
@@ -91,20 +98,16 @@ namespace DumbSrum {
             // txtDisplayName.Text = LoggedInUser.DisplayName;
         }
 
-        private void btnHome_Click(object sender, RoutedEventArgs e) {
+        private void mnuHome_Click(object sender, RoutedEventArgs e) {
             CurrentView = homeView;
         }
 
-        private void btnBrowseProjects_Click(object sender, RoutedEventArgs e) {
-            CurrentView = projectListView;
-        }
-
-        private void btnMyProjects_Click(object sender, RoutedEventArgs e) {
+        private void mnuMyProjects_Click(object sender, RoutedEventArgs e) {
             CurrentView = myProjectsView;
         }
 
-        private void expMyProjects_Expanded(object sender, RoutedEventArgs e) {
-            
+        private void mnuBrowseProjects_Click(object sender, RoutedEventArgs e) {
+            CurrentView = projectListView;
         }
     }
 }

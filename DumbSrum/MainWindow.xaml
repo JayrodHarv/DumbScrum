@@ -33,9 +33,11 @@
                 </Ellipse>
             </StackPanel>
             <Menu Grid.Column="1" Background="#FF3A3A3A">
-                <MenuItem Header="Home" Foreground="white" Height="30" Style="{StaticResource MenuItemTheme}"/>
-                <MenuItem Header="My Projects" Foreground="white" Height="30"/>
-                <MenuItem Header="Browse Projects" Foreground="white" Height="30"/>
+                <MenuItem x:Name="mnuHome" Header="Home" Foreground="white" Height="30" Click="mnuHome_Click"/>
+                <MenuItem x:Name="mnuMyProjects" Header="My Projects" Foreground="white" Height="30" Click="mnuMyProjects_Click" ItemsSource="{Binding MyProjects}">
+                    
+                </MenuItem>
+                <MenuItem x:Name="mnuBrowseProjects" Header="Browse Projects" Foreground="white" Height="30" Click="mnuBrowseProjects_Click"/>
             </Menu>
             <Grid Grid.Column="2" Background="#FF3A3A3A">
                 <Grid.ColumnDefinitions>
@@ -50,6 +52,8 @@
                 </Ellipse>
             </Grid>
         </Grid>
-        <ContentControl Grid.Row="1" Content="{Binding CurrentView}"/>
+        <ContentControl Grid.Row="1" Content="{Binding CurrentView}">
+            
+        </ContentControl>
     </Grid>
 </Window>

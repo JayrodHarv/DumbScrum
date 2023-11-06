@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,8 +19,10 @@ namespace DumbSrum.Views {
     /// Interaction logic for ProjectView.xaml
     /// </summary>
     public partial class ProjectView : UserControl {
-        public ProjectView() {
+        public Project _project { get; set; }
+        public ProjectView(Project project) {
             InitializeComponent();
+            _project = project;
         }
     }
 }
