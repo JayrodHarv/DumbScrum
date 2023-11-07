@@ -296,6 +296,24 @@ AS
 	END
 GO
 
+print '' print '*** creating sp_insert_project_feature ***'
+GO
+CREATE PROCEDURE [dbo].[sp_insert_project_feature] (
+	@ProjectID		[nvarchar] 	(50),
+	@Name			[nvarchar]	(50),	
+	@Description	[nvarchar]	(255),	
+	@Priority		[nvarchar]	(20),	
+	@Status			[nvarchar]	(50)	
+)
+AS
+	BEGIN
+		INSERT INTO [dbo].[Feature]
+			([ProjectID], [Name], [Description], [Priority], [Status])
+		VALUES
+			(@ProjectID, @Name, @Description, @Priority, @Status)
+	END
+GO
+
 /*----- UserStory Stored Procedures -----*/
 print '' print '*** creating sp_select_feature_user_stories ***'
 GO
