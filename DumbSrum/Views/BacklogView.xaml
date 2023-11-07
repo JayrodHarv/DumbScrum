@@ -27,6 +27,12 @@
         </ListView>
         <GridSplitter Grid.RowSpan="2" Grid.Column="1" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
         <TextBlock Grid.Row="0" Grid.Column="2" FontWeight="DemiBold" Padding="20" Text="Sprint Backlog" VerticalAlignment="Center" Background="#FFE0E0E0" FontSize="18"/>
-        <ListView Grid.Row="1" Grid.Column="2"/>
+        <ListView Grid.Row="1" Grid.Column="2" ItemsSource="{Binding UserStories}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <userControls:FeatureListItem HorizontalAlignment="Stretch"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </UserControl>

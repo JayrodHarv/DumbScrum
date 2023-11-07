@@ -72,6 +72,7 @@ CREATE TABLE [dbo].[Feature] (
 	[ProjectID]		[nvarchar] 	(50)					NOT NULL,
 	[Name]			[nvarchar]	(50)					NOT NULL,	
 	[Description]	[nvarchar]	(255)					NOT NULL,
+	[Priority]		[nvarchar]	(20)					NOT NULL,
 	[Status]		[nvarchar]	(50)					NOT NULL,
 	CONSTRAINT	[fk_Feature_ProjectID]	FOREIGN KEY ([ProjectID])
 		REFERENCES	[dbo].[Project] ([ProjectID]),
@@ -295,6 +296,20 @@ AS
 	END
 GO
 
+/*----- UserStory Stored Procedures -----*/
+print '' print '*** creating sp_select_feature_user_stories ***'
+GO
+CREATE PROCEDURE [dbo].[sp_select_feature_user_stories] (
+	@FeatureID		[int]
+)
+AS
+	BEGIN
+		SELECT *
+		FROM [UserStory]
+		WHERE [UserStory].[FeatureID] = @FeatureID
+	END
+GO
+
 /* =================================================================================
 
 									Insert Test Data
@@ -350,11 +365,13 @@ GO
 print '' print '*** inserting Feature test records ***'
 GO
 INSERT INTO [dbo].[Feature]
-		([ProjectID], [Name], [Description], [Status])
+		([ProjectID], [Name], [Description], [Priority], [Status])
 	VALUES
-		('Dumb Scrum 1', 'Sign In/Sign Up', 'Test description', 'In Progress'),
-		('Dumb Scrum 2', 'Project Management', 'Test description', 'In Progress'),
-		('Dumb Scrum 3', 'Task Management', 'Test description', 'In Progress')
+		('Dumb Scrum 1', 'Sign In/Sign Up', 'Test description', 'High', 'In Progress'),
+		('Dumb Scrum 1', 'Blah', 'Test description', 'Low', 'Completed'),
+		('Dumb Scrum 1', 'Blah2', 'Test description', 'Medium', 'Ready For Sprint'),
+		('Dumb Scrum 2', 'Project Management', 'Test description', 'High', 'In Progress'),
+		('Dumb Scrum 3', 'Task Management', 'Test description', 'High', 'In Progress')
 GO
 
 print '' print '*** inserting UserStory test records ***'

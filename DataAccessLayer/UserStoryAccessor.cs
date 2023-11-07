@@ -9,19 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccessLayer {
-    public class FeatureAccessor : IFeatureAccessor {
-        public Feature SelectFeatureByFeatureID(int featureID) {
-            throw new NotImplementedException();
-        }
-
-        public List<Feature> SelectFeaturesByProjectID(string projectID) {
-            List<Feature> result = new List<Feature>();
+    public class UserStoryAccessor : IUserStoryAccessor {
+        public List<UserStory> SelectUserStoriesByFeatureID(int featureID) {
+            List<UserStory> result = new List<UserStory>();
 
             // create connection object
             var conn = SqlConnectionProvider.GetConnection();
 
             // set the command text
-            var commandText = "sp_select_project_features";
+            var commandText = "sp_select_feature_user_stories";
 
             // create command object
             var cmd = new SqlCommand(commandText, conn);
@@ -30,10 +26,10 @@ namespace DataAccessLayer {
             cmd.CommandType = CommandType.StoredProcedure;
 
             // add parameters to command
-            cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
+            cmd.Parameters.Add("@FeatureID", SqlDbType.Int);
 
             // set parameter values
-            cmd.Parameters["@ProjectID"].Value = projectID;
+            cmd.Parameters["@FeatureID"].Value = featureID;
 
             try {
                 // open connection
@@ -43,15 +39,14 @@ namespace DataAccessLayer {
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows) {
                     while (reader.Read()) {
-                        Feature f = new Feature();
-                        f.FeatureID = reader.GetInt32(0);
-                        f.ProjectID = reader.GetString(1);
-                        f.Name = reader.GetString(2);
-                        f.Description = reader.GetString(3);
-                        f.Priority = reader.GetString(4);
-                        f.Status = reader.GetString(5);
-                        
-                        result.Add(f);
+                        UserStory s = new UserStory();
+                        s.StoryID = reader.GetInt32(0);
+                        s.FeatureID = reader.GetInt32(1);
+                        s.Person = reader.GetString(2);
+                        s.Action = reader.GetString(3);
+                        s.Reason = reader.GetString(4);
+
+                        result.Add(s);
                     }
                 }
             } catch (Exception ex) {

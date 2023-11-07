@@ -45,9 +45,11 @@
     <Compile Include="IFeatureManager.cs" />
     <Compile Include="IProjectManager.cs" />
     <Compile Include="IUserManager.cs" />
+    <Compile Include="IUserStoryManager.cs" />
     <Compile Include="ProjectManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserManager.cs" />
+    <Compile Include="UserStoryManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessFakes\DataAccessFakes.csproj">

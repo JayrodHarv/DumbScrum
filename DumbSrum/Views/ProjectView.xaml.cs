@@ -12,8 +12,10 @@ namespace DumbSrum.Views {
     /// </summary>
     public partial class ProjectView : UserControl, INotifyPropertyChanged {
         FeatureManager _featureManager = new FeatureManager();
+        UserStoryManager _userStoryManager = new UserStoryManager();
         public Project _project { get; set; }
         public ObservableCollection<Feature> Features { get; set; }
+        public ObservableCollection<UserStory> UserStories { get; set; }
         
         public BacklogView backlogView { get; set; }
         public BoardView boardView { get; set; }
@@ -44,6 +46,7 @@ namespace DumbSrum.Views {
             InitializeComponent();
             _project = project;
             GetProjectFeatures();
+            // GetFeatureUserStories(); User Stories should be stored in a FeatureVM I think
         }
 
         private void GetProjectFeatures() {
@@ -54,25 +57,33 @@ namespace DumbSrum.Views {
             }
         }
 
-        
+        private void GetFeatureUserStories(int featureID) {
+            try {
+                UserStories = new ObservableCollection<UserStory>(_userStoryManager.GetFeatureUserStories(featureID));
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-        private void btnDashboard_Click(object sender, System.Windows.RoutedEventArgs e) {
+
+
+        private void btnDashboard_Click(object sender, RoutedEventArgs e) {
             CurrentProjectView = dashboardView;
         }
 
-        private void btnFeed_Click(object sender, System.Windows.RoutedEventArgs e) {
+        private void btnFeed_Click(object sender, RoutedEventArgs e) {
             CurrentProjectView = feedView;
         }
 
-        private void btnBacklog_Click(object sender, System.Windows.RoutedEventArgs e) {
+        private void btnBacklog_Click(object sender, RoutedEventArgs e) {
             CurrentProjectView = backlogView;
         }
 
-        private void btnBoard_Click(object sender, System.Windows.RoutedEventArgs e) {
+        private void btnBoard_Click(object sender, RoutedEventArgs e) {
             CurrentProjectView = boardView;
         }
 
-        private void btnIssues_Click(object sender, System.Windows.RoutedEventArgs e) {
+        private void btnIssues_Click(object sender, RoutedEventArgs e) {
 
         }
     }
