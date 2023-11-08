@@ -44,10 +44,12 @@
     <Compile Include="FeatureManager.cs" />
     <Compile Include="IFeatureManager.cs" />
     <Compile Include="IProjectManager.cs" />
+    <Compile Include="ISprintManager.cs" />
     <Compile Include="IUserManager.cs" />
     <Compile Include="IUserStoryManager.cs" />
     <Compile Include="ProjectManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SprintManager.cs" />
     <Compile Include="UserManager.cs" />
     <Compile Include="UserStoryManager.cs" />
   </ItemGroup>

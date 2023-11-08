@@ -14,9 +14,11 @@ namespace DumbSrum.Views {
         ProjectManager _projectManager = new ProjectManager();
         FeatureManager _featureManager = new FeatureManager();
         UserStoryManager _userStoryManager = new UserStoryManager();
+        SprintManager _sprintManager = new SprintManager();
         public ProjectVM _projectVM { get; set; }
         public ObservableCollection<Feature> Features { get; set; }
         public ObservableCollection<UserStory> UserStories { get; set; }
+        public ObservableCollection<Sprint> Sprints { get; set; }
         
         public BacklogView backlogView { get; set; }
         public BoardView boardView { get; set; }
@@ -40,8 +42,12 @@ namespace DumbSrum.Views {
             DataContext = this;
             try {
                 _projectVM = _projectManager.GetProjectVMByProjectID(projectID);
+
                 _projectVM.Features = _featureManager.GetFeaturesByProjectID(_projectVM.ProjectID);
                 Features = new ObservableCollection<Feature>(_projectVM.Features);
+
+                _projectVM.Sprints = _sprintManager.GetSprintsByProjectID(_projectVM.ProjectID);
+                Sprints = new ObservableCollection<Sprint>(_projectVM.Sprints);
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
@@ -55,16 +61,6 @@ namespace DumbSrum.Views {
             InitializeComponent();
             // GetFeatureUserStories(); User Stories should be stored in a FeatureVM I think
         }
-
-        private void GetFeatureUserStories(int featureID) {
-            try {
-                UserStories = new ObservableCollection<UserStory>(_userStoryManager.GetFeatureUserStories(featureID));
-            } catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-
 
         private void btnDashboard_Click(object sender, RoutedEventArgs e) {
             CurrentProjectView = dashboardView;

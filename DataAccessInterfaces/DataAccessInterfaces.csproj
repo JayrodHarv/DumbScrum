@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="IFeatureAccessor.cs" />
     <Compile Include="IProjectAccessor.cs" />
+    <Compile Include="ISprintAccessor.cs" />
     <Compile Include="IUserAccessor.cs" />
     <Compile Include="IUserStoryAccessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

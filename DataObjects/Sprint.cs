@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace DataObjects {
     public class Sprint {
         public int SprintID { get; set; }
-        public string GroupID { get; set; }
         public int FeatureID { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -15,7 +14,7 @@ namespace DataObjects {
 
     public class SprintVM : Sprint {
         public string FeatureName { get; set; }
-        public string ScrumLeader { get; set; }
+        public List<Task> Tasks { get; set; }
 
     }
 }

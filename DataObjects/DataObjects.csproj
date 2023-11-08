@@ -44,7 +44,6 @@
     <Compile Include="AppData.cs" />
     <Compile Include="Feature.cs" />
     <Compile Include="Project.cs" />
-    <Compile Include="ScrumGroup.cs" />
     <Compile Include="Sprint.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="User.cs" />
