@@ -12,4 +12,10 @@ namespace DataObjects {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }
+
+    public class SprintVM : Sprint {
+        public string FeatureName { get; set; }
+        public string ScrumLeader { get; set; }
+
+    }
 }

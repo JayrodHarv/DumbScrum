@@ -29,8 +29,14 @@ namespace LogicLayer {
             return result;
         }
 
-        public Project GetProjectByProjectID(string projectID) {
-            throw new NotImplementedException();
+        public ProjectVM GetProjectVMByProjectID(string projectID) {
+            ProjectVM result = new ProjectVM();
+            try {
+                result = _projectAccessor.SelectProjectVMByProjectID(projectID);
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return result;
         }
 
         public List<Project> GetProjectsByUserID(int userID) {

@@ -1,4 +1,5 @@
 ﻿using DataObjects;
+using LogicLayer;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -13,7 +14,10 @@ namespace DumbSrum.Views {
 
         private void btnOpenProject_Click(object sender, RoutedEventArgs e) {
             MainWindow parentWindow = (MainWindow) Window.GetWindow(this);
-            parentWindow.CurrentView = new ProjectView((Project)lvProjects.SelectedItem);
+
+            Project selectedProject = (Project)lvProjects.SelectedItem;
+
+            parentWindow.CurrentView = new ProjectView(selectedProject.ProjectID);
         }
     }
 }

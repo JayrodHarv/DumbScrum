@@ -11,9 +11,10 @@ namespace DumbSrum.Views {
     /// Interaction logic for ProjectView.xaml
     /// </summary>
     public partial class ProjectView : UserControl, INotifyPropertyChanged {
+        ProjectManager _projectManager = new ProjectManager();
         FeatureManager _featureManager = new FeatureManager();
         UserStoryManager _userStoryManager = new UserStoryManager();
-        public Project _project { get; set; }
+        public ProjectVM _projectVM { get; set; }
         public ObservableCollection<Feature> Features { get; set; }
         public ObservableCollection<UserStory> UserStories { get; set; }
         
@@ -35,8 +36,16 @@ namespace DumbSrum.Views {
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ProjectView(Project project) {
+        public ProjectView(string projectID) {
             DataContext = this;
+            try {
+                _projectVM = _projectManager.GetProjectVMByProjectID(projectID);
+                _projectVM.Features = _featureManager.GetFeaturesByProjectID(_projectVM.ProjectID);
+                Features = new ObservableCollection<Feature>(_projectVM.Features);
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+
             backlogView = new BacklogView();
             boardView = new BoardView();
             feedView = new ProjectFeedView();
@@ -44,17 +53,7 @@ namespace DumbSrum.Views {
 
             CurrentProjectView = dashboardView;
             InitializeComponent();
-            _project = project;
-            GetProjectFeatures();
             // GetFeatureUserStories(); User Stories should be stored in a FeatureVM I think
-        }
-
-        private void GetProjectFeatures() {
-            try {
-                Features = new ObservableCollection<Feature>(_featureManager.GetFeaturesByProjectID(_project.ProjectID));
-            } catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-            }
         }
 
         private void GetFeatureUserStories(int featureID) {

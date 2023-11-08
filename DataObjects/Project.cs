@@ -12,6 +12,7 @@ namespace DataObjects {
 
     public class ProjectVM : Project {
         public List<User> Members { get; set; }
-        public List<TaskVM> Tasks { get; set; }
+        public List<ScrumGroup> ScrumGroups { get; set; }
+        public List<Feature> Features { get; set; }
     }
 }

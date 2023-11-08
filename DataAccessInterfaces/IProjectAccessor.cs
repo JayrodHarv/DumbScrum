@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessInterfaces {
     public interface IProjectAccessor {
-        Project SelectProjectByProjectID(string projectID);
+        ProjectVM SelectProjectVMByProjectID(string projectID);
         List<Project> SelectProjectsByUserID(int userID);
         List<Project> SelectAllProjects();
     }

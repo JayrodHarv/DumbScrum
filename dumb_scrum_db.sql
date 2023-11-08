@@ -282,6 +282,19 @@ AS
 	END
 GO
 
+print '' print '*** creating sp_select_project_by_projectid ***'
+GO
+CREATE PROCEDURE [dbo].[sp_select_project_by_projectid] (
+	@ProjectID		[nvarchar] (50)
+)
+AS
+	BEGIN
+		SELECT	[ProjectID], [ProjectOwner], [DateCreated], [Status], [Description]
+		FROM [Project]
+		WHERE [ProjectID] = @ProjectID
+	END
+GO
+
 /*----- Feature Stored Procedures -----*/
 print '' print '*** creating sp_select_project_features ***'
 GO

@@ -47,8 +47,48 @@ namespace DataAccessLayer {
             return result;
         }
 
-        public Project SelectProjectByProjectID(string projectID) {
-            throw new NotImplementedException();
+        public ProjectVM SelectProjectVMByProjectID(string projectID) {
+            ProjectVM result = new ProjectVM();
+
+            // create connection object
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // set the command text
+            var commandText = "sp_select_project_by_projectid";
+
+            // create command object
+            var cmd = new SqlCommand(commandText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // add parameters to command
+            cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
+
+            // set parameter values
+            cmd.Parameters["@ProjectID"].Value = projectID;
+
+            try {
+                // open connection
+                conn.Open();
+
+                // execute command
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows) {
+                    if (reader.Read()) {
+                        result.ProjectID = reader.GetString(0);
+                        result.ProjectOwner = reader.GetString(1);
+                        result.DateCreated = reader.GetDateTime(2);
+                        result.Status = reader.GetString(3);
+                        result.Description = reader.GetString(4);
+                    }
+                }
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
         }
 
         public List<Project> SelectProjectsByUserID(int userID) {

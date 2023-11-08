@@ -18,10 +18,19 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
-            <TextBlock Text="Sprint Name" FontSize="16"/>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Scrum Group" Margin="5"/>
-                <TextBlock Text="Scrum Leader" Margin="5"/>
+                <TextBlock Text="Sprint: " VerticalAlignment="Center"/>
+                <ComboBox ItemsSource="{Binding Sprints}" HorizontalAlignment="Left" Width="120" SelectedItem="{Binding Sprint}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding SprintID}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding GroupID}" Margin="5"/>
+                <TextBlock Text="{Binding Leader}" Margin="5"/>
                 <TextBlock Text="Start Date - End Date" Margin="5"/>
             </StackPanel>
         </StackPanel>
@@ -32,6 +41,13 @@
                 <TextBlock Text="To Do" Foreground="white" Padding="3" FontWeight="SemiBold" />
                 <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
             </StackPanel>
+            <ListView ItemsSource="{Binding ToDoTasks}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
@@ -39,6 +55,13 @@
                 <TextBlock Text="In Progress" Foreground="white" Padding="3" FontWeight="SemiBold" />
                 <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
             </StackPanel>
+            <ListView ItemsSource="{Binding InProgressTasks}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical">
@@ -46,6 +69,13 @@
                 <TextBlock Text="Design Phase" Foreground="white" Padding="3" FontWeight="SemiBold" />
                 <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
             </StackPanel>
+            <ListView ItemsSource="{Binding InDesignPhaseTasks}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Vertical">
@@ -53,6 +83,13 @@
                 <TextBlock Text="Complete" Foreground="white" Padding="3" FontWeight="SemiBold" />
                 <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
             </StackPanel>
+            <ListView ItemsSource="{Binding CompleteTasks}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackPanel>
     </Grid>
 </UserControl>

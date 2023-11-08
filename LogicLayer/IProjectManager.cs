@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LogicLayer {
     public interface IProjectManager {
-        Project GetProjectByProjectID(string projectID);
+        ProjectVM GetProjectVMByProjectID(string projectID);
         List<Project> GetProjectsByUserID(int userID);
         List<Project> GetAllProjects();
     }
