@@ -3,6 +3,7 @@ using LogicLayer;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -19,7 +20,17 @@ namespace DumbSrum.Views {
         public ObservableCollection<Feature> Features { get; set; }
         public ObservableCollection<UserStory> UserStories { get; set; }
         public ObservableCollection<Sprint> Sprints { get; set; }
-        
+        private SprintVM _currentSprint;
+
+        public SprintVM CurrentSprint {
+            get { return _currentSprint; }
+            set { 
+                _currentSprint = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentSprint"));
+            }
+        }
+
+
         public BacklogView backlogView { get; set; }
         public BoardView boardView { get; set; }
         public ProjectFeedView feedView { get; set; }
@@ -48,6 +59,7 @@ namespace DumbSrum.Views {
 
                 _projectVM.Sprints = _sprintManager.GetSprintsByProjectID(_projectVM.ProjectID);
                 Sprints = new ObservableCollection<Sprint>(_projectVM.Sprints);
+                CurrentSprint = _sprintManager.GetSprintVMBySprintID(_projectVM.Sprints.Find(s => s.Active).SprintID);
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }

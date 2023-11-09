@@ -17,27 +17,27 @@
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Sprint: " VerticalAlignment="Center"/>
-                <ComboBox ItemsSource="{Binding Sprints}" HorizontalAlignment="Left" Width="120" SelectedItem="{Binding Sprint}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding SprintID}"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding GroupID}" Margin="5"/>
-                <TextBlock Text="{Binding Leader}" Margin="5"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+            <ComboBox ItemsSource="{Binding Sprints}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" SelectedItem="{Binding CurrentSprint}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding SprintID}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="placeholder" Margin="5"/>
+                <TextBlock Text="placeholder" Margin="5"/>
                 <TextBlock Text="Start Date - End Date" Margin="5"/>
             </StackPanel>
         </StackPanel>
 
+        <StackPanel Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center" Content="Add Task" Padding="5"/>
+        </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
-            <StackPanel Background="Red" HorizontalAlignment="Center" Orientation="Horizontal" >
+            <StackPanel Background="Red" HorizontalAlignment="Left" Orientation="Horizontal" >
                 <TextBlock Text="To Do" Foreground="white" Padding="3" FontWeight="SemiBold" />
                 <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
             </StackPanel>
@@ -51,7 +51,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
-            <StackPanel Background="Orange" HorizontalAlignment="Center" Orientation="Horizontal" >
+            <StackPanel Background="Orange" HorizontalAlignment="Left" Orientation="Horizontal" >
                 <TextBlock Text="In Progress" Foreground="white" Padding="3" FontWeight="SemiBold" />
                 <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
             </StackPanel>
@@ -65,7 +65,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical">
-            <StackPanel Background="Gold" HorizontalAlignment="Center" Orientation="Horizontal" >
+            <StackPanel Background="Gold" HorizontalAlignment="Left" Orientation="Horizontal" >
                 <TextBlock Text="Design Phase" Foreground="white" Padding="3" FontWeight="SemiBold" />
                 <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
             </StackPanel>
@@ -79,7 +79,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Vertical">
-            <StackPanel Background="Green" HorizontalAlignment="Center" Orientation="Horizontal" >
+            <StackPanel Background="Green" HorizontalAlignment="Left" Orientation="Horizontal" >
                 <TextBlock Text="Complete" Foreground="white" Padding="3" FontWeight="SemiBold" />
                 <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
             </StackPanel>

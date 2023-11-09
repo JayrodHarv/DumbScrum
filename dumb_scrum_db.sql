@@ -92,6 +92,7 @@ CREATE TABLE [dbo].[Sprint] (
 	[FeatureID]		[int]								NOT NULL,
 	[StartDate]		[date]								NOT NULL,	
 	[EndDate]		[date]								NULL,
+	[Active]		[bit]								NULL DEFAULT 1,
 	CONSTRAINT	[fk_Sprint_FeatureID]	FOREIGN KEY ([FeatureID])
 		REFERENCES	[dbo].[Feature] ([FeatureID]),
 	CONSTRAINT [pk_SprintID] PRIMARY KEY ([SprintID])
@@ -332,11 +333,24 @@ CREATE PROCEDURE [dbo].[sp_select_project_sprints] (
 )
 AS
 	BEGIN
-		SELECT [SprintID], [Sprint].[FeatureID], [StartDate], [EndDate]
+		SELECT [SprintID], [Sprint].[FeatureID], [StartDate], [EndDate], [Active]
 		FROM [Sprint]
 		INNER JOIN [dbo].[Feature]
 		ON [Feature].[FeatureID] = [Sprint].[FeatureID]
 		WHERE [Feature].[ProjectID] = @ProjectID
+	END
+GO
+
+print '' print '*** creating sp_select_sprint_by_sprintid ***'
+GO
+CREATE PROCEDURE [dbo].[sp_select_sprint_by_sprintid] (
+	@SprintID		[int]
+)
+AS
+	BEGIN
+		SELECT [SprintID], [Sprint].[FeatureID], [StartDate], [EndDate], [Active]
+		FROM [Sprint]
+		WHERE [SprintID] = @SprintID
 	END
 GO
 
@@ -402,9 +416,9 @@ GO
 print '' print '*** inserting Sprint test records ***'
 GO
 INSERT INTO [dbo].[Sprint]
-		([FeatureID], [StartDate])
+		([FeatureID], [StartDate], [EndDate], [Active])
 	VALUES
-		('100000', GETDATE()),
-		('100001', GETDATE()),
-		('100002', GETDATE())
+		('100000', GETDATE(), GETDATE(), 1),
+		('100001', GETDATE(), GETDATE(), 0),
+		('100002', GETDATE(), GETDATE(), 0)
 GO

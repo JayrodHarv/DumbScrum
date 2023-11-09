@@ -30,7 +30,13 @@ namespace LogicLayer {
         }
 
         public SprintVM GetSprintVMBySprintID(int sprintID) {
-            throw new NotImplementedException();
+            SprintVM result = new SprintVM();
+            try {
+                result = _sprintAccessor.SelectSprintVMBySprintID(sprintID);
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return result;
         }
     }
 }

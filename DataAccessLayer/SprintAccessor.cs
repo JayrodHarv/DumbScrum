@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer {
     public class SprintAccessor : ISprintAccessor {
+
         public List<Sprint> SelectSprintsByProjectID(string projectID) {
             List<Sprint> result = new List<Sprint>();
 
@@ -44,6 +45,7 @@ namespace DataAccessLayer {
                         s.FeatureID = reader.GetInt32(1);
                         s.StartDate = reader.GetDateTime(2);
                         s.EndDate = reader.GetDateTime(3);
+                        s.Active = reader.GetBoolean(4);
                         result.Add(s);
                     }
                 }
@@ -56,7 +58,47 @@ namespace DataAccessLayer {
         }
 
         public SprintVM SelectSprintVMBySprintID(int sprintID) {
-            throw new NotImplementedException();
+            SprintVM result = new SprintVM();
+
+            // create connection object
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // set the command text
+            var commandText = "sp_select_sprint_by_sprintid";
+
+            // create command object
+            var cmd = new SqlCommand(commandText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // add parameters to command
+            cmd.Parameters.Add("@SprintID", SqlDbType.Int);
+
+            // set parameter values
+            cmd.Parameters["@SprintID"].Value = sprintID;
+
+            try {
+                // open connection
+                conn.Open();
+
+                // execute command
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows) {
+                    if (reader.Read()) {
+                        result.SprintID = reader.GetInt32(0);
+                        result.FeatureID = reader.GetInt32(1);
+                        result.StartDate = reader.GetDateTime(2);
+                        result.EndDate = reader.GetDateTime(3);
+                        result.Active = reader.GetBoolean(4);
+                    }
+                }
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
         }
     }
 }
