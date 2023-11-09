@@ -422,3 +422,14 @@ INSERT INTO [dbo].[Sprint]
 		('100001', GETDATE(), GETDATE(), 0),
 		('100002', GETDATE(), GETDATE(), 0)
 GO
+
+print '' print '*** inserting Task test records ***'
+GO
+INSERT INTO [dbo].[Task]
+		([SprintID], [StoryID], [UserID], [Status])
+	VALUES
+		('100000', '100000', '100000', 'Test Status'),
+		('100000', '100000', '100000', 'Test Status'),
+		('100001', '100001', '100001', 'Test Status'),
+		('100002', '100002', '100002', 'Test Status')
+GO

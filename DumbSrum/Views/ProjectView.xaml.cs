@@ -15,20 +15,10 @@ namespace DumbSrum.Views {
         ProjectManager _projectManager = new ProjectManager();
         FeatureManager _featureManager = new FeatureManager();
         UserStoryManager _userStoryManager = new UserStoryManager();
-        SprintManager _sprintManager = new SprintManager();
         public ProjectVM _projectVM { get; set; }
         public ObservableCollection<Feature> Features { get; set; }
         public ObservableCollection<UserStory> UserStories { get; set; }
-        public ObservableCollection<Sprint> Sprints { get; set; }
-        private SprintVM _currentSprint;
-
-        public SprintVM CurrentSprint {
-            get { return _currentSprint; }
-            set { 
-                _currentSprint = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentSprint"));
-            }
-        }
+        
 
 
         public BacklogView backlogView { get; set; }
@@ -57,15 +47,12 @@ namespace DumbSrum.Views {
                 _projectVM.Features = _featureManager.GetFeaturesByProjectID(_projectVM.ProjectID);
                 Features = new ObservableCollection<Feature>(_projectVM.Features);
 
-                _projectVM.Sprints = _sprintManager.GetSprintsByProjectID(_projectVM.ProjectID);
-                Sprints = new ObservableCollection<Sprint>(_projectVM.Sprints);
-                CurrentSprint = _sprintManager.GetSprintVMBySprintID(_projectVM.Sprints.Find(s => s.Active).SprintID);
+                // _projectVM.Sprints = _sprintManager.GetSprintsByProjectID(_projectVM.ProjectID);
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
 
             backlogView = new BacklogView();
-            boardView = new BoardView();
             feedView = new ProjectFeedView();
             dashboardView = new ProjectDashboardView();
 
@@ -87,7 +74,8 @@ namespace DumbSrum.Views {
         }
 
         private void btnBoard_Click(object sender, RoutedEventArgs e) {
-            CurrentProjectView = boardView;
+            CurrentProjectView = new BoardView(_projectVM.ProjectID);
+
         }
 
         private void btnIssues_Click(object sender, RoutedEventArgs e) {

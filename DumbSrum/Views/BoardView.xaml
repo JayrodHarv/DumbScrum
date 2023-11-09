@@ -18,7 +18,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
-            <ComboBox ItemsSource="{Binding Sprints}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" SelectedItem="{Binding CurrentSprint}">
+            <ComboBox x:Name="cbxSprint" ItemsSource="{Binding Sprints}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" SelectionChanged="cbxSprint_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding SprintID}"/>
@@ -26,8 +26,8 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBlock Text="placeholder" Margin="5"/>
-                <TextBlock Text="placeholder" Margin="5"/>
+                <TextBlock x:Name="txtFeature" Text="placeholder" Margin="5"/>
+                <TextBlock x:Name="txtblah" Text="placeholder" Margin="5"/>
                 <TextBlock Text="Start Date - End Date" Margin="5"/>
             </StackPanel>
         </StackPanel>
