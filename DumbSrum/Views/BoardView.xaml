@@ -66,10 +66,10 @@
 
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical">
             <StackPanel Background="Gold" HorizontalAlignment="Left" Orientation="Horizontal" >
-                <TextBlock Text="Design Phase" Foreground="white" Padding="3" FontWeight="SemiBold" />
+                <TextBlock Text="Needs Reviewed" Foreground="white" Padding="3" FontWeight="SemiBold" />
                 <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
             </StackPanel>
-            <ListView ItemsSource="{Binding InDesignPhaseTasks}">
+            <ListView ItemsSource="{Binding InReviewPhaseTasks}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
 

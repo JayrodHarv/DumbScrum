@@ -47,10 +47,12 @@ namespace DumbSrum.Views {
             }
 
             InitializeComponent();
+            cbxSprint.SelectedIndex = 0;
         }
 
         private void cbxSprint_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             CurrentSprint = _sprintManager.GetSprintVMBySprintID(Sprints[cbxSprint.SelectedIndex].SprintID);
+            
             txtFeature.Text = CurrentSprint.FeatureID.ToString();
         }
     }
