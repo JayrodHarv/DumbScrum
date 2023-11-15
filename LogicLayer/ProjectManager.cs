@@ -54,7 +54,7 @@ namespace LogicLayer {
             bool result = false;
 
             try {
-                _projectAccessor.CreateProject(projectID, projectOwner, description, userID)
+                _projectAccessor.CreateProject(projectID, projectOwner, description, userID);
                 result = true;
             } catch (Exception ex) {
                 throw ex;

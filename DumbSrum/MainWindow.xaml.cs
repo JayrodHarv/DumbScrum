@@ -26,14 +26,6 @@ namespace DumbSrum {
             }
         }
 
-
-        private ObservableCollection<Project> _projects;
-
-        public ObservableCollection<Project> Projects {
-            get { return _projects; }
-            set { _projects = value; }
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public MainWindow(UserVM user) {
@@ -41,19 +33,8 @@ namespace DumbSrum {
             LoggedInUser = user;
             CurrentView = new HomeView();
             InitializeComponent();
-            
-
-            GetAllProjects();
 
             AppData.DataPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "data";
-        }
-
-        private void GetAllProjects() {
-            try {
-                _projects = new ObservableCollection<Project>(_projectManager.GetAllProjects());
-            } catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
