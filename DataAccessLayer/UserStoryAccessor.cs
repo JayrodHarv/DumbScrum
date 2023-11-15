@@ -7,9 +7,39 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DataAccessLayer {
     public class UserStoryAccessor : IUserStoryAccessor {
+        public int CreateFeatureUserStory(int featureID, string person, string action, string reason) {
+            int result = 0;
+
+            var conn = SqlConnectionProvider.GetConnection();
+            var cmdText = "sp_insert_feature_userstory";
+            var cmd = new SqlCommand(cmdText, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@FeatureID", SqlDbType.Int);
+            cmd.Parameters.Add("@Person", SqlDbType.NVarChar, 100);
+            cmd.Parameters.Add("@Action", SqlDbType.NVarChar, 255);
+            cmd.Parameters.Add("@Reason", SqlDbType.NVarChar, 255);
+
+            cmd.Parameters["@FeatureID"].Value = featureID;
+            cmd.Parameters["@Person"].Value = person;
+            cmd.Parameters["@Action"].Value = action;
+            cmd.Parameters["@Reason"].Value = reason;
+
+            try {
+                conn.Open();
+                result = cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
+        }
+
         public List<UserStory> SelectUserStoriesByFeatureID(int featureID) {
             List<UserStory> result = new List<UserStory>();
 

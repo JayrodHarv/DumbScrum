@@ -19,6 +19,20 @@ namespace LogicLayer {
         public FeatureManager(IFeatureAccessor featureAccessor) {
             _featureAccessor = featureAccessor;
         }
+
+        public bool AddProjectFeature(string projectID, string name, string description, string priority) {
+            bool result = false;
+
+            try {
+                if(1 == _featureAccessor.CreateProjectFeature(projectID, name, description, priority)) {
+                    result = true;
+                }    
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return result;
+        }
+
         public Feature GetFeatureByFeatureID(int featureID) {
             throw new NotImplementedException();
         }

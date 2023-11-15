@@ -9,5 +9,6 @@ namespace LogicLayer {
     public interface IFeatureManager {
         Feature GetFeatureByFeatureID(int featureID);
         List<Feature> GetFeaturesByProjectID(string projectID);
+        bool AddProjectFeature(string projectID, string name, string description, string priority);
     }
 }

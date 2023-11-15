@@ -17,8 +17,17 @@
             <ColumnDefinition Width="5"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="DemiBold" Padding="20" Text="Project Backlog" VerticalAlignment="Center" Background="#FFE0E0E0" FontSize="18"/>
-        <ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Features}" HorizontalAlignment="Stretch">
+        <Grid Grid.Row="0" Grid.Column="0" Background="#FFE0E0E0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" FontWeight="DemiBold" Padding="20, 0" Text="Project Features" VerticalAlignment="Center"  FontSize="18"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 0, 10, 0">
+                <Button x:Name="btnAddFeature" Content="Add Feature" FontWeight="DemiBold" Padding="5" Background="Green" Foreground="white" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnAddFeature_Click"/>
+            </StackPanel>
+        </Grid>
+        <ListView x:Name="lvFeatures" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Features}" HorizontalAlignment="Stretch" SelectionChanged="lvFeatures_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <userControls:FeatureListItem HorizontalAlignment="Stretch"/>
@@ -26,11 +35,20 @@
             </ListView.ItemTemplate>
         </ListView>
         <GridSplitter Grid.RowSpan="2" Grid.Column="1" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
-        <TextBlock Grid.Row="0" Grid.Column="2" FontWeight="DemiBold" Padding="20" Text="Sprint Backlog" VerticalAlignment="Center" Background="#FFE0E0E0" FontSize="18"/>
-        <ListView Grid.Row="1" Grid.Column="2" ItemsSource="{Binding UserStories}">
+        <Grid Grid.Row="0" Grid.Column="2" Background="#FFE0E0E0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" FontWeight="DemiBold" Padding="20, 0" Text="Feature Stories" VerticalAlignment="Center"  FontSize="18"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 0, 10, 0">
+                <Button x:Name="btnAddStory" Content="Add Story" FontWeight="DemiBold" Padding="5" Background="Green" Foreground="white" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnAddStory_Click"/>
+            </StackPanel>
+        </Grid>
+        <ListView x:Name="lvStories" Grid.Row="1" Grid.Column="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <userControls:FeatureListItem HorizontalAlignment="Stretch"/>
+                    <userControls:UserStoryListItem HorizontalAlignment="Stretch"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

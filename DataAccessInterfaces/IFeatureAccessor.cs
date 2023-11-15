@@ -9,6 +9,6 @@ namespace DataAccessInterfaces {
     public interface IFeatureAccessor {
         Feature SelectFeatureByFeatureID(int featureID);
         List<Feature> SelectFeaturesByProjectID(string projectID);
-        int CreateProjectFeature(string projectID, string name, string description, string priority, string status);
+        int CreateProjectFeature(string projectID, string name, string description, string priority);
     }
 }

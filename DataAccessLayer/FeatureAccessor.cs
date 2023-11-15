@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer {
     public class FeatureAccessor : IFeatureAccessor {
-        public int CreateProjectFeature(string projectID, string name, string description, string priority, string status) {
+        public int CreateProjectFeature(string projectID, string name, string description, string priority) {
             int result = 0;
 
             var conn = SqlConnectionProvider.GetConnection();
@@ -22,13 +22,11 @@ namespace DataAccessLayer {
             cmd.Parameters.Add("@Name", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@Description", SqlDbType.NVarChar, 255);
             cmd.Parameters.Add("@Priority", SqlDbType.NVarChar, 20);
-            cmd.Parameters.Add("@Status", SqlDbType.NVarChar, 50);
 
             cmd.Parameters["@ProjectID"].Value = projectID;
             cmd.Parameters["@Name"].Value = name;
             cmd.Parameters["@Description"].Value = description;
             cmd.Parameters["@Priority"].Value = priority;
-            cmd.Parameters["@Status"].Value = status;
 
             try {
                 conn.Open();

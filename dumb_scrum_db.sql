@@ -62,7 +62,7 @@ CREATE TABLE [dbo].[Feature] (
 	[Name]			[nvarchar]	(50)					NOT NULL,	
 	[Description]	[nvarchar]	(255)					NOT NULL,
 	[Priority]		[nvarchar]	(20)					NOT NULL,
-	[Status]		[nvarchar]	(50)					NOT NULL,
+	[Status]		[nvarchar]	(50)					NOT NULL DEFAULT "Awaiting Sprint",
 	CONSTRAINT	[fk_Feature_ProjectID]	FOREIGN KEY ([ProjectID])
 		REFERENCES	[dbo].[Project] ([ProjectID]),
 	CONSTRAINT [pk_FeatureID] PRIMARY KEY ([FeatureID])
@@ -299,15 +299,14 @@ CREATE PROCEDURE [dbo].[sp_insert_project_feature] (
 	@ProjectID		[nvarchar] 	(50),
 	@Name			[nvarchar]	(50),	
 	@Description	[nvarchar]	(255),	
-	@Priority		[nvarchar]	(20),	
-	@Status			[nvarchar]	(50)	
+	@Priority		[nvarchar]	(20)	
 )
 AS
 	BEGIN
 		INSERT INTO [dbo].[Feature]
-			([ProjectID], [Name], [Description], [Priority], [Status])
+			([ProjectID], [Name], [Description], [Priority])
 		VALUES
-			(@ProjectID, @Name, @Description, @Priority, @Status)
+			(@ProjectID, @Name, @Description, @Priority)
 	END
 GO
 
@@ -322,6 +321,23 @@ AS
 		SELECT *
 		FROM [UserStory]
 		WHERE [UserStory].[FeatureID] = @FeatureID
+	END
+GO
+
+print '' print '*** creating sp_insert_feature_userstory ***'
+GO
+CREATE PROCEDURE [dbo].[sp_insert_feature_userstory] (
+	@FeatureID		[int],
+	@Person			[nvarchar]	(100),	
+	@Action			[nvarchar]	(255),	
+	@Reason			[nvarchar]	(255)	
+)
+AS
+	BEGIN
+		INSERT INTO [dbo].[UserStory]
+			([FeatureID], [Person], [Action], [Reason])
+		VALUES
+			(@FeatureID, @Person, @Action, @Reason)
 	END
 GO
 
@@ -393,13 +409,13 @@ GO
 print '' print '*** inserting Feature test records ***'
 GO
 INSERT INTO [dbo].[Feature]
-		([ProjectID], [Name], [Description], [Priority], [Status])
+		([ProjectID], [Name], [Description], [Priority])
 	VALUES
-		('Dumb Scrum 1', 'Sign In/Sign Up', 'Test description', 'High', 'In Progress'),
-		('Dumb Scrum 1', 'Blah', 'Test description', 'Low', 'Completed'),
-		('Dumb Scrum 1', 'Blah2', 'Test description', 'Medium', 'Ready For Sprint'),
-		('Dumb Scrum 2', 'Project Management', 'Test description', 'High', 'In Progress'),
-		('Dumb Scrum 3', 'Task Management', 'Test description', 'High', 'In Progress')
+		('Dumb Scrum 1', 'Sign In/Sign Up', 'Test description', 'High'),
+		('Dumb Scrum 1', 'Blah', 'Test description', 'Low'),
+		('Dumb Scrum 1', 'Blah2', 'Test description', 'Medium'),
+		('Dumb Scrum 2', 'Project Management', 'Test description', 'High'),
+		('Dumb Scrum 3', 'Task Management', 'Test description', 'High')
 GO
 
 print '' print '*** inserting UserStory test records ***'

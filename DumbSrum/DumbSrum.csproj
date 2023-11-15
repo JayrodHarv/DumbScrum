@@ -55,6 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddFeatureWindow.xaml.cs">
+      <DependentUpon>AddFeatureWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddStoryWindow.xaml.cs">
+      <DependentUpon>AddStoryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ChangePasswordWindow.xaml.cs">
       <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
     </Compile>
@@ -63,6 +69,9 @@
     </Compile>
     <Compile Include="UserControls\SrumBoardItem.xaml.cs">
       <DependentUpon>SrumBoardItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserStoryListItem.xaml.cs">
+      <DependentUpon>UserStoryListItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BoardView.xaml.cs">
       <DependentUpon>BoardView.xaml</DependentUpon>
@@ -91,6 +100,14 @@
     <Compile Include="WelcomeWindow.xaml.cs">
       <DependentUpon>WelcomeWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddFeatureWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddStoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ChangePasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -132,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\SrumBoardItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserStoryListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

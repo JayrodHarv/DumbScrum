@@ -13,18 +13,7 @@ namespace DumbSrum.Views {
     /// </summary>
     public partial class ProjectView : UserControl, INotifyPropertyChanged {
         ProjectManager _projectManager = new ProjectManager();
-        FeatureManager _featureManager = new FeatureManager();
-        UserStoryManager _userStoryManager = new UserStoryManager();
         public ProjectVM _projectVM { get; set; }
-        public ObservableCollection<Feature> Features { get; set; }
-        public ObservableCollection<UserStory> UserStories { get; set; }
-        
-
-
-        public BacklogView backlogView { get; set; }
-        public BoardView boardView { get; set; }
-        public ProjectFeedView feedView { get; set; }
-        public ProjectDashboardView dashboardView { get; set; }
 
 
         private object _currentProjectView;
@@ -43,34 +32,24 @@ namespace DumbSrum.Views {
             DataContext = this;
             try {
                 _projectVM = _projectManager.GetProjectVMByProjectID(projectID);
-
-                _projectVM.Features = _featureManager.GetFeaturesByProjectID(_projectVM.ProjectID);
-                Features = new ObservableCollection<Feature>(_projectVM.Features);
-
-                // _projectVM.Sprints = _sprintManager.GetSprintsByProjectID(_projectVM.ProjectID);
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
 
-            backlogView = new BacklogView();
-            feedView = new ProjectFeedView();
-            dashboardView = new ProjectDashboardView();
-
-            CurrentProjectView = dashboardView;
+            CurrentProjectView = new ProjectDashboardView();
             InitializeComponent();
-            // GetFeatureUserStories(); User Stories should be stored in a FeatureVM I think
         }
 
         private void btnDashboard_Click(object sender, RoutedEventArgs e) {
-            CurrentProjectView = dashboardView;
+            CurrentProjectView = new ProjectDashboardView();
         }
 
         private void btnFeed_Click(object sender, RoutedEventArgs e) {
-            CurrentProjectView = feedView;
+            CurrentProjectView = new ProjectFeedView();
         }
 
         private void btnBacklog_Click(object sender, RoutedEventArgs e) {
-            CurrentProjectView = backlogView;
+            CurrentProjectView = new BacklogView(_projectVM.ProjectID);
         }
 
         private void btnBoard_Click(object sender, RoutedEventArgs e) {
