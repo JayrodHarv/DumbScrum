@@ -14,7 +14,7 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="8">
             <Button x:Name="btnOpenProject" Width="60" Content="Open" Click="btnOpenProject_Click"/>
         </StackPanel>
-        <ListView x:Name="lvProjects" Grid.Row="1" Background="Transparent" ItemsSource="{Binding Projects}" SelectionMode="Single" >
+        <ListView x:Name="lvProjects" Grid.Row="1" Background="Transparent" SelectionMode="Single" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Project Name">

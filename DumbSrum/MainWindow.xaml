@@ -34,7 +34,7 @@
             </StackPanel>
             <Menu Grid.Column="1" Background="#FF3A3A3A">
                 <MenuItem x:Name="mnuHome" Header="Home" Foreground="white" Height="30" Click="mnuHome_Click"/>
-                <MenuItem x:Name="mnuMyProjects" Header="My Projects" Foreground="white" Height="30" Click="mnuMyProjects_Click" ItemsSource="{Binding MyProjects}">
+                <MenuItem x:Name="mnuMyProjects" Header="My Projects" Foreground="white" Height="30" Click="mnuMyProjects_Click">
                     
                 </MenuItem>
                 <MenuItem x:Name="mnuBrowseProjects" Header="Browse Projects" Foreground="white" Height="30" Click="mnuBrowseProjects_Click"/>
