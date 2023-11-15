@@ -5,16 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DumbSrum.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="8">
-            <Button x:Name="btnOpenProject" Width="60" Content="Open" Click="btnOpenProject_Click"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="8" FlowDirection="RightToLeft">
+            <Button x:Name="btnOpenProject" Padding="10, 0" Margin="0,0,10,0" Content="Open Project" Click="btnOpenProject_Click" Background="#FF0F99E2"/>
+            <Button x:Name="btnJoinProject" Padding="10, 0" Margin="0,0,10,0" Content="Join Project" Click="btnJoinProject_Click" Background="#FFDDDE29"/>
+            <Button x:Name="btnCreateProject" Padding="10, 0" Margin="0,0,10,0" Content="Create Project" Click="btnCreateProject_Click" Background="#FF26B51A"/>
+            <Button x:Name="btnLeaveProject" Padding="10, 0" Margin="0,0,10,0" Content="Leave Project" Click="btnLeaveProject_Click" Background="#FFDC6060"/>
         </StackPanel>
-        <ListView x:Name="lvProjects" Grid.Row="1" Background="Transparent" ItemsSource="{Binding MyProjects}" SelectionMode="Single" >
+        <ListView x:Name="lvProjects" Grid.Row="1" Background="Transparent" SelectionMode="Single">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Project Name">

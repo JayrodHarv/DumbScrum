@@ -10,5 +10,6 @@ namespace LogicLayer {
         ProjectVM GetProjectVMByProjectID(string projectID);
         List<Project> GetProjectsByUserID(int userID);
         List<Project> GetAllProjects();
+        bool AddProject(string projectID, string projectOwner, string description, int userID);
     }
 }

@@ -15,7 +15,6 @@ namespace DumbSrum.Views {
         ProjectManager _projectManager = new ProjectManager();
         public ProjectVM _projectVM { get; set; }
 
-
         private object _currentProjectView;
 
         public object CurrentProjectView {
@@ -54,7 +53,6 @@ namespace DumbSrum.Views {
 
         private void btnBoard_Click(object sender, RoutedEventArgs e) {
             CurrentProjectView = new BoardView(_projectVM.ProjectID);
-
         }
 
         private void btnIssues_Click(object sender, RoutedEventArgs e) {

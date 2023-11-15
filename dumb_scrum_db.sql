@@ -47,8 +47,8 @@ CREATE TABLE [dbo].[Project] (
 	[ProjectID]		[nvarchar]	(50) 					NOT NULL,
 	[ProjectOwner]	[nvarchar] 	(50)					NOT NULL,
 	[DateCreated]	[date]								NOT NULL,
-	[Status]		[nvarchar] 	(50)					NOT NULL,
-	[Description]	[nvarchar]	(255)					NULL,		
+	[Status]		[nvarchar] 	(50)					NOT NULL DEFAULT "Getting a grip...",
+	[Description]	[nvarchar]	(255)					NOT NULL,		
 	CONSTRAINT [pk_ProjectID] PRIMARY KEY ([ProjectID])
 )
 GO
@@ -103,7 +103,6 @@ GO
 print '' print '*** creating projectmember table ***'
 GO
 CREATE TABLE [dbo].[ProjectMember] (
-	[MemberID]		[int]		IDENTITY(100000, 1)		NOT NULL,
 	[UserID]		[int]								NOT NULL,
 	[ProjectID]		[nvarchar] 	(50)					NOT NULL,
 	[Role]			[nvarchar]	(50)					NOT NULL,	
@@ -111,7 +110,7 @@ CREATE TABLE [dbo].[ProjectMember] (
 		REFERENCES	[dbo].[User] ([UserID]),
 	CONSTRAINT	[fk_ProjectMember_ProjectID]	FOREIGN KEY ([ProjectID])
 		REFERENCES	[dbo].[Project] ([ProjectID]),
-	CONSTRAINT [pk_MemberID] PRIMARY KEY ([MemberID])
+	CONSTRAINT [pk_ProjectMember] PRIMARY KEY ([UserID], [ProjectID])
 )
 GO
 
@@ -259,10 +258,11 @@ CREATE PROCEDURE [dbo].[sp_select_user_projects] (
 )
 AS
 	BEGIN
-		SELECT *
+		SELECT [Project].[ProjectID], [ProjectOwner], [DateCreated], [Status], [Description]
 		FROM [Project]
 		INNER JOIN [ProjectMember]
-		ON [ProjectMember].[UserID] = @UserID
+		ON [ProjectMember].[ProjectID] = [Project].[ProjectID]
+		WHERE [ProjectMember].[UserID] = @UserID
 	END
 GO
 
@@ -276,6 +276,28 @@ AS
 		SELECT	[ProjectID], [ProjectOwner], [DateCreated], [Status], [Description]
 		FROM [Project]
 		WHERE [ProjectID] = @ProjectID
+	END
+GO
+
+print '' print '*** creating sp_insert_project ***'
+GO
+CREATE PROCEDURE [dbo].[sp_insert_project] (
+	@ProjectID		[nvarchar] 	(50),
+	@ProjectOwner	[nvarchar]	(50),	
+	@Description	[nvarchar]	(255),
+	@UserID			[int]
+)
+AS
+	BEGIN
+		INSERT INTO [dbo].[Project]
+			([ProjectID], [ProjectOwner], [DateCreated], [Description])
+		VALUES
+			(@ProjectID, @ProjectOwner, GETDATE(), @Description)
+			
+		INSERT INTO [dbo].[ProjectMember]
+			([UserID], [ProjectID], [Role])
+		VALUES
+			(@UserID, @ProjectID, "Admin")
 	END
 GO
 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace LogicLayer {
     public class ProjectManager : IProjectManager {
@@ -43,6 +44,17 @@ namespace LogicLayer {
             List<Project> result = new List<Project>();
             try {
                 result = _projectAccessor.SelectProjectsByUserID(userID);
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return result;
+        }
+
+        public bool AddProject(string projectID, string projectOwner, string description, int userID) {
+            bool result = false;
+
+            try {
+                result = true;
             } catch (Exception ex) {
                 throw ex;
             }

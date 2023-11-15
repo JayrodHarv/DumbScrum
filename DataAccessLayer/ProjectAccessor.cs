@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
+using System.Xml.Linq;
 
 namespace DataAccessLayer {
     public class ProjectAccessor : IProjectAccessor {
@@ -129,6 +130,35 @@ namespace DataAccessLayer {
                         result.Add(p);
                     }
                 }
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
+        }
+
+        public int CreateProject(string projectID, string projectOwner, string description, int userID) {
+            int result = 0;
+
+            var conn = SqlConnectionProvider.GetConnection();
+            var cmdText = "sp_insert_project";
+            var cmd = new SqlCommand(cmdText, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
+            cmd.Parameters.Add("@ProjectOwner", SqlDbType.NVarChar, 50);
+            cmd.Parameters.Add("@Description", SqlDbType.NVarChar, 255);
+            cmd.Parameters.Add("@UserID", SqlDbType.Int);
+
+            cmd.Parameters["@ProjectID"].Value = projectID;
+            cmd.Parameters["@ProjectOwner"].Value = projectOwner;
+            cmd.Parameters["@Description"].Value = description;
+            cmd.Parameters["@UserID"].Value = userID;
+
+            try {
+                conn.Open();
+                result = cmd.ExecuteNonQuery();
             } catch (Exception ex) {
                 throw ex;
             } finally {
