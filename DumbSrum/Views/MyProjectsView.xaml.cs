@@ -55,7 +55,23 @@ namespace DumbSrum.Views {
         }
 
         private void btnLeaveProject_Click(object sender, RoutedEventArgs e) {
-
+            if(lvProjects.SelectedItem != null) {
+                try {
+                    Project project = lvProjects.SelectedItem as Project;
+                    if (projectManager.LeaveProject(user.UserID, project.ProjectID)) {
+                        MessageBox.Show("Project Successfully Left.", "Success",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                        lvProjects.ItemsSource = projectManager.GetProjectsByUserID(user.UserID);
+                    } else {
+                        MessageBox.Show("Project Was Not Left", "Operation Aborted",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
+            } else {
+                MessageBox.Show("You must have a project selected in order to leave it.");
+            }
         }
     }
 }

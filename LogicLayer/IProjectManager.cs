@@ -11,5 +11,6 @@ namespace LogicLayer {
         List<Project> GetProjectsByUserID(int userID);
         List<Project> GetAllProjects();
         bool AddProject(string projectID, string projectOwner, string description, int userID);
+        bool LeaveProject(int userID, string projectID);
     }
 }

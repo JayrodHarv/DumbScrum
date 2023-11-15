@@ -61,5 +61,18 @@ namespace LogicLayer {
             }
             return result;
         }
+
+        public bool LeaveProject(int userID, string projectID) {
+            bool result = false;
+
+            try {
+                if(1 == _projectAccessor.LeaveProject(userID, projectID)) {
+                    result = true;
+                }
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

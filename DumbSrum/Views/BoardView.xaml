@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DumbSrum.Views"
+             xmlns:userControls="clr-namespace:DumbSrum.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -38,15 +39,16 @@
 
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
             <StackPanel Background="Red" HorizontalAlignment="Left" Orientation="Horizontal" >
-                <TextBlock Text="To Do" Foreground="white" Padding="3" FontWeight="SemiBold" />
+                <TextBlock Text="Un-claimed" Foreground="white" Padding="3" FontWeight="SemiBold" />
                 <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
             </StackPanel>
-            <ListView ItemsSource="{Binding ToDoTasks}">
-                <ListView.ItemTemplate>
+            <ListView x:Name="lvUnclaimedTasks" Background="Transparent">
+                <!--<ListView.ItemTemplate>
                     <DataTemplate>
                         
                     </DataTemplate>
-                </ListView.ItemTemplate>
+                </ListView.ItemTemplate>-->
+                <userControls:SrumBoardItem/>
             </ListView>
         </StackPanel>
 
@@ -55,7 +57,7 @@
                 <TextBlock Text="In Progress" Foreground="white" Padding="3" FontWeight="SemiBold" />
                 <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
             </StackPanel>
-            <ListView ItemsSource="{Binding InProgressTasks}">
+            <ListView x:Name="lvInProgressTasks" Background="Transparent">
                 <ListView.ItemTemplate>
                     <DataTemplate>
 
@@ -69,7 +71,7 @@
                 <TextBlock Text="Needs Reviewed" Foreground="white" Padding="3" FontWeight="SemiBold" />
                 <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
             </StackPanel>
-            <ListView ItemsSource="{Binding InReviewPhaseTasks}">
+            <ListView x:Name="lvNeedsReviewedTasks" Background="Transparent">
                 <ListView.ItemTemplate>
                     <DataTemplate>
 
@@ -83,7 +85,7 @@
                 <TextBlock Text="Complete" Foreground="white" Padding="3" FontWeight="SemiBold" />
                 <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
             </StackPanel>
-            <ListView ItemsSource="{Binding CompleteTasks}">
+            <ListView x:Name="lvCompletedTasks" Background="Transparent">
                 <ListView.ItemTemplate>
                     <DataTemplate>
 

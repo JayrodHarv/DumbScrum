@@ -301,6 +301,20 @@ AS
 	END
 GO
 
+print '' print '*** creating sp_user_leave_project ***'
+GO
+CREATE PROCEDURE [dbo].[sp_user_leave_project] (
+	@UserID			[int],
+	@ProjectID		[nvarchar] (50)
+)
+AS
+	BEGIN
+		DELETE FROM [ProjectMember]
+		WHERE [ProjectMember].[UserID] = @UserID
+			AND	[ProjectMember].[ProjectID] = @ProjectID	
+	END
+GO
+
 /*----- Feature Stored Procedures -----*/
 print '' print '*** creating sp_select_project_features ***'
 GO
