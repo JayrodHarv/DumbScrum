@@ -76,7 +76,9 @@ namespace DumbSrum.Views {
         private void lvFeatures_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             try {
                 Feature selectedFeature = lvFeatures.SelectedItem as Feature;
-                lvStories.ItemsSource = userStoryManager.GetFeatureUserStories(selectedFeature.FeatureID);
+                if (selectedFeature != null) {
+                    lvStories.ItemsSource = userStoryManager.GetFeatureUserStories(selectedFeature.FeatureID);
+                }
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
