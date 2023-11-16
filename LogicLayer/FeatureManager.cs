@@ -33,12 +33,12 @@ namespace LogicLayer {
             return result;
         }
 
-        public Feature GetFeatureByFeatureID(int featureID) {
+        public FeatureVM GetFeatureByFeatureID(int featureID) {
             throw new NotImplementedException();
         }
 
-        public List<Feature> GetFeaturesByProjectID(string projectID) {
-            List<Feature> result = new List<Feature>();
+        public List<FeatureVM> GetFeaturesByProjectID(string projectID) {
+            List<FeatureVM> result = new List<FeatureVM>();
             try {
                 result = _featureAccessor.SelectFeaturesByProjectID(projectID);
             } catch (Exception ex) {

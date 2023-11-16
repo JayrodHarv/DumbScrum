@@ -71,6 +71,5 @@
                 FontWeight="DemiBold"
                 Margin="10, 3" Click="btnCancel_Click" />
         </StackPanel>
-        
     </Grid>
 </Window>

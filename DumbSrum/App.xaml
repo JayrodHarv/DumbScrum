@@ -1,8 +1,6 @@
 ﻿<Application x:Class="DumbSrum.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:DumbSrum"
-             xmlns:views="clr-namespace:DumbSrum.Views"
              StartupUri="WelcomeWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>

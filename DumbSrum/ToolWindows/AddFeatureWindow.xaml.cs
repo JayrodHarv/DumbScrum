@@ -36,9 +36,9 @@ namespace DumbSrum {
 
             FeatureManager featureManager = new FeatureManager();
 
-            List<Feature> features = featureManager.GetFeaturesByProjectID(_projectID);
+            List<FeatureVM> features = featureManager.GetFeaturesByProjectID(_projectID);
             
-            foreach (Feature feature in features) {
+            foreach (FeatureVM feature in features) {
                 if(feature.Name == txtFeatureName.Text) {
                     MessageBox.Show("Feature already exists with the chosen name. Please call it something else.");
                     return;

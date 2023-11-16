@@ -15,6 +15,6 @@ namespace DataObjects {
     }
 
     public class FeatureVM : Feature {
-        public List<UserStory> FeatureStories { get; set; }
+        public int StoryCount { get; set; }
     }
 }

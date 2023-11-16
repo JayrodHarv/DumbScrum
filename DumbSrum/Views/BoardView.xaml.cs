@@ -1,4 +1,5 @@
 ﻿using DataObjects;
+using DumbSrum.ToolWindows;
 using LogicLayer;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,8 @@ namespace DumbSrum.Views {
     /// Interaction logic for BoardView.xaml
     /// </summary>
     public partial class BoardView : UserControl, INotifyPropertyChanged {
-        SprintManager _sprintManager = new SprintManager();
+        string projectID = string.Empty;
+        SprintManager sprintManager = new SprintManager();
 
         public ObservableCollection<Sprint> Sprints { get; set; }
         private SprintVM _currentSprint;
@@ -38,10 +40,11 @@ namespace DumbSrum.Views {
         public event PropertyChangedEventHandler PropertyChanged;
 
         public BoardView(string projectID) {
+            this.projectID = projectID;
             DataContext = this;
 
             try {
-                Sprints = new ObservableCollection<Sprint>(_sprintManager.GetSprintsByProjectID(projectID));
+                Sprints = new ObservableCollection<Sprint>(sprintManager.GetSprintsByProjectID(projectID));
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
@@ -51,9 +54,35 @@ namespace DumbSrum.Views {
         }
 
         private void cbxSprint_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            CurrentSprint = _sprintManager.GetSprintVMBySprintID(Sprints[cbxSprint.SelectedIndex].SprintID);
+            CurrentSprint = sprintManager.GetSprintVMBySprintID(Sprints[cbxSprint.SelectedIndex].SprintID);
             
             txtFeature.Text = CurrentSprint.FeatureID.ToString();
+        }
+
+        private void btnPlanNewSprint_Click(object sender, RoutedEventArgs e) {
+            try {
+                var planNewSprintWindow = new PlanNewSprintWindow(projectID);
+                var result = planNewSprintWindow.ShowDialog();
+                if (result == true) {
+                    MessageBox.Show("Sprint Successfully Planned.", "Success",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                    cbxSprint.ItemsSource = sprintManager.GetSprintsByProjectID(projectID);
+                } else {
+                    MessageBox.Show("Sprint Not Planned", "Operation Aborted",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
+                    "Failed To Plan Sprint", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void btnEditSprint_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void btnAddTask_Click(object sender, RoutedEventArgs e) {
+
         }
     }
 }

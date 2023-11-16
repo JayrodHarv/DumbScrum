@@ -55,17 +55,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddFeatureWindow.xaml.cs">
+    <Compile Include="ToolWindows\AddFeatureWindow.xaml.cs">
       <DependentUpon>AddFeatureWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddStoryWindow.xaml.cs">
+    <Compile Include="ToolWindows\AddStoryWindow.xaml.cs">
       <DependentUpon>AddStoryWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ChangePasswordWindow.xaml.cs">
+    <Compile Include="ToolWindows\ChangePasswordWindow.xaml.cs">
       <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CreateProjectWindow.xaml.cs">
+    <Compile Include="ToolWindows\CreateProjectWindow.xaml.cs">
       <DependentUpon>CreateProjectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolWindows\PlanNewSprintWindow.xaml.cs">
+      <DependentUpon>PlanNewSprintWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\FeatureListItem.xaml.cs">
       <DependentUpon>FeatureListItem.xaml</DependentUpon>
@@ -103,19 +106,19 @@
     <Compile Include="WelcomeWindow.xaml.cs">
       <DependentUpon>WelcomeWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddFeatureWindow.xaml">
+    <Page Include="ToolWindows\AddFeatureWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddStoryWindow.xaml">
+    <Page Include="ToolWindows\AddStoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ChangePasswordWindow.xaml">
+    <Page Include="ToolWindows\ChangePasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CreateProjectWindow.xaml">
+    <Page Include="ToolWindows\CreateProjectWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -148,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\TaskItemTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolWindows\PlanNewSprintWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

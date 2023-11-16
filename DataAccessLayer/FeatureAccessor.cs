@@ -39,12 +39,12 @@ namespace DataAccessLayer {
             return result;
         }
 
-        public Feature SelectFeatureByFeatureID(int featureID) {
+        public FeatureVM SelectFeatureByFeatureID(int featureID) {
             throw new NotImplementedException();
         }
 
-        public List<Feature> SelectFeaturesByProjectID(string projectID) {
-            List<Feature> result = new List<Feature>();
+        public List<FeatureVM> SelectFeaturesByProjectID(string projectID) {
+            List<FeatureVM> result = new List<FeatureVM>();
 
             // create connection object
             var conn = SqlConnectionProvider.GetConnection();
@@ -72,7 +72,7 @@ namespace DataAccessLayer {
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows) {
                     while (reader.Read()) {
-                        Feature f = new Feature();
+                        FeatureVM f = new FeatureVM();
                         f.FeatureID = reader.GetInt32(0);
                         f.ProjectID = reader.GetString(1);
                         f.Name = reader.GetString(2);
