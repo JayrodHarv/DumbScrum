@@ -406,6 +406,22 @@ AS
 	END
 GO
 
+print '' print '*** creating sp_insert_project_sprint ***'
+GO
+CREATE PROCEDURE [dbo].[sp_insert_sprint] (
+	@FeatureID		[int],
+	@StartDate		[datetime],
+	@EndDate		[datetime]	
+)
+AS
+	BEGIN
+		INSERT INTO [dbo].[Sprint]
+			([FeatureID], [StartDate], [EndDate])
+		VALUES
+			(@FeatureID, @StartDate, @EndDate)
+	END
+GO
+
 /* =================================================================================
 
 									Insert Test Data
@@ -471,8 +487,8 @@ INSERT INTO [dbo].[Sprint]
 		([FeatureID], [StartDate], [EndDate], [Active])
 	VALUES
 		('100000', GETDATE(), GETDATE(), 1),
-		('100001', GETDATE(), GETDATE(), 0),
-		('100002', GETDATE(), GETDATE(), 0)
+		('100001', GETDATE(), GETDATE(), 1),
+		('100002', GETDATE(), GETDATE(), 1)
 GO
 
 print '' print '*** inserting Task test records ***'

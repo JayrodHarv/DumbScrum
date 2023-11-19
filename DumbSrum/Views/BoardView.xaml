@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:DumbSrum.Views"
              xmlns:userControls="clr-namespace:DumbSrum.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -19,7 +19,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
-            <ComboBox x:Name="cbxSprint" ItemsSource="{Binding Sprints}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" SelectionChanged="cbxSprint_SelectionChanged">
+            <ComboBox x:Name="cbxSprint" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" SelectionChanged="cbxSprint_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding SprintID}"/>
@@ -45,12 +45,11 @@
                 <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
             </StackPanel>
             <ListView x:Name="lvUnclaimedTasks" Background="Transparent">
-                <!--<ListView.ItemTemplate>
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        
+                        <userControls:SrumBoardItem/>
                     </DataTemplate>
-                </ListView.ItemTemplate>-->
-                <userControls:SrumBoardItem/>
+                </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
 

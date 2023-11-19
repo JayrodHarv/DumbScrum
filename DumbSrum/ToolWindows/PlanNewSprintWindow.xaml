@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DumbSrum.ToolWindows"
+        xmlns:userControls="clr-namespace:DumbSrum.UserControls"
         mc:Ignorable="d"
         Title="Plan New Sprint" Height="400" Width="600" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" Loaded="Window_Loaded">
     <Grid>
@@ -24,7 +25,7 @@
         <StackPanel Grid.Row="1">
             <Label Content="Feature:" FontWeight="DemiBold" Padding="10, 0" VerticalAlignment="Center"/>
             <ComboBox x:Name="cboFeature" FontWeight="DemiBold" Height="25" Margin="10, 3"
-               VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+               VerticalContentAlignment="Center" HorizontalContentAlignment="Left" SelectionChanged="cboFeature_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"/>
@@ -32,26 +33,32 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1">
+        <StackPanel Grid.Row="2" Grid.Column="1">
             <Label Content="StartDate:" FontWeight="DemiBold" Padding="10, 0" VerticalAlignment="Center"/>
-            <DatePicker x:Name="txtStartDate" FontWeight="DemiBold" Height="25" Margin="10, 3"
-               VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
-
-            </DatePicker>
+            <DatePicker x:Name="dpStartDate" FontWeight="DemiBold" Height="25" Margin="10, 3"
+               VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
             <Label Content="EndDate:" FontWeight="DemiBold" Padding="10, 0" VerticalAlignment="Center"/>
-            <DatePicker x:Name="txtEndDate" FontWeight="DemiBold" Height="25" Margin="10, 3"
-               VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
-
-            </DatePicker>
+            <DatePicker x:Name="dpEndDate" FontWeight="DemiBold" Height="25" Margin="10, 3"
+               VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
         </StackPanel>
-
+        <StackPanel Grid.Row="2">
+            <Label Content="Feature User Stories:" FontWeight="DemiBold" Padding="10, 0" VerticalAlignment="Center"/>
+            <ListView x:Name="lvFeatureStories">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <userControls:UserStoryListItem/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+        
         <StackPanel Grid.Row="3" Grid.Column="1"  Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="btnCreateProject" Content="Plan Sprint"
+            <Button x:Name="btnPlanSprint" Content="Plan Sprint"
                 Padding="5" HorizontalAlignment="Right"
                 FontWeight="DemiBold"
-                Margin="10, 3" Click="btnCreateProject_Click"/>
+                Margin="10, 3" Click="btnPlanSprint_Click"/>
             <Button x:Name="btnCancel" Content="Cancel"
                 Padding="5" HorizontalAlignment="Right"
                 FontWeight="DemiBold"

@@ -19,6 +19,18 @@ namespace LogicLayer {
             _sprintAccessor = sprintAccessor;
         }
 
+        public bool AddSprint(Sprint sprint) {
+            bool result = false;
+
+            try {
+                result = (1 == _sprintAccessor.CreateSprint(sprint));
+            } catch (Exception ex) {
+                throw ex;
+            }
+
+            return result;
+        }
+
         public List<Sprint> GetSprintsByProjectID(string projectID) {
             List<Sprint> result = new List<Sprint>();
             try {

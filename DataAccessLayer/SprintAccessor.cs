@@ -7,9 +7,36 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DataAccessLayer {
     public class SprintAccessor : ISprintAccessor {
+        public int CreateSprint(Sprint sprint) {
+            int result = 0;
+
+            var conn = SqlConnectionProvider.GetConnection();
+            var cmdText = "sp_insert_sprint";
+            var cmd = new SqlCommand(cmdText, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@FeatureID", SqlDbType.Int);
+            cmd.Parameters.Add("@StartDate", SqlDbType.DateTime);
+            cmd.Parameters.Add("@EndDate", SqlDbType.DateTime);
+
+            cmd.Parameters["@FeatureID"].Value = sprint.FeatureID;
+            cmd.Parameters["@StartDate"].Value = sprint.StartDate;
+            cmd.Parameters["@EndDate"].Value = sprint.EndDate;
+
+            try {
+                conn.Open();
+                result = cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
+        }
 
         public List<Sprint> SelectSprintsByProjectID(string projectID) {
             List<Sprint> result = new List<Sprint>();

@@ -9,5 +9,6 @@ namespace DataAccessInterfaces {
     public interface ISprintAccessor {
         SprintVM SelectSprintVMBySprintID(int sprintID);
         List<Sprint> SelectSprintsByProjectID(string projectID);
+        int CreateSprint(Sprint sprint);
     }
 }

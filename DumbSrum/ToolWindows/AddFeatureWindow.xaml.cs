@@ -24,7 +24,7 @@ namespace DumbSrum {
                 MessageBox.Show("You must give the feature a name.");
                 return;
             }
-            if(txtDescription.Text == "") {
+            if (txtDescription.Text == "") {
                 MessageBox.Show("You must add a description to the feature.");
                 return;
             }
@@ -37,9 +37,9 @@ namespace DumbSrum {
             FeatureManager featureManager = new FeatureManager();
 
             List<FeatureVM> features = featureManager.GetFeaturesByProjectID(_projectID);
-            
+
             foreach (FeatureVM feature in features) {
-                if(feature.Name == txtFeatureName.Text) {
+                if (feature.Name == txtFeatureName.Text) {
                     MessageBox.Show("Feature already exists with the chosen name. Please call it something else.");
                     return;
                 }
@@ -47,7 +47,7 @@ namespace DumbSrum {
 
             // everything is good
             try {
-                if(featureManager.AddProjectFeature(_projectID, txtFeatureName.Text, txtDescription.Text, cboPriority.Text)) {
+                if (featureManager.AddProjectFeature(_projectID, txtFeatureName.Text, txtDescription.Text, cboPriority.Text)) {
                     this.DialogResult = true;
                 } else {
                     MessageBox.Show("Failed to add feature.");
@@ -55,7 +55,7 @@ namespace DumbSrum {
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
     }
 }
