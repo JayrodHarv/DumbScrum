@@ -26,6 +26,5 @@ namespace DataObjects {
 
             return isValid;
         }
-
     }
 }

@@ -2,8 +2,10 @@
 using LogicLayer;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace DumbSrum.ToolWindows {
     /// <summary>
@@ -11,18 +13,29 @@ namespace DumbSrum.ToolWindows {
     /// </summary>
     public partial class PlanNewSprintWindow : Window {
         string projectID = string.Empty;
+        List<SprintVM> sprints = new List<SprintVM>();
         FeatureManager featureManager = new FeatureManager();
         UserStoryManager userStoryManager = new UserStoryManager();
         SprintManager sprintManager = new SprintManager();
+        TaskManager taskManager = new TaskManager();
+
         public PlanNewSprintWindow(string projectID) {
             this.projectID = projectID;
             InitializeComponent();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
+            sprints = sprintManager.GetSprintVMsByProjectID(projectID);
             List<FeatureVM> features = featureManager.GetFeaturesByProjectID(projectID);
             cboFeature.ItemsSource = features;
-            dpStartDate.SelectedDate = DateTime.Now;
+
+            // preview calendar
+            foreach(SprintVM sprint in sprints) {
+                dpStartDate.BlackoutDates.AddDatesInPast();
+                dpStartDate.BlackoutDates.Add(new CalendarDateRange(sprint.StartDate, sprint.EndDate));
+                dpEndDate.BlackoutDates.AddDatesInPast();
+                dpEndDate.BlackoutDates.Add(new CalendarDateRange(sprint.StartDate, sprint.EndDate));
+            }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e) {
@@ -47,13 +60,7 @@ namespace DumbSrum.ToolWindows {
                 return;
             }
 
-
-            // Need to check if a sprint is active during selected time period
-            // Or if there is a sprint that already has the selected feature
             Feature feature = (Feature)cboFeature.SelectedItem;
-            List<Sprint> sprints = sprintManager.GetSprintsByProjectID(projectID);
-
-
             foreach (Sprint sprint in sprints) {
                 if (sprint.FeatureID == feature.FeatureID) {
                     MessageBox.Show("Sprint already exists for the feature you selected");
@@ -69,6 +76,12 @@ namespace DumbSrum.ToolWindows {
                     EndDate = (DateTime)dpEndDate.SelectedDate
                 };
                 if (sprintManager.AddSprint(sprint)) {
+                    // Create a task for every user story from sprint feature
+                    List<UserStory> stories = userStoryManager.GetFeatureUserStories(sprint.FeatureID);
+
+                    foreach(UserStory story in stories) {
+                        // taskManager.CreateTask();
+                    }
                     this.DialogResult = true;
                 } else {
                     this.DialogResult = false;

@@ -58,5 +58,9 @@ namespace DumbSrum.Views {
         private void btnIssues_Click(object sender, RoutedEventArgs e) {
 
         }
+
+        private void btnSprints_Click(object sender, RoutedEventArgs e) {
+            CurrentProjectView = new SprintListView(_projectVM.ProjectID);
+        }
     }
 }

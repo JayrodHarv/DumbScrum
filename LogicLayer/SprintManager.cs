@@ -31,10 +31,10 @@ namespace LogicLayer {
             return result;
         }
 
-        public List<Sprint> GetSprintsByProjectID(string projectID) {
-            List<Sprint> result = new List<Sprint>();
+        public List<SprintVM> GetSprintVMsByProjectID(string projectID) {
+            List<SprintVM> result = new List<SprintVM>();
             try {
-                result = _sprintAccessor.SelectSprintsByProjectID(projectID);
+                result = _sprintAccessor.SelectSprintVMsByProjectID(projectID);
             } catch (Exception ex) {
                 throw ex;
             }

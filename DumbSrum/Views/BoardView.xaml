@@ -34,9 +34,7 @@
         </StackPanel>
 
         <StackPanel Grid.Column="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="btnAddTask" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Add Task" Padding="5" Margin="0,0,10,0" Click="btnAddTask_Click"/>
-            <Button x:Name="btnEditSprint" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Edit Sprint" Padding="5" Margin="0,0,10,0" Click="btnEditSprint_Click"/>
-            <Button x:Name="btnPlanNewSprint" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Plan New Sprint" Padding="5" Click="btnPlanNewSprint_Click"/>
+            <Button x:Name="btnAddTask" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Add New Task" Padding="5" Margin="0,0,10,0" Click="btnAddTask_Click" Background="#FF26B51A" Foreground="White"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">

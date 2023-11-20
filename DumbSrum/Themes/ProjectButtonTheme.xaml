@@ -15,7 +15,8 @@
                                        HorizontalAlignment="Center"
                                        FontSize="11"
                                        Foreground="{TemplateBinding Foreground}"
-                                       FontWeight="SemiBold"/>
+                                       FontWeight="SemiBold"
+                                       TextWrapping="Wrap"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>

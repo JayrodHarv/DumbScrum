@@ -10,22 +10,22 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace DataAccessLayer {
-    public class SprintAccessor : ISprintAccessor {
-        public int CreateSprint(Sprint sprint) {
+    public class TaskAccessor : ITaskAccessor {
+        public int InsertTask(int sprintID, int storyID, string status) {
             int result = 0;
 
             var conn = SqlConnectionProvider.GetConnection();
-            var cmdText = "sp_insert_sprint";
+            var cmdText = "sp_insert_task";
             var cmd = new SqlCommand(cmdText, conn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add("@FeatureID", SqlDbType.Int);
-            cmd.Parameters.Add("@StartDate", SqlDbType.DateTime);
-            cmd.Parameters.Add("@EndDate", SqlDbType.DateTime);
+            cmd.Parameters.Add("@SprintID", SqlDbType.Int);
+            cmd.Parameters.Add("@StoryID", SqlDbType.Int);
+            cmd.Parameters.Add("@Status", SqlDbType.NVarChar, 50);
 
-            cmd.Parameters["@FeatureID"].Value = sprint.FeatureID;
-            cmd.Parameters["@StartDate"].Value = sprint.StartDate;
-            cmd.Parameters["@EndDate"].Value = sprint.EndDate;
+            cmd.Parameters["@SprintID"].Value = sprintID;
+            cmd.Parameters["@StoryID"].Value = storyID;
+            cmd.Parameters["@Status"].Value = status;
 
             try {
                 conn.Open();
@@ -38,61 +38,14 @@ namespace DataAccessLayer {
             return result;
         }
 
-        public List<SprintVM> SelectSprintVMsByProjectID(string projectID) {
-            List<SprintVM> result = new List<SprintVM>();
+        public List<TaskVM> SelectTaskVMsBySprintID(int sprintID) {
+            List<TaskVM> result = new List<TaskVM>();
 
             // create connection object
             var conn = SqlConnectionProvider.GetConnection();
 
             // set the command text
-            var commandText = "sp_select_project_sprints";
-
-            // create command object
-            var cmd = new SqlCommand(commandText, conn);
-
-            // set command type
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            // add parameters to command
-            cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
-
-            // set parameter values
-            cmd.Parameters["@ProjectID"].Value = projectID;
-
-            try {
-                // open connection
-                conn.Open();
-
-                // execute command
-                var reader = cmd.ExecuteReader();
-                if (reader.HasRows) {
-                    while (reader.Read()) {
-                        SprintVM s = new SprintVM();
-                        s.SprintID = reader.GetInt32(0);
-                        s.FeatureID = reader.GetInt32(1);
-                        s.StartDate = reader.GetDateTime(2);
-                        s.EndDate = reader.GetDateTime(3);
-                        s.Active = reader.GetBoolean(4);
-                        s.FeatureName = reader.GetString(5);
-                        result.Add(s);
-                    }
-                }
-            } catch (Exception ex) {
-                throw ex;
-            } finally {
-                conn.Close();
-            }
-            return result;
-        }
-
-        public SprintVM SelectSprintVMBySprintID(int sprintID) {
-            SprintVM result = new SprintVM();
-
-            // create connection object
-            var conn = SqlConnectionProvider.GetConnection();
-
-            // set the command text
-            var commandText = "sp_select_sprint_by_sprintid";
+            var commandText = "sp_select_sprint_tasks";
 
             // create command object
             var cmd = new SqlCommand(commandText, conn);
@@ -113,12 +66,60 @@ namespace DataAccessLayer {
                 // execute command
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows) {
-                    if (reader.Read()) {
-                        result.SprintID = reader.GetInt32(0);
-                        result.FeatureID = reader.GetInt32(1);
-                        result.StartDate = reader.GetDateTime(2);
-                        result.EndDate = reader.GetDateTime(3);
-                        result.Active = reader.GetBoolean(4);
+                    while (reader.Read()) {
+                        TaskVM t = new TaskVM();
+                        t.TaskID = reader.GetInt32(0);
+                        t.SprintID = reader.GetInt32(1);
+                        t.StoryID = reader.GetInt32(2);
+                        t.UserID = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
+                        t.Status = reader.GetString(4);
+                        result.Add(t);
+                    }
+                }
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
+        }
+
+        public List<TaskVM> SelectTaskVMsByUserID(int userID) {
+            List<TaskVM> result = new List<TaskVM>();
+
+            // create connection object
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // set the command text
+            var commandText = "sp_select_sprint_tasks";
+
+            // create command object
+            var cmd = new SqlCommand(commandText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // add parameters to command
+            cmd.Parameters.Add("@UserID", SqlDbType.Int);
+
+            // set parameter values
+            cmd.Parameters["@UserID"].Value = userID;
+
+            try {
+                // open connection
+                conn.Open();
+
+                // execute command
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows) {
+                    while (reader.Read()) {
+                        TaskVM t = new TaskVM();
+                        t.TaskID = reader.GetInt32(0);
+                        t.SprintID = reader.GetInt32(1);
+                        t.StoryID = reader.GetInt32(2);
+                        t.UserID = reader.GetInt32(3);
+                        t.Status = reader.GetString(4);
+                        result.Add(t);
                     }
                 }
             } catch (Exception ex) {

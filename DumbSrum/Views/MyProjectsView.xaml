@@ -11,12 +11,19 @@
             <RowDefinition Height="40"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="8" FlowDirection="RightToLeft">
-            <Button x:Name="btnOpenProject" Padding="10, 0" Margin="0,0,10,0" Content="Open Project" Click="btnOpenProject_Click" Background="#FF0F99E2"/>
-            <Button x:Name="btnJoinProject" Padding="10, 0" Margin="0,0,10,0" Content="Join Project" Click="btnJoinProject_Click" Background="#FFDDDE29"/>
-            <Button x:Name="btnCreateProject" Padding="10, 0" Margin="0,0,10,0" Content="Create Project" Click="btnCreateProject_Click" Background="#FF26B51A"/>
-            <Button x:Name="btnLeaveProject" Padding="10, 0" Margin="0,0,10,0" Content="Leave Project" Click="btnLeaveProject_Click" Background="#FFDC6060"/>
-        </StackPanel>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="My Projects" VerticalAlignment="Center" FontWeight="Bold" FontSize="16"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="8">
+                <Button x:Name="btnOpenProject" Padding="10, 0" Margin="0,0,10,0" Content="Open Project" Click="btnOpenProject_Click" Background="#FF0F99E2" Foreground="White"/>
+                <Button x:Name="btnJoinProject" Padding="10, 0" Margin="0,0,10,0" Content="Join Project" Click="btnJoinProject_Click" Background="#FFDDDE29" Foreground="White"/>
+                <Button x:Name="btnCreateProject" Padding="10, 0" Margin="0,0,10,0" Content="Create Project" Click="btnCreateProject_Click" Background="#FF26B51A" Foreground="White"/>
+                <Button x:Name="btnLeaveProject" Padding="10, 0" Margin="0,0,10,0" Content="Leave Project" Click="btnLeaveProject_Click" Background="#FFDC6060" Foreground="White"/>
+            </StackPanel>
+        </Grid>
         <ListView x:Name="lvProjects" Grid.Row="1" Background="Transparent" SelectionMode="Single">
             <ListView.View>
                 <GridView>

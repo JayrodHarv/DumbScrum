@@ -57,15 +57,15 @@ GO
 print '' print '*** creating feature table ***'
 GO
 CREATE TABLE [dbo].[Feature] (
-	[FeatureID]		[int]		IDENTITY(100000, 1)		NOT NULL,
-	[ProjectID]		[nvarchar] 	(50)					NOT NULL,
-	[Name]			[nvarchar]	(50)					NOT NULL,	
+	[FeatureID] 	[int] 		IDENTITY(100000, 1)		NOT NULL,
+	[ProjectID] 	[nvarchar] (50) 					NOT NULL,
+	[Name] 			[nvarchar] (50) 					NOT NULL,
 	[Description]	[nvarchar]	(255)					NOT NULL,
 	[Priority]		[nvarchar]	(20)					NOT NULL,
 	[Status]		[nvarchar]	(50)					NOT NULL DEFAULT "Awaiting Sprint",
 	CONSTRAINT	[fk_Feature_ProjectID]	FOREIGN KEY ([ProjectID])
 		REFERENCES	[dbo].[Project] ([ProjectID]),
-	CONSTRAINT [pk_FeatureID] PRIMARY KEY ([FeatureID])
+	CONSTRAINT [pk_Feature] PRIMARY KEY ([FeatureID])
 )
 GO
 
@@ -80,7 +80,7 @@ CREATE TABLE [dbo].[UserStory] (
 	[Reason]		[nvarchar]	(255)					NOT NULL,
 	CONSTRAINT	[fk_UserStory_FeatureID]	FOREIGN KEY ([FeatureID])
 		REFERENCES	[dbo].[Feature] ([FeatureID]),
-	CONSTRAINT [pk_StoryID] PRIMARY KEY ([StoryID])
+	CONSTRAINT [pk_Story] PRIMARY KEY ([StoryID])
 )
 GO
 
@@ -91,11 +91,11 @@ CREATE TABLE [dbo].[Sprint] (
 	[SprintID]		[int]		IDENTITY(100000, 1)		NOT NULL,
 	[FeatureID]		[int]								NOT NULL,
 	[StartDate]		[date]								NOT NULL,	
-	[EndDate]		[date]								NULL,
-	[Active]		[bit]								NULL DEFAULT 1,
+	[EndDate]		[date]								NOT NULL,
+	[Active]		[bit]								NOT NULL DEFAULT 1,
 	CONSTRAINT	[fk_Sprint_FeatureID]	FOREIGN KEY ([FeatureID])
 		REFERENCES	[dbo].[Feature] ([FeatureID]),
-	CONSTRAINT [pk_SprintID] PRIMARY KEY ([SprintID])
+	CONSTRAINT [pk_Sprint] PRIMARY KEY ([SprintID])
 )
 GO
 
@@ -121,7 +121,7 @@ CREATE TABLE [dbo].[Task] (
 	[TaskID]		[int]		IDENTITY(100000, 1)		NOT NULL,
 	[SprintID]		[int]								NOT NULL,
 	[StoryID]		[int]								NOT NULL,
-	[UserID]		[int]								NOT NULL,
+	[UserID]		[int]								NULL,
 	[Status]		[nvarchar]	(50)					NOT NULL,
 	CONSTRAINT	[fk_Task_SprintID]	FOREIGN KEY ([SprintID])
 		REFERENCES	[dbo].[Sprint] ([SprintID]),
@@ -385,7 +385,8 @@ CREATE PROCEDURE [dbo].[sp_select_project_sprints] (
 )
 AS
 	BEGIN
-		SELECT [SprintID], [Sprint].[FeatureID], [StartDate], [EndDate], [Active]
+		SELECT 	[SprintID], [Sprint].[FeatureID], [StartDate], [EndDate], [Active], 
+				[Feature].[Name]
 		FROM [Sprint]
 		INNER JOIN [dbo].[Feature]
 		ON [Feature].[FeatureID] = [Sprint].[FeatureID]
@@ -419,6 +420,23 @@ AS
 			([FeatureID], [StartDate], [EndDate])
 		VALUES
 			(@FeatureID, @StartDate, @EndDate)
+	END
+GO
+
+/*----- Task Stored Procedures -----*/
+print '' print '*** creating sp_insert_task ***'
+GO
+CREATE PROCEDURE [dbo].[sp_insert_task] (
+	@SprintID		[int],
+	@StoryID		[int],
+	@Status			[nvarchar] (50)
+)
+AS
+	BEGIN
+		INSERT INTO [dbo].[Task]
+			([SprintID], [StoryID], [Status])
+		VALUES
+			(@SprintID, @StoryID, @Status)
 	END
 GO
 
@@ -481,14 +499,15 @@ INSERT INTO [dbo].[UserStory]
 		('100002', 'User', 'View a list of my tasks', 'So that I can view the tasks that I have to do')
 GO
 
-print '' print '*** inserting Sprint test records ***'
+/* print '' print '*** inserting Sprint test records ***'
 GO
 INSERT INTO [dbo].[Sprint]
-		([FeatureID], [StartDate], [EndDate], [Active])
+		([FeatureID], [StartDate], [EndDate])
 	VALUES
-		('100000', GETDATE(), GETDATE(), 1),
-		('100001', GETDATE(), GETDATE(), 1),
-		('100002', GETDATE(), GETDATE(), 1)
+		('100000', GETDATE(), GETDATE()),
+		('100001', GETDATE(), GETDATE()),
+		('100002', GETDATE(), GETDATE()),
+		('100003', GETDATE(), GETDATE())
 GO
 
 print '' print '*** inserting Task test records ***'
@@ -500,4 +519,4 @@ INSERT INTO [dbo].[Task]
 		('100000', '100000', '100000', 'Test Status'),
 		('100001', '100001', '100001', 'Test Status'),
 		('100002', '100002', '100002', 'Test Status')
-GO
+GO */

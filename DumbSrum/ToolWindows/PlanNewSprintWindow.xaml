@@ -33,27 +33,43 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1">
-            <Label Content="StartDate:" FontWeight="DemiBold" Padding="10, 0" VerticalAlignment="Center"/>
-            <DatePicker x:Name="dpStartDate" FontWeight="DemiBold" Height="25" Margin="10, 3"
-               VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
-            <Label Content="EndDate:" FontWeight="DemiBold" Padding="10, 0" VerticalAlignment="Center"/>
-            <DatePicker x:Name="dpEndDate" FontWeight="DemiBold" Height="25" Margin="10, 3"
-               VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-        </StackPanel>
-        <StackPanel Grid.Row="2">
-            <Label Content="Feature User Stories:" FontWeight="DemiBold" Padding="10, 0" VerticalAlignment="Center"/>
-            <ListView x:Name="lvFeatureStories">
+
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Content="Selected Feature User Stories: " FontWeight="DemiBold" Padding="10, 0" VerticalAlignment="Center"/>
+            <ListView x:Name="lvFeatureStories" Grid.Row="1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <userControls:UserStoryListItem/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackPanel>
+        </Grid>
         
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" VerticalAlignment="Center">
+                <Label Content="StartDate:" FontWeight="DemiBold" Padding="10, 0" VerticalAlignment="Center"/>
+                <DatePicker x:Name="dpStartDate" FontWeight="DemiBold" Height="25" Margin="10, 3"
+               VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <Label Content="EndDate:" FontWeight="DemiBold" Padding="10, 0" VerticalAlignment="Center"/>
+                <DatePicker x:Name="dpEndDate" FontWeight="DemiBold" Height="25" Margin="10, 3"
+               VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label Content="Sprint Duration: "/>
+                <Label x:Name="lbDuration"/>
+            </StackPanel>
+        </Grid>
         <StackPanel Grid.Row="3" Grid.Column="1"  Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="btnPlanSprint" Content="Plan Sprint"
                 Padding="5" HorizontalAlignment="Right"
@@ -63,6 +79,6 @@
                 Padding="5" HorizontalAlignment="Right"
                 FontWeight="DemiBold"
                 Margin="10, 3" Click="btnCancel_Click" />
-        </StackPanel>    
+        </StackPanel>
     </Grid>
 </Window>

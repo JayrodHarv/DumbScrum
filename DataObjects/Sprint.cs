@@ -12,7 +12,6 @@ namespace DataObjects {
 
     public class SprintVM : Sprint {
         public string FeatureName { get; set; }
-        public List<Task> Tasks { get; set; }
 
     }
 }

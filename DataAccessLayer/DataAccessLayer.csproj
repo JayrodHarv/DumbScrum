@@ -46,6 +46,7 @@
     <Compile Include="SprintAccessor.cs" />
     <Compile Include="SqlConnectionProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskAccessor.cs" />
     <Compile Include="UserAccessor.cs" />
     <Compile Include="UserStoryAccessor.cs" />
   </ItemGroup>
