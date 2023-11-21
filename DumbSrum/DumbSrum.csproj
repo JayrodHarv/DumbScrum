@@ -73,6 +73,9 @@
     <Compile Include="UserControls\FeatureListItem.xaml.cs">
       <DependentUpon>FeatureListItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\FeedListItem.xaml.cs">
+      <DependentUpon>FeedListItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\SrumBoardItem.xaml.cs">
       <DependentUpon>SrumBoardItem.xaml</DependentUpon>
     </Compile>
@@ -105,6 +108,9 @@
     </Compile>
     <Compile Include="Views\SprintListView.xaml.cs">
       <DependentUpon>SprintListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TaskView.xaml.cs">
+      <DependentUpon>TaskView.xaml</DependentUpon>
     </Compile>
     <Compile Include="WelcomeWindow.xaml.cs">
       <DependentUpon>WelcomeWindow.xaml</DependentUpon>
@@ -165,6 +171,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\FeedListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\SrumBoardItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -206,6 +216,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SprintListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TaskView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

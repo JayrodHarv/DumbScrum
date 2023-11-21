@@ -14,6 +14,7 @@ namespace DumbSrum.Views {
     public partial class BoardView : UserControl {
         string projectID = string.Empty;
         SprintManager sprintManager = new SprintManager();
+        TaskManager taskManager = new TaskManager();
 
         public BoardView(string projectID) {
             this.projectID = projectID;
@@ -32,8 +33,13 @@ namespace DumbSrum.Views {
 
         private void cbxSprint_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             if (cbxSprint.SelectedItem != null) {
-                Sprint sprint = cbxSprint.SelectedItem as Sprint;
-                txtFeature.Text = sprint.FeatureID.ToString();
+                SprintVM sprint = cbxSprint.SelectedItem as SprintVM;
+                txtFeature.Text = sprint.FeatureName;
+                try {
+                    icToDoTasks.ItemsSource = taskManager.GetTaskVMsBySprintID(sprint.SprintID);
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

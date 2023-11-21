@@ -24,7 +24,7 @@
                 <Button x:Name="btnLeaveProject" Padding="10, 0" Margin="0,0,10,0" Content="Leave Project" Click="btnLeaveProject_Click" Background="#FFDC6060" Foreground="White"/>
             </StackPanel>
         </Grid>
-        <ListView x:Name="lvProjects" Grid.Row="1" Background="Transparent" SelectionMode="Single">
+        <ListView x:Name="lvProjects" Grid.Row="1" SelectionMode="Single" MouseDoubleClick="lvProjects_MouseDoubleClick" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Project Name">

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:DumbSrum.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="#FFE6E6E6">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>
             <ColumnDefinition/>
@@ -21,7 +21,7 @@
                 <RadioButton x:Name="btnIssues" Content="Issues" Height="50" Style="{StaticResource ProjectButtonTheme}" Click="btnIssues_Click"/>
             </StackPanel>
         </Border>
-        <ContentControl Grid.Column="1" Content="{Binding CurrentProjectView}">
+        <ContentControl Grid.Column="1" Content="{Binding CurrentProjectView}" Margin="10">
             
         </ContentControl>
     </Grid>

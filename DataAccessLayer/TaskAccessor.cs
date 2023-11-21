@@ -73,6 +73,10 @@ namespace DataAccessLayer {
                         t.StoryID = reader.GetInt32(2);
                         t.UserID = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
                         t.Status = reader.GetString(4);
+                        t.ProjectName = reader.GetString(5);
+                        t.FeatureName = reader.GetString(6);
+                        t.Story = "As a " + reader.GetString(7) + " I would like to " + 
+                            reader.GetString(8) + " so that " + reader.GetString(9) + ".";
                         result.Add(t);
                     }
                 }

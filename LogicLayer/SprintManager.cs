@@ -50,5 +50,15 @@ namespace LogicLayer {
             }
             return result;
         }
+
+        public SprintVM GetSprintVMByFeatureID(int featureID) {
+            SprintVM result = new SprintVM();
+            try {
+                result = _sprintAccessor.SelectSprintVMByFeatureID(featureID);
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

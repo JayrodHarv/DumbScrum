@@ -34,7 +34,7 @@ namespace DumbSrum {
             UserStoryManager userStoryManager = new UserStoryManager();
 
             try {
-                if (userStoryManager.AddFeatureUserStory(featureID, txtPerson.Text, txtAction.Text, txtReason.Text)) {
+                if (userStoryManager.AddFeatureUserStory(featureID, txtPerson.Text.ToLower(), txtAction.Text.ToLower(), txtReason.Text.ToLower())) {
                     this.DialogResult = true;
                 } else {
                     MessageBox.Show("Failed to add user story to feature.");

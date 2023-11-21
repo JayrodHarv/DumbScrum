@@ -20,16 +20,20 @@ namespace DumbSrum.Views {
             lvProjects.ItemsSource = projectManager.GetProjectsByUserID(user.UserID);
         }
 
-        private void btnOpenProject_Click(object sender, RoutedEventArgs e) {
-            if(lvProjects.SelectedItem == null) {
+        private void OpenProject() {
+            if (lvProjects.SelectedItem == null) {
                 MessageBox.Show("Please select a project to open it.");
                 return;
             }
-            MainWindow parentWindow = (MainWindow) Window.GetWindow(this);
+            MainWindow parentWindow = (MainWindow)Window.GetWindow(this);
 
             Project selectedProject = (Project)lvProjects.SelectedItem;
 
             parentWindow.CurrentView = new ProjectView(selectedProject.ProjectID);
+        }
+
+        private void btnOpenProject_Click(object sender, RoutedEventArgs e) {
+            OpenProject();
         }
 
         private void btnJoinProject_Click(object sender, RoutedEventArgs e) {
@@ -72,6 +76,10 @@ namespace DumbSrum.Views {
             } else {
                 MessageBox.Show("You must have a project selected in order to leave it.");
             }
+        }
+
+        private void lvProjects_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+            OpenProject();
         }
     }
 }

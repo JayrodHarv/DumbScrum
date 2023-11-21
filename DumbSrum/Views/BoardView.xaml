@@ -6,19 +6,13 @@
              xmlns:local="clr-namespace:DumbSrum.Views"
              xmlns:userControls="clr-namespace:DumbSrum.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+             d:DesignHeight="600" d:DesignWidth="1200" Loaded="UserControl_Loaded">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Top">
             <ComboBox x:Name="cbxSprint" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" SelectionChanged="cbxSprint_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -34,63 +28,90 @@
         </StackPanel>
 
         <StackPanel Grid.Column="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="btnAddTask" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Add New Task" Padding="5" Margin="0,0,10,0" Click="btnAddTask_Click" Background="#FF26B51A" Foreground="White"/>
+            <Button x:Name="btnAddTask" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Add New Task" Padding="5" Click="btnAddTask_Click" Background="#FF26B51A" Foreground="White"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
-            <StackPanel Background="Red" HorizontalAlignment="Left" Orientation="Horizontal" >
-                <TextBlock Text="Un-claimed" Foreground="white" Padding="3" FontWeight="SemiBold" />
-                <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
-            </StackPanel>
-            <ListView x:Name="lvUnclaimedTasks" Background="Transparent">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <userControls:SrumBoardItem/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="6*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Background="Red" HorizontalAlignment="Left" Orientation="Horizontal" >
+                    <TextBlock Text="To Do" Foreground="white" Padding="3" FontWeight="SemiBold" />
+                    <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
+                </StackPanel>
+                <ItemsControl Grid.Row="1" x:Name="icToDoTasks" Background="Transparent">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <userControls:SrumBoardItem/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
-            <StackPanel Background="Orange" HorizontalAlignment="Left" Orientation="Horizontal" >
-                <TextBlock Text="In Progress" Foreground="white" Padding="3" FontWeight="SemiBold" />
-                <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
-            </StackPanel>
-            <ListView x:Name="lvInProgressTasks" Background="Transparent">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
+            <Grid Grid.Row="1" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Background="Orange" HorizontalAlignment="Left" Orientation="Horizontal" >
+                    <TextBlock Text="In Progress" Foreground="white" Padding="3" FontWeight="SemiBold" />
+                    <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
+                </StackPanel>
+                <ListView Grid.Row="1" x:Name="lvInProgressTasks" Background="Transparent">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
 
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
 
-        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical">
-            <StackPanel Background="Gold" HorizontalAlignment="Left" Orientation="Horizontal" >
-                <TextBlock Text="Needs Reviewed" Foreground="white" Padding="3" FontWeight="SemiBold" />
-                <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
-            </StackPanel>
-            <ListView x:Name="lvNeedsReviewedTasks" Background="Transparent">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
+            <Grid Grid.Row="1" Grid.Column="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Background="Gold" HorizontalAlignment="Left" Orientation="Horizontal" >
+                    <TextBlock Text="Needs Reviewed" Foreground="white" Padding="3" FontWeight="SemiBold" />
+                    <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
+                </StackPanel>
+                <ListView Grid.Row="1" x:Name="lvNeedsReviewedTasks" Background="Transparent">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
 
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
 
-        <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Vertical">
-            <StackPanel Background="Green" HorizontalAlignment="Left" Orientation="Horizontal" >
-                <TextBlock Text="Complete" Foreground="white" Padding="3" FontWeight="SemiBold" />
-                <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
-            </StackPanel>
-            <ListView x:Name="lvCompletedTasks" Background="Transparent">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
+            <Grid Grid.Row="1" Grid.Column="6">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Background="Green" HorizontalAlignment="Left" Orientation="Horizontal" >
+                    <TextBlock Text="Complete" Foreground="white" Padding="3" FontWeight="SemiBold" />
+                    <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
+                </StackPanel>
+                <ListView Grid.Row="1" x:Name="lvCompletedTasks" Background="Transparent">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
 
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

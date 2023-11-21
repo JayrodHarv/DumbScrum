@@ -16,7 +16,7 @@
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label Content="Project Sprints" VerticalAlignment="Center" FontWeight="Bold" FontSize="16"/>
+            <Label Content="Project Sprints" VerticalAlignment="Center" FontWeight="DemiBold" FontSize="18"/>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="8">
                 <Button x:Name="btnPlanNewSprint" Padding="10, 0" Margin="0,0,10,0" Content="Plan New Sprint" Background="#FF26B51A" Click="btnPlanNewSprint_Click" Foreground="White"/>
                 <Button x:Name="btnEditSprint" Padding="10, 0" Margin="0,0,10,0" Content="Edit Sprint Schedule" Background="#FFDDDE29" Foreground="White"/>

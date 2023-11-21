@@ -128,5 +128,49 @@ namespace DataAccessLayer {
             }
             return result;
         }
+
+        public SprintVM SelectSprintVMByFeatureID(int featureID) {
+            SprintVM result = new SprintVM();
+
+            // create connection object
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // set the command text
+            var commandText = "sp_select_sprint_by_featureid";
+
+            // create command object
+            var cmd = new SqlCommand(commandText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // add parameters to command
+            cmd.Parameters.Add("@FeatureID", SqlDbType.Int);
+
+            // set parameter values
+            cmd.Parameters["@FeatureID"].Value = featureID;
+
+            try {
+                // open connection
+                conn.Open();
+
+                // execute command
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows) {
+                    if (reader.Read()) {
+                        result.SprintID = reader.GetInt32(0);
+                        result.FeatureID = reader.GetInt32(1);
+                        result.StartDate = reader.GetDateTime(2);
+                        result.EndDate = reader.GetDateTime(3);
+                        result.Active = reader.GetBoolean(4);
+                    }
+                }
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
+        }
     }
 }

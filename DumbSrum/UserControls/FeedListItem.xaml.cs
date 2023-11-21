@@ -13,19 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DumbSrum.Views {
+namespace DumbSrum.UserControls {
     /// <summary>
-    /// Interaction logic for ProjectFeedView.xaml
+    /// Interaction logic for FeedListItem.xaml
     /// </summary>
-    public partial class ProjectFeedView : UserControl {
-        public ProjectFeedView() {
+    public partial class FeedListItem : UserControl {
+        public FeedListItem() {
             InitializeComponent();
-        }
-
-        private void txtInputText_KeyDown(object sender, KeyEventArgs e) {
-            if(e.Key == Key.Enter) {
-                // do something
-            }
         }
     }
 }

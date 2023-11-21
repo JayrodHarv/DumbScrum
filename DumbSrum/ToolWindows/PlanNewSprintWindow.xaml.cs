@@ -70,17 +70,18 @@ namespace DumbSrum.ToolWindows {
 
             // Passed all validation
             try {
-                Sprint sprint = new Sprint() {
+                if (sprintManager.AddSprint(new Sprint() {
                     FeatureID = feature.FeatureID,
                     StartDate = (DateTime)dpStartDate.SelectedDate,
                     EndDate = (DateTime)dpEndDate.SelectedDate
-                };
-                if (sprintManager.AddSprint(sprint)) {
+                })) {
+                    sprints = sprintManager.GetSprintVMsByProjectID(projectID);
                     // Create a task for every user story from sprint feature
-                    List<UserStory> stories = userStoryManager.GetFeatureUserStories(sprint.FeatureID);
-
+                    List<UserStory> stories = userStoryManager.GetFeatureUserStories(feature.FeatureID);
+                    Sprint sprint = sprintManager.GetSprintVMByFeatureID(feature.FeatureID);
+                    
                     foreach(UserStory story in stories) {
-                        // taskManager.CreateTask();
+                        taskManager.CreateTask(sprint.SprintID, story.StoryID, "Unclaimed");
                     }
                     this.DialogResult = true;
                 } else {

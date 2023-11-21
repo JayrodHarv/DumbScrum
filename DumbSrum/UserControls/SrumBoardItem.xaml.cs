@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataObjects;
+using DumbSrum.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +22,13 @@ namespace DumbSrum.UserControls {
     public partial class SrumBoardItem : UserControl {
         public SrumBoardItem() {
             InitializeComponent();
+        }
+
+        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
+            //ProjectView parent = this.Parent as ProjectView;
+            //SrumBoardItem item = sender as SrumBoardItem;
+            //int taskID = int.Parse(item.lblTaskID.Content.ToString());
+            //parent.CurrentProjectView = new TaskView(taskID);
         }
     }
 }

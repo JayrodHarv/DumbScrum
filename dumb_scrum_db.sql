@@ -401,11 +401,25 @@ CREATE PROCEDURE [dbo].[sp_select_sprint_by_sprintid] (
 )
 AS
 	BEGIN
-		SELECT [SprintID], [Sprint].[FeatureID], [StartDate], [EndDate], [Active]
+		SELECT [SprintID], [FeatureID], [StartDate], [EndDate], [Active]
 		FROM [Sprint]
 		WHERE [SprintID] = @SprintID
 	END
 GO
+
+print '' print '*** creating sp_select_sprint_by_featureid ***'
+GO
+CREATE PROCEDURE [dbo].[sp_select_sprint_by_featureid] (
+	@FeatureID		[int]
+)
+AS
+	BEGIN
+		SELECT [SprintID], [FeatureID], [StartDate], [EndDate], [Active]
+		FROM [Sprint]
+		WHERE [FeatureID] = @FeatureID
+	END
+GO
+
 
 print '' print '*** creating sp_insert_project_sprint ***'
 GO
@@ -440,6 +454,25 @@ AS
 	END
 GO
 
+print '' print '*** creating sp_select_sprint_tasks ***'
+GO
+CREATE PROCEDURE [dbo].[sp_select_sprint_tasks] (
+	@SprintID		[int]
+)
+AS
+	BEGIN
+		SELECT 	[TaskID], [SprintID], [Task].[StoryID], [UserID], [Task].[Status],
+				[Feature].[ProjectID], [Feature].[Name], [UserStory].[Person],
+				[UserStory].[Action], [UserStory].[Reason]
+		FROM [Task]
+		INNER JOIN [dbo].[UserStory]
+		ON [UserStory].[StoryID] = [Task].[StoryID]
+		INNER JOIN [dbo].[Feature]
+		ON [Feature].[FeatureID] = [UserStory].[FeatureID]
+		WHERE [SprintID] = @SprintID
+	END
+GO
+
 /* =================================================================================
 
 									Insert Test Data
@@ -471,9 +504,9 @@ GO
 INSERT INTO [dbo].[ProjectMember]
 		([UserID], [ProjectID], [Role])
 	VALUES
-		('100000', 'Dumb Scrum 2', 'Scrum Team Member'),
+		('100000', 'Dumb Scrum 1', 'Scrum Team Member'),
 		('100001', 'Dumb Scrum 3', 'Scrum Team Member'),
-		('100002', 'Dumb Scrum 1', 'Scrum Team Member')
+		('100002', 'Dumb Scrum 2', 'Scrum Team Member')
 GO
 
 print '' print '*** inserting Feature test records ***'

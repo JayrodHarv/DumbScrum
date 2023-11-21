@@ -21,7 +21,7 @@
                 <Button x:Name="btnOpenProject" Width="60" Content="Open" Click="btnOpenProject_Click"/>
             </StackPanel>
         </Grid>
-        <ListView x:Name="lvProjects" Grid.Row="1" Background="Transparent" SelectionMode="Single" >
+        <ListView x:Name="lvProjects" Grid.Row="1" SelectionMode="Single" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Project Name">
