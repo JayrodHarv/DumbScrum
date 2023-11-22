@@ -20,11 +20,11 @@ namespace LogicLayer {
             _featureAccessor = featureAccessor;
         }
 
-        public bool AddProjectFeature(string projectID, string name, string description, string priority) {
+        public bool AddProjectFeature(Feature feature) {
             bool result = false;
 
             try {
-                if(1 == _featureAccessor.CreateProjectFeature(projectID, name, description, priority)) {
+                if(1 == _featureAccessor.CreateProjectFeature(feature)) {
                     result = true;
                 }    
             } catch (Exception ex) {

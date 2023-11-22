@@ -11,7 +11,7 @@ using System.Xml.Linq;
 
 namespace DataAccessLayer {
     public class UserStoryAccessor : IUserStoryAccessor {
-        public int CreateFeatureUserStory(int featureID, string person, string action, string reason) {
+        public int CreateFeatureUserStory(UserStory story) {
             int result = 0;
 
             var conn = SqlConnectionProvider.GetConnection();
@@ -19,15 +19,15 @@ namespace DataAccessLayer {
             var cmd = new SqlCommand(cmdText, conn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add("@FeatureID", SqlDbType.Int);
+            cmd.Parameters.Add("@FeatureID", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@Person", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@Action", SqlDbType.NVarChar, 255);
             cmd.Parameters.Add("@Reason", SqlDbType.NVarChar, 255);
 
-            cmd.Parameters["@FeatureID"].Value = featureID;
-            cmd.Parameters["@Person"].Value = person;
-            cmd.Parameters["@Action"].Value = action;
-            cmd.Parameters["@Reason"].Value = reason;
+            cmd.Parameters["@FeatureID"].Value = story.FeatureID;
+            cmd.Parameters["@Person"].Value = story.Person;
+            cmd.Parameters["@Action"].Value = story.Action;
+            cmd.Parameters["@Reason"].Value = story.Reason;
 
             try {
                 conn.Open();
@@ -40,7 +40,7 @@ namespace DataAccessLayer {
             return result;
         }
 
-        public List<UserStory> SelectUserStoriesByFeatureID(int featureID) {
+        public List<UserStory> SelectUserStoriesByFeatureID(string featureID) {
             List<UserStory> result = new List<UserStory>();
 
             // create connection object
@@ -56,7 +56,7 @@ namespace DataAccessLayer {
             cmd.CommandType = CommandType.StoredProcedure;
 
             // add parameters to command
-            cmd.Parameters.Add("@FeatureID", SqlDbType.Int);
+            cmd.Parameters.Add("@FeatureID", SqlDbType.NVarChar, 50);
 
             // set parameter values
             cmd.Parameters["@FeatureID"].Value = featureID;
@@ -71,7 +71,7 @@ namespace DataAccessLayer {
                     while (reader.Read()) {
                         UserStory s = new UserStory();
                         s.StoryID = reader.GetInt32(0);
-                        s.FeatureID = reader.GetInt32(1);
+                        s.FeatureID = reader.GetString(1);
                         s.Person = reader.GetString(2);
                         s.Action = reader.GetString(3);
                         s.Reason = reader.GetString(4);

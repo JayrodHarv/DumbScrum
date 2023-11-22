@@ -19,7 +19,7 @@ namespace DataAccessLayer {
             var cmd = new SqlCommand(cmdText, conn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add("@FeatureID", SqlDbType.Int);
+            cmd.Parameters.Add("@FeatureID", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@StartDate", SqlDbType.DateTime);
             cmd.Parameters.Add("@EndDate", SqlDbType.DateTime);
 
@@ -69,7 +69,7 @@ namespace DataAccessLayer {
                     while (reader.Read()) {
                         SprintVM s = new SprintVM();
                         s.SprintID = reader.GetInt32(0);
-                        s.FeatureID = reader.GetInt32(1);
+                        s.FeatureID = reader.GetString(1);
                         s.StartDate = reader.GetDateTime(2);
                         s.EndDate = reader.GetDateTime(3);
                         s.Active = reader.GetBoolean(4);
@@ -115,7 +115,7 @@ namespace DataAccessLayer {
                 if (reader.HasRows) {
                     if (reader.Read()) {
                         result.SprintID = reader.GetInt32(0);
-                        result.FeatureID = reader.GetInt32(1);
+                        result.FeatureID = reader.GetString(1);
                         result.StartDate = reader.GetDateTime(2);
                         result.EndDate = reader.GetDateTime(3);
                         result.Active = reader.GetBoolean(4);
@@ -129,7 +129,7 @@ namespace DataAccessLayer {
             return result;
         }
 
-        public SprintVM SelectSprintVMByFeatureID(int featureID) {
+        public SprintVM SelectSprintVMByFeatureID(string featureID) {
             SprintVM result = new SprintVM();
 
             // create connection object
@@ -145,7 +145,7 @@ namespace DataAccessLayer {
             cmd.CommandType = CommandType.StoredProcedure;
 
             // add parameters to command
-            cmd.Parameters.Add("@FeatureID", SqlDbType.Int);
+            cmd.Parameters.Add("@FeatureID", SqlDbType.NVarChar, 50);
 
             // set parameter values
             cmd.Parameters["@FeatureID"].Value = featureID;
@@ -159,7 +159,7 @@ namespace DataAccessLayer {
                 if (reader.HasRows) {
                     if (reader.Read()) {
                         result.SprintID = reader.GetInt32(0);
-                        result.FeatureID = reader.GetInt32(1);
+                        result.FeatureID = reader.GetString(1);
                         result.StartDate = reader.GetDateTime(2);
                         result.EndDate = reader.GetDateTime(3);
                         result.Active = reader.GetBoolean(4);

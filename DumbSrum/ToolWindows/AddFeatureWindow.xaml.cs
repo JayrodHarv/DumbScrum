@@ -38,16 +38,23 @@ namespace DumbSrum {
 
             List<FeatureVM> features = featureManager.GetFeaturesByProjectID(_projectID);
 
-            foreach (FeatureVM feature in features) {
-                if (feature.Name == txtFeatureName.Text) {
+            foreach (FeatureVM f in features) {
+                if (f.Name == txtFeatureName.Text) {
                     MessageBox.Show("Feature already exists with the chosen name. Please call it something else.");
                     return;
                 }
             }
 
             // everything is good
+            Feature feature = new Feature() {
+                FeatureID = _projectID + "." + (features.Count + 1),
+                ProjectID = _projectID,
+                Name = txtFeatureName.Text,
+                Description = txtDescription.Text,
+                Priority = cboPriority.Text,
+            };
             try {
-                if (featureManager.AddProjectFeature(_projectID, txtFeatureName.Text, txtDescription.Text, cboPriority.Text)) {
+                if (featureManager.AddProjectFeature(feature)) {
                     this.DialogResult = true;
                 } else {
                     MessageBox.Show("Failed to add feature.");

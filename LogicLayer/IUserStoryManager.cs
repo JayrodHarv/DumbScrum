@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LogicLayer {
     public interface IUserStoryManager {
-        List<UserStory> GetFeatureUserStories(int featureID);
-        bool AddFeatureUserStory(int featureID, string person, string action, string reason);
+        List<UserStory> GetFeatureUserStories(string featureID);
+        bool AddFeatureUserStory(UserStory story);
     }
 }

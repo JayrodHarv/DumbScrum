@@ -1,4 +1,5 @@
-﻿using LogicLayer;
+﻿using DataObjects;
+using LogicLayer;
 using System;
 using System.Windows;
 
@@ -7,8 +8,8 @@ namespace DumbSrum {
     /// Interaction logic for AddStoryWindow.xaml
     /// </summary>
     public partial class AddStoryWindow : Window {
-        int featureID;
-        public AddStoryWindow(int featureID) {
+        string featureID;
+        public AddStoryWindow(string featureID) {
             InitializeComponent();
             this.featureID = featureID;
         }
@@ -32,9 +33,14 @@ namespace DumbSrum {
             }
 
             UserStoryManager userStoryManager = new UserStoryManager();
-
+            UserStory story = new UserStory() {
+                FeatureID = featureID, 
+                Person = txtPerson.Text.ToLower(), 
+                Action = txtAction.Text.ToLower(), 
+                Reason = txtReason.Text.ToLower()
+            };
             try {
-                if (userStoryManager.AddFeatureUserStory(featureID, txtPerson.Text.ToLower(), txtAction.Text.ToLower(), txtReason.Text.ToLower())) {
+                if (userStoryManager.AddFeatureUserStory(story)) {
                     this.DialogResult = true;
                 } else {
                     MessageBox.Show("Failed to add user story to feature.");

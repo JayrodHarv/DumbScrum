@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessInterfaces {
     public interface IFeatureAccessor {
-        FeatureVM SelectFeatureByFeatureID(int featureID);
+        FeatureVM SelectFeatureByFeatureID(string featureID);
         List<FeatureVM> SelectFeaturesByProjectID(string projectID);
-        int CreateProjectFeature(string projectID, string name, string description, string priority);
+        int CreateProjectFeature(Feature feature);
     }
 }

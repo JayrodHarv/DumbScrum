@@ -20,11 +20,11 @@ namespace LogicLayer {
             _userStoryAccessor = userStoryAccessor;
         }
 
-        public bool AddFeatureUserStory(int featureID, string person, string action, string reason) {
+        public bool AddFeatureUserStory(UserStory story) {
             bool result = false;
 
             try {
-                if (1 == _userStoryAccessor.CreateFeatureUserStory(featureID, person, action, reason)) {
+                if (1 == _userStoryAccessor.CreateFeatureUserStory(story)) {
                     result = true;
                 }
             } catch (Exception ex) {
@@ -33,7 +33,7 @@ namespace LogicLayer {
             return result;
         }
 
-        public List<UserStory> GetFeatureUserStories(int featureID) {
+        public List<UserStory> GetFeatureUserStories(string featureID) {
             List<UserStory> result = new List<UserStory>();
             try {
                 result = _userStoryAccessor.SelectUserStoriesByFeatureID(featureID);

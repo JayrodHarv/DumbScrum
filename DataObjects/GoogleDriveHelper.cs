@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace DataObjects {
     public static class GoogleDriveHelper {
         private static string credentialsPath = "credentials.json";
-        private static readonly string folderID = "1jV0OT_6UkKP-aHRS2h1xvAvGc2iQPYEs";
+        private static readonly string projectFolderID = "1CWF1MjBe3bXN9I0Z0_3o6FeHPa9AKHi0";
         private static GoogleCredential credential;
         private static DriveService service;
 
@@ -38,7 +38,7 @@ namespace DataObjects {
                 var fileMetadata = new Google.Apis.Drive.v3.Data.File() {
                     Name = projectID,
                     MimeType = "application/vnd.google-apps.folder",
-                    Parents = new List<string>() { folderID }
+                    Parents = new List<string>() { projectFolderID }
                 };
 
                 // Create a new folder on drive.
@@ -51,14 +51,32 @@ namespace DataObjects {
             }
         }
 
-        public static bool UploadFileToProjectDriveFolder(string projectFolderID, string filePath) {
+        public static string CreateTaskDriveFolder(string projectFolderID, string taskName) {
             try {
-                // Upload file photo.jpg in specified folder on drive.
+                // File metadata
+                var fileMetadata = new Google.Apis.Drive.v3.Data.File() {
+                    Name = taskName,
+                    MimeType = "application/vnd.google-apps.folder",
+                    Parents = new List<string>() { projectFolderID }
+                };
+
+                // Create a new folder on drive.
+                var request = service.Files.Create(fileMetadata);
+                request.Fields = "id";
+                var file = request.Execute();
+                return file.Id;
+            } catch (Exception ex) {
+                throw ex;
+            }
+        }
+
+        public static string UploadFileToProjectDriveFolder(string folderID, string filePath) {
+            try {
                 var fileMetadata = new Google.Apis.Drive.v3.Data.File() {
                     Name = filePath,
                     Parents = new List<string>
                     {
-                        projectFolderID
+                        folderID
                     }
                 };
                 FilesResource.CreateMediaUpload request;
@@ -67,27 +85,15 @@ namespace DataObjects {
                            FileMode.Open)) {
                     // Create a new file, with metadata and stream.
                     request = service.Files.Create(
-                        fileMetadata, stream, "image/jpeg");
+                        fileMetadata, stream, "");
                     request.Fields = "id";
                     request.Upload();
                 }
                 var file = request.ResponseBody;
-                // Prints the uploaded file id.
-                Console.WriteLine("File ID: " + file.Id);
-                return file;
-            } catch (Exception e) {
-                // TODO(developer) - handle error appropriately
-                if (e is AggregateException) {
-                    Console.WriteLine("Credential Not found");
-                } else if (e is FileNotFoundException) {
-                    Console.WriteLine("File not found");
-                } else if (e is DirectoryNotFoundException) {
-                    Console.WriteLine("Directory Not found");
-                } else {
-                    throw;
-                }
+                return file.Id;
+            } catch (Exception ex) {
+                throw ex;
             }
-            return null;
         }
     }
 }

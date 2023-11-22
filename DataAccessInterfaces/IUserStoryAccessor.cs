@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessInterfaces {
     public interface IUserStoryAccessor {
-        List<UserStory> SelectUserStoriesByFeatureID(int featureID);
-        int CreateFeatureUserStory(int featureID, string person, string action, string reason);
+        List<UserStory> SelectUserStoriesByFeatureID(string featureID);
+        int CreateFeatureUserStory(UserStory story);
     }
 }

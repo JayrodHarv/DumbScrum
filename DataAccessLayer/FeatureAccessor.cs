@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer {
     public class FeatureAccessor : IFeatureAccessor {
-        public int CreateProjectFeature(string projectID, string name, string description, string priority) {
+        public int CreateProjectFeature(Feature feature) {
             int result = 0;
 
             var conn = SqlConnectionProvider.GetConnection();
@@ -18,15 +18,17 @@ namespace DataAccessLayer {
             var cmd = new SqlCommand(cmdText, conn);
             cmd.CommandType = CommandType.StoredProcedure;
 
+            cmd.Parameters.Add("@FeatureID", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@Name", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@Description", SqlDbType.NVarChar, 255);
             cmd.Parameters.Add("@Priority", SqlDbType.NVarChar, 20);
 
-            cmd.Parameters["@ProjectID"].Value = projectID;
-            cmd.Parameters["@Name"].Value = name;
-            cmd.Parameters["@Description"].Value = description;
-            cmd.Parameters["@Priority"].Value = priority;
+            cmd.Parameters["@FeatureID"].Value = feature.FeatureID;
+            cmd.Parameters["@ProjectID"].Value = feature.ProjectID;
+            cmd.Parameters["@Name"].Value = feature.Name;
+            cmd.Parameters["@Description"].Value = feature.Description;
+            cmd.Parameters["@Priority"].Value = feature.Priority;
 
             try {
                 conn.Open();
@@ -39,7 +41,7 @@ namespace DataAccessLayer {
             return result;
         }
 
-        public FeatureVM SelectFeatureByFeatureID(int featureID) {
+        public FeatureVM SelectFeatureByFeatureID(string featureID) {
             throw new NotImplementedException();
         }
 
@@ -73,7 +75,7 @@ namespace DataAccessLayer {
                 if (reader.HasRows) {
                     while (reader.Read()) {
                         FeatureVM f = new FeatureVM();
-                        f.FeatureID = reader.GetInt32(0);
+                        f.FeatureID = reader.GetString(0);
                         f.ProjectID = reader.GetString(1);
                         f.Name = reader.GetString(2);
                         f.Description = reader.GetString(3);

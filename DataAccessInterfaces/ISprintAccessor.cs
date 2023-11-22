@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace DataAccessInterfaces {
     public interface ISprintAccessor {
         SprintVM SelectSprintVMBySprintID(int sprintID);
-        SprintVM SelectSprintVMByFeatureID(int featureID);
+        SprintVM SelectSprintVMByFeatureID(string featureID);
         List<SprintVM> SelectSprintVMsByProjectID(string projectID);
         int CreateSprint(Sprint sprint);
     }

@@ -58,7 +58,7 @@ GO
 print '' print '*** creating feature table ***'
 GO
 CREATE TABLE [dbo].[Feature] (
-	[FeatureID] 	[int] 		IDENTITY(100000, 1)		NOT NULL,
+	[FeatureID] 	[nvarchar] (50)						NOT NULL,
 	[ProjectID] 	[nvarchar] (50) 					NOT NULL,
 	[Name] 			[nvarchar] (50) 					NOT NULL,
 	[Description]	[nvarchar]	(255)					NOT NULL,
@@ -74,8 +74,8 @@ GO
 print '' print '*** creating userstory table ***'
 GO
 CREATE TABLE [dbo].[UserStory] (
-	[StoryID]		[int]		IDENTITY(100000, 1)		NOT NULL,
-	[FeatureID]		[int]								NOT NULL,
+	[StoryID]		[nvarchar]	(50)					NOT NULL,
+	[FeatureID]		[nvarchar]	(50)					NOT NULL,
 	[Person]		[nvarchar]	(100)					NOT NULL,	
 	[Action]		[nvarchar]	(255)					NOT NULL,
 	[Reason]		[nvarchar]	(255)					NOT NULL,
@@ -90,7 +90,7 @@ print '' print '*** creating sprint table ***'
 GO
 CREATE TABLE [dbo].[Sprint] (
 	[SprintID]		[int]		IDENTITY(100000, 1)		NOT NULL,
-	[FeatureID]		[int]								NOT NULL,
+	[FeatureID]		[nvarchar]	(50)					NOT NULL,
 	[StartDate]		[date]								NOT NULL,	
 	[EndDate]		[date]								NOT NULL,
 	[Active]		[bit]								NOT NULL DEFAULT 1,
@@ -121,7 +121,7 @@ GO
 CREATE TABLE [dbo].[Task] (
 	[TaskID]		[int]		IDENTITY(100000, 1)		NOT NULL,
 	[SprintID]		[int]								NOT NULL,
-	[StoryID]		[int]								NOT NULL,
+	[StoryID]		[nvarchar]	(50)					NOT NULL,
 	[UserID]		[int]								NULL,
 	[Status]		[nvarchar]	(50)					NOT NULL,
 	CONSTRAINT	[fk_Task_SprintID]	FOREIGN KEY ([SprintID])
@@ -334,6 +334,7 @@ GO
 print '' print '*** creating sp_insert_project_feature ***'
 GO
 CREATE PROCEDURE [dbo].[sp_insert_project_feature] (
+	@FeatureID		[nvarchar]	(50),
 	@ProjectID		[nvarchar] 	(50),
 	@Name			[nvarchar]	(50),	
 	@Description	[nvarchar]	(255),	
@@ -342,9 +343,9 @@ CREATE PROCEDURE [dbo].[sp_insert_project_feature] (
 AS
 	BEGIN
 		INSERT INTO [dbo].[Feature]
-			([ProjectID], [Name], [Description], [Priority])
+			([FeatureID], [ProjectID], [Name], [Description], [Priority])
 		VALUES
-			(@ProjectID, @Name, @Description, @Priority)
+			(@FeatureID, @ProjectID, @Name, @Description, @Priority)
 	END
 GO
 
@@ -352,7 +353,7 @@ GO
 print '' print '*** creating sp_select_feature_user_stories ***'
 GO
 CREATE PROCEDURE [dbo].[sp_select_feature_user_stories] (
-	@FeatureID		[int]
+	@FeatureID		[nvarchar] (50)
 )
 AS
 	BEGIN
@@ -365,7 +366,8 @@ GO
 print '' print '*** creating sp_insert_feature_userstory ***'
 GO
 CREATE PROCEDURE [dbo].[sp_insert_feature_userstory] (
-	@FeatureID		[int],
+	@StoryID 		[nvarchar]	(50),
+	@FeatureID		[nvarchar]	(50),
 	@Person			[nvarchar]	(100),	
 	@Action			[nvarchar]	(255),	
 	@Reason			[nvarchar]	(255)	
@@ -373,9 +375,9 @@ CREATE PROCEDURE [dbo].[sp_insert_feature_userstory] (
 AS
 	BEGIN
 		INSERT INTO [dbo].[UserStory]
-			([FeatureID], [Person], [Action], [Reason])
+			([StoryID], [FeatureID], [Person], [Action], [Reason])
 		VALUES
-			(@FeatureID, @Person, @Action, @Reason)
+			(@StoryID, @FeatureID, @Person, @Action, @Reason)
 	END
 GO
 
@@ -412,7 +414,7 @@ GO
 print '' print '*** creating sp_select_sprint_by_featureid ***'
 GO
 CREATE PROCEDURE [dbo].[sp_select_sprint_by_featureid] (
-	@FeatureID		[int]
+	@FeatureID		[nvarchar] (50)
 )
 AS
 	BEGIN
@@ -426,7 +428,7 @@ GO
 print '' print '*** creating sp_insert_project_sprint ***'
 GO
 CREATE PROCEDURE [dbo].[sp_insert_sprint] (
-	@FeatureID		[int],
+	@FeatureID		[nvarchar] (50),
 	@StartDate		[datetime],
 	@EndDate		[datetime]	
 )
@@ -444,7 +446,7 @@ print '' print '*** creating sp_insert_task ***'
 GO
 CREATE PROCEDURE [dbo].[sp_insert_task] (
 	@SprintID		[int],
-	@StoryID		[int],
+	@StoryID		[nvarchar] (50),
 	@Status			[nvarchar] (50)
 )
 AS

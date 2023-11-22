@@ -51,7 +51,7 @@ namespace LogicLayer {
             return result;
         }
 
-        public SprintVM GetSprintVMByFeatureID(int featureID) {
+        public SprintVM GetSprintVMByFeatureID(string featureID) {
             SprintVM result = new SprintVM();
             try {
                 result = _sprintAccessor.SelectSprintVMByFeatureID(featureID);
