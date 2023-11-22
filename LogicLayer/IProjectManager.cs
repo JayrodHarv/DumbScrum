@@ -10,7 +10,7 @@ namespace LogicLayer {
         ProjectVM GetProjectVMByProjectID(string projectID);
         List<Project> GetProjectsByUserID(int userID);
         List<Project> GetAllProjects();
-        bool AddProject(string projectID, string projectOwner, string description, int userID);
+        bool AddProject(string projectID, string googleDriveFolderID, string projectOwner, string description, int userID);
         bool LeaveProject(int userID, string projectID);
     }
 }

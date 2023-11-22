@@ -138,7 +138,7 @@ namespace DataAccessLayer {
             return result;
         }
 
-        public int CreateProject(string projectID, string projectOwner, string description, int userID) {
+        public int CreateProject(string projectID, string googleDriveFolderID, string projectOwner, string description, int userID) {
             int result = 0;
 
             var conn = SqlConnectionProvider.GetConnection();
@@ -147,11 +147,13 @@ namespace DataAccessLayer {
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
+            cmd.Parameters.Add("@GoogleDriveFolderID", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@ProjectOwner", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@Description", SqlDbType.NVarChar, 255);
             cmd.Parameters.Add("@UserID", SqlDbType.Int);
 
             cmd.Parameters["@ProjectID"].Value = projectID;
+            cmd.Parameters["@GoogleDriveFolderID"].Value = googleDriveFolderID;
             cmd.Parameters["@ProjectOwner"].Value = projectOwner;
             cmd.Parameters["@Description"].Value = description;
             cmd.Parameters["@UserID"].Value = userID;

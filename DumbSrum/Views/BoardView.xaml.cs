@@ -1,11 +1,13 @@
 ﻿using DataObjects;
 using DumbSrum.ToolWindows;
+using DumbSrum.UserControls;
 using LogicLayer;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace DumbSrum.Views {
     /// <summary>
@@ -45,6 +47,14 @@ namespace DumbSrum.Views {
 
         private void btnAddTask_Click(object sender, RoutedEventArgs e) {
 
+        }
+
+        private void SrumBoardItem_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+            MainWindow window = (MainWindow)Window.GetWindow(this);
+            ProjectView projectView = (ProjectView)window.CurrentView;
+            SrumBoardItem item = sender as SrumBoardItem;
+            int taskID = int.Parse(item.lblTaskID.Content.ToString());
+            projectView.CurrentProjectView = new TaskView(taskID);
         }
     }
 }

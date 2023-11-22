@@ -23,12 +23,5 @@ namespace DumbSrum.UserControls {
         public SrumBoardItem() {
             InitializeComponent();
         }
-
-        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
-            //ProjectView parent = this.Parent as ProjectView;
-            //SrumBoardItem item = sender as SrumBoardItem;
-            //int taskID = int.Parse(item.lblTaskID.Content.ToString());
-            //parent.CurrentProjectView = new TaskView(taskID);
-        }
     }
 }

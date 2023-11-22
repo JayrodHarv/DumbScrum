@@ -30,7 +30,7 @@ namespace DumbSrum {
             ProjectManager projectManager = new ProjectManager();
 
             try {
-                if (projectManager.AddProject(txtProjectTitle.Text, txtProjectOwner.Text, txtDescription.Text, user.UserID)) {
+                if (projectManager.AddProject(txtProjectTitle.Text, GoogleDriveHelper.CreateProjectDriveFolder(txtProjectTitle.Text), txtProjectOwner.Text, txtDescription.Text, user.UserID)) {
                     this.DialogResult = true;
                 } else {
                     MessageBox.Show("Failed to create project.");

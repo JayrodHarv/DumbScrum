@@ -53,7 +53,7 @@
                 <ItemsControl Grid.Row="1" x:Name="icToDoTasks" Background="Transparent">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <userControls:SrumBoardItem/>
+                            <userControls:SrumBoardItem MouseDoubleClick="SrumBoardItem_MouseDoubleClick" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

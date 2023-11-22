@@ -35,6 +35,7 @@ namespace DumbSrum {
             InitializeComponent();
 
             AppData.DataPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "data";
+            GoogleDriveHelper.Init();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {

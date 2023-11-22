@@ -50,11 +50,11 @@ namespace LogicLayer {
             return result;
         }
 
-        public bool AddProject(string projectID, string projectOwner, string description, int userID) {
+        public bool AddProject(string projectID, string googleDriveFolderID, string projectOwner, string description, int userID) {
             bool result = false;
 
             try {
-                _projectAccessor.CreateProject(projectID, projectOwner, description, userID);
+                _projectAccessor.CreateProject(projectID, googleDriveFolderID, projectOwner, description, userID);
                 result = true;
             } catch (Exception ex) {
                 throw ex;

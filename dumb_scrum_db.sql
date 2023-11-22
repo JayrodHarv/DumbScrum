@@ -44,11 +44,12 @@ GO
 print '' print '*** creating project table ***'
 GO
 CREATE TABLE [dbo].[Project] (
-	[ProjectID]		[nvarchar]	(50) 					NOT NULL,
-	[ProjectOwner]	[nvarchar] 	(50)					NOT NULL,
-	[DateCreated]	[date]								NOT NULL,
-	[Status]		[nvarchar] 	(50)					NOT NULL DEFAULT "Getting a grip...",
-	[Description]	[nvarchar]	(255)					NOT NULL,		
+	[ProjectID]				[nvarchar]	(50) 					NOT NULL,
+	[GoogleDriveFolderID]	[nvarchar]	(50)					NOT NULL,
+	[ProjectOwner]			[nvarchar] 	(50)					NOT NULL,
+	[DateCreated]			[date]								NOT NULL,
+	[Status]				[nvarchar] 	(50)					NOT NULL DEFAULT "Getting a grip...",
+	[Description]			[nvarchar]	(255)					NOT NULL,		
 	CONSTRAINT [pk_ProjectID] PRIMARY KEY ([ProjectID])
 )
 GO
@@ -282,17 +283,18 @@ GO
 print '' print '*** creating sp_insert_project ***'
 GO
 CREATE PROCEDURE [dbo].[sp_insert_project] (
-	@ProjectID		[nvarchar] 	(50),
-	@ProjectOwner	[nvarchar]	(50),	
-	@Description	[nvarchar]	(255),
-	@UserID			[int]
+	@ProjectID				[nvarchar] 	(50),
+	@GoogleDriveFolderID	[nvarchar]	(50),
+	@ProjectOwner			[nvarchar]	(50),	
+	@Description			[nvarchar]	(255),
+	@UserID					[int]
 )
 AS
 	BEGIN
 		INSERT INTO [dbo].[Project]
-			([ProjectID], [ProjectOwner], [DateCreated], [Description])
+			([ProjectID], [GoogleDriveFolderID], [ProjectOwner], [DateCreated], [Description])
 		VALUES
-			(@ProjectID, @ProjectOwner, GETDATE(), @Description)
+			(@ProjectID, @GoogleDriveFolderID, @ProjectOwner, GETDATE(), @Description)
 			
 		INSERT INTO [dbo].[ProjectMember]
 			([UserID], [ProjectID], [Role])
@@ -489,7 +491,7 @@ INSERT INTO [dbo].[User]
 		('Barack Obama', 'barack-obama@whitehouse.org', 'I am former president')
 GO
 
-print '' print '*** inserting Project test records ***'
+/* print '' print '*** inserting Project test records ***'
 GO
 INSERT INTO [dbo].[Project]
 		([ProjectID], [ProjectOwner], [DateCreated], [Status], [Description])
@@ -532,7 +534,7 @@ INSERT INTO [dbo].[UserStory]
 		('100002', 'User', 'View a list of my tasks', 'So that I can view the tasks that I have to do')
 GO
 
-/* print '' print '*** inserting Sprint test records ***'
+print '' print '*** inserting Sprint test records ***'
 GO
 INSERT INTO [dbo].[Sprint]
 		([FeatureID], [StartDate], [EndDate])
