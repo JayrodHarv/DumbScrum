@@ -81,7 +81,12 @@ namespace DumbSrum.ToolWindows {
                     Sprint sprint = sprintManager.GetSprintVMByFeatureID(feature.FeatureID);
                     
                     foreach(UserStory story in stories) {
-                        taskManager.CreateTask(sprint.SprintID, story.StoryID, "Unclaimed");
+                        Task task = new Task() {
+                            SprintID = sprint.SprintID,
+                            StoryID = story.StoryID,
+                            Status = "Unclaimed"
+                        };
+                        taskManager.CreateTask(task);
                     }
                     this.DialogResult = true;
                 } else {

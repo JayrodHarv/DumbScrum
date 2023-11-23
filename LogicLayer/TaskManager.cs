@@ -21,10 +21,10 @@ namespace LogicLayer {
             _taskAccessor = taskAccessor;
         }
 
-        public bool CreateTask(int sprintID, int storyID, string status) {
+        public bool CreateTask(DataObjects.Task task) {
             bool result = false;
             try {
-                if (1 == _taskAccessor.InsertTask(sprintID, storyID, status)) {
+                if (1 == _taskAccessor.InsertTask(task)) {
                     result = true;
                 }
             } catch (Exception ex) {

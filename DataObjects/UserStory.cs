@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataObjects {
     public class UserStory {
-        public int StoryID { get; set; }
+        public string StoryID { get; set; }
         public string FeatureID { get; set; }
         public string Person { get; set; }
         public string Action { get; set; }

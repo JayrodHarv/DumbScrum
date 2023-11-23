@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LogicLayer {
     public interface ITaskManager {
-        bool CreateTask(int sprintID, int storyID, string status);
+        bool CreateTask(DataObjects.Task task);
         List<TaskVM> GetTaskVMsBySprintID(int sprintID);
         List<TaskVM> GetTaskVMsByUserID(int userID);
     }

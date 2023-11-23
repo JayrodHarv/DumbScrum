@@ -1,6 +1,7 @@
 ﻿using DataObjects;
 using LogicLayer;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace DumbSrum {
@@ -33,7 +34,10 @@ namespace DumbSrum {
             }
 
             UserStoryManager userStoryManager = new UserStoryManager();
+            List<UserStory> stories = userStoryManager.GetFeatureUserStories(featureID);
+
             UserStory story = new UserStory() {
+                StoryID = featureID + "." + (stories.Count + 1),
                 FeatureID = featureID, 
                 Person = txtPerson.Text.ToLower(), 
                 Action = txtAction.Text.ToLower(), 

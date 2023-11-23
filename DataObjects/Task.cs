@@ -9,7 +9,7 @@ namespace DataObjects {
         public int TaskID { get; set; }
         public int UserID { get; set; }
         public int SprintID { get; set; }
-        public int StoryID { get; set; }
+        public string StoryID { get; set; }
         public string Status { get; set; }
     }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessInterfaces {
     public interface ITaskAccessor {
-        int InsertTask(int sprintID, int storyID, string status);
+        int InsertTask(DataObjects.Task task);
         List<TaskVM> SelectTaskVMsBySprintID(int sprintID);
         List<TaskVM> SelectTaskVMsByUserID(int userID);
     }

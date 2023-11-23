@@ -11,7 +11,7 @@ using System.Xml.Linq;
 
 namespace DataAccessLayer {
     public class TaskAccessor : ITaskAccessor {
-        public int InsertTask(int sprintID, int storyID, string status) {
+        public int InsertTask(DataObjects.Task task) {
             int result = 0;
 
             var conn = SqlConnectionProvider.GetConnection();
@@ -20,12 +20,12 @@ namespace DataAccessLayer {
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("@SprintID", SqlDbType.Int);
-            cmd.Parameters.Add("@StoryID", SqlDbType.Int);
+            cmd.Parameters.Add("@StoryID", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@Status", SqlDbType.NVarChar, 50);
 
-            cmd.Parameters["@SprintID"].Value = sprintID;
-            cmd.Parameters["@StoryID"].Value = storyID;
-            cmd.Parameters["@Status"].Value = status;
+            cmd.Parameters["@SprintID"].Value = task.SprintID;
+            cmd.Parameters["@StoryID"].Value = task.StoryID;
+            cmd.Parameters["@Status"].Value = task.Status;
 
             try {
                 conn.Open();
@@ -70,7 +70,7 @@ namespace DataAccessLayer {
                         TaskVM t = new TaskVM();
                         t.TaskID = reader.GetInt32(0);
                         t.SprintID = reader.GetInt32(1);
-                        t.StoryID = reader.GetInt32(2);
+                        t.StoryID = reader.GetString(2);
                         t.UserID = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
                         t.Status = reader.GetString(4);
                         t.ProjectName = reader.GetString(5);
@@ -120,7 +120,7 @@ namespace DataAccessLayer {
                         TaskVM t = new TaskVM();
                         t.TaskID = reader.GetInt32(0);
                         t.SprintID = reader.GetInt32(1);
-                        t.StoryID = reader.GetInt32(2);
+                        t.StoryID = reader.GetString(2);
                         t.UserID = reader.GetInt32(3);
                         t.Status = reader.GetString(4);
                         result.Add(t);
