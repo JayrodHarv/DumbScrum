@@ -1,0 +1,15 @@
+﻿<Application x:Class="DumbScrum.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="WelcomeWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Themes/MenuItemTheme.xaml"/>
+                <ResourceDictionary Source="Themes/ProjectButtonTheme.xaml"/>
+                <ResourceDictionary Source="Themes/ProjectListItemTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

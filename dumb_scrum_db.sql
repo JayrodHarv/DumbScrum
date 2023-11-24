@@ -1,7 +1,11 @@
+-- Enable FILESTREAM
+EXEC sp_configure filestream_access_level, 2
+RECONFIGURE
+GO
+
 /* check to see if the database exits, if so, drop it */
-IF EXISTS (SELECT 1 FROM master.dbo.sysdatabases
-	WHERE name = 'dumb_scrum_db')
-BEGIN
+IF EXISTS (SELECT 1 FROM master.dbo.sysdatabases WHERE name = 'dumb_scrum_db')
+BEGIN	
 	DROP DATABASE dumb_scrum_db
 	print '' print '*** dropping database dumb_scrum_db ***'
 END
@@ -9,12 +13,16 @@ GO
 
 print '' print '*** creating database dumb_scrum_db ***'
 GO
-CREATE DATABASE dumb_scrum_db
+	CREATE DATABASE dumb_scrum_db ON PRIMARY (NAME = dumb_scrum_db, FILENAME = 'C:\DumbScrum\db\dumb_scrum_db.mdf'),
+	FILEGROUP dumb_scrum_fsgroup CONTAINS FILESTREAM (NAME = dumb_scrum_fs, FILENAME = 'C:\DumbScrum\db\dumb_scrum_filestream')
+	LOG ON (NAME = 'dumb_scrum_log', FILENAME = 'C:\DumbScrum\db\dumb_scrum_log.ldf');
 GO
+
+
 
 print '' print '*** using database dumb_scrum_db ***'
 GO
-USE [dumb_scrum_db]
+	USE [dumb_scrum_db]
 GO
 
 /* =================================================================================
@@ -27,13 +35,14 @@ GO
 print '' print '*** creating user table ***'
 GO
 CREATE TABLE [dbo].[User] (
-	[UserID]		[int]		IDENTITY(100000, 1)		NOT NULL,
+	[UserID]		[uniqueidentifier]					NOT NULL,
 	[Email]			[nvarchar] 	(100)					NOT NULL,
 	[PasswordHash]	[nvarchar] 	(100)					NOT NULL	DEFAULT
 		'9c9064c59f1ffa2e174ee754d2979be80dd30db552ec03e7e327e9b1a4bd594e',
 	[DisplayName]	[nvarchar] 	(50)					NOT NULL	DEFAULT
 		'New User',
 	[Bio]			[nvarchar]	(255)					NULL,
+	[Pfp] 			[varbinary]	(max)					NULL,
 	[Active]		[bit]								NOT NULL	DEFAULT 1,
 	CONSTRAINT [pk_UserID] PRIMARY KEY ([UserID]),
 	CONSTRAINT [ak_User_Email] UNIQUE([Email])
@@ -131,6 +140,26 @@ CREATE TABLE [dbo].[Task] (
 	CONSTRAINT	[fk_Task_UserID]	FOREIGN KEY ([UserID])
 		REFERENCES	[dbo].[User] ([UserID]),
 	CONSTRAINT [pk_TaskID] PRIMARY KEY ([TaskID])
+)
+GO
+
+/* creating UseCase table */
+print '' print '*** creating usecase table ***'
+GO
+CREATE TABLE [dbo].[UseCase] (
+	[UseCaseID]		[nvarchar]	(50)					NOT NULL,
+	[File]			[varbinary]	(max)					NOT NULL,
+	CONSTRAINT [pk_UseCase] PRIMARY KEY ([UseCaseID])
+)
+GO
+
+/* creating Template table */
+print '' print '*** creating template table ***'
+GO
+CREATE TABLE [dbo].[Template] (
+	[TemplateID]	[nvarchar]	(50)					NOT NULL,
+	[File]			[varbinary]	(max)					NOT NULL,
+	CONSTRAINT [pk_Template] PRIMARY KEY ([TemplateID])
 )
 GO
 
