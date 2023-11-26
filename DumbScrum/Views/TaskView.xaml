@@ -5,41 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DumbScrum.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="1200">
+             d:DesignHeight="600" d:DesignWidth="1200" Loaded="UserControl_Loaded">
     <Grid>
         <TabControl>
-            <TabItem Header="Overview">
-                
-            </TabItem>
-            <TabItem x:Name="tabUseCase"  Header="Use Cases" GotFocus="tabUseCase_GotFocus">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Button x:Name="btnUploadUseCaseFile" 
-                            Content="Upload Use Case" 
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Left"  
-                            Padding="4" Margin="5,0" Click="btnUploadUseCaseFile_Click"/>
-                    <DataGrid Grid.Row="1" x:Name="dgUseCases"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Stored Procedure Specifications">
-                
-            </TabItem>
-            <TabItem Header="User Interfaces">
-                
-            </TabItem>
-            <TabItem Header="ER Diagram">
-                
-            </TabItem>
-            <TabItem Header="Data Dictionary">
-
-            </TabItem>
-            <TabItem Header="Data Models">
-
-            </TabItem>
+            <TabItem Header="Overview"/>
+            <TabItem x:Name="tabUseCase"  Header="Use Cases"/>
+            <TabItem Header="Stored Procedure Specifications"/>
+            <TabItem Header="User Interfaces"/>
+            <TabItem Header="ER Diagram"/>
+            <TabItem Header="Data Dictionary"/>
+            <TabItem Header="Data Models"/>
         </TabControl>       
     </Grid>
 </UserControl>

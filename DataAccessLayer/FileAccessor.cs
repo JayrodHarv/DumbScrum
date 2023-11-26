@@ -83,7 +83,7 @@ namespace DataAccessLayer {
                         f.TaskID = reader.GetInt32(3);
                         f.FileName = reader.GetString(4);
                         f.Type = reader.GetString(5);
-
+                        f.LastEdited = reader.GetDateTime(6);
                         result.Add(f);
                     }
                 }

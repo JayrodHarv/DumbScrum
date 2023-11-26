@@ -144,6 +144,7 @@ CREATE TABLE [dbo].[FileStore] (
 	[TaskID]		[int]								NOT NULL,
 	[FileName]		[nvarchar]	(100)					NOT NULL,
 	[Type]			[nvarchar]	(50)					NOT NULL,
+	[LastEdited]	[datetime]							NOT NULL,
 	CONSTRAINT [fk_FileStore_TaskID] FOREIGN KEY ([TaskID])
 		REFERENCES [dbo].[Task] ([TaskID]),
 	CONSTRAINT [pk_FileStore] PRIMARY KEY ([FileID])
@@ -506,9 +507,43 @@ CREATE PROCEDURE [dbo].[sp_insert_file] (
 AS
 	BEGIN
 		INSERT INTO [dbo].[FileStore]
-			([Data], [Extension], [TaskID], [FileName], [Type])
+			([Data], [Extension], [TaskID], [FileName], [Type], [LastEdited])
 		VALUES
-			(@Data, @Extension, @TaskID, @FileName, @Type)
+			(@Data, @Extension, @TaskID, @FileName, @Type, CURRENT_TIMESTAMP)
+	END
+GO
+
+print '' print '*** creating sp_delete_file ***'
+GO
+CREATE PROCEDURE [dbo].[sp_delete_file] (	
+	@FileID		[int]
+)
+AS
+	BEGIN
+		DELETE FROM [dbo].[FileStore]
+		WHERE [FileStore].[FileID] = @FileID
+	END
+GO
+
+print '' print '*** creating sp_update_file ***'
+GO
+CREATE PROCEDURE [dbo].[sp_update_file] (	
+	@FileID		[int],
+	@Data			[varbinary] (max),
+	@Extension		[char] (4),
+	@TaskID			[int],
+	@FileName		[nvarchar] (100),
+	@Type			[nvarchar] (50)
+)
+AS
+	BEGIN
+		UPDATE [dbo].[FileStore]
+		SET	[FileStore].[Data] = @Data,
+			[FileStore].[Extension] = @Extension,
+			[FileStore].[TaskID] = @TaskID,
+			[FileStore].[FileName] = @FileName,
+			[FileStore].[Type] = @Type
+		WHERE [FileStore].[FileID] = @FileID
 	END
 GO
 
