@@ -11,7 +11,7 @@
             <TabItem Header="Overview">
                 
             </TabItem>
-            <TabItem Header="Use Cases">
+            <TabItem x:Name="tabUseCase"  Header="Use Cases" GotFocus="tabUseCase_GotFocus">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"/>
@@ -22,6 +22,7 @@
                             VerticalAlignment="Center"
                             HorizontalAlignment="Left"  
                             Padding="4" Margin="5,0" Click="btnUploadUseCaseFile_Click"/>
+                    <DataGrid Grid.Row="1" x:Name="dgUseCases"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Stored Procedure Specifications">

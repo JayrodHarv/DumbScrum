@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IFeatureAccessor.cs" />
+    <Compile Include="IFileAccessor.cs" />
     <Compile Include="IProjectAccessor.cs" />
     <Compile Include="ISprintAccessor.cs" />
     <Compile Include="ITaskAccessor.cs" />

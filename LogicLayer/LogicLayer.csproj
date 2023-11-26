@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FeatureManager.cs" />
+    <Compile Include="FileManager.cs" />
     <Compile Include="IFeatureManager.cs" />
+    <Compile Include="IFileManager.cs" />
     <Compile Include="IProjectManager.cs" />
     <Compile Include="ISprintManager.cs" />
     <Compile Include="ITaskManager.cs" />
