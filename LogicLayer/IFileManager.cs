@@ -9,7 +9,7 @@ namespace LogicLayer {
     public interface IFileManager {
         List<File> GetTaskFilesByType(int taskID, string type);
         bool AddFile(File file);
-        bool EditFile(File file);
+        bool EditFile(File oldFile, File newFile);
         bool RemoveFile(int fileID);
     }
 }

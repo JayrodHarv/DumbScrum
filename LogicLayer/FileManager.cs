@@ -29,10 +29,10 @@ namespace LogicLayer {
             return result;
         }
 
-        public bool EditFile(File file) {
+        public bool EditFile(File oldFile, File newFile) {
             bool result = false;
             try {
-                result = (1 == fileAccessor.UpdateFile(file));
+                result = (1 == fileAccessor.UpdateFile(oldFile, newFile));
             } catch (Exception ex) {
                 throw ex;
             }

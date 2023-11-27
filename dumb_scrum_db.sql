@@ -140,7 +140,7 @@ GO
 CREATE TABLE [dbo].[FileStore] (
 	[FileID]		[int]		IDENTITY(100000, 1)		NOT NULL,
 	[Data]			[varbinary]	(max)					NOT NULL,
-	[Extension]		[char]	(4)							NOT NULL,
+	[Extension]		[char]	(10)						NOT NULL,
 	[TaskID]		[int]								NOT NULL,
 	[FileName]		[nvarchar]	(100)					NOT NULL,
 	[Type]			[nvarchar]	(50)					NOT NULL,
@@ -499,7 +499,7 @@ print '' print '*** creating sp_insert_file ***'
 GO
 CREATE PROCEDURE [dbo].[sp_insert_file] (	
 	@Data			[varbinary] (max),
-	@Extension		[char] (4),
+	@Extension		[char] (10),
 	@TaskID			[int],
 	@FileName		[nvarchar] (100),
 	@Type			[nvarchar] (50)
@@ -513,6 +513,30 @@ AS
 	END
 GO
 
+print '' print '*** creating sp_update_file ***'
+GO
+CREATE PROCEDURE [dbo].[sp_update_file] (	
+	@FileID				[int],
+	@OldData			[varbinary] (max),
+	@OldFileName		[nvarchar] (100),
+	@OldLastEdited		[datetime],
+	@NewData			[varbinary] (max),
+	@NewFileName		[nvarchar] (100),
+	@NewLastEdited		[datetime]
+)
+AS
+	BEGIN
+		UPDATE [dbo].[FileStore]
+		SET	[Data] = @NewData,
+			[FileName] = @NewFileName,
+			[LastEdited] = @NewLastEdited
+		WHERE [FileID] = @FileID
+		AND [Data] = @OldData
+		AND	[FileName] = @OldFileName
+		AND [LastEdited] = @OldLastEdited
+	END
+GO
+
 print '' print '*** creating sp_delete_file ***'
 GO
 CREATE PROCEDURE [dbo].[sp_delete_file] (	
@@ -521,28 +545,6 @@ CREATE PROCEDURE [dbo].[sp_delete_file] (
 AS
 	BEGIN
 		DELETE FROM [dbo].[FileStore]
-		WHERE [FileStore].[FileID] = @FileID
-	END
-GO
-
-print '' print '*** creating sp_update_file ***'
-GO
-CREATE PROCEDURE [dbo].[sp_update_file] (	
-	@FileID		[int],
-	@Data			[varbinary] (max),
-	@Extension		[char] (4),
-	@TaskID			[int],
-	@FileName		[nvarchar] (100),
-	@Type			[nvarchar] (50)
-)
-AS
-	BEGIN
-		UPDATE [dbo].[FileStore]
-		SET	[FileStore].[Data] = @Data,
-			[FileStore].[Extension] = @Extension,
-			[FileStore].[TaskID] = @TaskID,
-			[FileStore].[FileName] = @FileName,
-			[FileStore].[Type] = @Type
 		WHERE [FileStore].[FileID] = @FileID
 	END
 GO

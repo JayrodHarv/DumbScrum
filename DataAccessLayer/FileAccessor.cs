@@ -11,7 +11,26 @@ using System.Threading.Tasks;
 namespace DataAccessLayer {
     public class FileAccessor : IFileAccessor {
         public int DeleteFile(int fileID) {
-            throw new NotImplementedException();
+            int result = 0;
+
+            var conn = SqlConnectionProvider.GetConnection();
+            var cmdText = "sp_delete_file";
+            var cmd = new SqlCommand(cmdText, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@FileID", SqlDbType.Int);
+
+            cmd.Parameters["@FileID"].Value = fileID;
+
+            try {
+                conn.Open();
+                result = cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
         }
 
         public int InsertFile(File file) {
@@ -23,7 +42,7 @@ namespace DataAccessLayer {
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("@Data", SqlDbType.VarBinary);
-            cmd.Parameters.Add("@Extension", SqlDbType.Char, 4);
+            cmd.Parameters.Add("@Extension", SqlDbType.Char, 10);
             cmd.Parameters.Add("@TaskID", SqlDbType.Int);
             cmd.Parameters.Add("@FileName", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@Type", SqlDbType.NVarChar, 50);
@@ -95,8 +114,43 @@ namespace DataAccessLayer {
             return result;
         }
 
-        public int UpdateFile(File file) {
-            throw new NotImplementedException();
+        public int UpdateFile(File oldFile, File newFile) {
+            int result = 0;
+
+            var conn = SqlConnectionProvider.GetConnection();
+            var cmdText = "sp_update_file";
+            var cmd = new SqlCommand(cmdText, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@FileID", SqlDbType.Int);
+
+            cmd.Parameters.Add("@OldData", SqlDbType.VarBinary);
+            cmd.Parameters.Add("@OldFileName", SqlDbType.NVarChar, 100);
+            cmd.Parameters.Add("@OldLastEdited", SqlDbType.DateTime);
+
+            cmd.Parameters.Add("@NewData", SqlDbType.VarBinary);
+            cmd.Parameters.Add("@NewFileName", SqlDbType.NVarChar, 100);
+            cmd.Parameters.Add("@NewLastEdited", SqlDbType.DateTime);
+
+            cmd.Parameters["@FileID"].Value = oldFile.FileID;
+
+            cmd.Parameters["@OldData"].Value = oldFile.Data;
+            cmd.Parameters["@OldFileName"].Value = oldFile.FileName;
+            cmd.Parameters["@OldLastEdited"].Value = oldFile.LastEdited;
+
+            cmd.Parameters["@NewData"].Value = newFile.Data;
+            cmd.Parameters["@NewFileName"].Value = newFile.FileName;
+            cmd.Parameters["@NewLastEdited"].Value = newFile.LastEdited;
+
+            try {
+                conn.Open();
+                result = cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
         }
     }
 }
