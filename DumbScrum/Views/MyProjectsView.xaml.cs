@@ -27,7 +27,7 @@ namespace DumbScrum.Views {
             }
             MainWindow parentWindow = (MainWindow)Window.GetWindow(this);
 
-            Project selectedProject = (Project)lvProjects.SelectedItem;
+            ProjectVM selectedProject = (ProjectVM)lvProjects.SelectedItem;
 
             parentWindow.CurrentView = new ProjectView(selectedProject.ProjectID);
         }

@@ -20,19 +20,15 @@ namespace DumbScrum {
                 MessageBox.Show("You have to give your project a name.");
                 return;
             }
-            if(txtProjectOwner.Text == "") {
-                MessageBox.Show("You have to have a project owner.");
-                return;
-            }
             if(txtDescription.Text == "") {
                 MessageBox.Show("Your project must have a description.");
             }
 
             ProjectManager projectManager = new ProjectManager();
 
-            List<Project> projects = projectManager.GetAllProjects();
+            List<ProjectVM> projects = projectManager.GetAllProjects();
 
-            foreach (Project p in projects) {
+            foreach (ProjectVM p in projects) {
                 if (p.ProjectID == txtProjectTitle.Text) {
                     MessageBox.Show("Project already exists with the chosen name. Please call it something else.");
                     return;
@@ -41,12 +37,12 @@ namespace DumbScrum {
 
             Project project = new Project() {
                 ProjectID = txtProjectTitle.Text, 
-                ProjectOwner = txtProjectOwner.Text, 
+                UserID = user.UserID, 
                 Description = txtDescription.Text, 
             };
 
             try {
-                if (projectManager.AddProject(project, user.UserID)) {
+                if (projectManager.AddProject(project)) {
                     this.DialogResult = true;
                 } else {
                     MessageBox.Show("Failed to create project.");

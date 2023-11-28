@@ -36,19 +36,6 @@
                VerticalContentAlignment="Center"
                HorizontalContentAlignment="Left"/>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1">
-            <Label x:Name="lblProjectOwner" 
-               Content="Project Owner:" 
-               FontWeight="DemiBold"
-               Padding="10, 0"
-               VerticalAlignment="Center"/>
-            <TextBox x:Name="txtProjectOwner"
-               FontWeight="DemiBold"
-               Height="25"
-               Margin="10, 3"
-               VerticalContentAlignment="Center"
-               HorizontalContentAlignment="Left"/>
-        </StackPanel>
         <StackPanel Grid.Row="3" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2">
             <Label x:Name="lblDescription" 
                Content="Description:" 

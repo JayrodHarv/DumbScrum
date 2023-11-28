@@ -20,8 +20,8 @@ namespace LogicLayer {
             _projectAccessor = projectAccessor;
         }
 
-        public List<Project> GetAllProjects() {
-            List<Project> result = new List<Project>();
+        public List<ProjectVM> GetAllProjects() {
+            List<ProjectVM> result = new List<ProjectVM>();
             try {
                 result = _projectAccessor.SelectAllProjects();
             } catch (Exception ex) {
@@ -40,8 +40,8 @@ namespace LogicLayer {
             return result;
         }
 
-        public List<Project> GetProjectsByUserID(int userID) {
-            List<Project> result = new List<Project>();
+        public List<ProjectVM> GetProjectsByUserID(int userID) {
+            List<ProjectVM> result = new List<ProjectVM>();
             try {
                 result = _projectAccessor.SelectProjectsByUserID(userID);
             } catch (Exception ex) {
@@ -50,10 +50,10 @@ namespace LogicLayer {
             return result;
         }
 
-        public bool AddProject(Project project, int userID) {
+        public bool AddProject(Project project) {
             bool result = false;
             try {
-                _projectAccessor.CreateProject(project, userID);
+                _projectAccessor.CreateProject(project);
                 result = true;
             } catch (Exception ex) {
                 throw ex;

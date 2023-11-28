@@ -45,7 +45,7 @@ print '' print '*** creating project table ***'
 GO
 CREATE TABLE [dbo].[Project] (
 	[ProjectID]				[nvarchar]	(50) 					NOT NULL,
-	[ProjectOwner]			[nvarchar] 	(50)					NOT NULL,
+	[UserID]				[int]								NOT NULL,
 	[DateCreated]			[date]								NOT NULL,
 	[Status]				[nvarchar] 	(50)					NOT NULL DEFAULT "Getting a grip...",
 	[Description]			[nvarchar]	(255)					NOT NULL,		
@@ -255,8 +255,10 @@ GO
 CREATE PROCEDURE [dbo].[sp_select_all_projects]
 AS
 	BEGIN
-		SELECT *
+		SELECT [ProjectID], [Project].[UserID], [DateCreated], [Status], [Description], [User].[DisplayName]
 		FROM [Project]
+		INNER JOIN [User]
+		ON [Project].[UserID] = [User].[UserID]
 	END
 GO
 
@@ -267,10 +269,12 @@ CREATE PROCEDURE [dbo].[sp_select_user_projects] (
 )
 AS
 	BEGIN
-		SELECT [Project].[ProjectID], [ProjectOwner], [DateCreated], [Status], [Description]
+		SELECT [Project].[ProjectID], [Project].[UserID], [DateCreated], [Status], [Description], [User].[DisplayName]
 		FROM [Project]
 		INNER JOIN [ProjectMember]
 		ON [ProjectMember].[ProjectID] = [Project].[ProjectID]
+		INNER JOIN [User]
+		ON [User].[UserID] = [Project].[UserID]
 		WHERE [ProjectMember].[UserID] = @UserID
 	END
 GO
@@ -282,8 +286,10 @@ CREATE PROCEDURE [dbo].[sp_select_project_by_projectid] (
 )
 AS
 	BEGIN
-		SELECT	[ProjectID], [ProjectOwner], [DateCreated], [Status], [Description]
+		SELECT [ProjectID], [Project].[UserID], [DateCreated], [Status], [Description], [User].[DisplayName]
 		FROM [Project]
+		INNER JOIN [User]
+		ON [Project].[UserID] = [User].[UserID]
 		WHERE [ProjectID] = @ProjectID
 	END
 GO
@@ -292,21 +298,20 @@ print '' print '*** creating sp_insert_project ***'
 GO
 CREATE PROCEDURE [dbo].[sp_insert_project] (
 	@ProjectID				[nvarchar] 	(50),
-	@ProjectOwner			[nvarchar]	(50),	
-	@Description			[nvarchar]	(255),
-	@UserID					[int]
+	@UserID					[int],	
+	@Description			[nvarchar]	(255)
 )
 AS
 	BEGIN
 		INSERT INTO [dbo].[Project]
-			([ProjectID], [ProjectOwner], [DateCreated], [Description])
+			([ProjectID], [UserID], [DateCreated], [Description])
 		VALUES
-			(@ProjectID, @ProjectOwner, GETDATE(), @Description)
+			(@ProjectID, @UserID, GETDATE(), @Description)
 			
 		INSERT INTO [dbo].[ProjectMember]
 			([UserID], [ProjectID], [Role])
 		VALUES
-			(@UserID, @ProjectID, "Admin")
+			(@UserID, @ProjectID, "Project Owner")
 	END
 GO
 

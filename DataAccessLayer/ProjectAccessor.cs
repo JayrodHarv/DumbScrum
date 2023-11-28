@@ -8,8 +8,8 @@ using System.Xml.Linq;
 
 namespace DataAccessLayer {
     public class ProjectAccessor : IProjectAccessor {
-        public List<Project> SelectAllProjects() {
-            List<Project> result = new List<Project>();
+        public List<ProjectVM> SelectAllProjects() {
+            List<ProjectVM> result = new List<ProjectVM>();
 
             // create connection object
             var conn = SqlConnectionProvider.GetConnection();
@@ -31,12 +31,13 @@ namespace DataAccessLayer {
                 var reader = cmd.ExecuteReader();
                 if(reader.HasRows) {
                     while(reader.Read()) {
-                        Project p = new Project();
+                        ProjectVM p = new ProjectVM();
                         p.ProjectID = reader.GetString(0);
-                        p.ProjectOwner = reader.GetString(1);
+                        p.UserID = reader.GetInt32(1);
                         p.DateCreated = reader.GetDateTime(2);
                         p.Status = reader.GetString(3);
                         p.Description = reader.GetString(4);
+                        p.ProjectOwner = reader.GetString(5);
                         result.Add(p);
                     }
                 }
@@ -78,10 +79,11 @@ namespace DataAccessLayer {
                 if (reader.HasRows) {
                     if (reader.Read()) {
                         result.ProjectID = reader.GetString(0);
-                        result.ProjectOwner = reader.GetString(1);
+                        result.UserID = reader.GetInt32(1);
                         result.DateCreated = reader.GetDateTime(2);
                         result.Status = reader.GetString(3);
                         result.Description = reader.GetString(4);
+                        result.ProjectOwner = reader.GetString(5);
                     }
                 }
             } catch (Exception ex) {
@@ -92,8 +94,8 @@ namespace DataAccessLayer {
             return result;
         }
 
-        public List<Project> SelectProjectsByUserID(int userID) {
-            List<Project> result = new List<Project>();
+        public List<ProjectVM> SelectProjectsByUserID(int userID) {
+            List<ProjectVM> result = new List<ProjectVM>();
 
             // create connection object
             var conn = SqlConnectionProvider.GetConnection();
@@ -121,12 +123,13 @@ namespace DataAccessLayer {
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows) {
                     while (reader.Read()) {
-                        Project p = new Project();
+                        ProjectVM p = new ProjectVM();
                         p.ProjectID = reader.GetString(0);
-                        p.ProjectOwner = reader.GetString(1);
+                        p.UserID = reader.GetInt32(1);
                         p.DateCreated = reader.GetDateTime(2);
                         p.Status = reader.GetString(3);
                         p.Description = reader.GetString(4);
+                        p.ProjectOwner = reader.GetString(5);
                         result.Add(p);
                     }
                 }
@@ -138,7 +141,7 @@ namespace DataAccessLayer {
             return result;
         }
 
-        public int CreateProject(Project project, int userID) {
+        public int CreateProject(Project project) {
             int result = 0;
 
             var conn = SqlConnectionProvider.GetConnection();
@@ -147,14 +150,12 @@ namespace DataAccessLayer {
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
-            cmd.Parameters.Add("@ProjectOwner", SqlDbType.NVarChar, 50);
-            cmd.Parameters.Add("@Description", SqlDbType.NVarChar, 255);
             cmd.Parameters.Add("@UserID", SqlDbType.Int);
+            cmd.Parameters.Add("@Description", SqlDbType.NVarChar, 255);
 
             cmd.Parameters["@ProjectID"].Value = project.ProjectID;
-            cmd.Parameters["@ProjectOwner"].Value = project.ProjectOwner;
+            cmd.Parameters["@UserID"].Value = project.UserID;
             cmd.Parameters["@Description"].Value = project.Description;
-            cmd.Parameters["@UserID"].Value = userID;
 
             try {
                 conn.Open();
