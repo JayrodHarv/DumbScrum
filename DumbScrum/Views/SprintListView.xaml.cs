@@ -51,10 +51,6 @@ namespace DumbScrum.Views {
                 if (result == true) {
                     MessageBox.Show("Sprint Successfully Planned.", "Success",
                         MessageBoxButton.OK, MessageBoxImage.Information);
-
-                    // Automatically create a task for each user story of the sprint feature
-
-
                     lvSprints.ItemsSource = sprintManager.GetSprintVMsByProjectID(projectID);
                 } else {
                     MessageBox.Show("Sprint Not Planned", "Operation Aborted",

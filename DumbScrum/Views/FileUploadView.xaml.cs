@@ -1,4 +1,5 @@
-﻿using LogicLayer;
+﻿using DumbScrum.ToolWindows;
+using LogicLayer;
 using Microsoft.Win32;
 using System;
 using System.IO;
@@ -51,6 +52,7 @@ namespace DumbScrum.Views {
                 if (fileManager.AddFile(file)) {
                     MessageBox.Show("File Successfully Added.");
                     lvFiles.ItemsSource = fileManager.GetTaskFilesByType(taskID, type);
+                    tbFilePath.Text = "";
                 }
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
@@ -95,17 +97,19 @@ namespace DumbScrum.Views {
 
         private void btnOpen_Click(object sender, RoutedEventArgs e) {
             DataObjects.File selectedFile = lvFiles.SelectedItem as DataObjects.File;
-            System.IO.File.WriteAllBytes(@"Documents\" + selectedFile.FileName, selectedFile.Data);
+            string filePath = selectedFile.FileName;
+            System.IO.File.WriteAllBytes(filePath, selectedFile.Data);
             using (var process = new System.Diagnostics.Process()) {
-                process.StartInfo.FileName = @"Documents\" + selectedFile.FileName;
+                process.StartInfo.FileName = filePath;
                 process.Start();
                 process.WaitForExit();
                 if (process.HasExited) {
                     // get the new file
-                    DataObjects.File newFile = GetFile(@"Documents\" + selectedFile.FileName);
+                    DataObjects.File newFile = GetFile(filePath);
                     // update the file in the database
                     try {
                         if (fileManager.EditFile(selectedFile, newFile)) {
+                            System.IO.File.Delete(filePath);
                             MessageBox.Show("File Updated");
                             lvFiles.ItemsSource = fileManager.GetTaskFilesByType(taskID, type);
                         }
@@ -118,18 +122,29 @@ namespace DumbScrum.Views {
 
         private void btnDelete_Click(object sender, RoutedEventArgs e) {
             DataObjects.File selectedFile = lvFiles.SelectedItem as DataObjects.File;
-            var result = MessageBox.Show("Are you sure that you want to permanently delete " + selectedFile.FileName, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.Yes) {
-                try {
-                    if (fileManager.RemoveFile(selectedFile.FileID)) {
-                        System.IO.File.Delete(@"Documents\" + selectedFile.FileName);
-                        MessageBox.Show("File Successfully Deleted.");
-                        lvFiles.ItemsSource = fileManager.GetTaskFilesByType(taskID, type);
+            if(selectedFile != null) {
+                var result = MessageBox.Show("Are you sure that you want to permanently delete " + selectedFile.FileName, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes) {
+                    try {
+                        if (fileManager.RemoveFile(selectedFile.FileID)) {
+                            MessageBox.Show("File Successfully Deleted.");
+                            lvFiles.ItemsSource = fileManager.GetTaskFilesByType(taskID, type);
+                        }
+                    } catch (Exception ex) {
+                        MessageBox.Show(ex.Message);
                     }
-                } catch (Exception ex) {
-                    MessageBox.Show(ex.Message);
                 }
+            } else {
+                MessageBox.Show("You must select a file in order to delete it.");
             }
+        }
+
+        private void btnCreateNew_Click(object sender, RoutedEventArgs e) {
+            // get template for the current type
+
+            // make a copy of it and save to database
+
+            // update it when edits are made
         }
     }
 }
