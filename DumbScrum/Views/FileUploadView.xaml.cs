@@ -140,6 +140,22 @@ namespace DumbScrum.Views {
         }
 
         private void btnCreateNew_Click(object sender, RoutedEventArgs e) {
+            // open CreateNewTaskFileWindow
+            try {
+                CreateNewTaskFileWindow createNewTaskFileWindow = new CreateNewTaskFileWindow(taskID, type);
+                bool? result = createNewTaskFileWindow.ShowDialog();
+                if (result == true) {
+                    MessageBox.Show("File was created using the project's " + type + " template.", "Success",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                } else {
+                    MessageBox.Show("File Not Created", "Operation Aborted",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
+                    "Failed To Create File", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
             // get template for the current type
 
             // make a copy of it and save to database

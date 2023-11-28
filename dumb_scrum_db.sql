@@ -45,7 +45,6 @@ print '' print '*** creating project table ***'
 GO
 CREATE TABLE [dbo].[Project] (
 	[ProjectID]				[nvarchar]	(50) 					NOT NULL,
-	[GoogleDriveFolderID]	[nvarchar]	(50)					NOT NULL,
 	[ProjectOwner]			[nvarchar] 	(50)					NOT NULL,
 	[DateCreated]			[date]								NOT NULL,
 	[Status]				[nvarchar] 	(50)					NOT NULL DEFAULT "Getting a grip...",
@@ -140,40 +139,32 @@ GO
 CREATE TABLE [dbo].[FileStore] (
 	[FileID]		[int]		IDENTITY(100000, 1)		NOT NULL,
 	[Data]			[varbinary]	(max)					NOT NULL,
-	[Extension]		[char]	(10)						NOT NULL,
-	[TaskID]		[int]								NOT NULL,
+	[Extension]		[nvarchar]	(10)					NOT NULL,
+	[TaskID]		[int]								NULL,
+	[ProjectID]		[nvarchar]	(50)					NULL,
 	[FileName]		[nvarchar]	(100)					NOT NULL,
 	[Type]			[nvarchar]	(50)					NOT NULL,
 	[LastEdited]	[datetime]							NOT NULL,
 	CONSTRAINT [fk_FileStore_TaskID] FOREIGN KEY ([TaskID])
 		REFERENCES [dbo].[Task] ([TaskID]),
+	CONSTRAINT [fk_FileStore_ProjectID] FOREIGN KEY ([ProjectID])
+		REFERENCES [dbo].[Project] ([ProjectID]),
 	CONSTRAINT [pk_FileStore] PRIMARY KEY ([FileID])
 )
 GO
 
-/* creating message table */
-print '' print '*** creating message table ***'
+/* creating FeedMessage table */
+print '' print '*** creating FeedMessage table ***'
 GO
-CREATE TABLE [dbo].[Message] (
+CREATE TABLE [dbo].[FeedMessage] (
 	[MessageID]		[int]		IDENTITY(100000, 1)		NOT NULL,
+	[SprintID]		[int]								NOT NULL,
 	[UserID]		[int]								NOT NULL,
 	[Text]			[Text]								NOT NULL,
 	[DateTime]		[datetime]							NOT NULL,
 	CONSTRAINT	[fk_Message_UserID]	FOREIGN KEY ([UserID])
 		REFERENCES	[dbo].[User] ([UserID]),
 	CONSTRAINT [pk_MessageID] PRIMARY KEY ([MessageID])
-)
-GO
-
-/* creating chat table */
-print '' print '*** creating chat table ***'
-GO
-CREATE TABLE [dbo].[Chat] (
-	[ChatID]		[int]		IDENTITY(100000, 1)		NOT NULL,
-	[MessageID]		[int]								NOT NULL,
-	CONSTRAINT	[fk_Chat_MessageID]	FOREIGN KEY ([MessageID])
-		REFERENCES	[dbo].[Message] ([MessageID]),
-	CONSTRAINT [pk_ChatID] PRIMARY KEY ([ChatID])
 )
 GO
 
@@ -301,7 +292,6 @@ print '' print '*** creating sp_insert_project ***'
 GO
 CREATE PROCEDURE [dbo].[sp_insert_project] (
 	@ProjectID				[nvarchar] 	(50),
-	@GoogleDriveFolderID	[nvarchar]	(50),
 	@ProjectOwner			[nvarchar]	(50),	
 	@Description			[nvarchar]	(255),
 	@UserID					[int]
@@ -309,9 +299,9 @@ CREATE PROCEDURE [dbo].[sp_insert_project] (
 AS
 	BEGIN
 		INSERT INTO [dbo].[Project]
-			([ProjectID], [GoogleDriveFolderID], [ProjectOwner], [DateCreated], [Description])
+			([ProjectID], [ProjectOwner], [DateCreated], [Description])
 		VALUES
-			(@ProjectID, @GoogleDriveFolderID, @ProjectOwner, GETDATE(), @Description)
+			(@ProjectID, @ProjectOwner, GETDATE(), @Description)
 			
 		INSERT INTO [dbo].[ProjectMember]
 			([UserID], [ProjectID], [Role])
@@ -495,9 +485,9 @@ AS
 GO
 
 /* FileStore stored procedures */
-print '' print '*** creating sp_insert_file ***'
+print '' print '*** creating sp_insert_task_file ***'
 GO
-CREATE PROCEDURE [dbo].[sp_insert_file] (	
+CREATE PROCEDURE [dbo].[sp_insert_task_file] (	
 	@Data			[varbinary] (max),
 	@Extension		[char] (10),
 	@TaskID			[int],
@@ -511,6 +501,25 @@ AS
 			([Data], [Extension], [TaskID], [FileName], [Type], [LastEdited])
 		VALUES
 			(@Data, @Extension, @TaskID, @FileName, @Type, @LastEdited)
+	END
+GO
+
+print '' print '*** creating sp_insert_template_file ***'
+GO
+CREATE PROCEDURE [dbo].[sp_insert_template_file] (	
+	@Data			[varbinary] (max),
+	@Extension		[char] (10),
+	@ProjectID		[nvarchar] (50),
+	@FileName		[nvarchar] (100),
+	@Type			[nvarchar] (50),
+	@LastEdited		[datetime]
+)
+AS
+	BEGIN
+		INSERT INTO [dbo].[FileStore]
+			([Data], [Extension], [ProjectID], [FileName], [Type], [LastEdited])
+		VALUES
+			(@Data, @Extension, @ProjectID, @FileName, @Type, @LastEdited)
 	END
 GO
 

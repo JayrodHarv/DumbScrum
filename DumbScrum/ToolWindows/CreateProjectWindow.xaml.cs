@@ -1,6 +1,7 @@
 ﻿using DataObjects;
 using LogicLayer;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace DumbScrum {
@@ -29,8 +30,23 @@ namespace DumbScrum {
 
             ProjectManager projectManager = new ProjectManager();
 
+            List<Project> projects = projectManager.GetAllProjects();
+
+            foreach (Project p in projects) {
+                if (p.ProjectID == txtProjectTitle.Text) {
+                    MessageBox.Show("Project already exists with the chosen name. Please call it something else.");
+                    return;
+                }
+            }
+
+            Project project = new Project() {
+                ProjectID = txtProjectTitle.Text, 
+                ProjectOwner = txtProjectOwner.Text, 
+                Description = txtDescription.Text, 
+            };
+
             try {
-                if (projectManager.AddProject(txtProjectTitle.Text, GoogleDriveHelper.CreateProjectDriveFolder(txtProjectTitle.Text), txtProjectOwner.Text, txtDescription.Text, user.UserID)) {
+                if (projectManager.AddProject(project, user.UserID)) {
                     this.DialogResult = true;
                 } else {
                     MessageBox.Show("Failed to create project.");

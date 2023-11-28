@@ -30,13 +30,11 @@
         <StackPanel Grid.Row="1" Grid.Column="1">
             <Label Content="Recent Posts:" FontWeight="DemiBold"/>
             <ItemsControl x:Name="icFeedPosts" BorderThickness="0">
-                <!--<ItemsControl.ItemTemplate>
+                <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <userControls:FeedListItem/>
                     </DataTemplate>
-                </ItemsControl.ItemTemplate>-->
-                <userControls:FeedListItem/>
-                <userControls:FeedListItem/>
+                </ItemsControl.ItemTemplate>
             </ItemsControl>
         </StackPanel>
     </Grid>

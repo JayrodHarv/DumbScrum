@@ -35,7 +35,7 @@ namespace DumbScrum {
             InitializeComponent();
 
             AppData.DataPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "data";
-            GoogleDriveHelper.Init();
+            // GoogleDriveHelper.Init();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
@@ -52,6 +52,10 @@ namespace DumbScrum {
 
         private void mnuBrowseProjects_Click(object sender, RoutedEventArgs e) {
             CurrentView = new ProjectListView();
+        }
+
+        private void userBox_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+            CurrentView = new UserSettingsView(LoggedInUser);
         }
     }
 }
