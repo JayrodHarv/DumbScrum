@@ -1,27 +1,15 @@
-﻿using DataObjects;
-using LogicLayer;
+﻿using LogicLayer;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DumbScrum.Views {
     public partial class FileUploadView : UserControl {
         FileManager fileManager = new FileManager();
         string type;
+        string filter;
         int taskID;
         public FileUploadView(int taskID, string type) {
             this.type = type;
@@ -34,6 +22,26 @@ namespace DumbScrum.Views {
                 lvFiles.ItemsSource = fileManager.GetTaskFilesByType(taskID, type);
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
+            }
+            switch (type) {
+                case "Use Case":
+                    filter = "Word Doc | *.docx";
+                    break;
+                case "Stored Procedure Specification":
+                    filter = "Word Doc | *.docx";
+                    break;
+                case "User Interface":
+                    filter = "Pencil File | *.epgz";
+                    break;
+                case "ER Diagram":
+                    filter = "Diagrams.net | *.drawio";
+                    break;
+                case "Data Dictionary":
+                    filter = "Excel | *.xlsx";
+                    break;
+                case "Data Model":
+                    filter = "Diagrams.net | *.drawio";
+                    break;
             }
         }
 
@@ -51,7 +59,7 @@ namespace DumbScrum.Views {
 
         private void btnBrowse_Click(object sender, RoutedEventArgs e) {
             OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "Word Doc | *.docx";
+            fileDialog.Filter = filter;
             bool? result = fileDialog.ShowDialog();
             if (result == true) {
                 tbFilePath.Text = fileDialog.FileName;
@@ -59,7 +67,7 @@ namespace DumbScrum.Views {
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e) {
-            if(tbFilePath.Text != "") {
+            if (tbFilePath.Text != "") {
                 SaveFile(tbFilePath.Text);
             } else {
                 MessageBox.Show("Please select a file.");
@@ -78,7 +86,8 @@ namespace DumbScrum.Views {
                     Extension = extn,
                     TaskID = taskID,
                     FileName = fileName,
-                    Type = type
+                    Type = type,
+                    LastEdited = DateTime.Now
                 };
                 return file;
             }
@@ -87,15 +96,16 @@ namespace DumbScrum.Views {
         private void btnOpen_Click(object sender, RoutedEventArgs e) {
             DataObjects.File selectedFile = lvFiles.SelectedItem as DataObjects.File;
             System.IO.File.WriteAllBytes(@"Documents\" + selectedFile.FileName, selectedFile.Data);
-            using(var process = new System.Diagnostics.Process()) {
+            using (var process = new System.Diagnostics.Process()) {
                 process.StartInfo.FileName = @"Documents\" + selectedFile.FileName;
                 process.Start();
-                if(process.HasExited) {
+                process.WaitForExit();
+                if (process.HasExited) {
                     // get the new file
                     DataObjects.File newFile = GetFile(@"Documents\" + selectedFile.FileName);
                     // update the file in the database
                     try {
-                        if(fileManager.EditFile(selectedFile, newFile)) {
+                        if (fileManager.EditFile(selectedFile, newFile)) {
                             MessageBox.Show("File Updated");
                             lvFiles.ItemsSource = fileManager.GetTaskFilesByType(taskID, type);
                         }
@@ -108,13 +118,17 @@ namespace DumbScrum.Views {
 
         private void btnDelete_Click(object sender, RoutedEventArgs e) {
             DataObjects.File selectedFile = lvFiles.SelectedItem as DataObjects.File;
-            try {
-                if(fileManager.RemoveFile(selectedFile.FileID)) {
-                    MessageBox.Show("File Successfully Deleted.");
-                    lvFiles.ItemsSource = fileManager.GetTaskFilesByType(taskID, type);
+            var result = MessageBox.Show("Are you sure that you want to permanently delete " + selectedFile.FileName, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes) {
+                try {
+                    if (fileManager.RemoveFile(selectedFile.FileID)) {
+                        System.IO.File.Delete(@"Documents\" + selectedFile.FileName);
+                        MessageBox.Show("File Successfully Deleted.");
+                        lvFiles.ItemsSource = fileManager.GetTaskFilesByType(taskID, type);
+                    }
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
                 }
-            } catch (Exception ex) {
-                MessageBox.Show(ex.Message);
             }
         }
     }

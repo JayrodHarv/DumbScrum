@@ -46,12 +46,14 @@ namespace DataAccessLayer {
             cmd.Parameters.Add("@TaskID", SqlDbType.Int);
             cmd.Parameters.Add("@FileName", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@Type", SqlDbType.NVarChar, 50);
+            cmd.Parameters.Add("@LastEdited", SqlDbType.DateTime);
 
             cmd.Parameters["@Data"].Value = file.Data;
             cmd.Parameters["@Extension"].Value = file.Extension;
             cmd.Parameters["@TaskID"].Value = file.TaskID;
             cmd.Parameters["@FileName"].Value = file.FileName;
             cmd.Parameters["@Type"].Value = file.Type;
+            cmd.Parameters["@LastEdited"].Value = file.LastEdited;
 
             try {
                 conn.Open();

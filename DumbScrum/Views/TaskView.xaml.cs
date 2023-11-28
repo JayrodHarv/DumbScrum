@@ -19,6 +19,11 @@ namespace DumbScrum.Views {
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e) {
             tabUseCase.Content = new FileUploadView(taskID, "UseCase");
+            tabStoredProcedure.Content = new FileUploadView(taskID, "Stored Procedure Specification");
+            tabInterfaces.Content = new FileUploadView(taskID, "User Interface");
+            tabERDiagram.Content = new FileUploadView(taskID, "ER Diagram");
+            tabDD.Content = new FileUploadView(taskID, "Data Dictionary");
+            tabDM.Content = new FileUploadView(taskID, "Data Model");
         }
     }
 }

@@ -8,13 +8,13 @@
              d:DesignHeight="600" d:DesignWidth="1200" Loaded="UserControl_Loaded">
     <Grid>
         <TabControl>
-            <TabItem Header="Overview"/>
+            <TabItem x:Name="tabOverview" Header="Overview"/>
             <TabItem x:Name="tabUseCase"  Header="Use Cases"/>
-            <TabItem Header="Stored Procedure Specifications"/>
-            <TabItem Header="User Interfaces"/>
-            <TabItem Header="ER Diagram"/>
-            <TabItem Header="Data Dictionary"/>
-            <TabItem Header="Data Models"/>
+            <TabItem x:Name="tabStoredProcedure" Header="Stored Procedure Specifications"/>
+            <TabItem x:Name="tabInterfaces" Header="User Interfaces"/>
+            <TabItem x:Name="tabERDiagram" Header="ER Diagram"/>
+            <TabItem x:Name="tabDD" Header="Data Dictionary"/>
+            <TabItem x:Name="tabDM" Header="Data Models"/>
         </TabControl>       
     </Grid>
 </UserControl>

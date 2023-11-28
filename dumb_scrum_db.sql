@@ -502,14 +502,15 @@ CREATE PROCEDURE [dbo].[sp_insert_file] (
 	@Extension		[char] (10),
 	@TaskID			[int],
 	@FileName		[nvarchar] (100),
-	@Type			[nvarchar] (50)
+	@Type			[nvarchar] (50),
+	@LastEdited		[datetime]
 )
 AS
 	BEGIN
 		INSERT INTO [dbo].[FileStore]
 			([Data], [Extension], [TaskID], [FileName], [Type], [LastEdited])
 		VALUES
-			(@Data, @Extension, @TaskID, @FileName, @Type, CURRENT_TIMESTAMP)
+			(@Data, @Extension, @TaskID, @FileName, @Type, @LastEdited)
 	END
 GO
 
