@@ -18,7 +18,7 @@
             </Grid.ColumnDefinitions>
             <Label Content="Browse Projects" VerticalAlignment="Center" FontWeight="Bold" FontSize="16"/>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="8">
-                <Button x:Name="btnOpenProject" Width="60" Content="Open" Click="btnOpenProject_Click"/>
+                <Button x:Name="btnJoinProject" Padding="10, 0" Margin="0,0,10,0" Content="Join Project" Click="btnJoinProject_Click" Background="#FFDDDE29" Foreground="White"/>
             </StackPanel>
         </Grid>
         <ListView x:Name="lvProjects" Grid.Row="1" SelectionMode="Single" >

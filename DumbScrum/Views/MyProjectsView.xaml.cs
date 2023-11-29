@@ -10,8 +10,8 @@ namespace DumbScrum.Views {
     /// </summary>
     public partial class MyProjectsView : UserControl {
         ProjectManager projectManager = new ProjectManager();
-        User user;
-        public MyProjectsView(User user) {
+        UserVM user;
+        public MyProjectsView(UserVM user) {
             InitializeComponent();
             this.user = user;
         }
@@ -29,15 +29,11 @@ namespace DumbScrum.Views {
 
             ProjectVM selectedProject = (ProjectVM)lvProjects.SelectedItem;
 
-            parentWindow.CurrentView = new ProjectView(selectedProject.ProjectID);
+            parentWindow.CurrentView = new ProjectView(selectedProject.ProjectID, user);
         }
 
         private void btnOpenProject_Click(object sender, RoutedEventArgs e) {
             OpenProject();
-        }
-
-        private void btnJoinProject_Click(object sender, RoutedEventArgs e) {
-
         }
 
         private void btnCreateProject_Click(object sender, RoutedEventArgs e) {

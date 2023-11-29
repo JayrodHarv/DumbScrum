@@ -100,11 +100,11 @@
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ManageProjectView.xaml.cs">
+      <DependentUpon>ManageProjectView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MyProjectsView.xaml.cs">
       <DependentUpon>MyProjectsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ProjectDashboardView.xaml.cs">
-      <DependentUpon>ProjectDashboardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProjectFeedView.xaml.cs">
       <DependentUpon>ProjectFeedView.xaml</DependentUpon>
@@ -217,11 +217,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MyProjectsView.xaml">
+    <Page Include="Views\ManageProjectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ProjectDashboardView.xaml">
+    <Page Include="Views\MyProjectsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

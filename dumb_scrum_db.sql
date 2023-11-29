@@ -329,6 +329,21 @@ AS
 	END
 GO
 
+print '' print '*** creating sp_user_join_project ***'
+GO
+CREATE PROCEDURE [dbo].[sp_user_join_project] (
+	@UserID			[int],
+	@ProjectID		[nvarchar] (50)
+)
+AS
+	BEGIN
+		INSERT INTO [dbo].[ProjectMember]
+			([UserID], [ProjectID], [Role])
+		VALUES
+			(@UserID, @ProjectID, "Contributor")
+	END
+GO
+
 /*----- Feature Stored Procedures -----*/
 print '' print '*** creating sp_select_project_features ***'
 GO
@@ -575,6 +590,21 @@ AS
 		SELECT *
 		FROM [dbo].[FileStore]
 		WHERE [FileStore].[TaskID] = @TaskID
+		AND [FileStore].[Type] = @Type
+	END
+GO
+
+print '' print '*** creating sp_get_project_file_template ***'
+GO
+CREATE PROCEDURE [dbo].[sp_get_project_file_template] (
+	@ProjectID		[int],
+	@Type			[nvarchar] (50)
+)
+AS
+	BEGIN
+		SELECT *
+		FROM [dbo].[FileStore]
+		WHERE [FileStore].[ProjectID] = @ProjectID
 		AND [FileStore].[Type] = @Type
 	END
 GO

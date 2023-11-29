@@ -33,11 +33,11 @@ namespace DataAccessLayer {
             return result;
         }
 
-        public int InsertFile(File file) {
+        public int InsertTaskFile(File file) {
             int result = 0;
 
             var conn = SqlConnectionProvider.GetConnection();
-            var cmdText = "sp_insert_file";
+            var cmdText = "sp_insert_task_file";
             var cmd = new SqlCommand(cmdText, conn);
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -102,9 +102,10 @@ namespace DataAccessLayer {
                         f.Data = (byte[])reader[1];
                         f.Extension = reader.GetString(2);
                         f.TaskID = reader.GetInt32(3);
-                        f.FileName = reader.GetString(4);
-                        f.Type = reader.GetString(5);
-                        f.LastEdited = reader.GetDateTime(6);
+                        f.ProjectID = reader.IsDBNull(4) ? "" : reader.GetString(4);
+                        f.FileName = reader.GetString(5);
+                        f.Type = reader.GetString(6);
+                        f.LastEdited = reader.GetDateTime(7);
                         result.Add(f);
                     }
                 }

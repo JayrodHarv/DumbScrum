@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LogicLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,18 @@ using System.Windows.Shapes;
 
 namespace DumbScrum.Views {
     /// <summary>
-    /// Interaction logic for ProjectDashboardView.xaml
+    /// Interaction logic for ManageProjectView.xaml
     /// </summary>
-    public partial class ProjectDashboardView : UserControl {
-        public ProjectDashboardView() {
+    public partial class ManageProjectView : UserControl {
+        ProjectManager projectManager = new ProjectManager();
+        string projectID;
+        public ManageProjectView(string projectID) {
+            this.projectID = projectID;
             InitializeComponent();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e) {
+            tabSettings.Content = new ProjectSettingsView(projectID);
         }
     }
 }

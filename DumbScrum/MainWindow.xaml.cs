@@ -51,7 +51,7 @@ namespace DumbScrum {
         }
 
         private void mnuBrowseProjects_Click(object sender, RoutedEventArgs e) {
-            CurrentView = new ProjectListView();
+            CurrentView = new ProjectListView(LoggedInUser.UserID);
         }
 
         private void userBox_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {

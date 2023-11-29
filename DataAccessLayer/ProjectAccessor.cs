@@ -192,5 +192,30 @@ namespace DataAccessLayer {
             }
             return result;
         }
+
+        public int JoinProject(string projectID, int userID) {
+            int result = 0;
+
+            var conn = SqlConnectionProvider.GetConnection();
+            var cmdText = "sp_user_join_project";
+            var cmd = new SqlCommand(cmdText, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@UserID", SqlDbType.Int);
+            cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
+
+            cmd.Parameters["@UserID"].Value = userID;
+            cmd.Parameters["@ProjectID"].Value = projectID;
+
+            try {
+                conn.Open();
+                result = cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
+        }
     }
 }

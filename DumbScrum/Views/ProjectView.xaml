@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DumbScrum.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid Background="#FFE6E6E6">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>
@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="0,0,1,0">
             <StackPanel Orientation="Vertical" Background="#FFEAE9E2">
-                <RadioButton x:Name="btnDashboard" Content="Dashboard" Height="50" IsChecked="True" Style="{StaticResource ProjectButtonTheme}" Click="btnDashboard_Click"/>
+                <RadioButton x:Name="btnManage" Content="Manage" Height="50" IsChecked="True" Style="{StaticResource ProjectButtonTheme}" Click="btnManage_Click" Visibility="Collapsed"/>
                 <RadioButton x:Name="btnFeed" Content="Feed" Height="50" Style="{StaticResource ProjectButtonTheme}" Click="btnFeed_Click"/>
                 <RadioButton x:Name="btnSprints" Content="Planning" Height="50" Style="{StaticResource ProjectButtonTheme}" Click="btnSprints_Click"/>
                 <RadioButton x:Name="btnBacklog" Content="Backlog" Height="50" Style="{StaticResource ProjectButtonTheme}" Click="btnBacklog_Click"/>

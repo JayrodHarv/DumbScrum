@@ -22,7 +22,7 @@ namespace LogicLayer {
         public bool AddFile(File file) {
             bool result = false;
             try {
-                result = (1 == fileAccessor.InsertFile(file));
+                result = (1 == fileAccessor.InsertTaskFile(file));
             } catch (Exception ex) {
                 throw ex;
             }

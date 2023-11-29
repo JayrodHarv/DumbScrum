@@ -14,6 +14,7 @@ namespace DumbScrum.Views {
     public partial class ProjectView : UserControl, INotifyPropertyChanged {
         ProjectManager _projectManager = new ProjectManager();
         public ProjectVM _projectVM { get; set; }
+        UserVM user;
 
         private object _currentProjectView;
 
@@ -27,20 +28,23 @@ namespace DumbScrum.Views {
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ProjectView(string projectID) {
+        public ProjectView(string projectID, UserVM user) {
             DataContext = this;
+            this.user = user;
             try {
                 _projectVM = _projectManager.GetProjectVMByProjectID(projectID);
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
 
-            CurrentProjectView = new ProjectDashboardView();
+            CurrentProjectView = new ProjectFeedView();
             InitializeComponent();
         }
 
-        private void btnDashboard_Click(object sender, RoutedEventArgs e) {
-            CurrentProjectView = new ProjectDashboardView();
+        private void UserControl_Loaded(object sender, RoutedEventArgs e) {
+            if(_projectVM.UserID == user.UserID) {
+                btnManage.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnFeed_Click(object sender, RoutedEventArgs e) {
@@ -61,6 +65,10 @@ namespace DumbScrum.Views {
 
         private void btnSprints_Click(object sender, RoutedEventArgs e) {
             CurrentProjectView = new SprintListView(_projectVM.ProjectID);
+        }
+
+        private void btnManage_Click(object sender, RoutedEventArgs e) {
+            CurrentProjectView = new ManageProjectView(_projectVM.ProjectID);
         }
     }
 }

@@ -10,8 +10,28 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <Label Content="Project Settings:" FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
-        <ItemsControl Grid.Row="1" x:Name="icSettings"/>
+        <Separator Foreground="Gray" VerticalAlignment="Bottom"/>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Grid.Row="1">
+                <Expander Header="Template Settings:" FontWeight="DemiBold" IsExpanded="True">
+                    <StackPanel Orientation="Horizontal" Height="30" HorizontalAlignment="Center">
+                        <TextBlock Text="Use Case Template File: " VerticalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBox x:Name="tbUseCaseFile" Width="400" VerticalAlignment="Center" Padding="5" IsEnabled="False"/>
+                            <Button x:Name="btnUseCaseChange" Content="Change" Padding="8,4" Margin="5,0,0,0" Click="btnUseCaseChange_Click" />
+                        </StackPanel>
+                    </StackPanel>
+                </Expander>
+
+                <Expander Header="File Settings:" FontWeight="DemiBold" IsExpanded="True">
+                    <Grid>
+
+                    </Grid>
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

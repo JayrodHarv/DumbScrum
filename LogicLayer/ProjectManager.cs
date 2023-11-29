@@ -73,5 +73,18 @@ namespace LogicLayer {
             }
             return result;
         }
+
+        public bool JoinProject(string projectID, int userID) {
+            bool result = false;
+
+            try {
+                if (1 == _projectAccessor.JoinProject(projectID, userID)) {
+                    result = true;
+                }
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

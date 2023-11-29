@@ -10,6 +10,7 @@ namespace DataObjects {
         public byte[] Data { get; set; }
         public string Extension { get; set; }
         public int TaskID { get; set; }
+        public string ProjectID { get; set; }
         public string FileName { get; set; }
         public string Type { get; set; }
         public DateTime LastEdited { get; set; }
