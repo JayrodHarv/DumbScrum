@@ -36,14 +36,15 @@ namespace DumbScrum.Views {
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
-
-            CurrentProjectView = new ProjectFeedView();
             InitializeComponent();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e) {
             if(_projectVM.UserID == user.UserID) {
                 btnManage.Visibility = Visibility.Visible;
+                CurrentProjectView = new ManageProjectView(_projectVM.ProjectID);
+            } else {
+                CurrentProjectView = new ProjectFeedView();
             }
         }
 

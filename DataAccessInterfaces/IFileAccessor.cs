@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace DataAccessInterfaces {
     public interface IFileAccessor {
         List<File> SelectTaskFilesByType(int taskID, string type);
-        List<File> SelectProjectTemplateFiles(string projectID);
+        File SelectProjectTemplateFileByType(string projectID, string type);
         int InsertTaskFile(File file);
         int InsertTemplateFile(File file);
         int UpdateFile(File oldFile, File newFile);

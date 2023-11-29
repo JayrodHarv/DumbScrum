@@ -99,14 +99,14 @@ namespace DataAccessLayer {
             return result;
         }
 
-        public List<File> SelectProjectTemplateFiles(string projectID) {
-            List<File> result = new List<File>();
+        public File SelectProjectTemplateFileByType(string projectID, string type) {
+            File result = null;
 
             // create connection object
             var conn = SqlConnectionProvider.GetConnection();
 
             // set the command text
-            var commandText = "sp_get_project_template_files";
+            var commandText = "sp_get_project_template_file_by_type";
 
             // create command object
             var cmd = new SqlCommand(commandText, conn);
@@ -116,9 +116,11 @@ namespace DataAccessLayer {
 
             // add parameters to command
             cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
+            cmd.Parameters.Add("@Type", SqlDbType.NVarChar, 50);
 
             // set parameter values
             cmd.Parameters["@ProjectID"].Value = projectID;
+            cmd.Parameters["@Type"].Value = type;
 
             try {
                 // open connection
@@ -127,17 +129,15 @@ namespace DataAccessLayer {
                 // execute command
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows) {
-                    while (reader.Read()) {
-                        File f = new File();
-                        f.FileID = reader.GetInt32(0);
-                        f.Data = (byte[])reader[1];
-                        f.Extension = reader.GetString(2);
-                        f.ProjectID = reader.GetString(3);
-                        f.FileName = reader.GetString(4);
-                        f.Type = reader.GetString(5);
-                        f.LastEdited = reader.GetDateTime(6);
-                        result.Add(f);
-                    }
+                    result = new File() {
+                        FileID = reader.GetInt32(0),
+                        Data = (byte[])reader[1],
+                        Extension = reader.GetString(2),
+                        ProjectID = reader.GetString(3),
+                        FileName = reader.GetString(4),
+                        Type = reader.GetString(5),
+                        LastEdited = reader.GetDateTime(6)
+                    };
                 }
             } catch (Exception ex) {
                 throw ex;

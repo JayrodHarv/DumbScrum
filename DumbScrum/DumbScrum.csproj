@@ -88,6 +88,9 @@
     <Compile Include="UserControls\SrumBoardItem.xaml.cs">
       <DependentUpon>SrumBoardItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TemplateFilePicker.xaml.cs">
+      <DependentUpon>TemplateFilePicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UserStoryListItem.xaml.cs">
       <DependentUpon>UserStoryListItem.xaml</DependentUpon>
     </Compile>
@@ -198,6 +201,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\SrumBoardItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TemplateFilePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -594,16 +594,18 @@ AS
 	END
 GO
 
-print '' print '*** creating sp_get_project_template_files ***'
+print '' print '*** creating sp_get_project_template_file_by_type ***'
 GO
-CREATE PROCEDURE [dbo].[sp_get_project_template_files] (
-	@ProjectID		[nvarchar] (50)
+CREATE PROCEDURE [dbo].[sp_get_project_template_file_by_type] (
+	@ProjectID		[nvarchar] (50),
+	@Type			[nvarchar] (50)
 )
 AS
 	BEGIN
 		SELECT [FileID], [Data], [Extension], [ProjectID], [FileName], [Type], [LastEdited]
 		FROM [dbo].[FileStore]
 		WHERE [FileStore].[ProjectID] = @ProjectID
+		AND [FileStore].[Type] = @Type
 	END
 GO
 
