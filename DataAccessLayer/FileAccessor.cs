@@ -99,14 +99,14 @@ namespace DataAccessLayer {
             return result;
         }
 
-        public File SelectProjectTemplateFileByType(string projectID, string type) {
-            File result = new File();
+        public List<File> SelectProjectTemplateFiles(string projectID) {
+            List<File> result = new List<File>();
 
             // create connection object
             var conn = SqlConnectionProvider.GetConnection();
 
             // set the command text
-            var commandText = "sp_get_project_file_template";
+            var commandText = "sp_get_project_template_files";
 
             // create command object
             var cmd = new SqlCommand(commandText, conn);
@@ -116,11 +116,9 @@ namespace DataAccessLayer {
 
             // add parameters to command
             cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
-            cmd.Parameters.Add("@Type", SqlDbType.NVarChar, 50);
 
             // set parameter values
             cmd.Parameters["@ProjectID"].Value = projectID;
-            cmd.Parameters["@Type"].Value = type;
 
             try {
                 // open connection
@@ -129,15 +127,17 @@ namespace DataAccessLayer {
                 // execute command
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows) {
-                    File f = new File();
-                    f.FileID = reader.GetInt32(0);
-                    f.Data = (byte[])reader[1];
-                    f.Extension = reader.GetString(2);
-                    f.TaskID = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
-                    f.ProjectID = reader.GetString(4);
-                    f.FileName = reader.GetString(5);
-                    f.Type = reader.GetString(6);
-                    f.LastEdited = reader.GetDateTime(7);
+                    while (reader.Read()) {
+                        File f = new File();
+                        f.FileID = reader.GetInt32(0);
+                        f.Data = (byte[])reader[1];
+                        f.Extension = reader.GetString(2);
+                        f.ProjectID = reader.GetString(3);
+                        f.FileName = reader.GetString(4);
+                        f.Type = reader.GetString(5);
+                        f.LastEdited = reader.GetDateTime(6);
+                        result.Add(f);
+                    }
                 }
             } catch (Exception ex) {
                 throw ex;
@@ -183,10 +183,9 @@ namespace DataAccessLayer {
                         f.Data = (byte[])reader[1];
                         f.Extension = reader.GetString(2);
                         f.TaskID = reader.GetInt32(3);
-                        f.ProjectID = reader.IsDBNull(4) ? "" : reader.GetString(4);
-                        f.FileName = reader.GetString(5);
-                        f.Type = reader.GetString(6);
-                        f.LastEdited = reader.GetDateTime(7);
+                        f.FileName = reader.GetString(4);
+                        f.Type = reader.GetString(5);
+                        f.LastEdited = reader.GetDateTime(6);
                         result.Add(f);
                     }
                 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace LogicLayer {
     public interface IFileManager {
         List<File> GetTaskFilesByType(int taskID, string type);
-        File GetTemplateFile(string projectID, string type);
+        List<File> GetProjectTemplateFiles(string projectID);
         bool AddTaskFile(File file);
         bool AddTemplateFile(File file);
         bool EditFile(File oldFile, File newFile);

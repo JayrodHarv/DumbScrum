@@ -59,10 +59,10 @@ namespace LogicLayer {
             return result;
         }
 
-        public File GetTemplateFile(string projectID, string type) {
-            File result = new File();
+        public List<File> GetProjectTemplateFiles(string projectID) {
+            List<File> result = new List<File>();
             try {
-                result = fileAccessor.SelectProjectTemplateFileByType(projectID, type);
+                result = fileAccessor.SelectProjectTemplateFiles(projectID);
             } catch (Exception ex) {
                 throw ex;
             }

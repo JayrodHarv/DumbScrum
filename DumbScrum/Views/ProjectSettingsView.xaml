@@ -17,13 +17,52 @@
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <StackPanel Grid.Row="1">
                 <Expander Header="Template Settings:" FontWeight="DemiBold" IsExpanded="True">
-                    <StackPanel Orientation="Horizontal" Height="30" HorizontalAlignment="Center">
-                        <TextBlock Text="Use Case Template File: " VerticalAlignment="Center"/>
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBox x:Name="tbUseCaseFile" Width="400" VerticalAlignment="Center" Padding="5" IsEnabled="False"/>
-                            <Button x:Name="btnUseCaseChange" Content="Change" Padding="8,4" Margin="5,0,0,0" Click="btnUseCaseChange_Click" />
+                    <Grid>
+                        <StackPanel>
+                            <StackPanel Orientation="Vertical" Height="50" HorizontalAlignment="Center">
+                                <TextBlock Text="Use Case Template File: " VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBox x:Name="tbUseCaseFile" Width="400" VerticalAlignment="Center" Padding="5" IsEnabled="False"/>
+                                    <Button x:Name="btnUseCaseChange" Content="Change" Padding="8,4" Margin="5,0,0,0" Click="btnUseCaseChange_Click" />
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Height="50" HorizontalAlignment="Center">
+                                <TextBlock Text="Stored Procedure Template File: " VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBox x:Name="tbStoredProcedureFile" Width="400" VerticalAlignment="Center" Padding="5" IsEnabled="False"/>
+                                    <Button x:Name="btnStoredProcedureChange" Content="Change" Padding="8,4" Margin="5,0,0,0" Click="btnStoredProcedureChange_Click" />
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Height="50" HorizontalAlignment="Center">
+                                <TextBlock Text="User Interface Template File: " VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBox x:Name="tbUserInterfaceFile" Width="400" VerticalAlignment="Center" Padding="5" IsEnabled="False"/>
+                                    <Button x:Name="btnUserInterfaceChange" Content="Change" Padding="8,4" Margin="5,0,0,0" Click="btnUserInterfaceChange_Click" />
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Height="50" HorizontalAlignment="Center">
+                                <TextBlock Text="ER Diagram Template File: " VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBox x:Name="tbERDiagramFile" Width="400" VerticalAlignment="Center" Padding="5" IsEnabled="False"/>
+                                    <Button x:Name="btnERDiagramChange" Content="Change" Padding="8,4" Margin="5,0,0,0" Click="btnERDiagramChange_Click" />
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Height="50" HorizontalAlignment="Center">
+                                <TextBlock Text="Data Dictionary Template File: " VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBox x:Name="tbDataDictionaryFile" Width="400" VerticalAlignment="Center" Padding="5" IsEnabled="False"/>
+                                    <Button x:Name="btnDataDictionaryChange" Content="Change" Padding="8,4" Margin="5,0,0,0" Click="btnDataDictionaryChange_Click" />
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Height="50" HorizontalAlignment="Center">
+                                <TextBlock Text="Data Model Template File: " VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBox x:Name="tbDataModelFile" Width="400" VerticalAlignment="Center" Padding="5" IsEnabled="False"/>
+                                    <Button x:Name="btnDataModelChange" Content="Change" Padding="8,4" Margin="5,0,0,0" Click="btnDataModelChange_Click" />
+                                </StackPanel>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
+                    </Grid>
                 </Expander>
 
                 <Expander Header="File Settings:" FontWeight="DemiBold" IsExpanded="True">

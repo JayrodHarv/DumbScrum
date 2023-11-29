@@ -587,25 +587,23 @@ CREATE PROCEDURE [dbo].[sp_select_task_files_by_type] (
 )
 AS
 	BEGIN
-		SELECT *
+		SELECT [FileID], [Data], [Extension], [TaskID], [FileName], [Type], [LastEdited]
 		FROM [dbo].[FileStore]
 		WHERE [FileStore].[TaskID] = @TaskID
 		AND [FileStore].[Type] = @Type
 	END
 GO
 
-print '' print '*** creating sp_get_project_file_template ***'
+print '' print '*** creating sp_get_project_template_files ***'
 GO
-CREATE PROCEDURE [dbo].[sp_get_project_file_template] (
-	@ProjectID		[int],
-	@Type			[nvarchar] (50)
+CREATE PROCEDURE [dbo].[sp_get_project_template_files] (
+	@ProjectID		[nvarchar] (50)
 )
 AS
 	BEGIN
-		SELECT *
+		SELECT [FileID], [Data], [Extension], [ProjectID], [FileName], [Type], [LastEdited]
 		FROM [dbo].[FileStore]
 		WHERE [FileStore].[ProjectID] = @ProjectID
-		AND [FileStore].[Type] = @Type
 	END
 GO
 

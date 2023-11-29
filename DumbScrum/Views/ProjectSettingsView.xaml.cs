@@ -2,7 +2,6 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DataObjects;
 
 namespace DumbScrum.Views {
     /// <summary>
@@ -23,22 +23,47 @@ namespace DumbScrum.Views {
     public partial class ProjectSettingsView : UserControl {
         string projectID;
         FileManager fileManager = new FileManager();
-        DataObjects.File useCaseTemplateFile = new DataObjects.File();
-        DataObjects.File StoredProcedureSpecificationsTemplateFile = new DataObjects.File();
+        List<File> templateFiles = new List<File>();
         public ProjectSettingsView(string projectID) {
             this.projectID = projectID;
             InitializeComponent();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e) {
-            
+            try {
+                templateFiles = fileManager.GetProjectTemplateFiles(projectID);
+                foreach (File f in templateFiles) {
+                    switch (f.Type) {
+                        case "Use Case":
+                            tbUseCaseFile.Text = f.FileName;
+                            break;
+                        case "Stored Procedure Specification":
+                            tbStoredProcedureFile.Text = f.FileName;
+                            break;
+                        case "User Interface":
+                            tbUserInterfaceFile.Text = f.FileName;
+                            break;
+                        case "ER Diagram":
+                            tbERDiagramFile.Text = f.FileName;
+                            break;
+                        case "Data Dictionary":
+                            tbDataDictionaryFile.Text = f.FileName;
+                            break;
+                        case "Data Model":
+                            tbDataModelFile.Text = f.FileName;
+                            break;
+                    }
+                }
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnUseCaseChange_Click(object sender, RoutedEventArgs e) {
-            tbUseCaseFile.Text = Change("Use Case");
+            tbUseCaseFile.Text = Change("Use Case", tbUseCaseFile.Text);
         }
 
-        private string Change(string type) {
+        private string Change(string type, string startText) {
             string filter = GetFileFilter(type);
             
             OpenFileDialog fileDialog = new OpenFileDialog();
@@ -46,32 +71,35 @@ namespace DumbScrum.Views {
             bool? result = fileDialog.ShowDialog();
             if (result == true) {
                 try {
-                    // get the old file
-
+                    // get the old file from list of template files
+                    File oldFile = templateFiles.Find(f => f.Type == type);
 
                     // get the new file
-                    DataObjects.File file = GetFile(projectID, type);
-                    //if (file != null) {
-                    //    fileManager.EditFile()
-                    //}
-                } catch (Exception) {
+                    File newFile = GetFile(fileDialog.FileName, type);
 
-                    throw;
+                    if (oldFile == null) {
+                        // use insert sp instead
+                        fileManager.AddTemplateFile(newFile);
+                    } else {
+                        fileManager.EditFile(oldFile, newFile);
+                    }
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
                 }
                
                 return fileDialog.SafeFileName;
             }
-            return "";
+            return startText;
         }
 
-        private DataObjects.File GetFile(string filePath, string type) {
-            using (Stream stream = System.IO.File.OpenRead(filePath)) {
+        private File GetFile(string filePath, string type) {
+            using (System.IO.Stream stream = System.IO.File.OpenRead(filePath)) {
                 byte[] buffer = new byte[stream.Length];
                 stream.Read(buffer, 0, buffer.Length);
-                string extn = new FileInfo(filePath).Extension;
-                string fileName = new FileInfo(filePath).Name;
+                string extn = new System.IO.FileInfo(filePath).Extension;
+                string fileName = new System.IO.FileInfo(filePath).Name;
 
-                DataObjects.File file = new DataObjects.File() {
+                File file = new File() {
                     Data = buffer,
                     Extension = extn,
                     ProjectID = projectID,
@@ -100,6 +128,26 @@ namespace DumbScrum.Views {
                 default:
                     return "";
             }
+        }
+
+        private void btnStoredProcedureChange_Click(object sender, RoutedEventArgs e) {
+            tbStoredProcedureFile.Text = Change("Stored Procedure Specification", tbStoredProcedureFile.Text);
+        }
+
+        private void btnUserInterfaceChange_Click(object sender, RoutedEventArgs e) {
+            tbUserInterfaceFile.Text = Change("User Interface", tbUserInterfaceFile.Text);
+        }
+
+        private void btnERDiagramChange_Click(object sender, RoutedEventArgs e) {
+            tbERDiagramFile.Text = Change("ER Diagram", tbERDiagramFile.Text);
+        }
+
+        private void btnDataDictionaryChange_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void btnDataModelChange_Click(object sender, RoutedEventArgs e) {
+
         }
     }
 }
