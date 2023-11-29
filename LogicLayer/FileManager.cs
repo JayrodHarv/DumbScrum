@@ -19,10 +19,20 @@ namespace LogicLayer {
             this.fileAccessor = fileAccessor;
         }
 
-        public bool AddFile(File file) {
+        public bool AddTaskFile(File file) {
             bool result = false;
             try {
                 result = (1 == fileAccessor.InsertTaskFile(file));
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return result;
+        }
+
+        public bool AddTemplateFile(File file) {
+            bool result = false;
+            try {
+                result = (1 == fileAccessor.InsertTemplateFile(file));
             } catch (Exception ex) {
                 throw ex;
             }
@@ -43,6 +53,16 @@ namespace LogicLayer {
             List<File> result = new List<File>();
             try {
                 result = fileAccessor.SelectTaskFilesByType(taskID, type);
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return result;
+        }
+
+        public File GetTemplateFile(string projectID, string type) {
+            File result = new File();
+            try {
+                result = fileAccessor.SelectProjectTemplateFileByType(projectID, type);
             } catch (Exception ex) {
                 throw ex;
             }

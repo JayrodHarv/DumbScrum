@@ -66,6 +66,87 @@ namespace DataAccessLayer {
             return result;
         }
 
+        public int InsertTemplateFile(File file) {
+            int result = 0;
+
+            var conn = SqlConnectionProvider.GetConnection();
+            var cmdText = "sp_insert_template_file";
+            var cmd = new SqlCommand(cmdText, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@Data", SqlDbType.VarBinary);
+            cmd.Parameters.Add("@Extension", SqlDbType.Char, 10);
+            cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
+            cmd.Parameters.Add("@FileName", SqlDbType.NVarChar, 100);
+            cmd.Parameters.Add("@Type", SqlDbType.NVarChar, 50);
+            cmd.Parameters.Add("@LastEdited", SqlDbType.DateTime);
+
+            cmd.Parameters["@Data"].Value = file.Data;
+            cmd.Parameters["@Extension"].Value = file.Extension;
+            cmd.Parameters["@ProjectID"].Value = file.ProjectID;
+            cmd.Parameters["@FileName"].Value = file.FileName;
+            cmd.Parameters["@Type"].Value = file.Type;
+            cmd.Parameters["@LastEdited"].Value = file.LastEdited;
+
+            try {
+                conn.Open();
+                result = cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
+        }
+
+        public File SelectProjectTemplateFileByType(string projectID, string type) {
+            File result = new File();
+
+            // create connection object
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // set the command text
+            var commandText = "sp_get_project_file_template";
+
+            // create command object
+            var cmd = new SqlCommand(commandText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // add parameters to command
+            cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
+            cmd.Parameters.Add("@Type", SqlDbType.NVarChar, 50);
+
+            // set parameter values
+            cmd.Parameters["@ProjectID"].Value = projectID;
+            cmd.Parameters["@Type"].Value = type;
+
+            try {
+                // open connection
+                conn.Open();
+
+                // execute command
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows) {
+                    File f = new File();
+                    f.FileID = reader.GetInt32(0);
+                    f.Data = (byte[])reader[1];
+                    f.Extension = reader.GetString(2);
+                    f.TaskID = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
+                    f.ProjectID = reader.GetString(4);
+                    f.FileName = reader.GetString(5);
+                    f.Type = reader.GetString(6);
+                    f.LastEdited = reader.GetDateTime(7);
+                }
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
+        }
+
         public List<File> SelectTaskFilesByType(int taskID, string type) {
             List<File> result = new List<File>();
 

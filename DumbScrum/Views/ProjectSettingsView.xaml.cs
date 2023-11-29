@@ -1,6 +1,8 @@
-﻿using Microsoft.Win32;
+﻿using LogicLayer;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +22,9 @@ namespace DumbScrum.Views {
     /// </summary>
     public partial class ProjectSettingsView : UserControl {
         string projectID;
+        FileManager fileManager = new FileManager();
+        DataObjects.File useCaseTemplateFile = new DataObjects.File();
+        DataObjects.File StoredProcedureSpecificationsTemplateFile = new DataObjects.File();
         public ProjectSettingsView(string projectID) {
             this.projectID = projectID;
             InitializeComponent();
@@ -40,10 +45,42 @@ namespace DumbScrum.Views {
             fileDialog.Filter = filter;
             bool? result = fileDialog.ShowDialog();
             if (result == true) {
+                try {
+                    // get the old file
 
+
+                    // get the new file
+                    DataObjects.File file = GetFile(projectID, type);
+                    //if (file != null) {
+                    //    fileManager.EditFile()
+                    //}
+                } catch (Exception) {
+
+                    throw;
+                }
+               
                 return fileDialog.SafeFileName;
             }
             return "";
+        }
+
+        private DataObjects.File GetFile(string filePath, string type) {
+            using (Stream stream = System.IO.File.OpenRead(filePath)) {
+                byte[] buffer = new byte[stream.Length];
+                stream.Read(buffer, 0, buffer.Length);
+                string extn = new FileInfo(filePath).Extension;
+                string fileName = new FileInfo(filePath).Name;
+
+                DataObjects.File file = new DataObjects.File() {
+                    Data = buffer,
+                    Extension = extn,
+                    ProjectID = projectID,
+                    FileName = fileName,
+                    Type = type,
+                    LastEdited = DateTime.Now
+                };
+                return file;
+            }
         }
 
         private string GetFileFilter(string type) {

@@ -49,7 +49,7 @@ namespace DumbScrum.Views {
         private void SaveFile(string filePath) {
             try {
                 DataObjects.File file = GetFile(filePath);
-                if (fileManager.AddFile(file)) {
+                if (fileManager.AddTaskFile(file)) {
                     MessageBox.Show("File Successfully Added.");
                     lvFiles.ItemsSource = fileManager.GetTaskFilesByType(taskID, type);
                     tbFilePath.Text = "";
