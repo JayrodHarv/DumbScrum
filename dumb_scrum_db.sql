@@ -509,7 +509,7 @@ print '' print '*** creating sp_insert_task_file ***'
 GO
 CREATE PROCEDURE [dbo].[sp_insert_task_file] (	
 	@Data			[varbinary] (max),
-	@Extension		[char] (10),
+	@Extension		[nvarchar] (10),
 	@TaskID			[int],
 	@FileName		[nvarchar] (100),
 	@Type			[nvarchar] (50),
@@ -528,7 +528,7 @@ print '' print '*** creating sp_insert_template_file ***'
 GO
 CREATE PROCEDURE [dbo].[sp_insert_template_file] (	
 	@Data			[varbinary] (max),
-	@Extension		[char] (10),
+	@Extension		[nvarchar] (10),
 	@ProjectID		[nvarchar] (50),
 	@FileName		[nvarchar] (100),
 	@Type			[nvarchar] (50),

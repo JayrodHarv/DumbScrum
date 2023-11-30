@@ -2,17 +2,19 @@
 using LogicLayer;
 using Microsoft.Win32;
 using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using DataObjects;
 
 namespace DumbScrum.Views {
     public partial class FileUploadView : UserControl {
         FileManager fileManager = new FileManager();
+        string projectID;
         string type;
         string filter;
         int taskID;
-        public FileUploadView(int taskID, string type) {
+        public FileUploadView(string projectID, int taskID, string type) {
+            this.projectID = projectID;
             this.type = type;
             this.taskID = taskID;
             InitializeComponent();
@@ -48,7 +50,7 @@ namespace DumbScrum.Views {
 
         private void SaveFile(string filePath) {
             try {
-                DataObjects.File file = GetFile(filePath);
+                File file = GetFile(filePath);
                 if (fileManager.AddTaskFile(file)) {
                     MessageBox.Show("File Successfully Added.");
                     lvFiles.ItemsSource = fileManager.GetTaskFilesByType(taskID, type);
@@ -76,14 +78,14 @@ namespace DumbScrum.Views {
             }
         }
 
-        private DataObjects.File GetFile(string filePath) {
-            using (Stream stream = System.IO.File.OpenRead(filePath)) {
+        private File GetFile(string filePath) {
+            using (System.IO.Stream stream = System.IO.File.OpenRead(filePath)) {
                 byte[] buffer = new byte[stream.Length];
                 stream.Read(buffer, 0, buffer.Length);
-                string extn = new FileInfo(filePath).Extension;
-                string fileName = new FileInfo(filePath).Name;
+                string extn = new System.IO.FileInfo(filePath).Extension;
+                string fileName = new System.IO.FileInfo(filePath).Name;
 
-                DataObjects.File file = new DataObjects.File() {
+                File file = new File() {
                     Data = buffer,
                     Extension = extn,
                     TaskID = taskID,
@@ -96,32 +98,36 @@ namespace DumbScrum.Views {
         }
 
         private void btnOpen_Click(object sender, RoutedEventArgs e) {
-            DataObjects.File selectedFile = lvFiles.SelectedItem as DataObjects.File;
-            string filePath = selectedFile.FileName;
-            System.IO.File.WriteAllBytes(filePath, selectedFile.Data);
-            using (var process = new System.Diagnostics.Process()) {
-                process.StartInfo.FileName = filePath;
-                process.Start();
-                process.WaitForExit();
-                if (process.HasExited) {
-                    // get the new file
-                    DataObjects.File newFile = GetFile(filePath);
-                    // update the file in the database
-                    try {
-                        if (fileManager.EditFile(selectedFile, newFile)) {
-                            System.IO.File.Delete(filePath);
-                            MessageBox.Show("File Updated");
-                            lvFiles.ItemsSource = fileManager.GetTaskFilesByType(taskID, type);
+            File selectedFile = lvFiles.SelectedItem as File;
+            if(selectedFile != null) {
+                string filePath = selectedFile.FileName;
+                System.IO.File.WriteAllBytes(filePath, selectedFile.Data);
+                using (var process = new System.Diagnostics.Process()) {
+                    process.StartInfo.FileName = filePath;
+                    process.Start();
+                    process.WaitForExit();
+                    if (process.HasExited) {
+                        // get the new file
+                        File newFile = GetFile(filePath);
+                        // update the file in the database
+                        try {
+                            if (fileManager.EditFile(selectedFile, newFile)) {
+                                System.IO.File.Delete(filePath);
+                                MessageBox.Show("File Updated");
+                                lvFiles.ItemsSource = fileManager.GetTaskFilesByType(taskID, type);
+                            }
+                        } catch (Exception ex) {
+                            MessageBox.Show(ex.Message);
                         }
-                    } catch (Exception ex) {
-                        MessageBox.Show(ex.Message);
                     }
                 }
+            } else {
+                MessageBox.Show("You must select a file to open.");
             }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e) {
-            DataObjects.File selectedFile = lvFiles.SelectedItem as DataObjects.File;
+            File selectedFile = lvFiles.SelectedItem as File;
             if(selectedFile != null) {
                 var result = MessageBox.Show("Are you sure that you want to permanently delete " + selectedFile.FileName, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes) {
@@ -142,25 +148,24 @@ namespace DumbScrum.Views {
         private void btnCreateNew_Click(object sender, RoutedEventArgs e) {
             // open CreateNewTaskFileWindow
             try {
-                CreateNewTaskFileWindow createNewTaskFileWindow = new CreateNewTaskFileWindow(taskID, type);
-                bool? result = createNewTaskFileWindow.ShowDialog();
-                if (result == true) {
-                    MessageBox.Show("File was created using the project's " + type + " template.", "Success",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
+                File template = fileManager.GetTemplateFile(projectID, type);
+                if (template != null) {
+                    CreateNewTaskFileWindow createNewTaskFileWindow = new CreateNewTaskFileWindow(taskID, type, template);
+                    bool? result = createNewTaskFileWindow.ShowDialog();
+                    if (result == true) {
+                        MessageBox.Show("File was created using the project's " + type + " template.", "Success",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+                    } else {
+                        MessageBox.Show("File Not Created", "Operation Aborted",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
                 } else {
-                    MessageBox.Show("File Not Created", "Operation Aborted",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("This project currently doesn't have a template for " + type + " files.");
                 }
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
                     "Failed To Create File", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            // get template for the current type
-
-            // make a copy of it and save to database
-
-            // update it when edits are made
         }
     }
 }

@@ -18,8 +18,8 @@
             <StackPanel Grid.Row="1">
                 <Expander Header="Template Settings:" FontWeight="DemiBold" IsExpanded="True">
                     <Grid>
-                        <StackPanel>
-                            <StackPanel Orientation="Vertical" Height="50" HorizontalAlignment="Center">
+                        <ItemsControl x:Name="icTemplateFiles">
+                            <!--<StackPanel Orientation="Vertical" Height="50" HorizontalAlignment="Center">
                                 <TextBlock Text="Use Case Template File: " VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                     <TextBox x:Name="tbUseCaseFile" Width="400" VerticalAlignment="Center" Padding="5" IsEnabled="False"/>
@@ -60,8 +60,8 @@
                                     <TextBox x:Name="tbDataModelFile" Width="400" VerticalAlignment="Center" Padding="5" IsEnabled="False"/>
                                     <Button x:Name="btnDataModelChange" Content="Change" Padding="8,4" Margin="5,0,0,0" Click="btnDataModelChange_Click" />
                                 </StackPanel>
-                            </StackPanel>
-                        </StackPanel>
+                            </StackPanel>-->
+                        </ItemsControl>
                     </Grid>
                 </Expander>
 

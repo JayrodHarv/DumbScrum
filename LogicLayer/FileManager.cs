@@ -60,7 +60,7 @@ namespace LogicLayer {
         }
 
         public File GetTemplateFile(string projectID, string type) {
-            File result = new File();
+            File result = null;
             try {
                 result = fileAccessor.SelectProjectTemplateFileByType(projectID, type);
             } catch (Exception ex) {

@@ -31,7 +31,15 @@ namespace DumbScrum.UserControls {
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e) {
-            tbType.Text = type + "Template File:";
+            tbType.Text = type + " Template File:";
+            try {
+                File f = fileManager.GetTemplateFile(projectID, type);
+                if(f != null) {
+                    tbFile.Text = f.FileName;
+                }
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnChange_Click(object sender, RoutedEventArgs e) {
@@ -51,8 +59,10 @@ namespace DumbScrum.UserControls {
                         fileManager.AddTemplateFile(newFile);
                         tbFile.Text = fileDialog.SafeFileName;
                     } else {
-                        fileManager.EditFile(oldFile, newFile);
-                        tbFile.Text = fileDialog.SafeFileName;
+                        if(fileManager.EditFile(oldFile, newFile)) {
+                            tbFile.Text = fileDialog.SafeFileName;
+                            MessageBox.Show("Sucessfully Updated Template File");
+                        }
                     }
                 } catch (Exception ex) {
                     MessageBox.Show(ex.Message);

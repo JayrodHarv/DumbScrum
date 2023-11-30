@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataObjects;
+using LogicLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,12 +19,25 @@ namespace DumbScrum.ToolWindows {
     /// Interaction logic for CreateNewTaskFileWindow.xaml
     /// </summary>
     public partial class CreateNewTaskFileWindow : Window {
+        FileManager fileManager = new FileManager();
         int taskID;
         string type;
-        public CreateNewTaskFileWindow(int taskID, string type) {
+        File template;
+        public CreateNewTaskFileWindow(int taskID, string type, File template) {
             this.taskID = taskID;
             this.type = type;
+            this.template = template;
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e) {
+            
+        }
+
+        // get template for the current type
+
+        // make a copy of it and save to database
+
+        // update it when edits are made
     }
 }

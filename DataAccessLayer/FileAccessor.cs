@@ -42,7 +42,7 @@ namespace DataAccessLayer {
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("@Data", SqlDbType.VarBinary);
-            cmd.Parameters.Add("@Extension", SqlDbType.Char, 10);
+            cmd.Parameters.Add("@Extension", SqlDbType.NVarChar, 10);
             cmd.Parameters.Add("@TaskID", SqlDbType.Int);
             cmd.Parameters.Add("@FileName", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@Type", SqlDbType.NVarChar, 50);
@@ -75,7 +75,7 @@ namespace DataAccessLayer {
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("@Data", SqlDbType.VarBinary);
-            cmd.Parameters.Add("@Extension", SqlDbType.Char, 10);
+            cmd.Parameters.Add("@Extension", SqlDbType.NVarChar, 10);
             cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@FileName", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@Type", SqlDbType.NVarChar, 50);
@@ -129,15 +129,17 @@ namespace DataAccessLayer {
                 // execute command
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows) {
-                    result = new File() {
-                        FileID = reader.GetInt32(0),
-                        Data = (byte[])reader[1],
-                        Extension = reader.GetString(2),
-                        ProjectID = reader.GetString(3),
-                        FileName = reader.GetString(4),
-                        Type = reader.GetString(5),
-                        LastEdited = reader.GetDateTime(6)
-                    };
+                    if(reader.Read()) {
+                        result = new File() {
+                            FileID = reader.GetInt32(0),
+                            Data = (byte[])reader[1],
+                            Extension = reader.GetString(2),
+                            ProjectID = reader.GetString(3),
+                            FileName = reader.GetString(4),
+                            Type = reader.GetString(5),
+                            LastEdited = reader.GetDateTime(6)
+                        };
+                    }
                 }
             } catch (Exception ex) {
                 throw ex;

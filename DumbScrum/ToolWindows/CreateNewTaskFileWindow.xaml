@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DumbScrum.ToolWindows"
         mc:Ignorable="d"
-        Title="CreateNewTaskFileWindow" Height="300" Width="500">
+        Title="Create New File" Height="300" Width="500" Loaded="Window_Loaded">
     <Grid>
         
     </Grid>

@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DataObjects;
+using DumbScrum.UserControls;
 
 namespace DumbScrum.Views {
     /// <summary>
@@ -30,37 +31,13 @@ namespace DumbScrum.Views {
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e) {
-            try {
-                templateFiles = fileManager.GetProjectTemplateFiles(projectID);
-                foreach (File f in templateFiles) {
-                    switch (f.Type) {
-                        case "Use Case":
-                            tbUseCaseFile.Text = f.FileName;
-                            break;
-                        case "Stored Procedure Specification":
-                            tbStoredProcedureFile.Text = f.FileName;
-                            break;
-                        case "User Interface":
-                            tbUserInterfaceFile.Text = f.FileName;
-                            break;
-                        case "ER Diagram":
-                            tbERDiagramFile.Text = f.FileName;
-                            break;
-                        case "Data Dictionary":
-                            tbDataDictionaryFile.Text = f.FileName;
-                            break;
-                        case "Data Model":
-                            tbDataModelFile.Text = f.FileName;
-                            break;
-                    }
-                }
-            } catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnUseCaseChange_Click(object sender, RoutedEventArgs e) {
-            tbUseCaseFile.Text = Change("Use Case", tbUseCaseFile.Text);
+            icTemplateFiles.Items.Clear();
+            icTemplateFiles.Items.Add(new TemplateFilePicker(projectID, "Use Case"));
+            icTemplateFiles.Items.Add(new TemplateFilePicker(projectID, "Stored Procedure Specification"));
+            icTemplateFiles.Items.Add(new TemplateFilePicker(projectID, "User Interface"));
+            icTemplateFiles.Items.Add(new TemplateFilePicker(projectID, "ER Diagram"));
+            icTemplateFiles.Items.Add(new TemplateFilePicker(projectID, "Data Dictionary"));
+            icTemplateFiles.Items.Add(new TemplateFilePicker(projectID, "Data Model"));
         }
 
         private string Change(string type, string startText) {
@@ -128,26 +105,6 @@ namespace DumbScrum.Views {
                 default:
                     return "";
             }
-        }
-
-        private void btnStoredProcedureChange_Click(object sender, RoutedEventArgs e) {
-            tbStoredProcedureFile.Text = Change("Stored Procedure Specification", tbStoredProcedureFile.Text);
-        }
-
-        private void btnUserInterfaceChange_Click(object sender, RoutedEventArgs e) {
-            tbUserInterfaceFile.Text = Change("User Interface", tbUserInterfaceFile.Text);
-        }
-
-        private void btnERDiagramChange_Click(object sender, RoutedEventArgs e) {
-            tbERDiagramFile.Text = Change("ER Diagram", tbERDiagramFile.Text);
-        }
-
-        private void btnDataDictionaryChange_Click(object sender, RoutedEventArgs e) {
-
-        }
-
-        private void btnDataModelChange_Click(object sender, RoutedEventArgs e) {
-
         }
     }
 }

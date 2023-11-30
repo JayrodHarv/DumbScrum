@@ -17,7 +17,7 @@
             <Button x:Name="btnSave" Content="Save" Padding="8,4" Margin="5,0,0,0" Click="btnSave_Click"/>
             <Button x:Name="btnOpen" Content="Open" Padding="8,4" Margin="5,0,0,0" Click="btnOpen_Click"/>
             <Button x:Name="btnDelete" Content="Delete" Padding="8,4" Margin="5,0,0,0" Click="btnDelete_Click"/>
-            <Button x:Name="btnCreateNew" Content="New" Padding="8,4" Margin="5,0,0,0" Click="btnCreateNew_Click"/>
+            <Button x:Name="btnCreateNew" Content="New Using Template" Padding="8,4" Margin="5,0,0,0" Click="btnCreateNew_Click"/>
         </StackPanel>
         <ListView Grid.Row="1" x:Name="lvFiles" SelectionMode="Single">
             <ListView.View>
