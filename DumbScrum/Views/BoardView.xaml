@@ -21,9 +21,8 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBlock x:Name="txtFeature" Text="placeholder" Margin="5"/>
-                <TextBlock x:Name="txtblah" Text="placeholder" Margin="5"/>
-                <TextBlock Text="Start Date - End Date" Margin="5"/>
+                <TextBlock x:Name="txtFeature" Text="FeatureName" Margin="5"/>
+                <TextBlock x:Name="txtDateRange" Text="Start Date - End Date" Margin="5"/>
             </StackPanel>
         </StackPanel>
 
@@ -53,7 +52,7 @@
                 <ItemsControl Grid.Row="1" x:Name="icToDoTasks" Background="Transparent">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <userControls:SrumBoardItem MouseDoubleClick="SrumBoardItem_MouseDoubleClick" />
+                            <userControls:SrumBoardItem MouseDoubleClick="SrumBoardItem_MouseDoubleClick"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -68,13 +67,13 @@
                     <TextBlock Text="In Progress" Foreground="white" Padding="3" FontWeight="SemiBold" />
                     <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
                 </StackPanel>
-                <ListView Grid.Row="1" x:Name="lvInProgressTasks" Background="Transparent">
-                    <ListView.ItemTemplate>
+                <ItemsControl Grid.Row="1" x:Name="icInProgressTasks" Background="Transparent">
+                    <ItemsControl.ItemTemplate>
                         <DataTemplate>
-
+                            <userControls:SrumBoardItem MouseDoubleClick="SrumBoardItem_MouseDoubleClick"/>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="4">
@@ -86,13 +85,13 @@
                     <TextBlock Text="Needs Reviewed" Foreground="white" Padding="3" FontWeight="SemiBold" />
                     <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
                 </StackPanel>
-                <ListView Grid.Row="1" x:Name="lvNeedsReviewedTasks" Background="Transparent">
-                    <ListView.ItemTemplate>
+                <ItemsControl Grid.Row="1" x:Name="icNeedsReviewedTasks" Background="Transparent">
+                    <ItemsControl.ItemTemplate>
                         <DataTemplate>
-
+                            <userControls:SrumBoardItem MouseDoubleClick="SrumBoardItem_MouseDoubleClick"/>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="6">
@@ -104,13 +103,13 @@
                     <TextBlock Text="Complete" Foreground="white" Padding="3" FontWeight="SemiBold" />
                     <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
                 </StackPanel>
-                <ListView Grid.Row="1" x:Name="lvCompletedTasks" Background="Transparent">
-                    <ListView.ItemTemplate>
+                <ItemsControl Grid.Row="1" x:Name="icCompleteTasks" Background="Transparent">
+                    <ItemsControl.ItemTemplate>
                         <DataTemplate>
-
+                            <userControls:SrumBoardItem MouseDoubleClick="SrumBoardItem_MouseDoubleClick"/>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Grid>
         </Grid>
     </Grid>

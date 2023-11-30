@@ -20,6 +20,7 @@ namespace DumbScrum.ToolWindows {
     /// </summary>
     public partial class CreateNewTaskFileWindow : Window {
         FileManager fileManager = new FileManager();
+        TaskManager taskManager = new TaskManager();
         int taskID;
         string type;
         File template;
@@ -31,7 +32,20 @@ namespace DumbScrum.ToolWindows {
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
-            
+            try {
+                //tbFilePrefix.Text = taskManager.GetTaskByTaskID()
+            } catch (Exception) {
+
+                throw;
+            }
+        }
+
+        private void btnCreateFile_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e) {
+
         }
 
         // get template for the current type

@@ -23,5 +23,9 @@ namespace DumbScrum.UserControls {
         public SrumBoardItem() {
             InitializeComponent();
         }
+
+        //private void btnStart_Click(object sender, RoutedEventArgs e) {
+
+        //}
     }
 }

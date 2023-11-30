@@ -485,10 +485,11 @@ AS
 	END
 GO
 
-print '' print '*** creating sp_select_sprint_tasks ***'
+print '' print '*** creating sp_select_sprint_tasks_by_status ***'
 GO
-CREATE PROCEDURE [dbo].[sp_select_sprint_tasks] (
-	@SprintID		[int]
+CREATE PROCEDURE [dbo].[sp_select_sprint_tasks_by_status] (
+	@SprintID		[int],
+	@Status			[nvarchar] (50)
 )
 AS
 	BEGIN
@@ -501,6 +502,7 @@ AS
 		INNER JOIN [dbo].[Feature]
 		ON [Feature].[FeatureID] = [UserStory].[FeatureID]
 		WHERE [SprintID] = @SprintID
+		AND	  [Task].[Status] = @Status
 	END
 GO
 

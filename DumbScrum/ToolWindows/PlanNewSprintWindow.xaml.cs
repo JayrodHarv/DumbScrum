@@ -84,7 +84,7 @@ namespace DumbScrum.ToolWindows {
                         Task task = new Task() {
                             SprintID = sprint.SprintID,
                             StoryID = story.StoryID,
-                            Status = "Unclaimed"
+                            Status = "To Do"
                         };
                         taskManager.CreateTask(task);
                     }

@@ -37,8 +37,12 @@ namespace DumbScrum.Views {
             if (cbxSprint.SelectedItem != null) {
                 SprintVM sprint = cbxSprint.SelectedItem as SprintVM;
                 txtFeature.Text = sprint.FeatureName;
+                txtDateRange.Text = sprint.StartDate.ToShortDateString() + " - " + sprint.EndDate.ToShortDateString();
                 try {
-                    icToDoTasks.ItemsSource = taskManager.GetTaskVMsBySprintID(sprint.SprintID);
+                    icToDoTasks.ItemsSource = taskManager.GetSprintTaskVMsByStatus(sprint.SprintID, "To Do");
+                    icInProgressTasks.ItemsSource = taskManager.GetSprintTaskVMsByStatus(sprint.SprintID, "In Progress");
+                    icNeedsReviewedTasks.ItemsSource = taskManager.GetSprintTaskVMsByStatus(sprint.SprintID, "Needs Reviewed");
+                    icCompleteTasks.ItemsSource = taskManager.GetSprintTaskVMsByStatus(sprint.SprintID, "Complete");
                 } catch (Exception ex) {
                     MessageBox.Show(ex.Message);
                 }

@@ -20,6 +20,7 @@
         
         <TextBlock Grid.Row="1" Grid.ColumnSpan="3" Text="{Binding Story}" FontSize="10" Margin="5" TextWrapping="Wrap"/>
 
-        <Button Grid.Row="2" x:Name="btnStart" Content="Start" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="10" Margin="0,0,8,0" Padding="10,0"/>
+        <!--<Button Grid.Row="2" x:Name="btnStart" Content="Start" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                FontSize="10" Margin="0,0,8,0" Padding="10,0" Click="btnStart_Click"/>-->
     </Grid>
 </UserControl>

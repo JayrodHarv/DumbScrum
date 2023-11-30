@@ -38,14 +38,14 @@ namespace DataAccessLayer {
             return result;
         }
 
-        public List<TaskVM> SelectTaskVMsBySprintID(int sprintID) {
+        public List<TaskVM> SelectSprintTaskVMsByStatus(int sprintID, string status) {
             List<TaskVM> result = new List<TaskVM>();
 
             // create connection object
             var conn = SqlConnectionProvider.GetConnection();
 
             // set the command text
-            var commandText = "sp_select_sprint_tasks";
+            var commandText = "sp_select_sprint_tasks_by_status";
 
             // create command object
             var cmd = new SqlCommand(commandText, conn);
@@ -55,9 +55,11 @@ namespace DataAccessLayer {
 
             // add parameters to command
             cmd.Parameters.Add("@SprintID", SqlDbType.Int);
+            cmd.Parameters.Add("@Status", SqlDbType.NVarChar, 50);
 
             // set parameter values
             cmd.Parameters["@SprintID"].Value = sprintID;
+            cmd.Parameters["@Status"].Value = status;
 
             try {
                 // open connection

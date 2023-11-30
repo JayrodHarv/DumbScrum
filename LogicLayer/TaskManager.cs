@@ -33,10 +33,10 @@ namespace LogicLayer {
             return result;
         }
 
-        public List<TaskVM> GetTaskVMsBySprintID(int sprintID) {
+        public List<TaskVM> GetSprintTaskVMsByStatus(int sprintID, string status) {
             List<TaskVM> result = new List<TaskVM>();
             try {
-                result = _taskAccessor.SelectTaskVMsBySprintID(sprintID);
+                result = _taskAccessor.SelectSprintTaskVMsByStatus(sprintID, status);
             } catch (Exception ex) {
                 throw ex;
             }
