@@ -10,20 +10,22 @@ namespace DumbScrum.Views {
     /// Interaction logic for TaskView.xaml
     /// </summary>
     public partial class TaskView : UserControl {
+        string projectID;
         int taskID;
         FileManager fileManager = new FileManager();
-        public TaskView(int taskID) {
+        public TaskView(string projectID, int taskID) {
+            this.projectID = projectID;
             this.taskID = taskID;
             InitializeComponent();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e) {
-            tabUseCase.Content = new FileUploadView(taskID, "Use Case");
-            tabStoredProcedure.Content = new FileUploadView(taskID, "Stored Procedure Specification");
-            tabInterfaces.Content = new FileUploadView(taskID, "User Interface");
-            tabERDiagram.Content = new FileUploadView(taskID, "ER Diagram");
-            tabDD.Content = new FileUploadView(taskID, "Data Dictionary");
-            tabDM.Content = new FileUploadView(taskID, "Data Model");
+            tabUseCase.Content = new FileUploadView(projectID, taskID, "Use Case");
+            tabStoredProcedure.Content = new FileUploadView(projectID, taskID, "Stored Procedure Specification");
+            tabInterfaces.Content = new FileUploadView(projectID, taskID, "User Interface");
+            tabERDiagram.Content = new FileUploadView(projectID, taskID, "ER Diagram");
+            tabDD.Content = new FileUploadView(projectID, taskID, "Data Dictionary");
+            tabDM.Content = new FileUploadView(projectID, taskID, "Data Model");
         }
     }
 }

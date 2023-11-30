@@ -54,7 +54,7 @@ namespace DumbScrum.Views {
             ProjectView projectView = (ProjectView)window.CurrentView;
             SrumBoardItem item = sender as SrumBoardItem;
             int taskID = int.Parse(item.lblTaskID.Content.ToString());
-            projectView.CurrentProjectView = new TaskView(taskID);
+            projectView.CurrentProjectView = new TaskView(projectID, taskID);
         }
     }
 }
