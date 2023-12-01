@@ -24,6 +24,7 @@ namespace DumbScrum.ToolWindows {
         int taskID;
         string type;
         File template;
+        TaskVM task;
         public CreateNewTaskFileWindow(int taskID, string type, File template) {
             this.taskID = taskID;
             this.type = type;
@@ -33,25 +34,56 @@ namespace DumbScrum.ToolWindows {
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             try {
-                //tbFilePrefix.Text = taskManager.GetTaskByTaskID()
-            } catch (Exception) {
-
-                throw;
+                task = taskManager.GetTask(taskID);
+                tbFilePrefix.Text = task.StoryID + "-" + GetTypeShort(type) + "-";
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void btnCreateFile_Click(object sender, RoutedEventArgs e) {
-
+            if(tbFileName.Text == "") {
+                MessageBox.Show("You must name the file.");
+                return;
+            }
+            try {
+                File file = new File() {
+                    FileName = tbFilePrefix.Text + tbFileName.Text + template.Extension,
+                    Data = template.Data,
+                    Extension = template.Extension,
+                    TaskID = taskID,
+                    Type = type,
+                    LastEdited = DateTime.Now
+                };
+                if(fileManager.AddTaskFile(file)) {
+                    MessageBox.Show("File Added.");
+                }
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e) {
-
+            this.DialogResult = false;
         }
 
-        // get template for the current type
-
-        // make a copy of it and save to database
-
-        // update it when edits are made
+        private string GetTypeShort(string type) {
+            switch (type) {
+                case "Use Case":
+                    return "UC";
+                case "Stored Procedure Specification":
+                    return "SP";
+                case "User Interface":
+                    return "UI";
+                case "ER Diagram":
+                    return "ER";
+                case "Data Dictionary":
+                    return "DD";
+                case "Data Model":
+                    return "DM";
+                default:
+                    return "";
+            }
+        }
     }
 }

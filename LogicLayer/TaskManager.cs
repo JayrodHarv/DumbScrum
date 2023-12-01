@@ -4,6 +4,7 @@ using DataObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -37,6 +38,16 @@ namespace LogicLayer {
             List<TaskVM> result = new List<TaskVM>();
             try {
                 result = _taskAccessor.SelectSprintTaskVMsByStatus(sprintID, status);
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return result;
+        }
+
+        public TaskVM GetTask(int taskID) {
+            TaskVM result = new TaskVM();
+            try {
+                result = _taskAccessor.SelectTaskByTaskID(taskID);
             } catch (Exception ex) {
                 throw ex;
             }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Net.NetworkInformation;
 
 namespace DataAccessLayer {
     public class TaskAccessor : ITaskAccessor {
@@ -80,6 +81,54 @@ namespace DataAccessLayer {
                         t.Story = "As a " + reader.GetString(7) + " I would like to " + 
                             reader.GetString(8) + " so that " + reader.GetString(9) + ".";
                         result.Add(t);
+                    }
+                }
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
+        }
+
+        public TaskVM SelectTaskByTaskID(int taskID) {
+            TaskVM result = new TaskVM();
+
+            // create connection object
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // set the command text
+            var commandText = "sp_select_taskvm_by_taskid";
+
+            // create command object
+            var cmd = new SqlCommand(commandText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // add parameters to command
+            cmd.Parameters.Add("@TaskID", SqlDbType.Int);
+
+            // set parameter values
+            cmd.Parameters["@TaskID"].Value = taskID;
+
+            try {
+                // open connection
+                conn.Open();
+
+                // execute command
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows) {
+                    if (reader.Read()) {
+                        result.TaskID = reader.GetInt32(0);
+                        result.SprintID = reader.GetInt32(1);
+                        result.StoryID = reader.GetString(2);
+                        result.UserID = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
+                        result.Status = reader.GetString(4);
+                        result.ProjectName = reader.GetString(5);
+                        result.FeatureName = reader.GetString(6);
+                        result.Story = "As a " + reader.GetString(7) + " I would like to " +
+                            reader.GetString(8) + " so that " + reader.GetString(9) + ".";
                     }
                 }
             } catch (Exception ex) {
