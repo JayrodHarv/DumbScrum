@@ -13,10 +13,10 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Row="0">
-            <TextBlock x:Name="txtSentBy" Text="Jared Harvey" Margin="5,0" FontSize="16"/>
-            <TextBlock x:Name="txtSentAt" Text="11/21/2023 12am" Margin="5,0" FontSize="10"/>
+            <TextBlock x:Name="txtSentBy" Text="{Binding UserDisplayName}" Margin="5,0" FontSize="16"/>
+            <TextBlock x:Name="txtSentAt" Text="{Binding SentAt}" Margin="5,0" FontSize="10"/>
         </StackPanel>
-        <Label Grid.Row="1" x:Name="lblMessage" Content="sjd;lkfjlaksdjflasjldkfj;salkdjflksaj" FontSize="12"/>
+        <Label Grid.Row="1" x:Name="lblMessage" Content="{Binding Text}" FontSize="12"/>
         <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
             <Label>
                 <Hyperlink>

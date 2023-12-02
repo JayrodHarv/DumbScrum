@@ -34,6 +34,12 @@
             </ComboBox>
         </StackPanel>
 
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label Content="Sprint Name:" FontWeight="DemiBold" Padding="10, 0" VerticalAlignment="Center"/>
+            <TextBox x:Name="tbSprintName" FontWeight="DemiBold" Height="25" Margin="10, 3"
+                     VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+        </StackPanel>
+
         <Grid Grid.Row="2" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>

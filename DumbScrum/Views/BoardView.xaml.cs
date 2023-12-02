@@ -3,6 +3,7 @@ using DumbScrum.ToolWindows;
 using DumbScrum.UserControls;
 using LogicLayer;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -17,6 +18,7 @@ namespace DumbScrum.Views {
         string projectID = string.Empty;
         SprintManager sprintManager = new SprintManager();
         TaskManager taskManager = new TaskManager();
+        List<SprintVM> sprints = new List<SprintVM>();
 
         public BoardView(string projectID) {
             this.projectID = projectID;
@@ -26,11 +28,18 @@ namespace DumbScrum.Views {
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e) {
             try {
-                cbxSprint.ItemsSource = sprintManager.GetSprintVMsByProjectID(projectID);
+                sprints = sprintManager.GetSprintVMsByProjectID(projectID);
+                cbxSprint.ItemsSource = sprints;
             } catch (Exception) {
                 MessageBox.Show("Error loading sprints");
             }
-            cbxSprint.SelectedIndex = 0;
+            // select the current sprint by checking if the current date is in-between the start and end date of a sprint
+            DateTime now = DateTime.Now;
+            foreach (SprintVM s in sprints) {
+                if(now > s.StartDate && now <= s.EndDate) {
+                    cbxSprint.SelectedItem = s;
+                }
+            }
         }
 
         private void cbxSprint_SelectionChanged(object sender, SelectionChangedEventArgs e) {

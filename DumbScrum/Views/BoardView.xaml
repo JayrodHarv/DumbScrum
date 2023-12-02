@@ -16,7 +16,7 @@
             <ComboBox x:Name="cbxSprint" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" SelectionChanged="cbxSprint_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding SprintID}"/>
+                        <TextBlock Text="{Binding Name}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>

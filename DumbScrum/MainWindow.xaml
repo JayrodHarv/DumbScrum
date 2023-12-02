@@ -39,7 +39,7 @@
                 </MenuItem>
                 <MenuItem x:Name="mnuBrowseProjects" Header="Browse Projects" Foreground="white" Height="30" Click="mnuBrowseProjects_Click"/>
             </Menu>
-            <Grid x:Name="userBox" Grid.Column="2" Background="#FF3A3A3A" MouseDown="userBox_MouseDown">
+            <Grid x:Name="userBox" Grid.Column="2" Background="#FF3A3A3A" MouseDown="userBox_MouseDown" ToolTip="Click to view/edit profile">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="35"/>

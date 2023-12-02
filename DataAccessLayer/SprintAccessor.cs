@@ -19,10 +19,12 @@ namespace DataAccessLayer {
             var cmd = new SqlCommand(cmdText, conn);
             cmd.CommandType = CommandType.StoredProcedure;
 
+            cmd.Parameters.Add("@Name", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@FeatureID", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@StartDate", SqlDbType.DateTime);
             cmd.Parameters.Add("@EndDate", SqlDbType.DateTime);
 
+            cmd.Parameters["@Name"].Value = sprint.Name;
             cmd.Parameters["@FeatureID"].Value = sprint.FeatureID;
             cmd.Parameters["@StartDate"].Value = sprint.StartDate;
             cmd.Parameters["@EndDate"].Value = sprint.EndDate;
@@ -70,10 +72,11 @@ namespace DataAccessLayer {
                         SprintVM s = new SprintVM();
                         s.SprintID = reader.GetInt32(0);
                         s.FeatureID = reader.GetString(1);
-                        s.StartDate = reader.GetDateTime(2);
-                        s.EndDate = reader.GetDateTime(3);
-                        s.Active = reader.GetBoolean(4);
-                        s.FeatureName = reader.GetString(5);
+                        s.Name = reader.GetString(2);
+                        s.StartDate = reader.GetDateTime(3);
+                        s.EndDate = reader.GetDateTime(4);
+                        s.Active = reader.GetBoolean(5);
+                        s.FeatureName = reader.GetString(6);
                         result.Add(s);
                     }
                 }
@@ -116,9 +119,10 @@ namespace DataAccessLayer {
                     if (reader.Read()) {
                         result.SprintID = reader.GetInt32(0);
                         result.FeatureID = reader.GetString(1);
-                        result.StartDate = reader.GetDateTime(2);
-                        result.EndDate = reader.GetDateTime(3);
-                        result.Active = reader.GetBoolean(4);
+                        result.Name = reader.GetString(2);
+                        result.StartDate = reader.GetDateTime(3);
+                        result.EndDate = reader.GetDateTime(4);
+                        result.Active = reader.GetBoolean(5);
                     }
                 }
             } catch (Exception ex) {
@@ -160,9 +164,10 @@ namespace DataAccessLayer {
                     if (reader.Read()) {
                         result.SprintID = reader.GetInt32(0);
                         result.FeatureID = reader.GetString(1);
-                        result.StartDate = reader.GetDateTime(2);
-                        result.EndDate = reader.GetDateTime(3);
-                        result.Active = reader.GetBoolean(4);
+                        result.Name = reader.GetString(2);
+                        result.StartDate = reader.GetDateTime(3);
+                        result.EndDate = reader.GetDateTime(4);
+                        result.Active = reader.GetBoolean(5);
                     }
                 }
             } catch (Exception ex) {

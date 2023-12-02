@@ -55,5 +55,9 @@ namespace DumbScrum {
         private void btnCancel_Click(object sender, RoutedEventArgs e) {
             this.DialogResult = false;
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e) {
+            btnCreateProject.IsDefault = true;
+        }
     }
 }

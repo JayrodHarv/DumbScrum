@@ -44,12 +44,12 @@ namespace DumbScrum.Views {
                 btnManage.Visibility = Visibility.Visible;
                 CurrentProjectView = new ManageProjectView(_projectVM.ProjectID);
             } else {
-                CurrentProjectView = new ProjectFeedView();
+                CurrentProjectView = new ProjectFeedView(_projectVM.ProjectID, user.UserID);
             }
         }
 
         private void btnFeed_Click(object sender, RoutedEventArgs e) {
-            CurrentProjectView = new ProjectFeedView();
+            CurrentProjectView = new ProjectFeedView(_projectVM.ProjectID, user.UserID);
         }
 
         private void btnBacklog_Click(object sender, RoutedEventArgs e) {

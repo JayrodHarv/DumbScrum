@@ -25,6 +25,7 @@ namespace DumbScrum.ToolWindows {
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
+            btnPlanSprint.IsDefault = true;
             sprints = sprintManager.GetSprintVMsByProjectID(projectID);
             List<FeatureVM> features = featureManager.GetFeaturesByProjectID(projectID);
             cboFeature.ItemsSource = features;
@@ -45,6 +46,10 @@ namespace DumbScrum.ToolWindows {
         private void btnPlanSprint_Click(object sender, RoutedEventArgs e) {
             if (cboFeature.SelectedItem == null) {
                 MessageBox.Show("Please select a feature to add to the sprint.");
+                return;
+            }
+            if (tbSprintName.Text == "") {
+                MessageBox.Show("You must give the sprint a name.");
                 return;
             }
             if (dpStartDate.SelectedDate == null) {
@@ -71,6 +76,7 @@ namespace DumbScrum.ToolWindows {
             // Passed all validation
             try {
                 if (sprintManager.AddSprint(new Sprint() {
+                    Name = tbSprintName.Text,
                     FeatureID = feature.FeatureID,
                     StartDate = (DateTime)dpStartDate.SelectedDate,
                     EndDate = (DateTime)dpEndDate.SelectedDate

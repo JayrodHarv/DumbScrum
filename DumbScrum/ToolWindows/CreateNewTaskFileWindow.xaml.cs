@@ -33,6 +33,7 @@ namespace DumbScrum.ToolWindows {
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
+            btnCreateFile.IsDefault = true;
             try {
                 task = taskManager.GetTask(taskID);
                 tbFilePrefix.Text = task.StoryID + "-" + GetTypeShort(type) + "-";

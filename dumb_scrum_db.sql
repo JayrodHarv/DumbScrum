@@ -90,6 +90,7 @@ GO
 CREATE TABLE [dbo].[Sprint] (
 	[SprintID]		[int]		IDENTITY(100000, 1)		NOT NULL,
 	[FeatureID]		[nvarchar]	(50)					NOT NULL,
+	[Name]			[nvarchar]	(50)					NOT NULL,
 	[StartDate]		[date]								NOT NULL,	
 	[EndDate]		[date]								NOT NULL,
 	[Active]		[bit]								NOT NULL DEFAULT 1,
@@ -161,7 +162,7 @@ CREATE TABLE [dbo].[FeedMessage] (
 	[SprintID]		[int]								NOT NULL,
 	[UserID]		[int]								NOT NULL,
 	[Text]			[Text]								NOT NULL,
-	[DateTime]		[datetime]							NOT NULL,
+	[SentAt]		[datetime]							NOT NULL,
 	CONSTRAINT	[fk_Message_UserID]	FOREIGN KEY ([UserID])
 		REFERENCES	[dbo].[User] ([UserID]),
 	CONSTRAINT [pk_MessageID] PRIMARY KEY ([MessageID])
@@ -416,7 +417,7 @@ CREATE PROCEDURE [dbo].[sp_select_project_sprints] (
 )
 AS
 	BEGIN
-		SELECT 	[SprintID], [Sprint].[FeatureID], [StartDate], [EndDate], [Active], 
+		SELECT 	[SprintID], [Sprint].[FeatureID], [Sprint].[Name], [StartDate], [EndDate], [Active], 
 				[Feature].[Name]
 		FROM [Sprint]
 		INNER JOIN [dbo].[Feature]
@@ -432,7 +433,7 @@ CREATE PROCEDURE [dbo].[sp_select_sprint_by_sprintid] (
 )
 AS
 	BEGIN
-		SELECT [SprintID], [FeatureID], [StartDate], [EndDate], [Active]
+		SELECT [SprintID], [FeatureID], [Name], [StartDate], [EndDate], [Active]
 		FROM [Sprint]
 		WHERE [SprintID] = @SprintID
 	END
@@ -445,7 +446,7 @@ CREATE PROCEDURE [dbo].[sp_select_sprint_by_featureid] (
 )
 AS
 	BEGIN
-		SELECT [SprintID], [FeatureID], [StartDate], [EndDate], [Active]
+		SELECT [SprintID], [FeatureID], [Name], [StartDate], [EndDate], [Active]
 		FROM [Sprint]
 		WHERE [FeatureID] = @FeatureID
 	END
@@ -455,6 +456,7 @@ GO
 print '' print '*** creating sp_insert_project_sprint ***'
 GO
 CREATE PROCEDURE [dbo].[sp_insert_sprint] (
+	@Name			[nvarchar] (50),
 	@FeatureID		[nvarchar] (50),
 	@StartDate		[datetime],
 	@EndDate		[datetime]	
@@ -462,9 +464,9 @@ CREATE PROCEDURE [dbo].[sp_insert_sprint] (
 AS
 	BEGIN
 		INSERT INTO [dbo].[Sprint]
-			([FeatureID], [StartDate], [EndDate])
+			([Name], [FeatureID], [StartDate], [EndDate])
 		VALUES
-			(@FeatureID, @StartDate, @EndDate)
+			(@Name, @FeatureID, @StartDate, @EndDate)
 	END
 GO
 
@@ -627,6 +629,40 @@ AS
 		FROM [dbo].[FileStore]
 		WHERE [FileStore].[ProjectID] = @ProjectID
 		AND [FileStore].[Type] = @Type
+	END
+GO
+
+/* FeedMessage stored procedures */
+print '' print '*** creating sp_insert_feed_message ***'
+GO
+CREATE PROCEDURE [dbo].[sp_insert_feed_message] (		
+	@SprintID		[int],	
+	@UserID			[int],
+	@Text			[Text],
+	@SentAt			[datetime]
+)
+AS
+	BEGIN
+		INSERT INTO [dbo].[FeedMessage]
+			([SprintID], [UserID], [Text], [SentAt])
+		VALUES
+			(@SprintID, @UserID, @Text, @SentAt)
+	END
+GO
+
+print '' print '*** creating sp_select_sprint_feed_messages ***'
+GO
+CREATE PROCEDURE [dbo].[sp_select_sprint_feed_messages] (		
+	@SprintID		[int]
+)
+AS
+	BEGIN
+		SELECT [MessageID], [SprintID], [FeedMessage].[UserID], [Text], [SentAt], [User].[DisplayName]
+		FROM [dbo].[FeedMessage]
+		INNER JOIN [User]
+		ON [User].[UserID] = [FeedMessage].[UserID]
+		WHERE [FeedMessage].[SprintID] = @SprintID
+		ORDER BY [SentAt]
 	END
 GO
 

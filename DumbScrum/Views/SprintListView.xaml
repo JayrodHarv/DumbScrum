@@ -28,10 +28,10 @@
                 <ListView x:Name="lvSprints" Grid.Row="1" Background="Transparent" SelectionMode="Single">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Sprint ID">
+                            <GridViewColumn Header="Name">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock HorizontalAlignment="Center" Text="{Binding SprintID}"/>
+                                        <TextBlock HorizontalAlignment="Center" Text="{Binding Name}"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
