@@ -105,7 +105,7 @@ namespace LogicLayer {
             return userVM;
         }
 
-        public UserVM SignUpUser(string email, string password) {
+        public UserVM SignUpUser(string email, string password, byte[] pfp) {
             UserVM userVM = null;
 
             // check to see if an account already belongs to the email
@@ -113,7 +113,7 @@ namespace LogicLayer {
             try {
                 if(0 == _userAccessor.CheckIfEmailHasBeenUsedAlready(email)) { // new email
                     password = HashSha256(password);
-                    _userAccessor.InsertUser(email, password);
+                    _userAccessor.InsertUser(email, password, pfp);
                     userVM = GetUserVMByEmail(email);
                 } else {
                     throw new ApplicationException("An account already exists with this email");

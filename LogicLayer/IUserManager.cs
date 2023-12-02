@@ -9,7 +9,7 @@ namespace LogicLayer {
     public interface IUserManager {
         bool AuthenticateUser(string email, string password);
         UserVM SignInUser(string email, string password);
-        UserVM SignUpUser(string email, string password);
+        UserVM SignUpUser(string email, string password, byte[] pfp);
         string HashSha256(string password);
         UserVM GetUserVMByEmail(string email);
         bool ChangePassword(string email, string newPassword);

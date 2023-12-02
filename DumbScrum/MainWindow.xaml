@@ -28,15 +28,13 @@
                 <TextBlock Text="DS" Foreground="white" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Padding="5,0,0,0"/>
                 <Ellipse Height="30" Width="30">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="Images/DumbScrumIcon.png"/>
+                        <ImageBrush x:Name="imgLogo"/>
                     </Ellipse.Fill>
                 </Ellipse>
             </StackPanel>
             <Menu Grid.Column="1" Background="#FF3A3A3A">
                 <MenuItem x:Name="mnuHome" Header="Home" Foreground="white" Height="30" Click="mnuHome_Click"/>
-                <MenuItem x:Name="mnuMyProjects" Header="My Projects" Foreground="white" Height="30" Click="mnuMyProjects_Click">
-                    
-                </MenuItem>
+                <MenuItem x:Name="mnuMyProjects" Header="My Projects" Foreground="white" Height="30" Click="mnuMyProjects_Click"/>
                 <MenuItem x:Name="mnuBrowseProjects" Header="Browse Projects" Foreground="white" Height="30" Click="mnuBrowseProjects_Click"/>
             </Menu>
             <Grid x:Name="userBox" Grid.Column="2" Background="#FF3A3A3A" MouseDown="userBox_MouseDown" ToolTip="Click to view/edit profile">
@@ -47,7 +45,7 @@
                 <TextBlock x:Name="txtDisplayName" Text="{Binding LoggedInUser.DisplayName}" Foreground="white" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="5"/>
                 <Ellipse Grid.Column="1">
                     <Ellipse.Fill>
-                        <ImageBrush x:Name="imgPfp"  ImageSource="Images/Sample_User_Icon.png"/>
+                        <ImageBrush x:Name="imgPfp"/>
                     </Ellipse.Fill>
                 </Ellipse>
             </Grid>

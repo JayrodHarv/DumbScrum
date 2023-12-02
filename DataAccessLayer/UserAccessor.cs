@@ -91,7 +91,7 @@ namespace DataAccessLayer {
             return rows;
         }
 
-        public int InsertUser(string email, string passwordHash) {
+        public int InsertUser(string email, string passwordHash, byte[] pfp) {
             int rows = 0;
 
             // create connection object
@@ -109,10 +109,12 @@ namespace DataAccessLayer {
             // add parameters to command
             cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@PasswordHash", SqlDbType.NVarChar, 100);
+            cmd.Parameters.Add("@Pfp", SqlDbType.VarBinary);
 
             // set parameter values
             cmd.Parameters["@Email"].Value = email;
             cmd.Parameters["@PasswordHash"].Value = passwordHash;
+            cmd.Parameters["@Pfp"].Value = pfp;
 
             try {
                 // open connection
@@ -166,8 +168,9 @@ namespace DataAccessLayer {
                         userVM.UserID = reader.GetInt32(0);
                         userVM.DisplayName = reader.GetString(1);
                         userVM.Email = reader.GetString(2);
-                        userVM.Bio = reader.IsDBNull(3) ? "" : reader.GetString(3); // took me an hour to slove
-                        userVM.Active = reader.GetBoolean(4);
+                        userVM.Pfp = (byte[])reader[3];
+                        userVM.Bio = reader.IsDBNull(4) ? "" : reader.GetString(3);
+                        userVM.Active = reader.GetBoolean(5);
                         // null example
                         //employeeVM.EmployeeID = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
                     }

@@ -5,6 +5,7 @@ namespace DataObjects {
         public int UserID { get; set; }
         public string DisplayName { get; set; }
         public string Email { get; set; }
+        public byte[] Pfp { get; set; }
         public string Bio { get; set; }
         public bool Active { get; set; }
     }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Media;
 
 namespace DumbScrum {
     /// <summary>
@@ -34,12 +35,16 @@ namespace DumbScrum {
             CurrentView = new HomeView();
             InitializeComponent();
 
-            AppData.DataPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "data";
+            // AppData.DataPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "data";
             // GoogleDriveHelper.Init();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             txtDisplayName.Text = LoggedInUser.DisplayName;
+            ImageSourceConverter imageSourceConverter = new ImageSourceConverter();
+            ImageSource pfp = (ImageSource)imageSourceConverter.ConvertFrom(LoggedInUser.Pfp);
+            imgPfp.ImageSource = pfp;
+            // ImageSource logo = (ImageSource)imageSourceConverter.
         }
 
         private void mnuHome_Click(object sender, RoutedEventArgs e) {

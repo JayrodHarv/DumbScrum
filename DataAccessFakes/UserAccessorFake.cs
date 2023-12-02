@@ -56,6 +56,10 @@ namespace DataAccessFakes {
             throw new NotImplementedException();
         }
 
+        public int InsertUser(string email, string passwordHash, byte[] pfp) {
+            throw new NotImplementedException();
+        }
+
         public List<UserVM> SelectMembersByProjectID(string projectID) {
             throw new NotImplementedException();
         }
@@ -91,7 +95,7 @@ namespace DataAccessFakes {
             throw new NotImplementedException();
         }
 
-        int IUserAccessor.InsertUser(string email, string passwordHash) {
+        int IUserAccessor.InsertUser(string email, string passwordHash, byte[] pfp) {
             throw new NotImplementedException();
         }
     }

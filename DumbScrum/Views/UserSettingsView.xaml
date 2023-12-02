@@ -8,10 +8,20 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
             <RowDefinition/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
-        <Label Content="User Settings:" FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
-        <ItemsControl Grid.Row="1" x:Name="icSettings"/>
+        <StackPanel Orientation="Vertical">
+            <Label Content="User Settings:" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" Padding="10,10,0,0"/>
+            <Label Content="Manage your account settings" Padding="10,0"/>
+        </StackPanel>
+        <Separator VerticalAlignment="Bottom"/>
+        <Grid Grid.Row="1">
+            
+        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Button x:Name="btnSave" Content="Save Changes" Padding="10,5" Margin="0,0,10,10" Click="btnSave_Click"/>
+        </StackPanel>
     </Grid>
 </UserControl>

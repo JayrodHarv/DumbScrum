@@ -63,7 +63,7 @@ namespace LogicLayer {
         public bool LeaveProject(int userID, string projectID) {
             bool result = false;
             try {
-                result = (2 == _projectAccessor.LeaveProject(userID, projectID));
+                result = (1 == _projectAccessor.LeaveProject(userID, projectID));
             } catch (Exception ex) {
                 throw ex;
             }
@@ -73,7 +73,7 @@ namespace LogicLayer {
         public bool JoinProject(string projectID, int userID) {
             bool result = false;
             try {
-                result = (2 == _projectAccessor.JoinProject(projectID, userID));
+                result = (1 == _projectAccessor.JoinProject(projectID, userID));
             } catch (Exception ex) {
                 throw ex;
             }

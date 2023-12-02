@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DumbScrum {
     /// <summary>
@@ -72,12 +73,22 @@ namespace DumbScrum {
                 // sign up user
 
                 try {
-                    loggedInUser = _userManager.SignUpUser(email, password);
+                    string path = @"./Images/Sample_User_Icon.png";
+                    byte[] pfp = GetFileInBinary(path);
+                    loggedInUser = _userManager.SignUpUser(email, password, pfp);
                     SignIn(loggedInUser);
                 } catch (Exception ex) {
                     MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
                         "Sign Up Failed", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+            }
+        }
+
+        private byte[] GetFileInBinary(string filePath) {
+            using (System.IO.Stream stream = System.IO.File.OpenRead(filePath)) {
+                byte[] buffer = new byte[stream.Length];
+                stream.Read(buffer, 0, buffer.Length);
+                return buffer;
             }
         }
 

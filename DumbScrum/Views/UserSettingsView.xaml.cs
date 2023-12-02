@@ -25,6 +25,8 @@ namespace DumbScrum.Views {
             InitializeComponent();
         }
 
+        private void btnSave_Click(object sender, RoutedEventArgs e) {
 
+        }
     }
 }

@@ -33,6 +33,7 @@ CREATE TABLE [dbo].[User] (
 		'9c9064c59f1ffa2e174ee754d2979be80dd30db552ec03e7e327e9b1a4bd594e',
 	[DisplayName]	[nvarchar] 	(50)					NOT NULL	DEFAULT
 		'New User',
+	[Pfp]			[varbinary] (max)					NOT NULL,
 	[Bio]			[nvarchar]	(255)					NULL,
 	[Active]		[bit]								NOT NULL	DEFAULT 1,
 	CONSTRAINT [pk_UserID] PRIMARY KEY ([UserID]),
@@ -199,7 +200,7 @@ CREATE PROCEDURE [dbo].[sp_select_user_by_email] (
 )
 AS
 	BEGIN
-		SELECT [UserID], [DisplayName], [Email], [Bio], [Active]
+		SELECT [UserID], [DisplayName], [Email], [Pfp], [Bio], [Active]
 		FROM [User]
 		WHERE @Email = [Email]
 	END
@@ -239,14 +240,15 @@ print '' print '*** creating sp_insert_user ***'
 GO
 CREATE PROCEDURE [dbo].[sp_insert_user] (
 	@Email				[nvarchar] (100),
-	@PasswordHash		[nvarchar] (100)
+	@PasswordHash		[nvarchar] (100),
+	@Pfp				[varbinary] (max)
 )
 AS
 	BEGIN
 		INSERT INTO [dbo].[User]
-			([Email], [PasswordHash])
+			([Email], [PasswordHash], [Pfp])
 		VALUES
-			(@Email, @PasswordHash)
+			(@Email, @PasswordHash, @Pfp)
 	END
 GO
 
@@ -671,7 +673,7 @@ GO
 									Insert Test Data
  
 ==================================================================================*/
-
+/*
 print '' print '*** inserting User test records ***'
 GO
 INSERT INTO [dbo].[User]
@@ -682,7 +684,7 @@ INSERT INTO [dbo].[User]
 		('Barack Obama', 'barack-obama@whitehouse.org', 'I am former president')
 GO
 
-/* print '' print '*** inserting Project test records ***'
+print '' print '*** inserting Project test records ***'
 GO
 INSERT INTO [dbo].[Project]
 		([ProjectID], [ProjectOwner], [DateCreated], [Status], [Description])
@@ -745,4 +747,5 @@ INSERT INTO [dbo].[Task]
 		('100000', '100000', '100000', 'Test Status'),
 		('100001', '100001', '100001', 'Test Status'),
 		('100002', '100002', '100002', 'Test Status')
-GO */
+GO 
+*/
