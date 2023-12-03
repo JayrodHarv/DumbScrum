@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace DumbScrum {
     /// <summary>
@@ -44,7 +45,8 @@ namespace DumbScrum {
             ImageSourceConverter imageSourceConverter = new ImageSourceConverter();
             ImageSource pfp = (ImageSource)imageSourceConverter.ConvertFrom(LoggedInUser.Pfp);
             imgPfp.ImageSource = pfp;
-            // ImageSource logo = (ImageSource)imageSourceConverter.
+            ImageSource logo = (ImageSource)imageSourceConverter.ConvertFrom(@".\Images\dumb_scrum_icon.png");
+            imgLogo.Source = logo;
         }
 
         private void mnuHome_Click(object sender, RoutedEventArgs e) {

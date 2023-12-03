@@ -57,7 +57,7 @@ namespace DumbScrum.ToolWindows {
                     LastEdited = DateTime.Now
                 };
                 if(fileManager.AddTaskFile(file)) {
-                    MessageBox.Show("File Added.");
+                    this.DialogResult = true;
                 }
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);

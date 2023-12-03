@@ -26,11 +26,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Background="#FF3A3A3A" Orientation="Horizontal">
                 <TextBlock Text="DS" Foreground="white" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Padding="5,0,0,0"/>
-                <Ellipse Height="30" Width="30">
-                    <Ellipse.Fill>
-                        <ImageBrush x:Name="imgLogo"/>
-                    </Ellipse.Fill>
-                </Ellipse>
+                <Image x:Name="imgLogo" Width="30" Height="30"/>
             </StackPanel>
             <Menu Grid.Column="1" Background="#FF3A3A3A">
                 <MenuItem x:Name="mnuHome" Header="Home" Foreground="white" Height="30" Click="mnuHome_Click"/>

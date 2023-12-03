@@ -274,5 +274,44 @@ namespace DataAccessLayer {
 
             return rows;
         }
+
+        public int UpdateUser(User newUser, User oldUser) {
+            int rows = 0;
+
+            // create connection object
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // set the command text
+            var commandText = "sp_update_user";
+
+            // create command object
+            var cmd = new SqlCommand(commandText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // add parameters to command
+            cmd.Parameters.Add("@UserID", SqlDbType.Int);
+
+            cmd.Parameters.Add("@NewDisplayName", SqlDbType.NVarChar, 50);
+            cmd.Parameters.Add("@NewPfp", SqlDbType.VarBinary);
+
+            // set parameter values
+            cmd.Parameters["@UserID"].Value = oldUser.UserID;
+
+            cmd.Parameters["@NewDisplayName"].Value = newUser.DisplayName;
+            cmd.Parameters["@NewPfp"].Value = newUser.Pfp;
+
+            try {
+                conn.Open();
+                rows = cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+
+            return rows;
+        }
     }
 }

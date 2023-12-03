@@ -155,6 +155,7 @@ namespace DumbScrum.Views {
                     if (result == true) {
                         MessageBox.Show("File was created using the project's " + type + " template.", "Success",
                             MessageBoxButton.OK, MessageBoxImage.Information);
+                        lvFiles.ItemsSource = fileManager.GetTaskFilesByType(taskID, type);
                     } else {
                         MessageBox.Show("File Not Created", "Operation Aborted",
                             MessageBoxButton.OK, MessageBoxImage.Information);

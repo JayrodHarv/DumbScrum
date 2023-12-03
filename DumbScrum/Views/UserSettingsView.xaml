@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DumbScrum.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -17,8 +17,56 @@
             <Label Content="Manage your account settings" Padding="10,0"/>
         </StackPanel>
         <Separator VerticalAlignment="Bottom"/>
-        <Grid Grid.Row="1">
-            
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Content="Profile Picture:" VerticalAlignment="Center" FontWeight="DemiBold"/>
+                <Ellipse Height="60" Width="60" Margin="10,0">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="imgPfp"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Button x:Name="btnChangePfp" Content="Change Profile Picture" Height="25" Padding="5,0" Click="btnChangePfp_Click"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="1">
+                <Label Content="Display Name: " VerticalAlignment="Center" FontWeight="DemiBold" />
+                <TextBox x:Name="tbDisplayName" Width="300" VerticalAlignment="Center" Padding="4"/>
+            </StackPanel>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Content="Change Password: " VerticalAlignment="Center" FontWeight="DemiBold"/>
+                <!--<Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="115"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Old Password: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <PasswordBox x:Name="pwdOldPassword" Width="300" Grid.Column="1" HorizontalAlignment="Left"
+                             VerticalAlignment="Center" Padding="5"/>
+                    <Label Content="New Password: " VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="1"/>
+                    <PasswordBox x:Name="pwdNewPassword" Width="300" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1"
+                             VerticalAlignment="Center" Padding="5"/>
+                    <Label Content="Retype Password: " VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="2"/>
+                    <PasswordBox x:Name="pwdRetypePassword" Width="300" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2"
+                             VerticalAlignment="Center" Padding="5"/>
+                </Grid>-->
+                <Button x:Name="btnChangePassword" Content="Change Password" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top"
+                        Padding="5" Click="btnChangePassword_Click"/>
+            </Grid>
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <Button x:Name="btnSave" Content="Save Changes" Padding="10,5" Margin="0,0,10,10" Click="btnSave_Click"/>

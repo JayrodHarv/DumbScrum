@@ -252,6 +252,22 @@ AS
 	END
 GO
 
+print '' print '*** creating sp_update_user ***'
+GO
+CREATE PROCEDURE [dbo].[sp_update_user] (
+	@UserID				[int],
+	@NewDisplayName		[nvarchar] 	(50),
+	@NewPfp				[varbinary] (max)
+)
+AS
+	BEGIN
+		UPDATE [User]
+		SET [DisplayName] = @NewDisplayName,
+			[Pfp] = @NewPfp
+		WHERE [UserID] = @UserID
+	END
+GO
+
 /*----- Project Stored Procedures -----*/
 print '' print '*** creating sp_select_all_projects ***'
 GO

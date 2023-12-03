@@ -56,6 +56,16 @@ namespace LogicLayer {
             return result;
         }
 
+        public bool EditUser(User newUser, User oldUser) {
+            bool result = false;
+            try {
+                result = (1 == _userAccessor.UpdateUser(newUser, oldUser));
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return result;
+        }
+
         public UserVM GetUserVMByEmail(string email) {
             UserVM userVM = null;
 

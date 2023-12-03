@@ -12,6 +12,7 @@ namespace LogicLayer {
         UserVM SignUpUser(string email, string password, byte[] pfp);
         string HashSha256(string password);
         UserVM GetUserVMByEmail(string email);
+        bool EditUser(User newUser, User oldUser);
         bool ChangePassword(string email, string newPassword);
         bool ChangeDisplayName(int userID, string newDisplayName);
     }

@@ -95,6 +95,10 @@ namespace DataAccessFakes {
             throw new NotImplementedException();
         }
 
+        public int UpdateUser(User newUser, User oldUser) {
+            throw new NotImplementedException();
+        }
+
         int IUserAccessor.InsertUser(string email, string passwordHash, byte[] pfp) {
             throw new NotImplementedException();
         }
