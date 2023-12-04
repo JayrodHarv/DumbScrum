@@ -134,6 +134,59 @@ namespace DataAccessLayer {
             throw new NotImplementedException();
         }
 
+        public User SelectUserByUserID(int userID) {
+            User user = new User();
+
+            // connection
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // command text
+            var cmdText = "sp_select_user_by_userid";
+
+            // create command
+            var cmd = new SqlCommand(cmdText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // add parameters to command
+            cmd.Parameters.Add("@UserID", SqlDbType.Int);
+
+            // set parameter values
+            cmd.Parameters["@UserID"].Value = userID;
+
+            try {
+                // open connection
+                conn.Open();
+
+                // execute command
+                var reader = cmd.ExecuteReader();
+
+                // process results
+                if (reader.HasRows) {
+                    if (reader.Read()) { // use while loop if multiple rows are returned
+                        user.UserID = reader.GetInt32(0);
+                        user.DisplayName = reader.GetString(1);
+                        user.Email = reader.GetString(2);
+                        user.Pfp = (byte[])reader[3];
+                        user.Bio = reader.IsDBNull(4) ? "" : reader.GetString(3);
+                        user.Active = reader.GetBoolean(5);
+                        // null example
+                        //employeeVM.EmployeeID = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
+                    }
+                } else {
+                    throw new ArgumentException("User not found");
+                }
+
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+
+            return user;
+        }
+
         public UserVM SelectUserVMByEmail(string email) {
             UserVM userVM = new UserVM();
 

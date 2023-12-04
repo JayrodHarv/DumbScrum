@@ -68,6 +68,10 @@ namespace DataAccessFakes {
             throw new NotImplementedException();
         }
 
+        public User SelectUserByUserID(int userID) {
+            throw new NotImplementedException();
+        }
+
         public UserVM SelectUserVMByEmail(string email) {
             UserVM userVM = null;
 

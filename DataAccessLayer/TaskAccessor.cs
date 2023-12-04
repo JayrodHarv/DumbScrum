@@ -184,5 +184,34 @@ namespace DataAccessLayer {
             }
             return result;
         }
+
+        public int UpdateTaskStatus(int taskID, string status) {
+            throw new NotImplementedException();
+        }
+
+        public int UpdateTaskUserID(int taskID, int userID) {
+            int result = 0;
+
+            var conn = SqlConnectionProvider.GetConnection();
+            var cmdText = "sp_update_task_userid";
+            var cmd = new SqlCommand(cmdText, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@TaskID", SqlDbType.Int);
+            cmd.Parameters.Add("@UserID", SqlDbType.Int);
+
+            cmd.Parameters["@TaskID"].Value = taskID;
+            cmd.Parameters["@UserID"].Value = userID;
+
+            try {
+                conn.Open();
+                result = cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
+        }
     }
 }

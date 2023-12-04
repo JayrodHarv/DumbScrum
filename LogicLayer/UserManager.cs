@@ -66,6 +66,18 @@ namespace LogicLayer {
             return result;
         }
 
+        public User GetUser(int userID) {
+            User user = null;
+
+            try {
+                user = _userAccessor.SelectUserByUserID(userID);
+            } catch (Exception ex) {
+                throw new ApplicationException("User not found", ex);
+            }
+
+            return user;
+        }
+
         public UserVM GetUserVMByEmail(string email) {
             UserVM userVM = null;
 

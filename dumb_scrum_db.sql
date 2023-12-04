@@ -206,6 +206,19 @@ AS
 	END
 GO
 
+print '' print '*** creating sp_select_user_by_userid ***'
+GO
+CREATE PROCEDURE [dbo].[sp_select_user_by_userid] (
+	@UserID			[int]
+)
+AS
+	BEGIN
+		SELECT [UserID], [DisplayName], [Email], [Pfp], [Bio], [Active]
+		FROM [User]
+		WHERE @UserID = [UserID]
+	END
+GO
+
 print '' print '*** creating sp_update_PasswordHash ***'
 GO
 CREATE PROCEDURE [dbo].[sp_update_PasswordHash] (
@@ -502,6 +515,34 @@ AS
 			([SprintID], [StoryID], [Status])
 		VALUES
 			(@SprintID, @StoryID, @Status)
+	END
+GO
+
+print '' print '*** creating sp_update_task_userid ***'
+GO
+CREATE PROCEDURE [dbo].[sp_update_task_userid] (
+	@TaskID			[int],
+	@UserID			[int]
+)
+AS
+	BEGIN
+		UPDATE [Task]
+		SET [UserID] = @UserID
+		WHERE [TaskID] = @TaskID
+	END
+GO
+
+print '' print '*** creating sp_update_task_status ***'
+GO
+CREATE PROCEDURE [dbo].[sp_update_task_status] (
+	@TaskID			[int],
+	@Status			[nvarchar] (50)
+)
+AS
+	BEGIN
+		UPDATE [Task]
+		SET [Status] = @Status
+		WHERE [TaskID] = @TaskID
 	END
 GO
 

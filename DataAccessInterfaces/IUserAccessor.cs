@@ -7,6 +7,7 @@ using DataObjects;
 
 namespace DataAccessInterfaces {
     public interface IUserAccessor {
+        User SelectUserByUserID(int userID);
         int AuthenticateUserWithEmailAndPasswordHash(string email, string passwordHash);
         UserVM SelectUserVMByEmail(string email);
         List<UserVM> SelectMembersByProjectID(string projectID);

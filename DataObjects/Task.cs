@@ -17,6 +17,5 @@ namespace DataObjects {
         public string ProjectName { get; set; }
         public string FeatureName { get; set; }
         public string Story { get; set; }
-
     }
 }
