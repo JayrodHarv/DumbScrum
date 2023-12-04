@@ -65,7 +65,7 @@ CREATE TABLE [dbo].[Feature] (
 	[Priority]		[nvarchar]	(20)					NOT NULL,
 	[Status]		[nvarchar]	(50)					NOT NULL DEFAULT "Awaiting Sprint",
 	CONSTRAINT	[fk_Feature_ProjectID]	FOREIGN KEY ([ProjectID])
-		REFERENCES	[dbo].[Project] ([ProjectID]),
+		REFERENCES	[dbo].[Project] ([ProjectID]) ON DELETE CASCADE,
 	CONSTRAINT [pk_Feature] PRIMARY KEY ([FeatureID])
 )
 GO
@@ -80,7 +80,7 @@ CREATE TABLE [dbo].[UserStory] (
 	[Action]		[nvarchar]	(255)					NOT NULL,
 	[Reason]		[nvarchar]	(255)					NOT NULL,
 	CONSTRAINT	[fk_UserStory_FeatureID]	FOREIGN KEY ([FeatureID])
-		REFERENCES	[dbo].[Feature] ([FeatureID]),
+		REFERENCES	[dbo].[Feature] ([FeatureID]) ON DELETE CASCADE,
 	CONSTRAINT [pk_Story] PRIMARY KEY ([StoryID])
 )
 GO
@@ -96,7 +96,7 @@ CREATE TABLE [dbo].[Sprint] (
 	[EndDate]		[date]								NOT NULL,
 	[Active]		[bit]								NOT NULL DEFAULT 1,
 	CONSTRAINT	[fk_Sprint_FeatureID]	FOREIGN KEY ([FeatureID])
-		REFERENCES	[dbo].[Feature] ([FeatureID]),
+		REFERENCES	[dbo].[Feature] ([FeatureID]) ON DELETE CASCADE,
 	CONSTRAINT [pk_Sprint] PRIMARY KEY ([SprintID])
 )
 GO
@@ -111,7 +111,7 @@ CREATE TABLE [dbo].[ProjectMember] (
 	CONSTRAINT	[fk_ProjectMember_UserID]	FOREIGN KEY ([UserID])
 		REFERENCES	[dbo].[User] ([UserID]),
 	CONSTRAINT	[fk_ProjectMember_ProjectID]	FOREIGN KEY ([ProjectID])
-		REFERENCES	[dbo].[Project] ([ProjectID]),
+		REFERENCES	[dbo].[Project] ([ProjectID]) ON DELETE CASCADE,
 	CONSTRAINT [pk_ProjectMember] PRIMARY KEY ([UserID], [ProjectID])
 )
 GO
@@ -126,7 +126,7 @@ CREATE TABLE [dbo].[Task] (
 	[UserID]		[int]								NULL,
 	[Status]		[nvarchar]	(50)					NOT NULL,
 	CONSTRAINT	[fk_Task_SprintID]	FOREIGN KEY ([SprintID])
-		REFERENCES	[dbo].[Sprint] ([SprintID]),
+		REFERENCES	[dbo].[Sprint] ([SprintID]) ON DELETE CASCADE,
 	CONSTRAINT	[fk_Task_StoryID]	FOREIGN KEY ([StoryID])
 		REFERENCES	[dbo].[UserStory] ([StoryID]),
 	CONSTRAINT	[fk_Task_UserID]	FOREIGN KEY ([UserID])
@@ -150,7 +150,7 @@ CREATE TABLE [dbo].[FileStore] (
 	CONSTRAINT [fk_FileStore_TaskID] FOREIGN KEY ([TaskID])
 		REFERENCES [dbo].[Task] ([TaskID]),
 	CONSTRAINT [fk_FileStore_ProjectID] FOREIGN KEY ([ProjectID])
-		REFERENCES [dbo].[Project] ([ProjectID]),
+		REFERENCES [dbo].[Project] ([ProjectID]) ON DELETE CASCADE,
 	CONSTRAINT [pk_FileStore] PRIMARY KEY ([FileID])
 )
 GO
@@ -347,6 +347,18 @@ AS
 	END
 GO
 
+print '' print '*** creating sp_delete_project ***'
+GO
+CREATE PROCEDURE [dbo].[sp_delete_project] (
+	@ProjectID			[nvarchar] (50)
+)
+AS
+	BEGIN
+		DELETE FROM [Project]
+		WHERE [ProjectID] = @ProjectID
+	END
+GO
+
 print '' print '*** creating sp_user_leave_project ***'
 GO
 CREATE PROCEDURE [dbo].[sp_user_leave_project] (
@@ -498,6 +510,18 @@ AS
 			([Name], [FeatureID], [StartDate], [EndDate])
 		VALUES
 			(@Name, @FeatureID, @StartDate, @EndDate)
+	END
+GO
+
+print '' print '*** creating sp_delete_project_sprint ***'
+GO
+CREATE PROCEDURE [dbo].[sp_delete_project_sprint] (
+	@SprintID		[int]	
+)
+AS
+	BEGIN
+		DELETE FROM [Sprint]
+		WHERE [SprintID] = @SprintID
 	END
 GO
 

@@ -94,5 +94,12 @@ namespace DumbScrum.Views {
                     "Update failed", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void btnSignOut_Click(object sender, RoutedEventArgs e) {
+            MainWindow window = (MainWindow)Window.GetWindow(this);
+            WelcomeWindow welcomeWindow = new WelcomeWindow();
+            window.Close();
+            welcomeWindow.ShowDialog();
+        }
     }
 }

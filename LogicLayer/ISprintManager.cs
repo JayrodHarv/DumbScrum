@@ -7,5 +7,6 @@ namespace LogicLayer {
         SprintVM GetSprintVMByFeatureID(string featureID);
         List<SprintVM> GetSprintVMsByProjectID(string projectID);
         bool AddSprint(Sprint sprint);
+        bool CancelSprint(int sprintID);
     }
 }

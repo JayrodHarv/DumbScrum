@@ -17,20 +17,10 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Content="Manage Project" VerticalAlignment="Center" FontWeight="Bold" FontSize="16"/>
-            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="8">
-                <Button x:Name="btnOpenProject" Padding="10, 0" Margin="0,0,10,0" Content="Open Project" Background="#FF0F99E2" Foreground="White"/>
-                <Button x:Name="btnCreateProject" Padding="10, 0" Margin="0,0,10,0" Content="Create Project" Background="#FF26B51A" Foreground="White"/>
-                <Button x:Name="btnLeaveProject" Padding="10, 0" Margin="0,0,10,0" Content="Leave Project" Background="#FFDC6060" Foreground="White"/>
-            </StackPanel>
         </Grid>
         <TabControl Grid.Row="1">
             <TabItem x:Name="tabSettings" Header="Settings"/>
             <TabItem x:Name="tabMembers" Header="Members"/>
-            <TabItem x:Name="tabStoredProcedure" Header="Stored Procedure Specifications"/>
-            <TabItem x:Name="tabInterfaces" Header="User Interfaces"/>
-            <TabItem x:Name="tabERDiagram" Header="ER Diagram"/>
-            <TabItem x:Name="tabDD" Header="Data Dictionary"/>
-            <TabItem x:Name="tabDM" Header="Data Models"/>
         </TabControl>
     </Grid>
 </UserControl>

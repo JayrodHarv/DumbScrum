@@ -39,10 +39,7 @@ namespace DumbScrum.Views {
             }
         }
 
-        private void tabSprintList_GotFocus(object sender, RoutedEventArgs e) {
-            sprints = sprintManager.GetSprintVMsByProjectID(projectID);
-            lvSprints.ItemsSource = sprints;
-        }
+        
 
         private void btnPlanNewSprint_Click(object sender, RoutedEventArgs e) {
             try {
@@ -51,7 +48,12 @@ namespace DumbScrum.Views {
                 if (result == true) {
                     MessageBox.Show("Sprint Successfully Planned.", "Success",
                         MessageBoxButton.OK, MessageBoxImage.Information);
-                    lvSprints.ItemsSource = sprintManager.GetSprintVMsByProjectID(projectID);
+                    sprints = sprintManager.GetSprintVMsByProjectID(projectID);
+                    lvSprints.ItemsSource= sprints;
+                    calSprint.BlackoutDates.Clear();
+                    foreach (SprintVM s in sprints) {
+                        calSprint.BlackoutDates.Add(new CalendarDateRange(s.StartDate, s.EndDate));
+                    }
                 } else {
                     MessageBox.Show("Sprint Not Planned", "Operation Aborted",
                         MessageBoxButton.OK, MessageBoxImage.Information);
@@ -59,6 +61,30 @@ namespace DumbScrum.Views {
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
                     "Failed To Plan Sprint", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void btndeleteSprint_Click(object sender, RoutedEventArgs e) {
+            if(lvSprints.SelectedItem != null) {
+                SprintVM sprint = lvSprints.SelectedItem as SprintVM;
+                var result = MessageBox.Show("Are you sure that you want to cancel " + sprint.Name, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes) {
+                    try {
+                        if (sprintManager.CancelSprint(sprint.SprintID)) {
+                            sprints = sprintManager.GetSprintVMsByProjectID(projectID);
+                            lvSprints.ItemsSource = sprints;
+                            calSprint.BlackoutDates.Clear();
+                            foreach (SprintVM s in sprints) {
+                                calSprint.BlackoutDates.Add(new CalendarDateRange(s.StartDate, s.EndDate));
+                            }
+                            MessageBox.Show("Sprint Canceled.");
+                        }
+                    } catch (Exception ex) {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            } else {
+                MessageBox.Show("You need to select a sprint to cancel.");
             }
         }
     }

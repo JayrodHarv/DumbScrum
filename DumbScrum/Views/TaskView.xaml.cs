@@ -48,5 +48,9 @@ namespace DumbScrum.Views {
         private void btnCommitToTask_Click(object sender, RoutedEventArgs e) {
 
         }
+
+        private void btnSendToBeReviewed_Click(object sender, RoutedEventArgs e) {
+
+        }
     }
 }

@@ -11,5 +11,6 @@ namespace DataAccessInterfaces {
         SprintVM SelectSprintVMByFeatureID(string featureID);
         List<SprintVM> SelectSprintVMsByProjectID(string projectID);
         int CreateSprint(Sprint sprint);
+        int DeleteSprint(int sprintID);
     }
 }

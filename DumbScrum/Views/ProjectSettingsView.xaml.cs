@@ -24,6 +24,7 @@ namespace DumbScrum.Views {
     public partial class ProjectSettingsView : UserControl {
         string projectID;
         FileManager fileManager = new FileManager();
+        ProjectManager projectManager = new ProjectManager();
         List<File> templateFiles = new List<File>();
         public ProjectSettingsView(string projectID) {
             this.projectID = projectID;
@@ -104,6 +105,22 @@ namespace DumbScrum.Views {
                     return "Diagrams.net | *.drawio";
                 default:
                     return "";
+            }
+        }
+
+        private void btnDeleteProject_Click(object sender, RoutedEventArgs e) {
+            Project project = projectManager.GetProjectVMByProjectID(projectID);
+            var result = MessageBox.Show("Are you sure that you want to permanently delete " + project.ProjectID, "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes) {
+                try {
+                    if (projectManager.RemoveProject(projectID)) {
+                        MessageBox.Show("Project Successfully Deleted.");
+                        MainWindow window = (MainWindow)Window.GetWindow(this);
+                        window.CurrentView = new MyProjectsView(window.LoggedInUser);
+                    }
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
     }

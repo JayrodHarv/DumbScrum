@@ -49,13 +49,7 @@
                     <TextBlock Text="To Do" Foreground="white" Padding="3" FontWeight="SemiBold" />
                     <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
                 </StackPanel>
-                <ItemsControl Grid.Row="1" x:Name="icToDoTasks" Background="Transparent">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <userControls:SrumBoardItem MouseDoubleClick="SrumBoardItem_MouseDoubleClick"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <ItemsControl Grid.Row="1" x:Name="icToDoTasks" Background="Transparent"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="2">
@@ -67,13 +61,7 @@
                     <TextBlock Text="In Progress" Foreground="white" Padding="3" FontWeight="SemiBold" />
                     <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
                 </StackPanel>
-                <ItemsControl Grid.Row="1" x:Name="icInProgressTasks" Background="Transparent">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <userControls:SrumBoardItem MouseDoubleClick="SrumBoardItem_MouseDoubleClick"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <ItemsControl Grid.Row="1" x:Name="icInProgressTasks" Background="Transparent"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="4">
@@ -85,13 +73,7 @@
                     <TextBlock Text="Needs Reviewed" Foreground="white" Padding="3" FontWeight="SemiBold" />
                     <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
                 </StackPanel>
-                <ItemsControl Grid.Row="1" x:Name="icNeedsReviewedTasks" Background="Transparent">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <userControls:SrumBoardItem MouseDoubleClick="SrumBoardItem_MouseDoubleClick"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <ItemsControl Grid.Row="1" x:Name="icNeedsReviewedTasks" Background="Transparent"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="6">
@@ -103,13 +85,7 @@
                     <TextBlock Text="Complete" Foreground="white" Padding="3" FontWeight="SemiBold" />
                     <TextBlock Text="#" Foreground="white" Padding="3" FontWeight="SemiBold"/>
                 </StackPanel>
-                <ItemsControl Grid.Row="1" x:Name="icCompleteTasks" Background="Transparent">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <userControls:SrumBoardItem MouseDoubleClick="SrumBoardItem_MouseDoubleClick"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <ItemsControl Grid.Row="1" x:Name="icCompleteTasks" Background="Transparent"/>
             </Grid>
         </Grid>
     </Grid>

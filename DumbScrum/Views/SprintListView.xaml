@@ -20,11 +20,11 @@
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="8">
                 <Button x:Name="btnPlanNewSprint" Padding="10, 0" Margin="0,0,10,0" Content="Plan New Sprint" Background="#FF26B51A" Click="btnPlanNewSprint_Click" Foreground="White"/>
                 <Button x:Name="btnEditSprint" Padding="10, 0" Margin="0,0,10,0" Content="Edit Sprint Schedule" Background="#FFDDDE29" Foreground="White"/>
-                <Button x:Name="btndeleteSprint" Padding="10, 0" Content="Cancel Sprint" Background="#FFDC6060" Foreground="White"/>
+                <Button x:Name="btndeleteSprint" Padding="10, 0" Content="Cancel Sprint" Background="#FFDC6060" Foreground="White" Click="btndeleteSprint_Click"/>
             </StackPanel>
         </Grid>
         <TabControl Grid.Row="1">
-            <TabItem x:Name="tabSprintList" Header="Sprint List" GotFocus="tabSprintList_GotFocus">
+            <TabItem x:Name="tabSprintList" Header="Sprint List">
                 <ListView x:Name="lvSprints" Grid.Row="1" Background="Transparent" SelectionMode="Single">
                     <ListView.View>
                         <GridView>

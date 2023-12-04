@@ -79,5 +79,15 @@ namespace LogicLayer {
             }
             return result;
         }
+
+        public bool RemoveProject(string projectID) {
+            bool result = false;
+            try {
+                result = (1 == _projectAccessor.DeleteProject(projectID));
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

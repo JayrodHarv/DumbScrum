@@ -16,6 +16,7 @@
             <Label Content="User Settings:" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" Padding="10,10,0,0"/>
             <Label Content="Manage your account settings" Padding="10,0"/>
         </StackPanel>
+        <Button x:Name="btnSignOut" Content="Sign Out" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="10,5" Margin="10" Click="btnSignOut_Click"/>
         <Separator VerticalAlignment="Bottom"/>
         <Grid Grid.Row="1" Margin="10">
             <Grid.RowDefinitions>

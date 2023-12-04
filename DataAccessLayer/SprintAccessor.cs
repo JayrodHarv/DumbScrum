@@ -177,5 +177,28 @@ namespace DataAccessLayer {
             }
             return result;
         }
+
+        public int DeleteSprint(int sprintID) {
+            int result = 0;
+
+            var conn = SqlConnectionProvider.GetConnection();
+            var cmdText = "sp_delete_project_sprint";
+            var cmd = new SqlCommand(cmdText, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@SprintID", SqlDbType.Int);
+
+            cmd.Parameters["@SprintID"].Value = sprintID;
+
+            try {
+                conn.Open();
+                result = cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
+        }
     }
 }

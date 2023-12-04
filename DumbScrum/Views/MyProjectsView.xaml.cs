@@ -58,6 +58,10 @@ namespace DumbScrum.Views {
             if(lvProjects.SelectedItem != null) {
                 try {
                     Project project = lvProjects.SelectedItem as Project;
+                    if(project.UserID == user.UserID) {
+                        MessageBox.Show("You can't leave your own project. If you wish to delete your project, you can do so in its project settings.");
+                        return;
+                    }
                     if (projectManager.LeaveProject(user.UserID, project.ProjectID)) {
                         MessageBox.Show("Project Successfully Left.", "Success",
                         MessageBoxButton.OK, MessageBoxImage.Information);

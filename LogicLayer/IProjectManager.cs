@@ -13,5 +13,6 @@ namespace LogicLayer {
         bool AddProject(Project project);
         bool JoinProject(string projectID, int userID);
         bool LeaveProject(int userID, string projectID);
+        bool RemoveProject(string projectID);
     }
 }

@@ -9,5 +9,6 @@ namespace DataAccessInterfaces {
         int CreateProject(Project project);
         int JoinProject(string projectID, int userID);
         int LeaveProject(int userID, string projectID);
+        int DeleteProject(string projectID);
     }
 }

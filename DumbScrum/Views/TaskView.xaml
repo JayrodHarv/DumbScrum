@@ -15,6 +15,8 @@
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="50"/>
+                        <RowDefinition />
+                        <RowDefinition Height="50"/>
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="0">
                         <Label Content="Task ID: " VerticalAlignment="Center" FontWeight="DemiBold" />
@@ -33,8 +35,8 @@
                         <Label Content="Status: " VerticalAlignment="Center" FontWeight="DemiBold" />
                         <TextBlock x:Name="tbStatus" VerticalAlignment="Center"/>
                     </StackPanel>
-                    <!--<Button x:Name="btnCommitToTask" Content="Commit To Task" HorizontalAlignment="Left" 
-                            VerticalAlignment="Center" Padding="10,5"/>-->
+                    <Button x:Name="btnSendToBeReviewed" Grid.Row="5" Content="Send To Be Reviewed" HorizontalAlignment="Right" 
+                            VerticalAlignment="Bottom" Padding="10,5" Click="btnSendToBeReviewed_Click"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabUseCase" Header="Use Cases"/>

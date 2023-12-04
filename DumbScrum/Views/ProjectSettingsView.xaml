@@ -29,5 +29,8 @@
                 </Expander>
             </StackPanel>
         </ScrollViewer>
+        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="8" Grid.Row="2">
+            <Button x:Name="btnDeleteProject" Padding="10, 0" Margin="0,0,10,0" Content="Delete Project" Background="#FFDC6060" Foreground="White" Click="btnDeleteProject_Click"/>
+        </StackPanel>
     </Grid>
 </UserControl>
