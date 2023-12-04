@@ -42,5 +42,9 @@ namespace DumbScrum.Views {
             tabDD.Content = new FileUploadView(projectID, taskID, "Data Dictionary");
             tabDM.Content = new FileUploadView(projectID, taskID, "Data Model");
         }
+
+        private void btnCommitToTask_Click(object sender, RoutedEventArgs e) {
+
+        }
     }
 }
