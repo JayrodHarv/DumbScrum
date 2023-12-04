@@ -22,6 +22,7 @@ namespace DumbScrum.UserControls {
     /// </summary>
     public partial class SrumBoardItem : UserControl {
         TaskManager taskManager = new TaskManager();
+        UserManager userManager = new UserManager();
         TaskVM task;
         UserVM user;
         string projectID;
@@ -38,6 +39,15 @@ namespace DumbScrum.UserControls {
                 btnStart.Visibility = Visibility.Visible;
             } else {
                 this.ToolTip = "Double-click to see more details";
+            }
+            tbTaskID.Text = task.TaskID.ToString();
+            tbStory.Text = task.Story;
+            if(task.UserID != 0) {
+                spUserContainer.Visibility = Visibility.Visible;
+                User taskUser = userManager.GetUser(task.UserID);
+                txtUserDisplayName.Text = taskUser.DisplayName;
+                ImageSourceConverter converter = new ImageSourceConverter();
+                imgPfp.ImageSource = (ImageSource)converter.ConvertFrom(taskUser.Pfp);
             }
         }
 
@@ -59,9 +69,7 @@ namespace DumbScrum.UserControls {
             if (task.Status != "To Do") {
                 MainWindow window = (MainWindow)Window.GetWindow(this);
                 ProjectView projectView = (ProjectView)window.CurrentView;
-                SrumBoardItem item = sender as SrumBoardItem;
-                int taskID = int.Parse(item.lblTaskID.Content.ToString());
-                projectView.CurrentProjectView = new TaskView(projectID, taskID, user);
+                projectView.CurrentProjectView = new TaskView(projectID, task.TaskID, user);
             }
         }
     }

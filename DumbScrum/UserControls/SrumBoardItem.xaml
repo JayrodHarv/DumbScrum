@@ -15,12 +15,20 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0">
-            <Label x:Name="lblTaskID" Content="{Binding TaskID}"/>
+            <TextBlock x:Name="tbTaskID" Text="TaskID"/>
         </StackPanel>
         
-        <TextBlock Grid.Row="1" Grid.ColumnSpan="3" Text="{Binding Story}" FontSize="10" Margin="5" TextWrapping="Wrap"/>
+        <TextBlock x:Name="tbStory" Grid.Row="1" Grid.ColumnSpan="3" Text="Story" FontSize="10" Margin="5" TextWrapping="Wrap"/>
 
         <Button Grid.Row="2" x:Name="btnStart" Content="Start" HorizontalAlignment="Right" VerticalAlignment="Center" 
                 FontSize="10" Margin="0,0,8,0" Padding="10,0" Click="btnStart_Click" Visibility="Collapsed"/>
+        <StackPanel x:Name="spUserContainer" Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,5,5" Visibility="Collapsed">
+            <TextBlock x:Name="txtUserDisplayName" Text="Username" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="5" FontSize="10"/>
+            <Ellipse Height="25" Width="25">
+                <Ellipse.Fill>
+                    <ImageBrush x:Name="imgPfp"/>
+                </Ellipse.Fill>
+            </Ellipse>
+        </StackPanel>
     </Grid>
 </UserControl>
