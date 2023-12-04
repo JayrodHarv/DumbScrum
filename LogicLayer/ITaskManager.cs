@@ -9,7 +9,8 @@ namespace LogicLayer {
     public interface ITaskManager {
         bool CreateTask(DataObjects.Task task);
         TaskVM GetTask(int taskID);
-        List<TaskVM> GetSprintTaskVMsByStatus(int sprintID, string status);
+        bool UpdateTaskUserID(int taskID, int userID);
+        List<TaskVM> GetSprintTaskVMs(int sprintID);
         List<TaskVM> GetTaskVMsByUserID(int userID);
     }
 }

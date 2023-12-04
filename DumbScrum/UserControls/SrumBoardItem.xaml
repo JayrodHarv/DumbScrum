@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:DumbScrum.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="200"
-             ToolTip="Double-click to see more details">
+             Loaded="UserControl_Loaded" MouseDoubleClick="UserControl_MouseDoubleClick">
     <Grid Background="White" Margin="0,10,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -20,7 +20,7 @@
         
         <TextBlock Grid.Row="1" Grid.ColumnSpan="3" Text="{Binding Story}" FontSize="10" Margin="5" TextWrapping="Wrap"/>
 
-        <!--<Button Grid.Row="2" x:Name="btnStart" Content="Start" HorizontalAlignment="Right" VerticalAlignment="Center" 
-                FontSize="10" Margin="0,0,8,0" Padding="10,0" Click="btnStart_Click"/>-->
+        <Button Grid.Row="2" x:Name="btnStart" Content="Start" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                FontSize="10" Margin="0,0,8,0" Padding="10,0" Click="btnStart_Click" Visibility="Collapsed"/>
     </Grid>
 </UserControl>

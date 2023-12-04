@@ -16,12 +16,14 @@ namespace DumbScrum.Views {
     /// </summary>
     public partial class BoardView : UserControl {
         string projectID = string.Empty;
+        UserVM user;
         SprintManager sprintManager = new SprintManager();
         TaskManager taskManager = new TaskManager();
         List<SprintVM> sprints = new List<SprintVM>();
 
-        public BoardView(string projectID) {
+        public BoardView(string projectID, UserVM user) {
             this.projectID = projectID;
+            this.user = user;
             DataContext = this;
             InitializeComponent();
         }
@@ -48,10 +50,7 @@ namespace DumbScrum.Views {
                 txtFeature.Text = sprint.FeatureName;
                 txtDateRange.Text = sprint.StartDate.ToShortDateString() + " - " + sprint.EndDate.ToShortDateString();
                 try {
-                    icToDoTasks.ItemsSource = taskManager.GetSprintTaskVMsByStatus(sprint.SprintID, "To Do");
-                    icInProgressTasks.ItemsSource = taskManager.GetSprintTaskVMsByStatus(sprint.SprintID, "In Progress");
-                    icNeedsReviewedTasks.ItemsSource = taskManager.GetSprintTaskVMsByStatus(sprint.SprintID, "Needs Reviewed");
-                    icCompleteTasks.ItemsSource = taskManager.GetSprintTaskVMsByStatus(sprint.SprintID, "Complete");
+                    RefreshBoard(sprint.SprintID);
                 } catch (Exception ex) {
                     MessageBox.Show(ex.Message);
                 }
@@ -62,12 +61,28 @@ namespace DumbScrum.Views {
 
         }
 
-        private void SrumBoardItem_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e) {
-            MainWindow window = (MainWindow)Window.GetWindow(this);
-            ProjectView projectView = (ProjectView)window.CurrentView;
-            SrumBoardItem item = sender as SrumBoardItem;
-            int taskID = int.Parse(item.lblTaskID.Content.ToString());
-            projectView.CurrentProjectView = new TaskView(projectID, taskID);
+        public void RefreshBoard(int sprintID) {
+            icToDoTasks.Items.Clear();
+            icInProgressTasks.Items.Clear();
+            icNeedsReviewedTasks.Items.Clear();
+            icCompleteTasks.Items.Clear();
+            List<TaskVM> tasks = taskManager.GetSprintTaskVMs(sprintID);
+            foreach (TaskVM task in tasks) {
+                switch (task.Status) {
+                    case "To Do":
+                        icToDoTasks.Items.Add(new SrumBoardItem(task, user, projectID));
+                        break;
+                    case "In Progress":
+                        icInProgressTasks.Items.Add(new SrumBoardItem(task, user, projectID));
+                        break;
+                    case "Needs Reviewed":
+                        icNeedsReviewedTasks.Items.Add(new SrumBoardItem(task, user, projectID));
+                        break;
+                    case "Complete":
+                        icCompleteTasks.Items.Add(new SrumBoardItem(task, user, projectID));
+                        break;
+                }
+            }
         }
     }
 }

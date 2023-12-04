@@ -34,10 +34,10 @@ namespace LogicLayer {
             return result;
         }
 
-        public List<TaskVM> GetSprintTaskVMsByStatus(int sprintID, string status) {
+        public List<TaskVM> GetSprintTaskVMs(int sprintID) {
             List<TaskVM> result = new List<TaskVM>();
             try {
-                result = _taskAccessor.SelectSprintTaskVMsByStatus(sprintID, status);
+                result = _taskAccessor.SelectSprintTaskVMs(sprintID);
             } catch (Exception ex) {
                 throw ex;
             }
@@ -58,6 +58,16 @@ namespace LogicLayer {
             List<TaskVM> result = new List<TaskVM>();
             try {
                 result = _taskAccessor.SelectTaskVMsByUserID(userID);
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return result;
+        }
+
+        public bool UpdateTaskUserID(int taskID, int userID) {
+            bool result = false;
+            try {
+                result = (1 == _taskAccessor.UpdateTaskUserID(taskID, userID));
             } catch (Exception ex) {
                 throw ex;
             }

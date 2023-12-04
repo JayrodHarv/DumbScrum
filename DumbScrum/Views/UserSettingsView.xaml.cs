@@ -1,4 +1,5 @@
 ﻿using DataObjects;
+using DumbScrum.UserControls;
 using LogicLayer;
 using Microsoft.Win32;
 using System;
@@ -46,6 +47,11 @@ namespace DumbScrum.Views {
             UserManager userManager = new UserManager();
             try {
                 if (userManager.EditUser(newUser, user)) {
+                    MainWindow window = (MainWindow)Window.GetWindow(this);
+                    window.LoggedInUser = newUser;
+                    window.txtDisplayName.Text = user.DisplayName;
+                    ImageSource pfp = (ImageSource)imageSourceConverter.ConvertFrom(user.Pfp);
+                    window.imgPfp.ImageSource = pfp;
                     MessageBox.Show("Settings Changed!");
                 }
             } catch (Exception ex) {

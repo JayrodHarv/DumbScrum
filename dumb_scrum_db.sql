@@ -527,8 +527,10 @@ CREATE PROCEDURE [dbo].[sp_update_task_userid] (
 AS
 	BEGIN
 		UPDATE [Task]
-		SET [UserID] = @UserID
+		SET [UserID] = @UserID,
+			[Status] = "In Progress"
 		WHERE [TaskID] = @TaskID
+		AND [UserID] IS NULL
 	END
 GO
 
@@ -548,9 +550,8 @@ GO
 
 print '' print '*** creating sp_select_sprint_tasks_by_status ***'
 GO
-CREATE PROCEDURE [dbo].[sp_select_sprint_tasks_by_status] (
-	@SprintID		[int],
-	@Status			[nvarchar] (50)
+CREATE PROCEDURE [dbo].[sp_select_sprint_tasks] (
+	@SprintID		[int]
 )
 AS
 	BEGIN
@@ -563,7 +564,6 @@ AS
 		INNER JOIN [dbo].[Feature]
 		ON [Feature].[FeatureID] = [UserStory].[FeatureID]
 		WHERE [SprintID] = @SprintID
-		AND	  [Task].[Status] = @Status
 	END
 GO
 

@@ -13,11 +13,13 @@ namespace DumbScrum.Views {
         string projectID;
         int taskID;
         TaskVM task;
+        UserVM user;
         TaskManager taskManager = new TaskManager();
         UserManager userManager = new UserManager();
-        public TaskView(string projectID, int taskID) {
+        public TaskView(string projectID, int taskID, UserVM user) {
             this.projectID = projectID;
             this.taskID = taskID;
+            this.user = user;
             InitializeComponent();
         }
 
@@ -25,7 +27,7 @@ namespace DumbScrum.Views {
             try {
                 task = taskManager.GetTask(taskID);
                 tbTaskID.Text = task.TaskID.ToString();
-                if(task.UserID != 0) {
+                if(task.UserID != 0) { // it's set to 0 if userid is null in the accessor
                     User user = userManager.GetUser(task.UserID);
                     tbUser.Text = user.DisplayName;
                     btnCommitToTask.Visibility = Visibility.Collapsed;

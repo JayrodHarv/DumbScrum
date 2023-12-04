@@ -11,7 +11,7 @@ namespace DataAccessInterfaces {
         int UpdateTaskUserID(int taskID, int userID);
         int UpdateTaskStatus(int taskID, string status);
         TaskVM SelectTaskByTaskID(int taskID);
-        List<TaskVM> SelectSprintTaskVMsByStatus(int sprintID, string status);
+        List<TaskVM> SelectSprintTaskVMs(int sprintID);
         List<TaskVM> SelectTaskVMsByUserID(int userID);
     }
 }

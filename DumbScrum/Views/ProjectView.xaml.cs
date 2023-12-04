@@ -57,7 +57,7 @@ namespace DumbScrum.Views {
         }
 
         private void btnBoard_Click(object sender, RoutedEventArgs e) {
-            CurrentProjectView = new BoardView(_projectVM.ProjectID);
+            CurrentProjectView = new BoardView(_projectVM.ProjectID, user);
         }
 
         private void btnIssues_Click(object sender, RoutedEventArgs e) {

@@ -39,14 +39,14 @@ namespace DataAccessLayer {
             return result;
         }
 
-        public List<TaskVM> SelectSprintTaskVMsByStatus(int sprintID, string status) {
+        public List<TaskVM> SelectSprintTaskVMs(int sprintID) {
             List<TaskVM> result = new List<TaskVM>();
 
             // create connection object
             var conn = SqlConnectionProvider.GetConnection();
 
             // set the command text
-            var commandText = "sp_select_sprint_tasks_by_status";
+            var commandText = "sp_select_sprint_tasks";
 
             // create command object
             var cmd = new SqlCommand(commandText, conn);
@@ -56,11 +56,9 @@ namespace DataAccessLayer {
 
             // add parameters to command
             cmd.Parameters.Add("@SprintID", SqlDbType.Int);
-            cmd.Parameters.Add("@Status", SqlDbType.NVarChar, 50);
 
             // set parameter values
             cmd.Parameters["@SprintID"].Value = sprintID;
-            cmd.Parameters["@Status"].Value = status;
 
             try {
                 // open connection
@@ -186,7 +184,28 @@ namespace DataAccessLayer {
         }
 
         public int UpdateTaskStatus(int taskID, string status) {
-            throw new NotImplementedException();
+            int result = 0;
+
+            var conn = SqlConnectionProvider.GetConnection();
+            var cmdText = "sp_update_task_status";
+            var cmd = new SqlCommand(cmdText, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@TaskID", SqlDbType.Int);
+            cmd.Parameters.Add("@Status", SqlDbType.NVarChar, 50);
+
+            cmd.Parameters["@TaskID"].Value = taskID;
+            cmd.Parameters["@Status"].Value = status;
+
+            try {
+                conn.Open();
+                result = cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
         }
 
         public int UpdateTaskUserID(int taskID, int userID) {
