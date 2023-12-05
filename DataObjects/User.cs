@@ -13,4 +13,8 @@ namespace DataObjects {
     public class UserVM : User {
         public List<Task> Tasks { get; set; }
     }
+
+    public class ProjectMemberVM : User {
+        public List<Task> Tasks { get; set;}
+    }
 }

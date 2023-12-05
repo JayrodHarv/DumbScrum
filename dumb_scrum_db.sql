@@ -591,6 +591,25 @@ AS
 	END
 GO
 
+print '' print '*** creating sp_select_taskvms_by_userid ***'
+GO
+CREATE PROCEDURE [dbo].[sp_select_taskvms_by_userid] (
+	@UserID		[int]
+)
+AS
+	BEGIN
+		SELECT 	[TaskID], [SprintID], [Task].[StoryID], [UserID], [Task].[Status],
+				[Feature].[ProjectID], [Feature].[Name], [UserStory].[Person],
+				[UserStory].[Action], [UserStory].[Reason]
+		FROM [Task]
+		INNER JOIN [dbo].[UserStory]
+		ON [UserStory].[StoryID] = [Task].[StoryID]
+		INNER JOIN [dbo].[Feature]
+		ON [Feature].[FeatureID] = [UserStory].[FeatureID]
+		WHERE [UserID] = @UserID
+	END
+GO
+
 print '' print '*** creating sp_select_taskvm_by_taskid ***'
 GO
 CREATE PROCEDURE [dbo].[sp_select_taskvm_by_taskid] (

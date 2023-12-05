@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DataObjects {
+
+    // Got to work but realized it'd be better and easier to just store the files in the database
     public static class GoogleDriveHelper {
         private static string credentialsPath = "credentials.json";
         private static readonly string projectFolderID = "1CWF1MjBe3bXN9I0Z0_3o6FeHPa9AKHi0";

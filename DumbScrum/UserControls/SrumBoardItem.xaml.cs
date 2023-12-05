@@ -69,8 +69,14 @@ namespace DumbScrum.UserControls {
         private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
             if (task.Status != "To Do") {
                 MainWindow window = (MainWindow)Window.GetWindow(this);
-                ProjectView projectView = (ProjectView)window.CurrentView;
-                projectView.CurrentProjectView = new TaskView(projectID, task.TaskID, user);
+                if(window.CurrentView.GetType() == typeof(HomeView)) {
+                    window.CurrentView = new ProjectView(projectID, user);
+                    ProjectView projectView = (ProjectView)window.CurrentView;
+                    projectView.CurrentProjectView = new TaskView(projectID, task.TaskID, user);
+                } else {
+                    ProjectView projectView = (ProjectView)window.CurrentView;
+                    projectView.CurrentProjectView = new TaskView(projectID, task.TaskID, user);
+                }
             }
         }
     }

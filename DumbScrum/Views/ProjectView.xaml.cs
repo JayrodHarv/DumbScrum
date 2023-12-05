@@ -37,14 +37,12 @@ namespace DumbScrum.Views {
                 MessageBox.Show(ex.Message);
             }
             InitializeComponent();
-        }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e) {
-            if(_projectVM.UserID == user.UserID) {
+            if (_projectVM.UserID == user.UserID) {
                 btnManage.Visibility = Visibility.Visible;
                 CurrentProjectView = new ManageProjectView(_projectVM.ProjectID);
             } else {
                 CurrentProjectView = new ProjectFeedView(_projectVM.ProjectID, user.UserID);
+                btnFeed.IsChecked = true;
             }
         }
 
@@ -58,10 +56,6 @@ namespace DumbScrum.Views {
 
         private void btnBoard_Click(object sender, RoutedEventArgs e) {
             CurrentProjectView = new BoardView(_projectVM.ProjectID, user);
-        }
-
-        private void btnIssues_Click(object sender, RoutedEventArgs e) {
-
         }
 
         private void btnSprints_Click(object sender, RoutedEventArgs e) {

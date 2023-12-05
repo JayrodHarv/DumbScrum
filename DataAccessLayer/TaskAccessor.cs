@@ -2,13 +2,8 @@
 using DataObjects;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using System.Net.NetworkInformation;
+using System.Data.SqlClient;
 
 namespace DataAccessLayer {
     public class TaskAccessor : ITaskAccessor {
@@ -76,7 +71,7 @@ namespace DataAccessLayer {
                         t.Status = reader.GetString(4);
                         t.ProjectName = reader.GetString(5);
                         t.FeatureName = reader.GetString(6);
-                        t.Story = "As a " + reader.GetString(7) + " I would like to " + 
+                        t.Story = "As a " + reader.GetString(7) + " I would like to " +
                             reader.GetString(8) + " so that " + reader.GetString(9) + ".";
                         result.Add(t);
                     }
@@ -144,7 +139,7 @@ namespace DataAccessLayer {
             var conn = SqlConnectionProvider.GetConnection();
 
             // set the command text
-            var commandText = "sp_select_sprint_tasks";
+            var commandText = "sp_select_taskvms_by_userid";
 
             // create command object
             var cmd = new SqlCommand(commandText, conn);
@@ -172,6 +167,10 @@ namespace DataAccessLayer {
                         t.StoryID = reader.GetString(2);
                         t.UserID = reader.GetInt32(3);
                         t.Status = reader.GetString(4);
+                        t.ProjectName = reader.GetString(5);
+                        t.FeatureName = reader.GetString(6);
+                        t.Story = "As a " + reader.GetString(7) + " I would like to " +
+                            reader.GetString(8) + " so that " + reader.GetString(9) + ".";
                         result.Add(t);
                     }
                 }

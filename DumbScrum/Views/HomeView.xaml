@@ -5,38 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DumbScrum.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="60"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Name="lblWelcome" Content="{Binding LoggedInUser.DisplayName}" 
+        <Label Grid.Row="0" Grid.Column="0" Name="lblWelcome" Content="Welcome User" 
                FontSize="16" VerticalAlignment="Center" Margin="20,0,20,0"/>
-        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal" Margin="20,0">
             <Border Background="#FF34BFEC" Width="60" Height="40" CornerRadius="5,0,0,5">
                 <TextBlock Text="My Tasks" Foreground="white" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
-            <Border Width="80" Height="40" BorderThickness="0.5" BorderBrush="Gray">
+            <Border Width="120" Height="40" BorderThickness="0.5" BorderBrush="Gray">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock Text="Open" Foreground="LightGreen" Margin="5"/>
-                    <TextBlock Text="0" Margin="5"/>
+                    <TextBlock Text="In Progress" Foreground="Orange" Margin="5"/>
+                    <TextBlock x:Name="tbInProgress" Text="0" Margin="5"/>
                 </StackPanel>
             </Border>
-            <Border Width="80" Height="40" BorderThickness="0.5" BorderBrush="Gray" CornerRadius="0,5,5,0">
+            <Border Width="120" Height="40" BorderThickness="0.5" BorderBrush="Gray">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock Text="Closed" Foreground="Red" Margin="5"/>
-                    <TextBlock Text="0" Margin="5"/>
+                    <TextBlock Text="Needs Reviewed" Foreground="Yellow" Margin="5"/>
+                    <TextBlock x:Name="tbNeedsReviewed" Text="0" Margin="5"/>
+                </StackPanel>
+            </Border>
+            <Border Width="120" Height="40" BorderThickness="0.5" BorderBrush="Gray" CornerRadius="0,5,5,0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Complete" Foreground="Green" Margin="5"/>
+                    <TextBlock x:Name="tbComplete" Text="0" Margin="5"/>
                 </StackPanel>
             </Border>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+        <!--<StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
             <Border Background="#FFED7171" Width="60" Height="40" CornerRadius="5,0,0,5">
                 <TextBlock Text="My Issues" Foreground="white" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
@@ -52,13 +54,12 @@
                     <TextBlock Text="0" Margin="5"/>
                 </StackPanel>
             </Border>
-        </StackPanel>
-        <Border Grid.Row="2" Grid.Column="0" BorderBrush="Gray" BorderThickness="0.5" Margin="15">
+        </StackPanel>-->
+        
+        <Border Grid.Row="2" BorderBrush="Gray" BorderThickness="0.5" Margin="15">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top">
                 <Label Content="My Tasks" BorderBrush="Gray" BorderThickness="0,0,0,0.5"/>
-                <ListView >
-                    
-                </ListView>
+                <ItemsControl x:Name="icUserTasks"/>
             </StackPanel>
         </Border>
     </Grid>

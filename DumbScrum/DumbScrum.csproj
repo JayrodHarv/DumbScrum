@@ -118,6 +118,9 @@
     <Compile Include="Views\BacklogView.xaml.cs">
       <DependentUpon>BacklogView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProjectMembersView.xaml.cs">
+      <DependentUpon>ProjectMembersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProjectSettingsView.xaml.cs">
       <DependentUpon>ProjectSettingsView.xaml</DependentUpon>
     </Compile>
@@ -241,6 +244,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BacklogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectMembersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

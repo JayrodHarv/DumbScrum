@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DataObjects;
+using DumbScrum.UserControls;
+using LogicLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,8 +21,28 @@ namespace DumbScrum.Views {
     /// Interaction logic for HomeView.xaml
     /// </summary>
     public partial class HomeView : UserControl {
-        public HomeView() {
+        TaskManager taskManager = new TaskManager();
+        UserVM user;
+        public HomeView(UserVM user) {
+            this.user = user;
             InitializeComponent();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e) {
+            lblWelcome.Content = "Welcome " + user.DisplayName + "!";
+            try {
+                List<TaskVM> tasks = taskManager.GetTaskVMsByUserID(user.UserID);
+                icUserTasks.Items.Clear();
+                foreach (TaskVM task in tasks) {
+                    if(task.Status == "In Progress") {
+                        icUserTasks.Items.Add(new SrumBoardItem(task, user, task.ProjectName));
+                    } else {
+
+                    }
+                }
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

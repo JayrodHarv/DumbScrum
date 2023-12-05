@@ -33,7 +33,7 @@ namespace DumbScrum {
         public MainWindow(UserVM user) {
             DataContext = this;
             LoggedInUser = user;
-            CurrentView = new HomeView();
+            CurrentView = new HomeView(LoggedInUser);
             InitializeComponent();
 
             // AppData.DataPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "data";
@@ -50,7 +50,7 @@ namespace DumbScrum {
         }
 
         private void mnuHome_Click(object sender, RoutedEventArgs e) {
-            CurrentView = new HomeView();
+            CurrentView = new HomeView(LoggedInUser);
         }
 
         private void mnuMyProjects_Click(object sender, RoutedEventArgs e) {
