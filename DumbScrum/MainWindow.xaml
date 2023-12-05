@@ -28,10 +28,10 @@
                 <TextBlock Text="DS" Foreground="white" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Padding="5,0,0,0"/>
                 <Image x:Name="imgLogo" Width="35" Height="35"/>
             </StackPanel>
-            <Menu Grid.Column="1" Background="#FF3A3A3A" VerticalAlignment="Center">
-                <MenuItem x:Name="mnuHome" Header="Home" Foreground="white" Height="40" Click="mnuHome_Click"/>
-                <MenuItem x:Name="mnuMyProjects" Header="My Projects" Foreground="white" Height="30" Click="mnuMyProjects_Click"/>
-                <MenuItem x:Name="mnuBrowseProjects" Header="Browse Projects" Foreground="white" Height="30" Click="mnuBrowseProjects_Click"/>
+            <Menu Grid.Column="1" Background="#FF3A3A3A">
+                <MenuItem x:Name="mnuHome" Header="Home" Foreground="white" Height="40" VerticalAlignment="Center" Click="mnuHome_Click"/>
+                <MenuItem x:Name="mnuMyProjects" Header="My Projects" Foreground="white" Height="40" Click="mnuMyProjects_Click"/>
+                <MenuItem x:Name="mnuBrowseProjects" Header="Browse Projects" Foreground="white" Height="40" Click="mnuBrowseProjects_Click"/>
             </Menu>
             <Grid x:Name="userBox" Grid.Column="2" Background="#FF3A3A3A" MouseDown="userBox_MouseDown" ToolTip="Click to view/edit profile">
                 <Grid.ColumnDefinitions>

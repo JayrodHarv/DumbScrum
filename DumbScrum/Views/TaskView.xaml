@@ -25,7 +25,6 @@
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="1">
                         <Label Content="User Doing Task: " VerticalAlignment="Center" FontWeight="DemiBold" />
                         <TextBlock x:Name="tbUser" VerticalAlignment="Center"/>
-                        <Button x:Name="btnCommitToTask" Content="Commit To Task" Padding="10,5" Click="btnCommitToTask_Click"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="2">
                         <Label Content="User Story: " VerticalAlignment="Center" FontWeight="DemiBold" />
@@ -38,6 +37,37 @@
                     <Button x:Name="btnSendToBeReviewed" Grid.Row="5" Content="Send To Be Reviewed" HorizontalAlignment="Right" 
                             VerticalAlignment="Bottom" Padding="10,5" Click="btnSendToBeReviewed_Click"/>
                 </Grid>
+            </TabItem>
+            <TabItem x:Name="tabReview" Header="Review">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Check those that are acceptable: " VerticalAlignment="Center" FontWeight="DemiBold" />
+                        <WrapPanel Orientation="Horizontal" Grid.Row="1">
+                            <CheckBox x:Name="cbUseCase" Content="Use Cases" Margin="10"/>
+                            <CheckBox x:Name="cbSPS" Content="Stored Procedure Specifications" Margin="10"/>
+                            <CheckBox x:Name="cbUserInterface" Content="User Interfaces" Margin="10"/>
+                            <CheckBox x:Name="cbERD" Content="Entity Relationship Diagram" Margin="10"/>
+                            <CheckBox x:Name="cbDD" Content="Data Dictionary" Margin="10"/>
+                            <CheckBox x:Name="cbDM" Content="Data Models" Margin="10"/>
+                        </WrapPanel>
+                        <Grid Grid.Row="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Review Notes (Will be visible in the sprint feed once review is submited): " VerticalAlignment="Center" FontWeight="DemiBold" />
+                            <TextBox Grid.Row="1" x:Name="tbReviewNotes"/>
+                        </Grid>
+                        <Button x:Name="btnSubmitReview" Grid.Row="5" Content="Submit Review" HorizontalAlignment="Right" 
+                    VerticalAlignment="Bottom" Padding="10,5" Click="btnSubmitReview_Click"/>
+                    </Grid>
+                </ScrollViewer>
             </TabItem>
             <TabItem x:Name="tabUseCase" Header="Use Cases"/>
             <TabItem x:Name="tabStoredProcedure" Header="Stored Procedure Specifications"/>
