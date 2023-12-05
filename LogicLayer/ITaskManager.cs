@@ -10,6 +10,7 @@ namespace LogicLayer {
         bool CreateTask(DataObjects.Task task);
         TaskVM GetTask(int taskID);
         bool UpdateTaskUserID(int taskID, int userID);
+        bool UpdateTaskStatus(int taskID, string status);
         List<TaskVM> GetSprintTaskVMs(int sprintID);
         List<TaskVM> GetTaskVMsByUserID(int userID);
     }

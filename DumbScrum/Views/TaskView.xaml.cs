@@ -37,6 +37,14 @@ namespace DumbScrum.Views {
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
+            switch(task.Status) {
+                case "In Progress":
+                    btnSendToBeReviewed.Visibility = Visibility.Visible;
+                    break;
+                case "Needs Reviewed":
+                    break;
+            }
+
             tabUseCase.Content = new FileUploadView(projectID, taskID, "Use Case");
             tabStoredProcedure.Content = new FileUploadView(projectID, taskID, "Stored Procedure Specification");
             tabInterfaces.Content = new FileUploadView(projectID, taskID, "User Interface");
@@ -50,7 +58,13 @@ namespace DumbScrum.Views {
         }
 
         private void btnSendToBeReviewed_Click(object sender, RoutedEventArgs e) {
-
+            try {
+                if (taskManager.UpdateTaskStatus(taskID, "Needs Reviewed")) {
+                    MessageBox.Show("Success!");
+                }
+            } catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -64,6 +64,16 @@ namespace LogicLayer {
             return result;
         }
 
+        public bool UpdateTaskStatus(int taskID, string status) {
+            bool result = false;
+            try {
+                result = (1 == _taskAccessor.UpdateTaskStatus(taskID, status));
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return result;
+        }
+
         public bool UpdateTaskUserID(int taskID, int userID) {
             bool result = false;
             try {

@@ -40,6 +40,7 @@ namespace DumbScrum.UserControls {
             } else {
                 this.ToolTip = "Double-click to see more details";
             }
+
             tbTaskID.Text = task.TaskID.ToString();
             tbStory.Text = task.Story;
             if(task.UserID != 0) {
