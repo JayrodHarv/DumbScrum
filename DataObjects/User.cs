@@ -12,6 +12,10 @@ namespace DataObjects {
 
     public class UserVM : User {
         public List<Task> Tasks { get; set; }
+        public string Role { get; set; }
+        public int InProgressTasksCount { get; set; }
+        public int InReviewTasksCount { get; set; }
+        public int CompletedTasksCount { get; set; }
     }
 
     public class ProjectMemberVM : User {

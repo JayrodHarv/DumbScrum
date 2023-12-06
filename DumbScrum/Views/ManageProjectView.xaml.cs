@@ -28,6 +28,7 @@ namespace DumbScrum.Views {
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e) {
             tabSettings.Content = new ProjectSettingsView(projectID);
+            tabMembers.Content = new ProjectMembersView(projectID);
         }
     }
 }

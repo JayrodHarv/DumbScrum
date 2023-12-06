@@ -8,6 +8,7 @@ using DataObjects;
 namespace LogicLayer {
     public interface IUserManager {
         User GetUser(int userID);
+        List<UserVM> GetProjectMembers(string projectID);
         bool AuthenticateUser(string email, string password);
         UserVM SignInUser(string email, string password);
         UserVM SignUpUser(string email, string password, byte[] pfp);

@@ -66,27 +66,33 @@ namespace LogicLayer {
             return result;
         }
 
+        public List<UserVM> GetProjectMembers(string projectID) {
+            List<UserVM> users = new List<UserVM>();
+            try {
+                users = _userAccessor.SelectMembersByProjectID(projectID);
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return users;
+        }
+
         public User GetUser(int userID) {
             User user = null;
-
             try {
                 user = _userAccessor.SelectUserByUserID(userID);
             } catch (Exception ex) {
                 throw new ApplicationException("User not found", ex);
             }
-
             return user;
         }
 
         public UserVM GetUserVMByEmail(string email) {
             UserVM userVM = null;
-
             try {
                 userVM = _userAccessor.SelectUserVMByEmail(email);
             } catch (Exception ex) {
                 throw new ApplicationException("User not found", ex);
             }
-
             return userVM;
         }
 
@@ -120,7 +126,6 @@ namespace LogicLayer {
                 } else {
                     throw new ApplicationException("Bad email or password");
                 }
-
             } catch (Exception ex) {
                 throw new ApplicationException("Authentication Failed", ex);
             }
@@ -129,9 +134,6 @@ namespace LogicLayer {
 
         public UserVM SignUpUser(string email, string password, byte[] pfp) {
             UserVM userVM = null;
-
-            // check to see if an account already belongs to the email
-
             try {
                 if(0 == _userAccessor.CheckIfEmailHasBeenUsedAlready(email)) { // new email
                     password = HashSha256(password);

@@ -128,9 +128,9 @@ CREATE TABLE [dbo].[Task] (
 	CONSTRAINT	[fk_Task_SprintID]	FOREIGN KEY ([SprintID])
 		REFERENCES	[dbo].[Sprint] ([SprintID]) ON DELETE CASCADE,
 	CONSTRAINT	[fk_Task_StoryID]	FOREIGN KEY ([StoryID])
-		REFERENCES	[dbo].[UserStory] ([StoryID]),
+		REFERENCES	[dbo].[UserStory] ([StoryID]) ON DELETE NO ACTION,
 	CONSTRAINT	[fk_Task_UserID]	FOREIGN KEY ([UserID])
-		REFERENCES	[dbo].[User] ([UserID]),
+		REFERENCES	[dbo].[User] ([UserID]) ON DELETE NO ACTION,
 	CONSTRAINT [pk_TaskID] PRIMARY KEY ([TaskID])
 )
 GO
@@ -148,9 +148,9 @@ CREATE TABLE [dbo].[FileStore] (
 	[Type]			[nvarchar]	(50)					NOT NULL,
 	[LastEdited]	[datetime]							NOT NULL,
 	CONSTRAINT [fk_FileStore_TaskID] FOREIGN KEY ([TaskID])
-		REFERENCES [dbo].[Task] ([TaskID]),
+		REFERENCES [dbo].[Task] ([TaskID]) ON DELETE CASCADE,
 	CONSTRAINT [fk_FileStore_ProjectID] FOREIGN KEY ([ProjectID])
-		REFERENCES [dbo].[Project] ([ProjectID]) ON DELETE CASCADE,
+		REFERENCES [dbo].[Project] ([ProjectID]) ON DELETE NO ACTION,
 	CONSTRAINT [pk_FileStore] PRIMARY KEY ([FileID])
 )
 GO
@@ -215,7 +215,23 @@ AS
 	BEGIN
 		SELECT [UserID], [DisplayName], [Email], [Pfp], [Bio], [Active]
 		FROM [User]
-		WHERE @UserID = [UserID]
+		WHERE [UserID] = @UserID
+	END
+GO
+
+print '' print '*** creating sp_select_project_members ***'
+GO
+CREATE PROCEDURE [dbo].[sp_select_project_members] (
+	@ProjectID			[nvarchar] (50)
+)
+AS
+	BEGIN
+		SELECT [ProjectMember].[UserID], [DisplayName], [Email], [Pfp], [Bio], [Active],
+			   [ProjectMember].[Role]
+		FROM [ProjectMember]
+		INNER JOIN [User]
+		ON [User].[UserID] = [ProjectMember].[UserID]
+		WHERE [ProjectID] = @ProjectID
 	END
 GO
 
