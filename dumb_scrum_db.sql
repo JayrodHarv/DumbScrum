@@ -61,9 +61,9 @@ CREATE TABLE [dbo].[Feature] (
 	[FeatureID] 	[nvarchar] (50)						NOT NULL,
 	[ProjectID] 	[nvarchar] (50) 					NOT NULL,
 	[Name] 			[nvarchar] (50) 					NOT NULL,
-	[Description]	[nvarchar]	(255)					NOT NULL,
-	[Priority]		[nvarchar]	(20)					NOT NULL,
-	[Status]		[nvarchar]	(50)					NOT NULL DEFAULT "Awaiting Sprint",
+	[Description]	[nvarchar] (255)					NOT NULL,
+	[Priority]		[nvarchar] (20)						NOT NULL,
+	[Status]		[nvarchar] (50)						NOT NULL DEFAULT "Awaiting Sprint",
 	CONSTRAINT	[fk_Feature_ProjectID]	FOREIGN KEY ([ProjectID])
 		REFERENCES	[dbo].[Project] ([ProjectID]) ON DELETE CASCADE,
 	CONSTRAINT [pk_Feature] PRIMARY KEY ([FeatureID])
@@ -164,6 +164,8 @@ CREATE TABLE [dbo].[FeedMessage] (
 	[UserID]		[int]								NOT NULL,
 	[Text]			[Text]								NOT NULL,
 	[SentAt]		[datetime]							NOT NULL,
+	CONSTRAINT	[fk_Message_SprintID]	FOREIGN KEY ([SprintID])
+		REFERENCES	[dbo].[Sprint] ([SprintID]),
 	CONSTRAINT	[fk_Message_UserID]	FOREIGN KEY ([UserID])
 		REFERENCES	[dbo].[User] ([UserID]),
 	CONSTRAINT [pk_MessageID] PRIMARY KEY ([MessageID])
