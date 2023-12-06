@@ -63,13 +63,21 @@ namespace LogicLayer {
 
         public bool CancelSprint(int sprintID) {
             bool result = false;
-
             try {
                 result = (1 == _sprintAccessor.DeleteSprint(sprintID));
             } catch (Exception ex) {
                 throw ex;
             }
+            return result;
+        }
 
+        public bool EditSprint(Sprint newSprint, Sprint oldSprint) {
+            bool result = false;
+            try {
+                result = (1 == _sprintAccessor.UpdateSprint(newSprint, oldSprint));
+            } catch (Exception ex) {
+                throw ex;
+            }
             return result;
         }
     }

@@ -54,9 +54,6 @@ namespace DumbScrum.Views {
                     foreach (SprintVM s in sprints) {
                         calSprint.BlackoutDates.Add(new CalendarDateRange(s.StartDate, s.EndDate));
                     }
-                } else {
-                    MessageBox.Show("Sprint Not Planned", "Operation Aborted",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
@@ -85,6 +82,31 @@ namespace DumbScrum.Views {
                 }
             } else {
                 MessageBox.Show("You need to select a sprint to cancel.");
+            }
+        }
+
+        private void btnEditSprint_Click(object sender, RoutedEventArgs e) {
+            if (lvSprints.SelectedItem != null) {
+                SprintVM sprint = lvSprints.SelectedItem as SprintVM;
+                try {
+                    var planNewSprintWindow = new PlanNewSprintWindow(projectID, sprint);
+                    var result = planNewSprintWindow.ShowDialog();
+                    if (result == true) {
+                        MessageBox.Show("Sprint Successfully Edited.", "Success",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
+                        sprints = sprintManager.GetSprintVMsByProjectID(projectID);
+                        lvSprints.ItemsSource = sprints;
+                        calSprint.BlackoutDates.Clear();
+                        foreach (SprintVM s in sprints) {
+                            calSprint.BlackoutDates.Add(new CalendarDateRange(s.StartDate, s.EndDate));
+                        }
+                    }
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
+                        "Failed To Edit Sprint", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            } else {
+                MessageBox.Show("You need to select a sprint to edit.");
             }
         }
     }

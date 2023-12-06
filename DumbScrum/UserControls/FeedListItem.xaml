@@ -17,12 +17,5 @@
             <TextBlock x:Name="txtSentAt" Text="{Binding SentAt}" Margin="5,0" FontSize="10"/>
         </StackPanel>
         <Label Grid.Row="1" x:Name="lblMessage" Content="{Binding Text}" FontSize="12"/>
-        <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <Label>
-                <Hyperlink>
-                    reply
-                </Hyperlink>
-            </Label>
-        </StackPanel>
     </Grid>
 </UserControl>

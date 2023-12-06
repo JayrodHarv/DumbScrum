@@ -529,6 +529,30 @@ AS
 	END
 GO
 
+print '' print '*** creating sp_update_sprint ***'
+GO
+CREATE PROCEDURE [dbo].[sp_update_sprint] (
+	@SprintID		[int],
+	@OldName		[nvarchar] (50),
+	@OldStartDate	[datetime],
+	@OldEndDate		[datetime],
+	@NewName		[nvarchar] (50),
+	@NewStartDate	[datetime],
+	@NewEndDate		[datetime]
+)
+AS
+	BEGIN
+		UPDATE [Sprint]
+		SET [Name] = @NewName,
+			[StartDate] = @NewStartDate,
+			[EndDate] = @NewEndDate
+		WHERE [SprintID] = @SprintID
+		AND [Name] = @OldName
+		AND	[StartDate] = @OldStartDate
+		AND [EndDate] = @OldEndDate
+	END
+GO
+
 print '' print '*** creating sp_delete_project_sprint ***'
 GO
 CREATE PROCEDURE [dbo].[sp_delete_project_sprint] (

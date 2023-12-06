@@ -200,5 +200,44 @@ namespace DataAccessLayer {
             }
             return result;
         }
+
+        public int UpdateSprint(Sprint newSprint, Sprint oldSprint) {
+            int result = 0;
+
+            var conn = SqlConnectionProvider.GetConnection();
+            var cmdText = "sp_update_sprint";
+            var cmd = new SqlCommand(cmdText, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@SprintID", SqlDbType.Int);
+
+            cmd.Parameters.Add("@OldName", SqlDbType.NVarChar, 50);
+            cmd.Parameters.Add("@OldStartDate", SqlDbType.DateTime);
+            cmd.Parameters.Add("@OldEndDate", SqlDbType.DateTime);
+
+            cmd.Parameters.Add("@NewName", SqlDbType.NVarChar, 50);
+            cmd.Parameters.Add("@NewStartDate", SqlDbType.DateTime);
+            cmd.Parameters.Add("@NewEndDate", SqlDbType.DateTime);
+
+            cmd.Parameters["@SprintID"].Value = oldSprint.SprintID;
+
+            cmd.Parameters["@OldName"].Value = oldSprint.Name;
+            cmd.Parameters["@OldStartDate"].Value = oldSprint.StartDate;
+            cmd.Parameters["@OldEndDate"].Value = oldSprint.EndDate;
+
+            cmd.Parameters["@NewName"].Value = newSprint.Name;
+            cmd.Parameters["@NewStartDate"].Value = newSprint.StartDate;
+            cmd.Parameters["@NewEndDate"].Value = newSprint.EndDate;
+
+            try {
+                conn.Open();
+                result = cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
+        }
     }
 }
