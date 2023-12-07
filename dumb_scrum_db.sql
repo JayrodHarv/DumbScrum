@@ -815,7 +815,7 @@ CREATE PROCEDURE [dbo].[sp_select_sprint_feed_messages] (
 )
 AS
 	BEGIN
-		SELECT [MessageID], [SprintID], [FeedMessage].[UserID], [Text], [SentAt], [User].[DisplayName]
+		SELECT [MessageID], [SprintID], [FeedMessage].[UserID], [Text], [SentAt], [User].[DisplayName], [User].[Pfp]
 		FROM [dbo].[FeedMessage]
 		INNER JOIN [User]
 		ON [User].[UserID] = [FeedMessage].[UserID]

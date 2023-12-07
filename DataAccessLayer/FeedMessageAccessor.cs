@@ -75,6 +75,7 @@ namespace DataAccessLayer {
                         m.Text = reader.GetString(3);
                         m.SentAt = reader.GetDateTime(4);
                         m.UserDisplayName = reader.GetString(5);
+                        m.UserPfp = (byte[])reader[6];
                         result.Add(m);
                     }
                 }

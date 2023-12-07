@@ -15,5 +15,6 @@ namespace DataObjects {
 
     public class FeedMessageVM : FeedMessage {
         public string UserDisplayName { get; set; }
+        public byte[] UserPfp { get; set; }
     }
 }

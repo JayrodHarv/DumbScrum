@@ -12,9 +12,16 @@
             <RowDefinition/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Grid.Row="0">
-            <TextBlock x:Name="txtSentBy" Text="{Binding UserDisplayName}" Margin="5,0" FontSize="16"/>
-            <TextBlock x:Name="txtSentAt" Text="{Binding SentAt}" Margin="5,0" FontSize="10"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Ellipse Height="35" Width="35">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="{Binding UserPfp}"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <StackPanel Orientation="Vertical">
+                <TextBlock x:Name="txtSentBy" Text="{Binding UserDisplayName}" Margin="5,0" FontSize="16"/>
+                <TextBlock x:Name="txtSentAt" Text="{Binding SentAt}" Margin="5,0" FontSize="10"/>
+            </StackPanel>
         </StackPanel>
         <Label Grid.Row="1" x:Name="lblMessage" Content="{Binding Text}" FontSize="12"/>
     </Grid>

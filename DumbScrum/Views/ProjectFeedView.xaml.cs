@@ -22,6 +22,7 @@ namespace DumbScrum.Views {
     public partial class ProjectFeedView : UserControl {
         SprintManager sprintManager = new SprintManager();
         FeedMessageManager feedMessageManager = new FeedMessageManager();
+        UserManager userManager = new UserManager();
         List<SprintVM> sprints = new List<SprintVM>();
         string projectID;
         int userID;
