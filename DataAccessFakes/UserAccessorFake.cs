@@ -11,23 +11,28 @@ namespace DataAccessFakes {
         // Fake Users for testing purposes
         private List<UserVM> fakeUsers = new List<UserVM>();
         private List<string> passwordHashes = new List<string>();
+        string path = @"./Images/Sample_User_Icon.png";
         public UserAccessorFake() {
+            byte[] pfp = GetFileInBinary(path);
             fakeUsers.Add(new UserVM() {
-                UserID = 1,
+                UserID = 100000,
                 DisplayName = "Joe Bidome",
                 Email = "joe-bidome@gmail.com",
+                Pfp = pfp,
                 Bio = "I am a dome."
             });
             fakeUsers.Add(new UserVM() {
-                UserID = 2,
+                UserID = 100001,
                 DisplayName = "Obama Prism",
                 Email = "obama-prism@gmail.com",
+                Pfp = pfp,
                 Bio = "I am a prism."
             });
             fakeUsers.Add(new UserVM() {
-                UserID = 3,
+                UserID = 100002,
                 DisplayName = "Donald Hump",
                 Email = "donald-hump@gmail.com",
+                Pfp = pfp,
                 Bio = "I am a hump."
             });
             passwordHashes.Add("9c9064c59f1ffa2e174ee754d2979be80dd30db552ec03e7e327e9b1a4bd594e"); // newuser
@@ -48,15 +53,15 @@ namespace DataAccessFakes {
             return numAuthenticated;
         }
 
+        private byte[] GetFileInBinary(string filePath) {
+            using (System.IO.Stream stream = System.IO.File.OpenRead(filePath)) {
+                byte[] buffer = new byte[stream.Length];
+                stream.Read(buffer, 0, buffer.Length);
+                return buffer;
+            }
+        }
+
         public int CheckIfEmailHasBeenUsedAlready(string email) {
-            throw new NotImplementedException();
-        }
-
-        public bool InsertUser(string email, string passwordHash) {
-            throw new NotImplementedException();
-        }
-
-        public int InsertUser(string email, string passwordHash, byte[] pfp) {
             throw new NotImplementedException();
         }
 
@@ -69,12 +74,20 @@ namespace DataAccessFakes {
         }
 
         public User SelectUserByUserID(int userID) {
-            throw new NotImplementedException();
+            User user = null;
+            foreach (var fakeUser in fakeUsers) {
+                if (fakeUser.UserID == userID) {
+                    user = fakeUser;
+                }
+            }
+            if (user == null) {
+                throw new ApplicationException("User not found");
+            }
+            return user;
         }
 
         public UserVM SelectUserVMByEmail(string email) {
             UserVM userVM = null;
-
             foreach (var fakeUser in fakeUsers) {
                 if (fakeUser.Email == email) {
                     userVM = fakeUser;
@@ -83,7 +96,6 @@ namespace DataAccessFakes {
             if (userVM == null) {
                 throw new ApplicationException("User not found");
             }
-
             return userVM;
         }
 
@@ -91,12 +103,18 @@ namespace DataAccessFakes {
             throw new NotImplementedException();
         }
 
-        public int UpdatePasswordHash(string email, string oldPasswordHash, string newPasswordHash) {
-            throw new NotImplementedException();
-        }
-
         public int UpdatePasswordHash(string email, string newPasswordHash) {
-            throw new NotImplementedException();
+            int rows = 0;
+            for (int i = 0; i < fakeUsers.Count; i++) {
+                if (fakeUsers[i].Email == email) {
+                    passwordHashes[i] = newPasswordHash;
+                    rows += 1;
+                }
+            }
+            if (rows != 1) {
+                throw new ApplicationException("Bad email or password");
+            }
+            return rows;
         }
 
         public int UpdateUser(User newUser, User oldUser) {

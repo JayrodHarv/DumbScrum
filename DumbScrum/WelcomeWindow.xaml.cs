@@ -133,8 +133,6 @@ namespace DumbScrum {
                 MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
                     "Update failed", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        
+        } 
     }
 }
