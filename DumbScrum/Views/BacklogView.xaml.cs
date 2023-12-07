@@ -54,7 +54,7 @@ namespace DumbScrum.Views {
             if(lvFeatures.SelectedItem != null) {
                 try {
                     Feature selectedFeature = lvFeatures.SelectedItem as Feature;
-                    var addStoryWindow = new AddStoryWindow(selectedFeature.FeatureID);
+                    var addStoryWindow = new AddStoryWindow(selectedFeature);
                     var result = addStoryWindow.ShowDialog();
                     if (result == true) {
                         MessageBox.Show("User Story Successfully Added.", "Success",

@@ -10,5 +10,6 @@ namespace LogicLayer {
         FeatureVM GetFeatureByFeatureID(int featureID);
         List<FeatureVM> GetFeaturesByProjectID(string projectID);
         bool AddProjectFeature(Feature feature);
+        bool EditFeatureStatus(string featureID, string status);
     }
 }

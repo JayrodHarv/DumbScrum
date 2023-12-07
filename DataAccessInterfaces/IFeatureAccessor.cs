@@ -10,5 +10,6 @@ namespace DataAccessInterfaces {
         FeatureVM SelectFeatureByFeatureID(string featureID);
         List<FeatureVM> SelectFeaturesByProjectID(string projectID);
         int CreateProjectFeature(Feature feature);
+        int UpdateFeatureStatus(string featureID, string status);
     }
 }

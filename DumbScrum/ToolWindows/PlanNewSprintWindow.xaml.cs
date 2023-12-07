@@ -108,6 +108,9 @@ namespace DumbScrum.ToolWindows {
                         StartDate = (DateTime)dpStartDate.SelectedDate,
                         EndDate = (DateTime)dpEndDate.SelectedDate
                     })) {
+                        // update feature status
+                        featureManager.EditFeatureStatus(feature.FeatureID, "Currently In Sprint");
+
                         sprints = sprintManager.GetSprintVMsByProjectID(projectID);
                         // Create a task for every user story from sprint feature
                         List<UserStory> stories = userStoryManager.GetFeatureUserStories(feature.FeatureID);

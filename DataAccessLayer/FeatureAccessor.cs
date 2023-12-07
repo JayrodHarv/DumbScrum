@@ -92,5 +92,30 @@ namespace DataAccessLayer {
             }
             return result;
         }
+
+        public int UpdateFeatureStatus(string featureID, string status) {
+            int result = 0;
+
+            var conn = SqlConnectionProvider.GetConnection();
+            var cmdText = "sp_update_feature_status";
+            var cmd = new SqlCommand(cmdText, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@FeatureID", SqlDbType.NVarChar, 50);
+            cmd.Parameters.Add("@Status", SqlDbType.NVarChar, 50);
+
+            cmd.Parameters["@FeatureID"].Value = featureID;
+            cmd.Parameters["@Status"].Value = status;
+
+            try {
+                conn.Open();
+                result = cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
+        }
     }
 }

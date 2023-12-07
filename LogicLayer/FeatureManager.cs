@@ -33,6 +33,16 @@ namespace LogicLayer {
             return result;
         }
 
+        public bool EditFeatureStatus(string featureID, string status) {
+            bool result = false;
+            try {
+                result = (1 == _featureAccessor.UpdateFeatureStatus(featureID, status));
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return result;
+        }
+
         public FeatureVM GetFeatureByFeatureID(int featureID) {
             throw new NotImplementedException();
         }

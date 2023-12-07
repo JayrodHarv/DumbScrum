@@ -438,6 +438,20 @@ AS
 	END
 GO
 
+print '' print '*** creating sp_update_feature_status ***'
+GO
+CREATE PROCEDURE [dbo].[sp_update_feature_status] (
+	@FeatureID		[nvarchar]	(50),
+	@Status			[nvarchar]	(50)
+)
+AS
+	BEGIN
+		UPDATE [Feature]
+		SET [Status] = @Status
+		WHERE [FeatureID] = @FeatureID
+	END
+GO
+
 /*----- UserStory Stored Procedures -----*/
 print '' print '*** creating sp_select_feature_user_stories ***'
 GO

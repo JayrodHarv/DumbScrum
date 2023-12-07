@@ -36,10 +36,11 @@ namespace DumbScrum.Views {
                 foreach (TaskVM task in tasks) {
                     if(task.Status == "In Progress") {
                         icUserTasks.Items.Add(new SrumBoardItem(task, user, task.ProjectName));
-                    } else {
-
                     }
                 }
+                tbInProgress.Text = tasks.FindAll(t => t.Status == "In Progress").Count().ToString();
+                tbNeedsReviewed.Text = tasks.FindAll(t => t.Status == "Needs Reviewed").Count().ToString();
+                tbComplete.Text = tasks.FindAll(t => t.Status == "Complete").Count().ToString();
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }

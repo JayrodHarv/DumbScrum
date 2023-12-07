@@ -26,9 +26,10 @@
             </StackPanel>
         </StackPanel>
 
+        <!-- Not Needed Anymore, I made it so when you add a userstory to a feature that's in a sprint, it automatically creates another task.
         <StackPanel Grid.Column="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="btnAddTask" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Add New Task" Padding="5" Click="btnAddTask_Click" Background="#FF26B51A" Foreground="White"/>
-        </StackPanel>
+        </StackPanel>-->
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
