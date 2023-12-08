@@ -22,6 +22,7 @@ namespace DumbScrum {
             }
             if(txtDescription.Text == "") {
                 MessageBox.Show("Your project must have a description.");
+                return;
             }
 
             ProjectManager projectManager = new ProjectManager();

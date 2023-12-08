@@ -61,7 +61,7 @@ namespace DumbScrum.ToolWindows {
                 tbSprintName.Text = sprintVM.Name;
                 dpStartDate.SelectedDate = sprintVM.StartDate;
                 dpEndDate.SelectedDate = sprintVM.EndDate;
-                btnPlanSprint.Content = "Edit Sprint Schedule";
+                btnPlanSprint.Content = "Edit Sprint";
             }
         }
 

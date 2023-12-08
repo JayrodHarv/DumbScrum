@@ -125,9 +125,6 @@ namespace DumbScrum {
                 if (result == true) {
                     MessageBox.Show("Password changed.", "Success",
                         MessageBoxButton.OK, MessageBoxImage.Information);
-                } else {
-                    MessageBox.Show("Password not changed", "Operation Aborted",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
