@@ -8,11 +8,11 @@
              d:DesignHeight="200" d:DesignWidth="500">
     <Grid Background="White" Margin="0,20,0,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
             <RowDefinition/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10,10,10,0">
             <Ellipse Height="35" Width="35">
                 <Ellipse.Fill>
                     <ImageBrush ImageSource="{Binding UserPfp}"/>
@@ -23,6 +23,6 @@
                 <TextBlock x:Name="txtSentAt" Text="{Binding SentAt}" Margin="5,0" FontSize="10"/>
             </StackPanel>
         </StackPanel>
-        <TextBlock Grid.Row="1" x:Name="lblMessage" Text="{Binding Text}" FontSize="12" TextWrapping="Wrap"/>
+        <TextBlock Grid.Row="1" x:Name="lblMessage" Text="{Binding Text}" FontSize="12" TextWrapping="Wrap" Margin="10,0"/>
     </Grid>
 </UserControl>

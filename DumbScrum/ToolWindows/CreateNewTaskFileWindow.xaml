@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DumbScrum.ToolWindows"
         mc:Ignorable="d"
-        Title="Create New File" Height="200" Width="300" Loaded="Window_Loaded" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
+        Title="Create New File" Height="300" Width="500" Loaded="Window_Loaded" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="15"/>
             <RowDefinition Height="50"/>
             <RowDefinition />
-            <RowDefinition Height="35"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="1" Grid.ColumnSpan="2" TextWrapping="Wrap" 
                    TextAlignment="Left" FontSize="14" Margin="10,0,0,0" FontWeight="SemiBold">
@@ -29,21 +29,22 @@
                 <TextBox x:Name="tbFileName"
                          FontWeight="DemiBold"
                          Height="25"
-                         Width="200"
+                         Width="300"
                          Margin="3"
                          VerticalContentAlignment="Center"/>
             </StackPanel>
         </StackPanel>
         
-        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
             <Button x:Name="btnCreateFile" Content="Create File"
                     Padding="5" HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
                     FontWeight="DemiBold"
-                    Margin="10, 3" Click="btnCreateFile_Click" />
+                    Margin="10, 0" Click="btnCreateFile_Click" />
             <Button x:Name="btnCancel" Content="Cancel"
                     Padding="5" HorizontalAlignment="Right"
-                    FontWeight="DemiBold"
-                    Margin="10, 3" Click="btnCancel_Click"/>
+                    VerticalAlignment="Bottom"
+                    FontWeight="DemiBold" Click="btnCancel_Click"/>
         </StackPanel>
     </Grid>
 </Window>
