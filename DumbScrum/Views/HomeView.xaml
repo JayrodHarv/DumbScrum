@@ -57,10 +57,12 @@
         </StackPanel>-->
         
         <Border Grid.Row="2" BorderBrush="Gray" BorderThickness="0.5" Margin="15">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                <Label Content="My Tasks" BorderBrush="Gray" BorderThickness="0,0,0,0.5"/>
-                <ItemsControl x:Name="icUserTasks"/>
-            </StackPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                    <Label Content="My Tasks" BorderBrush="Gray" BorderThickness="0,0,0,0.5"/>
+                    <ItemsControl x:Name="icUserTasks"/>
+                </StackPanel>
+            </ScrollViewer>
         </Border>
     </Grid>
 </UserControl>
