@@ -27,13 +27,15 @@
                 <Button x:Name="btnAddFeature" Content="Add Feature" FontWeight="DemiBold" Padding="5" Background="Green" Foreground="white" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnAddFeature_Click"/>
             </StackPanel>
         </Grid>
-        <ListView x:Name="lvFeatures" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Features}" HorizontalAlignment="Stretch" SelectionChanged="lvFeatures_SelectionChanged">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <userControls:FeatureListItem HorizontalAlignment="Stretch"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0">
+            <ListView x:Name="lvFeatures" ItemsSource="{Binding Features}" HorizontalAlignment="Stretch" SelectionChanged="lvFeatures_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <userControls:FeatureListItem HorizontalAlignment="Stretch"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
         <GridSplitter Grid.RowSpan="2" Grid.Column="1" ResizeDirection="Columns" HorizontalAlignment="Stretch" Background="Transparent"/>
         <Grid Grid.Row="0" Grid.Column="2">
             <Grid.ColumnDefinitions>
@@ -45,12 +47,14 @@
                 <Button x:Name="btnAddStory" Content="Add Story" FontWeight="DemiBold" Padding="5" Background="Green" Foreground="white" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnAddStory_Click"/>
             </StackPanel>
         </Grid>
-        <ListView x:Name="lvStories" Grid.Row="1" Grid.Column="2">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <userControls:UserStoryListItem HorizontalAlignment="Stretch"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="2">
+            <ListView x:Name="lvStories">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <userControls:UserStoryListItem HorizontalAlignment="Stretch"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
     </Grid>
 </UserControl>

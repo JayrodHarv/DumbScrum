@@ -40,9 +40,6 @@ namespace DumbScrum.Views {
                         MessageBoxButton.OK, MessageBoxImage.Information);
                     UpdateFeatureList();
                     lvFeatures.ItemsSource = Features;
-                } else {
-                    MessageBox.Show("Feature Not Added", "Operation Aborted",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             } catch (Exception ex) {
                 MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
@@ -60,9 +57,6 @@ namespace DumbScrum.Views {
                         MessageBox.Show("User Story Successfully Added.", "Success",
                             MessageBoxButton.OK, MessageBoxImage.Information);
                         lvStories.ItemsSource = userStoryManager.GetFeatureUserStories(selectedFeature.FeatureID);
-                    } else {
-                        MessageBox.Show("User Story Not Added", "Operation Aborted",
-                            MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 } catch (Exception ex) {
                     MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
