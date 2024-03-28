@@ -132,13 +132,13 @@ namespace LogicLayer {
             return userVM;
         }
 
-        public UserVM SignUpUser(string email, string password, byte[] pfp) {
+        public UserVM SignUpUser(User user) {
             UserVM userVM = null;
             try {
-                if(0 == _userAccessor.CheckIfEmailHasBeenUsedAlready(email)) { // new email
-                    password = HashSha256(password);
-                    _userAccessor.InsertUser(email, password, pfp);
-                    userVM = GetUserVMByEmail(email);
+                if(0 == _userAccessor.CheckIfEmailHasBeenUsedAlready(user.Email)) { // new email
+                    user.Password = HashSha256(user.Password);
+                    _userAccessor.InsertUser(user);
+                    userVM = GetUserVMByEmail(user.Email);
                 } else {
                     throw new ApplicationException("An account already exists with this email");
                 }
@@ -146,6 +146,14 @@ namespace LogicLayer {
                 throw new ApplicationException("Sign Up Failed", ex);
             }
             return userVM;
+        }
+
+        public byte[] GetFileInBinary(string filePath) {
+            using (System.IO.Stream stream = System.IO.File.OpenRead(filePath)) {
+                byte[] buffer = new byte[stream.Length];
+                stream.Read(buffer, 0, buffer.Length);
+                return buffer;
+            }
         }
     }
 }

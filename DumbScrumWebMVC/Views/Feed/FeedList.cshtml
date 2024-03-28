@@ -1,0 +1,29 @@
+﻿@model IEnumerable<DataObjects.FeedMessageVM>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Text)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SentAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserDisplayName)
+        </th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SentAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserDisplayName)
+            </td>
+        </tr>
+    }
+</table>

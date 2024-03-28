@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="vh-100">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/favicon.ico" />
+    <title>@ViewBag.Title - Dumb Scrum</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body class="vh-100">
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark p-0">
+            <div class="container-fluid">
+                <img class="img-fluid p-1" src="~/Images/dumb_scrum_icon.png" alt="" width="45" height="45">
+                @Html.ActionLink("Dumb Scrum", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("My Projects", "MyProjects", "Project", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("All Projects", "AllProjects", "Project", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container-fluid p-0">
+        @RenderBody()
+    </main>
+    <footer class="footer p-0 m-0 bg-dark fixed-bottom" style="height: 25px">
+        <p class="text-center align-self-center text-bg-dark">&copy; @DateTime.Now.Year Dumb Scrum</p>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

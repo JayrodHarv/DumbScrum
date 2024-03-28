@@ -1,0 +1,14 @@
+﻿@model IEnumerable<DataObjects.SprintVM>
+
+@{
+    ViewBag.Title = "Project Sprints";
+}
+
+<div class="d-flex">
+    @Html.Partial("_ProjectPartial")
+
+    <div class="container-fluid" style="margin-left: 150px; margin-bottom: 25px">
+        <h2>Project Sprints:</h2>
+        @Html.Partial("SprintList", Model)
+    </div>
+</div>

@@ -272,14 +272,15 @@ GO
 CREATE PROCEDURE [dbo].[sp_insert_user] (
 	@Email				[nvarchar] (100),
 	@PasswordHash		[nvarchar] (100),
+	@DisplayName		[nvarchar] (50),
 	@Pfp				[varbinary] (max)
 )
 AS
 	BEGIN
 		INSERT INTO [dbo].[User]
-			([Email], [PasswordHash], [Pfp])
+			([Email], [PasswordHash], [DisplayName], [Pfp])
 		VALUES
-			(@Email, @PasswordHash, @Pfp)
+			(@Email, @PasswordHash, @DisplayName, @Pfp)
 	END
 GO
 

@@ -1,0 +1,30 @@
+﻿@model DumbScrumWebMVC.Models.FeedListVM
+
+@{
+    ViewBag.Title = "Project Feed";;
+}
+
+<div class="d-flex">
+    @Html.Partial("_ProjectPartial")
+
+    <div class="container-fluid" style="margin-left: 150px; margin-bottom: 25px">
+        <h2>Project Feed:</h2>
+
+        @if(Model.Sprints.Count != 0) {
+            using (Html.BeginForm("Index", "Feed", FormMethod.Post)) {
+                <div class="d-flex justify-content-center w-50 m-auto">
+                    <input type="text" class="form-control" placeholder="Write Message" name="feedMessageInput">
+                    <input type="submit" value="Send" class="btn btn-success btn-lg gradient-custom-4 text-body" />
+                </div>
+                <div class="d-flex">
+                    <label class="align-self-center" style="padding-right: 5px;">Sprint: </label>
+                    @Html.DropDownList("sprintFilter", Model.SprintDropdownItems, new {
+                    @class = "form-control", style = "width: fit-content;", id = "sprint-dropdown", runat = "server", @onchange = "submit()" })
+                </div>
+            }
+            @Html.Partial("FeedList", Model.FeedMessages)
+        } else {
+            <h3>There are no sprints...</h3>
+        }
+    </div>
+</div>

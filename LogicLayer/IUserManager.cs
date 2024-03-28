@@ -11,7 +11,7 @@ namespace LogicLayer {
         List<UserVM> GetProjectMembers(string projectID);
         bool AuthenticateUser(string email, string password);
         UserVM SignInUser(string email, string password);
-        UserVM SignUpUser(string email, string password, byte[] pfp);
+        UserVM SignUpUser(User user);
         string HashSha256(string password);
         UserVM GetUserVMByEmail(string email);
         bool EditUser(User newUser, User oldUser);

@@ -23,3 +23,30 @@ C:\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFakes.csproj.CoreCompileInputs.
 C:\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFakes.csproj.CopyComplete
 C:\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFakes.dll
 C:\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFakes.pdb
+C:\DumbScrum\DataAccessFakes\bin\Debug\DataObjects.dll.config
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\DataAccessFakes.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\DataAccessFakes.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\DataAccessInterfaces.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\DataObjects.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Auth.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Drive.v3.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Core.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\Newtonsoft.Json.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\DataAccessInterfaces.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\DataObjects.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\DataObjects.dll.config
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Auth.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Auth.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Drive.v3.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Drive.v3.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Core.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Core.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\bin\Debug\Newtonsoft.Json.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFakes.csproj.AssemblyReference.cache
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFakes.csproj.CoreCompileInputs.cache
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFakes.csproj.CopyComplete
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFakes.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFakes.pdb

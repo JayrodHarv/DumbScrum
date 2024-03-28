@@ -91,7 +91,7 @@ namespace DataAccessLayer {
             return rows;
         }
 
-        public int InsertUser(string email, string passwordHash, byte[] pfp) {
+        public int InsertUser(User user) {
             int rows = 0;
 
             // create connection object
@@ -107,14 +107,16 @@ namespace DataAccessLayer {
             cmd.CommandType = CommandType.StoredProcedure;
 
             // add parameters to command
+            cmd.Parameters.Add("@DisplayName", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@PasswordHash", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@Pfp", SqlDbType.VarBinary);
 
             // set parameter values
-            cmd.Parameters["@Email"].Value = email;
-            cmd.Parameters["@PasswordHash"].Value = passwordHash;
-            cmd.Parameters["@Pfp"].Value = pfp;
+            cmd.Parameters["@DisplayName"].Value = user.DisplayName;
+            cmd.Parameters["@Email"].Value = user.Email;
+            cmd.Parameters["@PasswordHash"].Value = user.Password;
+            cmd.Parameters["@Pfp"].Value = user.Pfp;
 
             try {
                 // open connection

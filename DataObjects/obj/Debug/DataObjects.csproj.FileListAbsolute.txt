@@ -27,3 +27,50 @@ C:\DumbScrum\DataObjects\obj\Debug\DataObjects.csproj.CoreCompileInputs.cache
 C:\DumbScrum\DataObjects\obj\Debug\DataObjects.csproj.CopyComplete
 C:\DumbScrum\DataObjects\obj\Debug\DataObjects.dll
 C:\DumbScrum\DataObjects\obj\Debug\DataObjects.pdb
+C:\DumbScrum\DataObjects\bin\Debug\DataObjects.dll.config
+C:\DumbScrum\DataObjects\bin\Debug\EntityFramework.dll
+C:\DumbScrum\DataObjects\bin\Debug\EntityFramework.SqlServer.dll
+C:\DumbScrum\DataObjects\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\DumbScrum\DataObjects\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\DumbScrum\DataObjects\bin\Debug\EntityFramework.xml
+C:\DumbScrum\DataObjects\bin\Debug\EntityFramework.SqlServer.xml
+C:\DumbScrum\DataObjects\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\DumbScrum\DataObjects\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\DataObjects.dll.config
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\DataObjects.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\DataObjects.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\DocumentFormat.OpenXml.Framework.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\EntityFramework.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\EntityFramework.SqlServer.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Google.Apis.Auth.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Google.Apis.Core.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Google.Apis.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Google.Apis.Drive.v3.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Google.Apis.PlatformServices.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Newtonsoft.Json.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\System.CodeDom.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\DocumentFormat.OpenXml.Framework.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\EntityFramework.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\EntityFramework.SqlServer.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Google.Apis.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Google.Apis.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Google.Apis.Auth.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Google.Apis.Auth.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Google.Apis.Core.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Google.Apis.Core.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Google.Apis.Drive.v3.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Google.Apis.Drive.v3.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\Newtonsoft.Json.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\bin\Debug\System.CodeDom.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\obj\Debug\DataObjects.csproj.AssemblyReference.cache
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\obj\Debug\DataObjects.csproj.CoreCompileInputs.cache
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\obj\Debug\DataObjects.csproj.CopyComplete
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\obj\Debug\DataObjects.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\obj\Debug\DataObjects.pdb

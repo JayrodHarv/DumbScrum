@@ -1,0 +1,136 @@
+﻿/* Set padding to keep content from hitting the edges */
+/*.body-content {*/
+    /*margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;*/
+    /*padding: 0;
+    margin: 0;
+}*/
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+/*.dl-horizontal dt {
+    white-space: normal;
+}*/
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+
+/* Carousel base class */
+.carousel {
+    margin-bottom: 4rem;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+    height: 32rem;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .checkbox {
+    font-weight: 400;
+}
+
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.min-vh-body {
+    min-height: 94vh; 
+}
+
+.vh-body {
+    height: 94vh;
+}
+/*Why does bootstrap not have this*/
+.h-10 {
+    height: 10%;
+}
+
+.h-15 {
+    height: 15%;
+}
+
+.h-20 {
+    height: 20%;
+}
+
+.h-30 {
+    height: 30%;
+}
+
+.h-35 {
+    height: 35%;
+}
+
+.h-40 {
+    height: 40%;
+}
+
+.h-45 {
+    height: 45%;
+}
+
+.h-55 {
+    height: 55%;
+}
+
+.h-65 {
+    height: 65%;
+}
+
+.h-70 {
+    height: 70%;
+}
+
+.h-80 {
+    height: 80%;
+}
+
+.h-85 {
+    height: 85%;
+}
+
+.h-90 {
+    height: 90%;
+}
+
+.h-95 {
+    height: 95%;
+}

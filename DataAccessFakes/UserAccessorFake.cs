@@ -121,7 +121,7 @@ namespace DataAccessFakes {
             throw new NotImplementedException();
         }
 
-        int IUserAccessor.InsertUser(string email, string passwordHash, byte[] pfp) {
+        int IUserAccessor.InsertUser(User user) {
             throw new NotImplementedException();
         }
     }

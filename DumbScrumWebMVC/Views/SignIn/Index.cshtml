@@ -1,0 +1,117 @@
+﻿@model DataObjects.User
+
+@{
+    ViewBag.Title = "Sign Into Dumb Scrum Account";
+}
+
+<div class="d-flex container-sm bg-dark-subtle justify-content-center my-lg-5 align-items-stretch">
+    @using (Html.BeginForm("SignIn", "SignIn", FormMethod.Post, htmlAttributes: new { @id = "form-signin" })) {
+        @Html.AntiForgeryToken()
+
+        @*<div class="form-horizontal">
+                <h4>User</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="SignIn" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>*@
+
+        <img class="mb-4" src="~/Images/dumb_scrum_icon.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Sign into Dumb Scrum account</h1>
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "sr-only" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @placeholder = "Email address", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "sr-only" })
+        <div>
+            @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2024</p>
+    }
+</div>
+
+<!--<form>-->
+    <!-- Email input -->
+    <!--<div class="form-outline mb-4">
+        <input type="email" id="form2Example1" class="form-control" />
+        <label class="form-label" for="form2Example1">Email address</label>
+    </div>-->
+
+    <!-- Password input -->
+    <!--<div class="form-outline mb-4">
+        <input type="password" id="form2Example2" class="form-control" />
+        <label class="form-label" for="form2Example2">Password</label>
+    </div>-->
+
+    <!-- 2 column grid layout for inline styling -->
+    <!--<div class="row mb-4">
+        <div class="col d-flex justify-content-center">-->
+            <!-- Checkbox -->
+            <!--<div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                <label class="form-check-label" for="form2Example31"> Remember me </label>
+            </div>
+        </div>
+
+        <div class="col">-->
+            <!-- Simple link -->
+            <!--<a href="#!">Forgot password?</a>
+        </div>
+    </div>-->
+
+    <!-- Submit button -->
+    <!--<button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>-->
+
+    <!-- Register buttons -->
+    <!--<div class="text-center">
+        <p>Not a member? <a href="#!">Register</a></p>
+        <p>or sign up with:</p>
+        <button type="button" class="btn btn-link btn-floating mx-1">
+            <i class="fab fa-facebook-f"></i>
+        </button>
+
+        <button type="button" class="btn btn-link btn-floating mx-1">
+            <i class="fab fa-google"></i>
+        </button>
+
+        <button type="button" class="btn btn-link btn-floating mx-1">
+            <i class="fab fa-twitter"></i>
+        </button>
+
+        <button type="button" class="btn btn-link btn-floating mx-1">
+            <i class="fab fa-github"></i>
+        </button>
+    </div>
+</form>-->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

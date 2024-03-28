@@ -1,0 +1,387 @@
+C:\DumbScrum\DumbScrumWebMVC\bin\DumbScrumWebMVC.dll.config
+C:\DumbScrum\DumbScrumWebMVC\bin\DumbScrumWebMVC.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\DumbScrumWebMVC.pdb
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.exe
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.exe.config
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.rsp
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.exe
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.exe.config
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.rsp
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.Managed.Core.targets
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.AppContext.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Collections.Immutable.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Console.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Globalization.Calendars.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.IO.Compression.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.IO.FileSystem.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Net.Http.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Net.Sockets.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Reflection.Metadata.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.ValueTuple.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Xml.XmlDocument.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Xml.XPath.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.exe
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.exe.config
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.rsp
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\VBCSCompiler.exe
+C:\DumbScrum\DumbScrumWebMVC\bin\roslyn\VBCSCompiler.exe.config
+C:\DumbScrum\DumbScrumWebMVC\bin\Antlr3.Runtime.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\DataObjects.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\EntityFramework.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\EntityFramework.SqlServer.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\LogicLayer.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.Core.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Cookies.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Facebook.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Google.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.OAuth.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Twitter.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Web.Infrastructure.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Newtonsoft.Json.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Owin.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\System.Web.Helpers.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\System.Web.Mvc.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\System.Web.Optimization.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\System.Web.Razor.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.Deployment.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.Razor.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\WebGrease.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Auth.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Drive.v3.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Core.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\DataAccessInterfaces.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\DataAccessLayer.dll
+C:\DumbScrum\DumbScrumWebMVC\bin\DataObjects.pdb
+C:\DumbScrum\DumbScrumWebMVC\bin\LogicLayer.pdb
+C:\DumbScrum\DumbScrumWebMVC\bin\System.Web.Helpers.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\System.Web.Mvc.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\System.Web.Optimization.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\System.Web.Razor.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.Deployment.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.Razor.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Newtonsoft.Json.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Antlr3.Runtime.pdb
+C:\DumbScrum\DumbScrumWebMVC\bin\EntityFramework.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\EntityFramework.SqlServer.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.Core.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Facebook.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Cookies.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Google.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Twitter.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.OAuth.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Auth.pdb
+C:\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Auth.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Drive.v3.pdb
+C:\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Drive.v3.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.pdb
+C:\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Core.pdb
+C:\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Core.xml
+C:\DumbScrum\DumbScrumWebMVC\bin\DataAccessInterfaces.pdb
+C:\DumbScrum\DumbScrumWebMVC\bin\DataAccessLayer.pdb
+C:\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.AssemblyReference.cache
+C:\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.CoreCompileInputs.cache
+C:\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.CopyComplete
+C:\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.dll
+C:\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.pdb
+C:\DumbScrum\DumbScrumWebMVC\bin\DataObjects.dll.config
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\DumbScrumWebMVC.dll.config
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\DumbScrumWebMVC.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\DumbScrumWebMVC.pdb
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.exe
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.exe.config
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.rsp
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.exe
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.exe.config
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.rsp
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.Managed.Core.targets
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.AppContext.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Collections.Immutable.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Console.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Globalization.Calendars.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.IO.Compression.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.IO.FileSystem.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Net.Http.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Net.Sockets.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Reflection.Metadata.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.ValueTuple.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Xml.XmlDocument.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Xml.XPath.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.exe
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.exe.config
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.rsp
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\VBCSCompiler.exe
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\roslyn\VBCSCompiler.exe.config
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Antlr3.Runtime.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\DataObjects.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\EntityFramework.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\EntityFramework.SqlServer.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\LogicLayer.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.Core.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Cookies.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Facebook.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Google.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.OAuth.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Twitter.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Web.Infrastructure.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Newtonsoft.Json.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Owin.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\System.Web.Helpers.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\System.Web.Mvc.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\System.Web.Optimization.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\System.Web.Razor.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.Deployment.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.Razor.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\WebGrease.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Auth.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Drive.v3.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Core.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\DataAccessInterfaces.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\DataAccessLayer.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\DataObjects.pdb
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\DataObjects.dll.config
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\LogicLayer.pdb
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Newtonsoft.Json.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\System.Web.Helpers.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\System.Web.Mvc.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\System.Web.Optimization.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\System.Web.Razor.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.Deployment.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.Razor.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Antlr3.Runtime.pdb
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\EntityFramework.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\EntityFramework.SqlServer.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.Core.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Facebook.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Cookies.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Google.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Twitter.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.OAuth.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Auth.pdb
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Auth.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Drive.v3.pdb
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Drive.v3.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.pdb
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Core.pdb
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Core.xml
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\DataAccessInterfaces.pdb
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\bin\DataAccessLayer.pdb
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.AssemblyReference.cache
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.CoreCompileInputs.cache
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.CopyComplete
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.dll
+C:\DumbScrumContainer\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\DumbScrumWebMVC.dll.config
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\DumbScrumWebMVC.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\DumbScrumWebMVC.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.exe
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.exe.config
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.rsp
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.exe
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.exe.config
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.rsp
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.AppContext.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Collections.Immutable.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Console.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Globalization.Calendars.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.IO.Compression.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.IO.FileSystem.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Net.Http.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Net.Sockets.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Reflection.Metadata.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.ValueTuple.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Xml.XPath.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.exe
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.exe.config
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.rsp
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\VBCSCompiler.exe
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\roslyn\VBCSCompiler.exe.config
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Antlr3.Runtime.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\DataObjects.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\EntityFramework.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\EntityFramework.SqlServer.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\LogicLayer.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Google.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Web.Infrastructure.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Newtonsoft.Json.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Owin.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\System.Web.Helpers.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\System.Web.Mvc.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\System.Web.Optimization.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\System.Web.Razor.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.Deployment.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.Razor.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\WebGrease.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Auth.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Drive.v3.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Core.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\DataAccessInterfaces.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\DataAccessLayer.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\DataObjects.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\DataObjects.dll.config
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\LogicLayer.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Newtonsoft.Json.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\System.Web.Helpers.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\System.Web.Mvc.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\System.Web.Optimization.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\System.Web.Razor.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.Deployment.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\System.Web.WebPages.Razor.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Antlr3.Runtime.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\EntityFramework.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\EntityFramework.SqlServer.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Google.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Auth.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Auth.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Drive.v3.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Drive.v3.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Core.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\Google.Apis.Core.xml
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\DataAccessInterfaces.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\bin\DataAccessLayer.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.AssemblyReference.cache
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.CoreCompileInputs.cache
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.CopyComplete
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.dll
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.pdb

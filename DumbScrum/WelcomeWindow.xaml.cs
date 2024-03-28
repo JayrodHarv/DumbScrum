@@ -74,21 +74,18 @@ namespace DumbScrum {
 
                 try {
                     string path = @"./Images/Sample_User_Icon.png";
-                    byte[] pfp = GetFileInBinary(path);
-                    loggedInUser = _userManager.SignUpUser(email, password, pfp);
+                    byte[] pfp = _userManager.GetFileInBinary(path);
+                    User user = new User() {
+                        Email = email,
+                        Password = password,
+                        Pfp = pfp
+                    };
+                    loggedInUser = _userManager.SignUpUser(user);
                     SignIn(loggedInUser);
                 } catch (Exception ex) {
                     MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
                         "Sign Up Failed", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-            }
-        }
-
-        private byte[] GetFileInBinary(string filePath) {
-            using (System.IO.Stream stream = System.IO.File.OpenRead(filePath)) {
-                byte[] buffer = new byte[stream.Length];
-                stream.Read(buffer, 0, buffer.Length);
-                return buffer;
             }
         }
 

@@ -1,0 +1,68 @@
+﻿@model DumbScrumWebMVC.Models.BacklogVM
+
+@{
+    ViewBag.Title = "Project Backlog";
+}
+
+<div class="d-flex">
+    @Html.Partial("_ProjectPartial")
+
+    <div class="container-fluid" style="margin-left: 150px; margin-bottom: 25px">
+        <h2>Project Backlog</h2>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h2>Features</h2>
+                        <p>
+                            @Html.ActionLink("Create New", "CreateFeature")
+                        </p>
+                    </div>
+
+                    <div class="container-fluid overflow-auto" style="height: 80vh">
+                        @using (Html.BeginForm("Index", "Backlog", FormMethod.Post, new { id = "feature-form" })) {
+                            <input type="hidden" name="selectedFeatureID" id="selectedFeatureID" value="@Model.SelectedFeatureID" />
+                            <div class="list-group">
+                                @foreach (DataObjects.Feature f in Model.Features) {
+                                    <button type="submit" class="list-group-item list-group-item-action @(f.FeatureID == Model.SelectedFeatureID ? "active" : "")" aria-current="true" runat = "server" onclick="$('#selectedFeatureID').val('@f.FeatureID');">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">@f.Name</h5>
+                                            <small>@f.Priority</small>
+                                        </div>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">@f.FeatureID</h6>
+                                        <p class="card-text">@f.Description</p>
+                                    </button>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="col h-100">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h2>User Stories</h2>
+                        <p>
+                            @Html.ActionLink("Create New", "CreateUserStory", Model)
+                        </p>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="list-group overflow-auto h-90">
+                            @foreach (DataObjects.UserStory s in Model.UserStories) {
+                                <div class="list-group-item list-group-item" aria-current="true">
+                                    <h5 class="mb-1">@s.Person</h5>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary">@s.Action</h6>
+                                    <p class="card-text">@s.Reason</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        
+    </script>
+} 
