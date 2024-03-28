@@ -25,12 +25,13 @@
                         <li>@Html.ActionLink("My Projects", "MyProjects", "Project", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("All Projects", "AllProjects", "Project", new { area = "" }, new { @class = "nav-link" })</li>
                     </ul>
-                    @Html.Partial("_LoginPartial")
+                    @*@Html.Partial("_LoginPartial")*@
+                    @Html.Partial("_IdentityLoginPartial")
                 </div>
             </div>
         </nav>
     </header>
-    <main class="container-fluid p-0">
+    <main class="container-xl p-3">
         @RenderBody()
     </main>
     <footer class="footer p-0 m-0 bg-dark fixed-bottom" style="height: 25px">
