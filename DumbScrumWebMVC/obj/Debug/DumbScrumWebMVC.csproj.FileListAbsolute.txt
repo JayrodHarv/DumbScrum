@@ -385,3 +385,6 @@ C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMV
 C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.CopyComplete
 C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.dll
 C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.pdb
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.Migrations.InitialCreate.resources
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.GenerateResource.cache
+C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.Migrations.AddedGivenNameandFamilyNamefieldstouser.resources

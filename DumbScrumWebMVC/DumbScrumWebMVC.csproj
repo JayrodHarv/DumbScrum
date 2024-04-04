@@ -181,6 +181,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403282053312_InitialCreate.cs" />
+    <Compile Include="Migrations\202403282053312_InitialCreate.designer.cs">
+      <DependentUpon>202403282053312_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404041833241_Added GivenName and FamilyName fields to user.cs" />
+    <Compile Include="Migrations\202404041833241_Added GivenName and FamilyName fields to user.designer.cs">
+      <DependentUpon>202404041833241_Added GivenName and FamilyName fields to user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BacklogVM.cs" />
     <Compile Include="Models\FeedListVM.cs" />
@@ -415,6 +424,14 @@
       <Project>{7fc93bc0-6929-4d4f-b40e-601503afbcde}</Project>
       <Name>LogicLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202403282053312_InitialCreate.resx">
+      <DependentUpon>202403282053312_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404041833241_Added GivenName and FamilyName fields to user.resx">
+      <DependentUpon>202404041833241_Added GivenName and FamilyName fields to user.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
