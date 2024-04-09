@@ -189,6 +189,10 @@
     <Compile Include="Migrations\202404041833241_Added GivenName and FamilyName fields to user.designer.cs">
       <DependentUpon>202404041833241_Added GivenName and FamilyName fields to user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202404042131404_Added UserID field.cs" />
+    <Compile Include="Migrations\202404042131404_Added UserID field.designer.cs">
+      <DependentUpon>202404042131404_Added UserID field.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BacklogVM.cs" />
@@ -431,6 +435,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202404041833241_Added GivenName and FamilyName fields to user.resx">
       <DependentUpon>202404041833241_Added GivenName and FamilyName fields to user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404042131404_Added UserID field.resx">
+      <DependentUpon>202404042131404_Added UserID field.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

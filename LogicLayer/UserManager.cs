@@ -155,5 +155,13 @@ namespace LogicLayer {
                 return buffer;
             }
         }
+
+        public bool FindUser(string email) {
+            try {
+                return _userAccessor.SelectUserVMByEmail(email) != null;
+            } catch (Exception ex) {
+                throw new ApplicationException("Database Error", ex);
+            }
+        }
     }
 }

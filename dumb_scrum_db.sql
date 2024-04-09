@@ -23,6 +23,15 @@ GO
  
 ==================================================================================*/
 
+/* creating role table */
+print '' print '*** creating role table ***'
+GO
+CREATE TABLE [dbo].[Role] (
+	[RoleID]		[nvarchar] (100) NOT NULL,
+	CONSTRAINT [pk_Role] PRIMARY KEY ([RoleID])
+)
+GO
+
 /* creating user table */
 print '' print '*** creating user table ***'
 GO
@@ -33,9 +42,12 @@ CREATE TABLE [dbo].[User] (
 		'9c9064c59f1ffa2e174ee754d2979be80dd30db552ec03e7e327e9b1a4bd594e',
 	[DisplayName]	[nvarchar] 	(50)					NOT NULL	DEFAULT
 		'New User',
+	[RoleID]		[nvarchar]	(100)					NOT NULL DEFAULT 'User',
 	[Pfp]			[varbinary] (max)					NOT NULL,
 	[Bio]			[nvarchar]	(255)					NULL,
 	[Active]		[bit]								NOT NULL	DEFAULT 1,
+	CONSTRAINT [fk_User_RoleID] FOREIGN KEY ([RoleID])
+		REFERENCES	[dbo].[Role] ([RoleID]),
 	CONSTRAINT [pk_UserID] PRIMARY KEY ([UserID]),
 	CONSTRAINT [ak_User_Email] UNIQUE([Email])
 )
@@ -830,6 +842,16 @@ GO
 									Insert Test Data
  
 ==================================================================================*/
+
+print '' print '*** inserting role records ***'
+GO
+INSERT INTO [dbo].[Role]
+		([RoleID])
+	VALUES
+		('Admin'),
+		('User')
+GO
+
 /*
 print '' print '*** inserting User test records ***'
 GO

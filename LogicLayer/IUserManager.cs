@@ -7,6 +7,7 @@ using DataObjects;
 
 namespace LogicLayer {
     public interface IUserManager {
+        bool FindUser(string email);
         User GetUser(int userID);
         List<UserVM> GetProjectMembers(string projectID);
         bool AuthenticateUser(string email, string password);

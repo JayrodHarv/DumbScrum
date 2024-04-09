@@ -147,28 +147,42 @@ namespace DumbScrumWebMVC.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+        public async Task<ActionResult> Register(RegisterViewModel model) {
+            if (ModelState.IsValid) {
+                LogicLayer.UserManager userMgr = new LogicLayer.UserManager();
+                try {
+                    // check if user already exists in the database
+                    if(userMgr.FindUser(model.Email) && userMgr.AuthenticateUser(model.Email, model.Password)) {
+                        DataObjects.UserVM oldUser = userMgr.GetUserVMByEmail(model.Email);
+                        var user = new ApplicationUser {
+                            UserName = oldUser.DisplayName,
+                            UserID = oldUser.UserID,
 
-                    return RedirectToAction("Index", "Home");
+                            Email = model.Email
+                        };
+                        var result = await UserManager.CreateAsync(user, model.Password);
+                        if (result.Succeeded) {
+                            UserManager.AddToRole(user.Id, oldUser.Role);
+                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                            return RedirectToAction("Index", "Home");
+                        }
+                        AddErrors(result);
+                    } else { // not an existing user
+                        var user = new ApplicationUser {
+                            UserName = model.Email,
+                            Email = model.Email,
+                        };
+                        var result = await UserManager.CreateAsync(user, model.Password);
+                        if (result.Succeeded) {
+                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                            return RedirectToAction("Index", "Home");
+                        }
+                        AddErrors(result);
+                    }
+                } catch {
+                    return View(model);
                 }
-                AddErrors(result);
             }
-
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
