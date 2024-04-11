@@ -280,10 +280,7 @@ namespace DataAccessLayer {
                         // null example
                         //employeeVM.EmployeeID = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
                     }
-                } else {
-                    throw new ArgumentException("User not found");
                 }
-
             } catch (Exception ex) {
                 throw ex;
             } finally {
@@ -418,6 +415,43 @@ namespace DataAccessLayer {
             }
 
             return rows;
+        }
+
+        public List<string> SelectAllRoles() {
+            List<string> result = new List<string>();
+
+            // connection
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // command text
+            var cmdText = "sp_get_all_roles";
+
+            // create command
+            var cmd = new SqlCommand(cmdText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            try {
+                // open connection
+                conn.Open();
+
+                // execute command
+                var reader = cmd.ExecuteReader();
+
+                // process results
+                if (reader.HasRows) {
+                    while (reader.Read()) {
+                        result.Add(reader.GetString(0));
+                    }
+                }
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+
+            return result;
         }
     }
 }

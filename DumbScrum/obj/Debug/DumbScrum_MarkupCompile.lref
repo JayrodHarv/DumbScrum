@@ -1,30 +1,30 @@
-﻿C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\obj\Debug\GeneratedInternalTypeHelper.g.cs
+﻿C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\obj\Debug\GeneratedInternalTypeHelper.g.cs
 
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\ToolWindows\AddFeatureWindow.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\ToolWindows\AddStoryWindow.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\ToolWindows\ChangePasswordWindow.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\ToolWindows\CreateNewTaskFileWindow.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\ToolWindows\CreateProjectWindow.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\MainWindow.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\ToolWindows\PlanNewSprintWindow.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\UserControls\FeatureListItem.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\UserControls\FeedListItem.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\UserControls\SrumBoardItem.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\UserControls\TemplateFilePicker.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\UserControls\UserStoryListItem.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\Views\BoardView.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\Views\FileUploadView.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\Views\HomeView.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\Views\ManageProjectView.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\Views\MyProjectsView.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\Views\ProjectFeedView.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\Views\ProjectListView.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\Views\BacklogView.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\Views\ProjectMembersView.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\Views\ProjectSettingsView.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\Views\ProjectView.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\Views\SprintListView.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\Views\TaskView.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\Views\UserSettingsView.xaml;;
-FC:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DumbScrum\WelcomeWindow.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\ToolWindows\AddFeatureWindow.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\ToolWindows\AddStoryWindow.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\ToolWindows\ChangePasswordWindow.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\ToolWindows\CreateNewTaskFileWindow.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\ToolWindows\CreateProjectWindow.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\MainWindow.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\ToolWindows\PlanNewSprintWindow.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\UserControls\FeatureListItem.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\UserControls\FeedListItem.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\UserControls\SrumBoardItem.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\UserControls\TemplateFilePicker.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\UserControls\UserStoryListItem.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\Views\BoardView.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\Views\FileUploadView.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\Views\HomeView.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\Views\ManageProjectView.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\Views\MyProjectsView.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\Views\ProjectFeedView.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\Views\ProjectListView.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\Views\BacklogView.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\Views\ProjectMembersView.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\Views\ProjectSettingsView.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\Views\ProjectView.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\Views\SprintListView.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\Views\TaskView.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\Views\UserSettingsView.xaml;;
+FC:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\WelcomeWindow.xaml;;
 

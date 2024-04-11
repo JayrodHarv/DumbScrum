@@ -32,12 +32,7 @@
             const string adminPassword = "P@ssw0rd";
 
             LogicLayer.UserManager userMgr = new LogicLayer.UserManager();
-            // will add this later
-            // var roles = userMgr.GetUserRoles();
-            // but for now
-            List<string> roles = new List<string>() {
-                "Admin", "User"
-            };
+            List<string> roles = userMgr.GetAllRoles();
 
             foreach(var role in roles) {
                 context.Roles.AddOrUpdate(r => r.Name, new IdentityRole() { Name = role });

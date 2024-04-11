@@ -18,5 +18,6 @@ namespace LogicLayer {
         bool EditUser(User newUser, User oldUser);
         bool ChangePassword(string email, string newPassword);
         bool ChangeDisplayName(int userID, string newDisplayName);
+        List<string> GetAllRoles();
     }
 }

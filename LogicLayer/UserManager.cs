@@ -163,5 +163,15 @@ namespace LogicLayer {
                 throw new ApplicationException("Database Error", ex);
             }
         }
+
+        public List<string> GetAllRoles() {
+            List<string> roles = new List<string>();
+            try {
+                roles = _userAccessor.SelectAllRoles();
+            } catch (Exception ex) {
+                throw new ApplicationException("Failed to retrieve roles", ex);
+            }
+            return roles;
+        }
     }
 }

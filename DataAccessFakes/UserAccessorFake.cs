@@ -124,5 +124,9 @@ namespace DataAccessFakes {
         int IUserAccessor.InsertUser(User user) {
             throw new NotImplementedException();
         }
+
+        public List<string> SelectAllRoles() {
+            throw new NotImplementedException();
+        }
     }
 }

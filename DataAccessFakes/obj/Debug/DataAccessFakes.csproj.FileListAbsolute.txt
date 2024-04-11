@@ -50,3 +50,29 @@ C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFake
 C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFakes.csproj.CopyComplete
 C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFakes.dll
 C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFakes.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\DataAccessFakes.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\DataAccessFakes.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\DataAccessInterfaces.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\DataObjects.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Auth.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Drive.v3.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Core.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\Newtonsoft.Json.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\DataAccessInterfaces.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\DataObjects.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\DataObjects.dll.config
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Auth.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Auth.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Drive.v3.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Drive.v3.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Core.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\Google.Apis.Core.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\bin\Debug\Newtonsoft.Json.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFakes.csproj.AssemblyReference.cache
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFakes.csproj.CoreCompileInputs.cache
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFakes.csproj.CopyComplete
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFakes.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataAccessFakes\obj\Debug\DataAccessFakes.pdb

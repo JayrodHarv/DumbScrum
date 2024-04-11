@@ -16,5 +16,6 @@ namespace DataAccessInterfaces {
         int CheckIfEmailHasBeenUsedAlready(string email);
         int UpdatePasswordHash(string email, string newPasswordHash);
         int UpdateDisplayName(int userID, string newDisplayName);
+        List<string> SelectAllRoles();
     }
 }

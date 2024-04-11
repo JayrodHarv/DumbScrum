@@ -32,5 +32,7 @@ namespace DumbScrumWebMVC.Models
         {
             return new ApplicationDbContext();
         }
+
+        // public System.Data.Entity.DbSet<DumbScrumWebMVC.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

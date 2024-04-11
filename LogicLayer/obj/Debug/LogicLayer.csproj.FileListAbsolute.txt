@@ -58,3 +58,33 @@ C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\LogicLayer\obj\Debug\LogicLayer.csproj.C
 C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\LogicLayer\obj\Debug\LogicLayer.csproj.CopyComplete
 C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\LogicLayer\obj\Debug\LogicLayer.dll
 C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\LogicLayer\obj\Debug\LogicLayer.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\LogicLayer.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\LogicLayer.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\DataAccessFakes.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\DataAccessInterfaces.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\DataObjects.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Auth.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Drive.v3.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\Google.Apis.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Core.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\Newtonsoft.Json.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\DataAccessFakes.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\DataAccessInterfaces.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\DataObjects.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\DataObjects.dll.config
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Auth.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Auth.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Drive.v3.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Drive.v3.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\Google.Apis.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\Google.Apis.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Core.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Core.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\bin\Debug\Newtonsoft.Json.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\obj\Debug\LogicLayer.csproj.AssemblyReference.cache
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\obj\Debug\LogicLayer.csproj.CoreCompileInputs.cache
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\obj\Debug\LogicLayer.csproj.CopyComplete
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\obj\Debug\LogicLayer.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\obj\Debug\LogicLayer.pdb

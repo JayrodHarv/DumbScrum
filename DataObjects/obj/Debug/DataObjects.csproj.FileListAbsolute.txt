@@ -74,3 +74,41 @@ C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\obj\Debug\DataObjects.csproj
 C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\obj\Debug\DataObjects.csproj.CopyComplete
 C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\obj\Debug\DataObjects.dll
 C:\Dumb Scrum\DumbScrum 03-18\DumbScrum\DataObjects\obj\Debug\DataObjects.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\DataObjects.dll.config
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\DataObjects.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\DataObjects.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\DocumentFormat.OpenXml.Framework.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\EntityFramework.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Google.Apis.Auth.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Google.Apis.Core.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Google.Apis.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Google.Apis.Drive.v3.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Google.Apis.PlatformServices.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Newtonsoft.Json.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\System.CodeDom.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\DocumentFormat.OpenXml.Framework.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\EntityFramework.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Google.Apis.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Google.Apis.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Google.Apis.Auth.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Google.Apis.Auth.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Google.Apis.Core.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Google.Apis.Core.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Google.Apis.Drive.v3.pdb
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Google.Apis.Drive.v3.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\Newtonsoft.Json.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\bin\Debug\System.CodeDom.xml
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\obj\Debug\DataObjects.csproj.AssemblyReference.cache
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\obj\Debug\DataObjects.csproj.CoreCompileInputs.cache
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\obj\Debug\DataObjects.csproj.CopyComplete
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\obj\Debug\DataObjects.dll
+C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DataObjects\obj\Debug\DataObjects.pdb
