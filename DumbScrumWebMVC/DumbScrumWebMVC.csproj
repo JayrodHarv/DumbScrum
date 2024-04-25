@@ -420,6 +420,7 @@
     <Content Include="Views\Account\AdminRegisterUser.cshtml" />
     <Content Include="Views\Board\Index.cshtml" />
     <Content Include="Views\Shared\_TaskItemPartial.cshtml" />
+    <Content Include="Views\Project\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

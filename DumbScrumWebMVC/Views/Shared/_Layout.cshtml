@@ -45,6 +45,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
+        @if (ViewBag.Warning != null) {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>@ViewBag.Warning</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        @if (ViewBag.Success != null) {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>@ViewBag.Success</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
         @RenderBody()
     </main>
     <footer class="footer bg-dark fixed-bottom m-0 p-0" style="height: 25px">
