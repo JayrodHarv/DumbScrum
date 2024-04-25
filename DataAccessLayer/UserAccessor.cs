@@ -170,7 +170,7 @@ namespace DataAccessLayer {
                         userVM.Pfp = (byte[])reader[3];
                         userVM.Bio = reader.IsDBNull(4) ? "" : reader.GetString(3);
                         userVM.Active = reader.GetBoolean(5);
-                        userVM.Role = reader.GetString(6);
+                        userVM.MemberRole = reader.GetString(6);
 
                         result.Add(userVM);
                     }
@@ -241,7 +241,7 @@ namespace DataAccessLayer {
         }
 
         public UserVM SelectUserVMByEmail(string email) {
-            UserVM userVM = new UserVM();
+            UserVM userVM = null;
 
             // connection
             var conn = SqlConnectionProvider.GetConnection();
@@ -271,6 +271,7 @@ namespace DataAccessLayer {
                 // process results
                 if (reader.HasRows) {
                     if (reader.Read()) { // use while loop if multiple rows are returned
+                        userVM = new UserVM();
                         userVM.UserID = reader.GetInt32(0);
                         userVM.DisplayName = reader.GetString(1);
                         userVM.Email = reader.GetString(2);
@@ -452,6 +453,80 @@ namespace DataAccessLayer {
             }
 
             return result;
+        }
+
+        public int DeleteUserRole(int userID, string roleID) {
+            int rows = 0;
+
+            // create connection object
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // set the command text
+            var commandText = "sp_delete_user_role";
+
+            // create command object
+            var cmd = new SqlCommand(commandText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // add parameters to command
+            cmd.Parameters.Add("@UserID", SqlDbType.Int);
+
+            cmd.Parameters.Add("@RoleID", SqlDbType.NVarChar, 50);
+
+            // set parameter values
+            cmd.Parameters["@UserID"].Value = userID;
+
+            cmd.Parameters["@RoleID"].Value = roleID;
+
+            try {
+                conn.Open();
+                rows = cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+
+            return rows;
+        }
+
+        public int InsertUserRole(int userID, string roleID) {
+            int rows = 0;
+
+            // create connection object
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // set the command text
+            var commandText = "sp_add_user_role";
+
+            // create command object
+            var cmd = new SqlCommand(commandText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // add parameters to command
+            cmd.Parameters.Add("@UserID", SqlDbType.Int);
+
+            cmd.Parameters.Add("@RoleID", SqlDbType.NVarChar, 50);
+
+            // set parameter values
+            cmd.Parameters["@UserID"].Value = userID;
+
+            cmd.Parameters["@RoleID"].Value = roleID;
+
+            try {
+                conn.Open();
+                rows = cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+
+            return rows;
         }
     }
 }

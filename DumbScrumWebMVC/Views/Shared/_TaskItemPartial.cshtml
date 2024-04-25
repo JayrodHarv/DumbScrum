@@ -1,0 +1,27 @@
+﻿@model DataObjects.TaskVM
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.Owin;
+
+@{
+    ApplicationUserManager userManager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+    var user = userManager.FindById(User.Identity.GetUserId()); 
+}
+
+<div class="card mb-4">
+    <div class="card-header">
+        @Model.StoryID
+    </div>
+    <div class="card-body">
+        <p class="card-text">@Model.Story</p>
+        @if (Model.Status == "To Do") {
+            <a href="@Url.Action("ClaimTask", "Board", new { taskID=Model.TaskID })" class="btn btn-primary">Claim</a>
+        } else {
+            <div class="d-flex justify-content-between">
+                <div class="btn-group">
+                    <a href="@Url.Action("Index", "Task", new { taskID=Model.TaskID })" class="btn btn-outline-success" data-bs-toggle="tooltip" data-bs-title="View Task"><i class="bi bi bi-arrow-90deg-up"></i></a>
+                </div>
+                <p class="text-end">@user.DisplayName</p>
+            </div>
+        }
+    </div>
+</div>

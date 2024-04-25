@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace DumbScrumWebMVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         // private ApplicationDbContext db = new ApplicationDbContext();
@@ -22,7 +23,7 @@ namespace DumbScrumWebMVC.Controllers
         {
             // return View(db.ApplicationUsers.ToList());
             userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            return View(userManager.Users.OrderBy(n => n.FamilyName).ToList());
+            return View(userManager.Users.OrderBy(n => n.DisplayName).ToList());
         }
 
         // GET: Admin/Details/5
@@ -58,25 +59,22 @@ namespace DumbScrumWebMVC.Controllers
                 var adminUsers = userManager.Users.ToList()
                     .Where(u => userManager.IsInRole(u.Id, role))
                     .ToList().Count();
-                if(adminUsers < 2) {
+                if (adminUsers < 2) {
                     ViewBag.Error = "Cannot remove the last administrator.";
-                } else {
-                    userManager.RemoveFromRole(id, role);
+                    return RedirectToAction("Details", "Admin", new { id = user.Id });
                 }
-            } else {
-                userManager.RemoveFromRole(id, role);
             }
+            userManager.RemoveFromRole(id, role);
 
-            var usrMgr = new LogicLayer.UserManager();
-            var allRoles = usrMgr.GetAllRoles();
+            if(user.UserID != null) {
+                try {
+                    var usrMgr = new LogicLayer.UserManager();
+                    usrMgr.RemoveUserRole((int)user.UserID, role);
+                } catch (Exception) {
 
-            var roles = userManager.GetRoles(id);
-            var noRoles = allRoles.Except(roles);
-
-            ViewBag.Roles = roles;
-            ViewBag.NoRoles = noRoles;
-
-            return View("Details", user);
+                }
+            }
+            return RedirectToAction("Details", "Admin", new { id = user.Id });
         }
 
         public ActionResult AddRole(string id, string role) {
@@ -85,16 +83,16 @@ namespace DumbScrumWebMVC.Controllers
 
             userManager.AddToRole(id, role);
 
-            var usrMgr = new LogicLayer.UserManager();
-            var allRoles = usrMgr.GetAllRoles();
+            if (user.UserID != null) {
+                try {
+                    var usrMgr = new LogicLayer.UserManager();
+                    usrMgr.AddUserRole((int)user.UserID, role);
+                } catch (Exception) {
 
-            var roles = userManager.GetRoles(id);
-            var noRoles = allRoles.Except(roles);
-
-            ViewBag.Roles = roles;
-            ViewBag.NoRoles = noRoles;
-
-            return View("Details", user);
+                    throw;
+                }
+            }
+            return RedirectToAction("Details", "Admin", new { id = user.Id });
         }
     }
 }

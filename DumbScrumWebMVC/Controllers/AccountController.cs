@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DumbScrumWebMVC.Models;
+using System.IO;
+using DataObjects;
 
 namespace DumbScrumWebMVC.Controllers
 {
@@ -134,7 +136,48 @@ namespace DumbScrumWebMVC.Controllers
             }
         }
 
-        //
+        [AllowAnonymous]
+        public ActionResult AdminRegisterUser() {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AdminRegisterUser(AdminRegisterUserViewModel model) {
+            if (ModelState.IsValid) {
+                LogicLayer.UserManager userMgr = new LogicLayer.UserManager();
+                try {
+                    // check if user already exists in the database
+                    if (userMgr.FindUser(model.Email)) {
+                        return RedirectToAction("Register", "Account");
+                    } else { // not an existing user
+                        var newUser = new DataObjects.User() {
+                            Email = model.Email,
+                            DisplayName = model.DisplayName
+                        };
+                        if (userMgr.SignUpUser(newUser) != null) {
+                            var UserID = userMgr.GetUserIDFromEmail(model.Email);
+                            var user = new ApplicationUser {
+                                UserID = UserID,
+                                DisplayName = model.DisplayName,
+                                UserName = model.Email,
+                                Email = model.Email,
+                            };
+                            var result = await UserManager.CreateAsync(user, "newuser");
+                            if (result.Succeeded) {
+                                return RedirectToAction("Index", "Admin");
+                            }
+                            AddErrors(result);
+                        }
+                    }
+                } catch {
+                    return View(model);
+                }
+            }
+            return View(model);
+        }
+
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
@@ -152,8 +195,9 @@ namespace DumbScrumWebMVC.Controllers
                 LogicLayer.UserManager userMgr = new LogicLayer.UserManager();
                 try {
                     // check if user already exists in the database
-                    if(userMgr.FindUser(model.Email) && userMgr.AuthenticateUser(model.Email, model.Password)) {
+                    if(userMgr.FindUser(model.Email)) {
                         DataObjects.UserVM oldUser = userMgr.GetUserVMByEmail(model.Email);
+                        if (!userMgr.AuthenticateUser(model.Email, model.Password)) throw new Exception("Incorrect email or password");
                         var user = new ApplicationUser {
                             UserName = oldUser.DisplayName,
                             UserID = oldUser.UserID,
@@ -162,24 +206,39 @@ namespace DumbScrumWebMVC.Controllers
                         };
                         var result = await UserManager.CreateAsync(user, model.Password);
                         if (result.Succeeded) {
-                            UserManager.AddToRole(user.Id, oldUser.Role);
+                            UserManager.AddToRole(user.Id, "User");
                             await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                             return RedirectToAction("Index", "Home");
                         }
                         AddErrors(result);
                     } else { // not an existing user
-                        var user = new ApplicationUser {
+                        LogicLayer.UserManager usrMgr = new LogicLayer.UserManager();
+                        // can't figure out how to do relative paths, should change later
+                        string path = @"C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\Images\Sample_User_Icon.png";
+                        User user = new User() {
+                            DisplayName = model.DisplayName,
+                            Email = model.Email,
+                            Password = model.Password,
+                            Pfp = usrMgr.GetFileInBinary(path)
+                        };
+                        UserVM userVM = usrMgr.SignUpUser(user);
+
+                        var appUser = new ApplicationUser {
+                            DisplayName = model.DisplayName,
                             UserName = model.Email,
                             Email = model.Email,
+                            UserID = userVM.UserID
                         };
-                        var result = await UserManager.CreateAsync(user, model.Password);
+                        var result = await UserManager.CreateAsync(appUser, model.Password);
                         if (result.Succeeded) {
-                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                            UserManager.AddToRole(appUser.Id, "User");
+                            await SignInManager.SignInAsync(appUser, isPersistent: false, rememberBrowser: false);
                             return RedirectToAction("Index", "Home");
                         }
                         AddErrors(result);
                     }
-                } catch {
+                } catch(Exception ex) {
+                    ViewBag.Error = ex.Message;
                     return View(model);
                 }
             }

@@ -71,13 +71,6 @@ textarea {
     border-top-right-radius: 0;
 }
 
-.min-vh-body {
-    min-height: 94vh; 
-}
-
-.vh-body {
-    height: 94vh;
-}
 /*Why does bootstrap not have this*/
 .h-10 {
     height: 10%;

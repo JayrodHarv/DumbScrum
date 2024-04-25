@@ -4,10 +4,10 @@
     ViewBag.Title = "Project Sprints";
 }
 
-<div class="d-flex">
+<div class="d-flex h-100">
     @Html.Partial("_ProjectPartial")
 
-    <div class="container-fluid" style="margin-left: 150px; margin-bottom: 25px">
+    <div class="container-fluid">
         <h2>Project Sprints:</h2>
         @Html.Partial("SprintList", Model)
     </div>

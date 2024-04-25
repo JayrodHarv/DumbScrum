@@ -1,6 +1,8 @@
 ﻿using DataObjects;
 using DumbScrumWebMVC.Models;
 using LogicLayer;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,7 +17,8 @@ namespace DumbScrumWebMVC.Controllers
         FeedMessageManager _feedMessageManager = new FeedMessageManager();
         SprintManager _sprintManager = new SprintManager();
         ProjectVM _currentProject;
-        // GET: Feed
+
+        [HttpGet]
         public ActionResult Index() {
             _currentProject = (ProjectVM)Session["CurrentProject"];
             FeedListVM feedListVM = new FeedListVM();
@@ -48,7 +51,8 @@ namespace DumbScrumWebMVC.Controllers
         [HttpPost]
         public ActionResult Index(string sprintFilter, string feedMessageInput) {
             _currentProject = (ProjectVM)Session["CurrentProject"];
-            UserVM user = Session["LoggedInUser"] as UserVM;
+            ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var user = userManager.FindById(User.Identity.GetUserId());
             FeedListVM feedListVM = new FeedListVM();
             feedListVM.FeedMessages = new List<FeedMessageVM>();
             try {
@@ -67,7 +71,7 @@ namespace DumbScrumWebMVC.Controllers
                     if(feedMessageInput != null && feedMessageInput != "") {
                         _feedMessageManager.CreateFeedMessage(new FeedMessage() {
                             SprintID = feedListVM.CurrentSprint.SprintID,
-                            UserID = user.UserID,
+                            UserID = (int)user.UserID,
                             Text = feedMessageInput,
                             SentAt = DateTime.Now,
                         });
@@ -84,7 +88,6 @@ namespace DumbScrumWebMVC.Controllers
             return View(feedListVM);
         }
 
-        // POST: Feed/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {

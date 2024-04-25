@@ -1,5 +1,8 @@
 ﻿using DataObjects;
+using DumbScrumWebMVC.Models;
 using LogicLayer;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +11,7 @@ using System.Web.Mvc;
 
 namespace DumbScrumWebMVC.Controllers
 {
-    public class ProjectController : Controller
-    {
+    public class ProjectController : Controller {
         ProjectManager _projectManager = new ProjectManager();
         // GET: Project
         public ActionResult Index()
@@ -17,19 +19,19 @@ namespace DumbScrumWebMVC.Controllers
             return View();
         }
 
+        [HttpGet]
+        [Authorize]
         public ActionResult MyProjects() {
             List<ProjectVM> projects = new List<ProjectVM>();
-            if (Session["LoggedInUser"] != null) {
-                User user = (User)Session["LoggedInUser"];
-                ViewBag.Message = "My Projects";
-                try {
-                    // throw new ApplicationException();
-                    projects = _projectManager.GetProjectsByUserID(user.UserID);
-                } catch (Exception ex) {
-                    // we need to go to an error page
-                    ViewBag.ErrorMessage = ex.Message;
-                    return View("InventoryError");
-                }
+            ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var user = userManager.FindById(User.Identity.GetUserId());
+            ViewBag.Message = "My Projects";
+            try {
+                // throw new ApplicationException();
+                projects = _projectManager.GetProjectsByUserID((int)user.UserID);
+            } catch (Exception ex) {
+                // we need to go to an error page
+                ViewBag.Error = ex.Message;
             }
             return View(projects);
         }
@@ -39,27 +41,40 @@ namespace DumbScrumWebMVC.Controllers
             try {
                 projects = _projectManager.GetAllProjects();
             } catch (Exception ex) {
-                ViewBag.ErrorMessage = ex.Message;
-                return View("Error");
+                ViewBag.Error = ex.Message;
             }
             return View(projects);
         }
 
-        // GET: Project/Details/5
+        [HttpGet]
         public ActionResult ViewProject(string projectID)
         {
-            ProjectVM projectVM;
+            ProjectVM projectVM = null;
             try {
                 projectVM = _projectManager.GetProjectVMByProjectID(projectID);
                 Session["CurrentProject"] = projectVM;
-                return View("Project", projectVM);
             } catch (Exception ex) {
-                ViewBag.ErrorMessage = ex.Message;
-                return View("Error");
+                ViewBag.Error = ex.Message;
             }
+            return View("Project", projectVM);
         }
 
-        // GET: Project/Create
+        [Authorize]
+        public ActionResult JoinProject(string projectID) {
+            try {
+                ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var user = userManager.FindById(User.Identity.GetUserId());
+                bool result = _projectManager.JoinProject(projectID, (int)user.UserID);
+                if (!result) {
+                    ViewBag.Error = "Something went wrong while trying to add you to this project.";
+                }
+            } catch (Exception ex) {
+                ViewBag.Error = ex.Message;
+            }
+            return RedirectToAction("MyProjects");
+        }
+
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -71,8 +86,9 @@ namespace DumbScrumWebMVC.Controllers
         {
             try
             {
-                UserVM user = (UserVM)Session["LoggedInUser"];
-                project.UserID = user.UserID;
+                ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var user = userManager.FindById(User.Identity.GetUserId());
+                project.UserID = (int)user.UserID;
                 project.DateCreated = DateTime.Now;
                 _projectManager.AddProject(project);
                 return RedirectToAction("MyProjects");
@@ -83,13 +99,12 @@ namespace DumbScrumWebMVC.Controllers
             }
         }
 
-        // GET: Project/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Project/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {

@@ -159,6 +159,12 @@ namespace LogicLayer {
         public bool FindUser(string email) {
             try {
                 return _userAccessor.SelectUserVMByEmail(email) != null;
+            } catch(ApplicationException ax) {
+                if(ax.Message == "User not found.") {
+                    return false;
+                } else {
+                    throw;
+                }
             } catch (Exception ex) {
                 throw new ApplicationException("Database Error", ex);
             }
@@ -172,6 +178,34 @@ namespace LogicLayer {
                 throw new ApplicationException("Failed to retrieve roles", ex);
             }
             return roles;
+        }
+
+        public int GetUserIDFromEmail(string email) {
+            try {
+                return _userAccessor.SelectUserVMByEmail(email).UserID;
+            } catch (Exception ex) {
+                throw ex;
+            }
+        }
+
+        public bool RemoveUserRole(int userID, string roleID) {
+            bool result = false;
+            try {
+                result = _userAccessor.DeleteUserRole(userID, roleID) == 1;
+            } catch (Exception) {
+                throw;
+            }
+            return result;
+        }
+
+        public bool AddUserRole(int userID, string roleID) {
+            bool result = false;
+            try {
+                result = _userAccessor.InsertUserRole(userID, roleID) == 1;
+            } catch (Exception) {
+                throw;
+            }
+            return result;
         }
     }
 }

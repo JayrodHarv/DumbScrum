@@ -858,6 +858,37 @@ AS
 	END
 GO
 
+-- Role stuff
+
+print '' print '*** creating sp_delete_user_role ***'
+GO
+CREATE PROCEDURE [dbo].[sp_delete_user_role] (	
+	@UserID		[int],
+	@RoleID		[nvarchar] (100)
+)
+AS
+	BEGIN
+		DELETE FROM UserRole 
+		WHERE UserID = @UserID
+		AND RoleID = @RoleID
+	END
+GO
+
+print '' print '*** creating sp_add_user_role ***'
+GO
+CREATE PROCEDURE [dbo].[sp_add_user_role] (	
+	@UserID		[int],
+	@RoleID		[nvarchar] (100)
+)
+AS
+	BEGIN
+		INSERT INTO UserRole
+			(UserID, RoleID)
+		VALUES
+			(@UserID, @RoleID)
+	END
+GO
+
 /* =================================================================================
 
 									Insert Test Data

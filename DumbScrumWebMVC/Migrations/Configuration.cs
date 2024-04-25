@@ -48,8 +48,7 @@
                 var user = new ApplicationUser() {
                     UserName = admin,
                     Email = admin,
-                    GivenName = "Admin",
-                    FamilyName = "Joe"
+                    DisplayName = "Admin"
                 };
 
                 // Add the newly created admin user

@@ -68,9 +68,10 @@ namespace DumbScrumWebMVC.Controllers {
                 });
                 return RedirectToAction("Index");
             }
-            catch {
-                throw;
+            catch(Exception ex) {
+                ViewBag.Error = ex.Message;
             }
+            return View(feature);
         }
 
         public ActionResult CreateUserStory(BacklogVM backlog) {
@@ -92,9 +93,10 @@ namespace DumbScrumWebMVC.Controllers {
                     Reason = story.Reason
                 });
                 return RedirectToAction("Index", "Backlog", featureID);
-            } catch {
-                throw;
+            } catch (Exception ex) {
+                ViewBag.Error = ex.Message;
             }
+            return View(story);
         }
 
         // GET: Backlog/Edit/5

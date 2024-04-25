@@ -4,10 +4,10 @@
     ViewBag.Title = "Project Feed";;
 }
 
-<div class="d-flex">
+<div class="d-flex h-100" style="margin-bottom: 25px;">
     @Html.Partial("_ProjectPartial")
 
-    <div class="container-fluid" style="margin-left: 150px; margin-bottom: 25px">
+    <div class="container-fluid">
         <h2>Project Feed:</h2>
 
         @if(Model.Sprints.Count != 0) {

@@ -78,7 +78,8 @@ namespace DumbScrum {
                     User user = new User() {
                         Email = email,
                         Password = password,
-                        Pfp = pfp
+                        Pfp = pfp,
+                        DisplayName = "New User"
                     };
                     loggedInUser = _userManager.SignUpUser(user);
                     SignIn(loggedInUser);

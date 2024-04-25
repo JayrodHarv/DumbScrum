@@ -7,6 +7,7 @@ using DataObjects;
 
 namespace LogicLayer {
     public interface IUserManager {
+        int GetUserIDFromEmail(string email);
         bool FindUser(string email);
         User GetUser(int userID);
         List<UserVM> GetProjectMembers(string projectID);
@@ -19,5 +20,7 @@ namespace LogicLayer {
         bool ChangePassword(string email, string newPassword);
         bool ChangeDisplayName(int userID, string newDisplayName);
         List<string> GetAllRoles();
+        bool RemoveUserRole(int userID, string roleID);
+        bool AddUserRole(int userID, string roleID);
     }
 }

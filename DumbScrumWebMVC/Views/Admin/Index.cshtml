@@ -4,18 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Admin Dashboard</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Register New User", "AdminRegisterUser", "Account", routeValues: null, htmlAttributes: new {id = "registerLink"})
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.GivenName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FamilyName)
+            @Html.DisplayNameFor(model => model.DisplayName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.UserID)
@@ -29,10 +26,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.GivenName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FamilyName)
+            @Html.DisplayFor(modelItem => item.DisplayName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UserID)

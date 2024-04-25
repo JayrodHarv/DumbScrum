@@ -519,6 +519,7 @@ C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbS
 C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.CopyComplete
 C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.dll
 C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.pdb
-C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.rsp
-C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.rsp
-C:\Users\jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.rsp
+C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.rsp
+C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.rsp
+C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.rsp
+C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.Migrations.SwitchedGivenandFamilynameforDisplayName.resources

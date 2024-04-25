@@ -128,5 +128,13 @@ namespace DataAccessFakes {
         public List<string> SelectAllRoles() {
             throw new NotImplementedException();
         }
+
+        public int DeleteUserRole(int userID, string roleID) {
+            throw new NotImplementedException();
+        }
+
+        public int InsertUserRole(int userID, string roleID) {
+            throw new NotImplementedException();
+        }
     }
 }
