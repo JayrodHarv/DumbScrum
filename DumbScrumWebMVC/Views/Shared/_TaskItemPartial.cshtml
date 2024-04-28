@@ -18,7 +18,7 @@
         } else {
             <div class="d-flex justify-content-between">
                 <div class="btn-group">
-                    <a href="@Url.Action("Index", "Task", new { taskID=Model.TaskID })" class="btn btn-outline-success" data-bs-toggle="tooltip" data-bs-title="View Task"><i class="bi bi bi-arrow-90deg-up"></i></a>
+                    <a href="@Url.Action("Overview", "Task", new { taskID=Model.TaskID })" class="btn btn-outline-success" data-bs-toggle="tooltip" data-bs-title="View Task"><i class="bi bi bi-arrow-90deg-up"></i></a>
                 </div>
                 <p class="text-end">@user.DisplayName</p>
             </div>

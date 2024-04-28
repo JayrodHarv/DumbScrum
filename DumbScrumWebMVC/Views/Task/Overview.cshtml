@@ -1,0 +1,13 @@
+﻿@model DataObjects.TaskVM
+
+@{ 
+    ViewBag.Title = "Overview";
+}
+
+<div class="d-flex h-100">
+    @Html.Partial("_ProjectPartial")
+    <div class="col p-2">
+        @Html.Partial("_TaskPartial")
+    </div>
+</div>
+

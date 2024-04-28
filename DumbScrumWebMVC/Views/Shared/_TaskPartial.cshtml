@@ -1,0 +1,23 @@
+﻿<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link @(ViewBag.Tab == "Overview" ? "active" : "")" href="@Url.Action("Overview", "Task", new { taskID=Model.TaskID })">Overview</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(ViewBag.Tab == "Use Cases" ? "active" : "")" href="@Url.Action("UseCases", "Task", new { taskID=Model.TaskID })">Use Cases</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(ViewBag.Tab == "Stored Procedure Specifications" ? "active" : "")" href="@Url.Action("SPSpecs", "Task", new { taskID=Model.TaskID })">Stored Procedure Specifications</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(ViewBag.Tab == "User Interfaces" ? "active" : "")" href="@Url.Action("UserInterfaces", "Task", new { taskID=Model.TaskID })">User Interfaces</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(ViewBag.Tab == "ER Diagram" ? "active" : "")" href="@Url.Action("ERDiagram", "Task", new { taskID=Model.TaskID })">ER Diagram</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(ViewBag.Tab == "Data Dictionary" ? "active" : "")" @Url.Action("DataDictionary", "Task", new { taskID=Model.TaskID })>Data Dictionary</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(ViewBag.Tab == "Data Models" ? "active" : "")" href="@Url.Action("Data Models", "Task", new { taskID=Model.TaskID })">Data Models</a>
+    </li>
+</ul>
