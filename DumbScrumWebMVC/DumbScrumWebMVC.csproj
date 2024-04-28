@@ -426,6 +426,7 @@
     <Content Include="Views\Task\Overview.cshtml" />
     <Content Include="Views\Shared\_TaskPartial.cshtml" />
     <Content Include="Views\Task\UseCases.cshtml" />
+    <Content Include="Views\Project\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

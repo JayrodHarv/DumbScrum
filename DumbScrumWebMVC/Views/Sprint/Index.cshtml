@@ -8,7 +8,10 @@
     @Html.Partial("_ProjectPartial")
 
     <div class="container-fluid">
-        <h2>Project Sprints:</h2>
+        <div class="d-flex justify-content-between p-2 align-items-center">
+            <h2 class="p-0">Project Sprints:</h2>
+            <a href="@Url.Action("Create", "Sprint")" class="btn btn-success" data-bs-toggle="tooltip" data-bs-title="Plan New Sprint"><i class="bi bi-plus-lg"></i></a>
+        </div>
         @Html.Partial("SprintList", Model)
     </div>
 </div>

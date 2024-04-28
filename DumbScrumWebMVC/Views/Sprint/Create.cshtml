@@ -5,74 +5,70 @@
     List<SelectListItem> FeaturesSelectList = (List<SelectListItem>)ViewData["Features"];
 }
 
-<h2>Plan New Sprint</h2>
+<div class="container-fluid p-2">
+    <h2>Plan New Sprint</h2>
 
-@if (ViewBag.ErrorMessage != null) {
-    <div class="alert alert-warning" role="alert">
-        @ViewBag.ErrorMessage
-    </div>
-}
+    @if (ViewBag.ErrorMessage != null) {
+        <div class="alert alert-warning" role="alert">
+            @ViewBag.ErrorMessage
+        </div>
+    }
 
-@using (Html.BeginForm("Create", "Sprint", FormMethod.Post)) {
-    @Html.AntiForgeryToken()
+    @using (Html.BeginForm("Create", "Sprint", FormMethod.Post)) {
+        @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Sprint</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <label class="align-self-center" style="padding-right: 5px;">Feature: </label>
-            <div class="col-md-10">
-                @Html.DropDownList("featureID", FeaturesSelectList, new { @class = "form-control", style = "width: fit-content;", id = "featureID", runat = "server" })
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="align-self-center" style="padding-right: 5px;">Feature: </label>
+                <div class="col-md-10">
+                    @Html.DropDownList("featureID", FeaturesSelectList, new { @class = "form-control", style = "width: fit-content;", id = "featureID", runat = "server" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <label>Start Date: </label>
+            <div id="startDate"
+                 class="input-group date"
+                 data-date-format="mm-dd-yyyy"
+                 style="width: fit-content;">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", name = "startDate", type = "text", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                </div>
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </span>
+            </div>
+
+            <label>End Date: </label>
+            <div id="endDate"
+                 class="input-group date"
+                 data-date-format="mm-dd-yyyy"
+                 style="width: fit-content;">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", name = "endDate", type = "text", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                </div>
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </span>
+            </div>
+
+            <div class="btn-group" role="group">
+                <a href="@Url.Action("Index", "Sprint")" class="btn btn-outline-secondary">Back</a>
+                <button type="submit" class="btn btn-outline-success">Plan Sprint</button>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <label>Start Date: </label>
-        <div id="startDate"
-             class="input-group date"
-             data-date-format="mm-dd-yyyy"
-             style="width: fit-content;">
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", name = "startDate", type = "text", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
-            </div>
-            <span class="input-group-addon">
-                <i class="glyphicon glyphicon-calendar"></i>
-            </span>
-        </div>
-
-        <label>End Date: </label>
-        <div id="endDate"
-             class="input-group date"
-             data-date-format="mm-dd-yyyy"
-             style="width: fit-content;">
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", name = "endDate", type = "text", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
-            </div>
-            <span class="input-group-addon">
-                <i class="glyphicon glyphicon-calendar"></i>
-            </span>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    }
 </div>
 
 @section Scripts {

@@ -67,6 +67,8 @@ namespace DumbScrumWebMVC.Controllers
                 bool result = _projectManager.JoinProject(projectID, (int)user.UserID);
                 if (!result) {
                     ViewBag.Error = "Something went wrong while trying to add you to this project.";
+                } else {
+                    ViewBag.Success = "Successfully joined project!";
                 }
             } catch (Exception ex) {
                 ViewBag.Error = ex.Message;
@@ -99,47 +101,42 @@ namespace DumbScrumWebMVC.Controllers
             }
         }
 
-        [HttpGet]
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public ActionResult Edit(int id)
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public ActionResult Edit(Project project)
+        //{
+        //    try
+        //    {
+        //        _projectManager.
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Delete(string projectID)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                if(_projectManager.RemoveProject(projectID)) {
+                    ViewBag.Success = "Successfully deleted project.";
+                } else {
+                    ViewBag.Error = "Failed to delete project.";
+                }
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                ViewBag.Error = "Failed to delete project. \n" + ex.Message;
             }
-        }
-
-        // GET: Project/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Project/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("MyProjects");
         }
     }
 }
