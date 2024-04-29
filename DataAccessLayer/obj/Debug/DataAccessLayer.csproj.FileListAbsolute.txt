@@ -102,3 +102,29 @@ C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DataAccessLayer\obj\Debug\DataA
 C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CopyComplete
 C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DataAccessLayer\obj\Debug\DataAccessLayer.dll
 C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\DataAccessInterfaces.dll
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\DataObjects.dll
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\Google.Apis.Auth.dll
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\Google.Apis.Drive.v3.dll
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\Google.Apis.dll
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\Google.Apis.Core.dll
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\Newtonsoft.Json.dll
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\DataAccessInterfaces.pdb
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\DataObjects.pdb
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\DataObjects.dll.config
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\Google.Apis.Auth.pdb
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\Google.Apis.Auth.xml
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\Google.Apis.Drive.v3.pdb
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\Google.Apis.Drive.v3.xml
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\Google.Apis.pdb
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\Google.Apis.xml
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\Google.Apis.Core.pdb
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\Google.Apis.Core.xml
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\bin\Debug\Newtonsoft.Json.xml
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.AssemblyReference.cache
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CopyComplete
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+C:\Dumb Scrum\DumbScrum\DataAccessLayer\obj\Debug\DataAccessLayer.pdb

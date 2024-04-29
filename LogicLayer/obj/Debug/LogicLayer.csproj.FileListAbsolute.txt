@@ -118,3 +118,33 @@ C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\obj\Debug\LogicLayer
 C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\obj\Debug\LogicLayer.csproj.CopyComplete
 C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\obj\Debug\LogicLayer.dll
 C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\LogicLayer\obj\Debug\LogicLayer.pdb
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\LogicLayer.dll
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\LogicLayer.pdb
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\DataAccessFakes.dll
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\DataAccessInterfaces.dll
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\DataAccessLayer.dll
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\DataObjects.dll
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Auth.dll
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Drive.v3.dll
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\Google.Apis.dll
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Core.dll
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\Newtonsoft.Json.dll
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\DataAccessFakes.pdb
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\DataAccessInterfaces.pdb
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\DataAccessLayer.pdb
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\DataObjects.pdb
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\DataObjects.dll.config
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Auth.pdb
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Auth.xml
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Drive.v3.pdb
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Drive.v3.xml
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\Google.Apis.pdb
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\Google.Apis.xml
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Core.pdb
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\Google.Apis.Core.xml
+C:\Dumb Scrum\DumbScrum\LogicLayer\bin\Debug\Newtonsoft.Json.xml
+C:\Dumb Scrum\DumbScrum\LogicLayer\obj\Debug\LogicLayer.csproj.AssemblyReference.cache
+C:\Dumb Scrum\DumbScrum\LogicLayer\obj\Debug\LogicLayer.csproj.CoreCompileInputs.cache
+C:\Dumb Scrum\DumbScrum\LogicLayer\obj\Debug\LogicLayer.csproj.CopyComplete
+C:\Dumb Scrum\DumbScrum\LogicLayer\obj\Debug\LogicLayer.dll
+C:\Dumb Scrum\DumbScrum\LogicLayer\obj\Debug\LogicLayer.pdb
