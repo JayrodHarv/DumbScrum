@@ -77,6 +77,59 @@ CREATE TABLE [dbo].[Project] (
 )
 GO
 
+/* creating projectmember table */
+print '' print '*** creating projectmember table ***'
+GO
+CREATE TABLE [dbo].[ProjectMember] (
+	[MemberID]		[int]		IDENTITY(1,100000)		NOT NULL,
+	[UserID]		[int]								NOT NULL,
+	[ProjectID]		[nvarchar] 	(50)					NOT NULL,	
+	CONSTRAINT	[fk_ProjectMember_UserID]	FOREIGN KEY ([UserID])
+		REFERENCES	[dbo].[User] ([UserID]),
+	CONSTRAINT	[fk_ProjectMember_ProjectID]	FOREIGN KEY ([ProjectID])
+		REFERENCES	[dbo].[Project] ([ProjectID]) 
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	CONSTRAINT [pk_ProjectMember] PRIMARY KEY ([MemberID]),
+	CONSTRAINT [ak_ProjectMember] UNIQUE ([UserID], [ProjectID])
+)
+GO
+
+/* creating projectrole table */
+print '' print '*** creating projectrole table ***'
+GO
+CREATE TABLE [dbo].[ProjectRole] (
+	ProjectRoleID				[nvarchar]	(100)			NOT NULL,
+	ProjectID					[nvarchar]	(50)			NOT NULL,
+	FeaturePrivileges			bit							NOT NULL DEFAULT 0, 
+	UserStoryPrivileges			bit							NOT NULL DEFAULT 0, 
+	SprintPlanningPrivileges	bit							NOT NULL DEFAULT 0, 
+	FeedMessagingPrivileges		bit							NOT NULL DEFAULT 0,
+	TaskPrivileges				bit							NOT NULL DEFAULT 0,
+	TaskReviewingPrivileges		bit							NOT NULL DEFAULT 0,
+	UserManagementPrivileges	bit							NOT NULL DEFAULT 0,
+	Description					[nvarchar]	(255)			NOT NULL,		
+	CONSTRAINT [pk_ProjectRole] PRIMARY KEY ([ProjectRoleID])
+)
+GO
+
+/* creating memberrole table */
+print '' print '*** creating memberrole table ***'
+GO
+CREATE TABLE [dbo].[MemberRole] (
+	[MemberID]				[int]						NOT NULL,
+	[ProjectRoleID]			[nvarchar]	(100)			NOT NULL,
+	CONSTRAINT 	[fk_MemberRole_MemberID]	FOREIGN KEY ([MemberID])
+		REFERENCES	[dbo].[ProjectMember] ([MemberID]) 
+		ON DELETE CASCADE,
+	CONSTRAINT 	[fk_MemberRole_ProjectRoleID]	FOREIGN KEY ([ProjectRoleID])
+		REFERENCES	[dbo].[ProjectRole] ([ProjectRoleID]) 
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,		
+	CONSTRAINT [pk_MemberRole] PRIMARY KEY ([MemberID] ,[ProjectRoleID])
+)
+GO
+
 /* creating feature table */
 print '' print '*** creating feature table ***'
 GO
@@ -121,21 +174,6 @@ CREATE TABLE [dbo].[Sprint] (
 	CONSTRAINT	[fk_Sprint_FeatureID]	FOREIGN KEY ([FeatureID])
 		REFERENCES	[dbo].[Feature] ([FeatureID]) ON DELETE CASCADE,
 	CONSTRAINT [pk_Sprint] PRIMARY KEY ([SprintID])
-)
-GO
-
-/* creating projectmember table */
-print '' print '*** creating projectmember table ***'
-GO
-CREATE TABLE [dbo].[ProjectMember] (
-	[UserID]		[int]								NOT NULL,
-	[ProjectID]		[nvarchar] 	(50)					NOT NULL,
-	[Role]			[nvarchar]	(50)					NOT NULL,	
-	CONSTRAINT	[fk_ProjectMember_UserID]	FOREIGN KEY ([UserID])
-		REFERENCES	[dbo].[User] ([UserID]),
-	CONSTRAINT	[fk_ProjectMember_ProjectID]	FOREIGN KEY ([ProjectID])
-		REFERENCES	[dbo].[Project] ([ProjectID]) ON DELETE CASCADE,
-	CONSTRAINT [pk_ProjectMember] PRIMARY KEY ([UserID], [ProjectID])
 )
 GO
 
@@ -207,6 +245,86 @@ CREATE PROCEDURE [dbo].[sp_get_all_roles]
 AS
 	BEGIN
 		SELECT RoleID FROM Role
+	END
+GO
+
+/*----- ProjectRole Stored Procedures -----*/
+print '' print '*** creating sp_get_all_project_roles ***'
+GO
+CREATE PROCEDURE [dbo].[sp_get_all_project_roles] (
+	@ProjectID [nvarchar] (50)
+)
+AS
+	BEGIN
+		SELECT ProjectRoleID,			
+		       FeaturePrivileges,		
+		       UserStoryPrivileges,		
+		       SprintPlanningPrivileges,
+		       FeedMessagingPrivileges,	
+		       TaskPrivileges,			
+               TaskReviewingPrivileges,	
+               UserManagementPrivileges,
+			   Description,				
+		FROM ProjectRole
+		WHERE ProjectID = @ProjectID
+	END
+GO
+
+print '' print '*** creating sp_add_project_role ***'
+GO
+CREATE PROCEDURE [dbo].[sp_add_project_role] (
+	@ProjectRoleID nvarchar(100),
+	@ProjectID nvarchar(50),
+	@FeaturePrivileges,		
+    @UserStoryPrivileges,		
+    @SprintPlanningPrivileges,
+    @FeedMessagingPrivileges,	
+    @TaskPrivileges,			
+    @TaskReviewingPrivileges,	
+    @UserManagementPrivileges,
+	@Description nvarchar(255)
+)
+AS
+	BEGIN
+		INSERT INTO ProjectRole (
+			ProjectRoleID, 
+			ProjectID, 
+			FeaturePrivileges,		
+		    UserStoryPrivileges,		
+		    SprintPlanningPrivileges,
+		    FeedMessagingPrivileges,	
+		    TaskPrivileges,			
+		    TaskReviewingPrivileges,	
+		    UserManagementPrivileges, 
+			Description
+		)
+		VALUES (
+			@ProjectRoleID, 
+			@ProjectID, 
+			@FeaturePrivileges,		
+			@UserStoryPrivileges,		
+			@SprintPlanningPrivileges,
+			@FeedMessagingPrivileges,	
+			@TaskPrivileges,			
+			@TaskReviewingPrivileges,	
+			@UserManagementPrivileges,
+			@Description
+		)
+	END
+GO
+
+print '' print '*** creating sp_update_project_role ***'
+GO
+CREATE PROCEDURE [dbo].[sp_update_project_role] (
+	@ProjectRoleID nvarchar(100),
+	@Description nvarchar(255)
+)
+AS
+	BEGIN
+		UPDATE ProjectRole
+		SET ProjectRoleID = @ProjectRoleID,
+			Description = @Description
+		WHERE ProjectRoleID = @ProjectRoleID
 	END
 GO
 

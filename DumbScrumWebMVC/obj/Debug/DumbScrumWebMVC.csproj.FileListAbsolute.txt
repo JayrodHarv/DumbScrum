@@ -520,9 +520,6 @@ C:\DumbScrum\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.CoreComp
 C:\DumbScrum\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.CopyComplete
 C:\DumbScrum\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.dll
 C:\DumbScrum\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.pdb
-C:\DumbScrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.rsp
-C:\DumbScrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.rsp
-C:\DumbScrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.rsp
 C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\bin\DumbScrumWebMVC.dll.config
 C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\bin\DumbScrumWebMVC.dll
 C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\bin\DumbScrumWebMVC.pdb
