@@ -45,6 +45,8 @@
     <Compile Include="IFeedMessageAccessor.cs" />
     <Compile Include="IFileAccessor.cs" />
     <Compile Include="IProjectAccessor.cs" />
+    <Compile Include="IProjectMemberAccessor.cs" />
+    <Compile Include="IProjectRoleAccessor.cs" />
     <Compile Include="ISprintAccessor.cs" />
     <Compile Include="ITaskAccessor.cs" />
     <Compile Include="IUserAccessor.cs" />

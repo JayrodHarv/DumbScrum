@@ -3,14 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 
 namespace DumbScrumWebMVC.Models {
-    public class FeedListVM {
+    public class SprintListVM {
         public string ProjectID { get; set; }
         public List<SprintVM> Sprints { get; set; }
-        public List<FeedMessageVM> FeedMessages { get; set; }
-        public SprintVM CurrentSprint { get; set; }
-        public List<SelectListItem> SprintDropdownItems { get; set; }
     }
 }

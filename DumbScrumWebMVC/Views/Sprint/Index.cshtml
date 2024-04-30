@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DataObjects.SprintVM>
+﻿@model DumbScrumWebMVC.Models.SprintListVM
 
 @{
     ViewBag.Title = "Project Sprints";
@@ -10,8 +10,8 @@
     <div class="container-fluid">
         <div class="d-flex justify-content-between p-2 align-items-center">
             <h2 class="p-0">Project Sprints:</h2>
-            <a href="@Url.Action("Create", "Sprint")" class="btn btn-success" data-bs-toggle="tooltip" data-bs-title="Plan New Sprint"><i class="bi bi-plus-lg"></i></a>
+            <a href="@Url.Action("Create", "Sprint", new { projectID = Model.ProjectID })" class="btn btn-success" data-bs-toggle="tooltip" data-bs-title="Plan New Sprint"><i class="bi bi-plus-lg"></i></a>
         </div>
-        @Html.Partial("SprintList", Model)
+        @Html.Partial("SprintList", Model.Sprints)
     </div>
 </div>

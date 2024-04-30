@@ -7,8 +7,7 @@ namespace DataAccessInterfaces {
         List<ProjectVM> SelectProjectsByUserID(int userID);
         List<ProjectVM> SelectAllProjects();
         int CreateProject(Project project);
-        int JoinProject(string projectID, int userID);
-        int LeaveProject(int userID, string projectID);
+        int UpdateProject(Project project);
         int DeleteProject(string projectID);
     }
 }

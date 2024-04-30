@@ -60,26 +60,6 @@ namespace LogicLayer {
             return result;
         }
 
-        public bool LeaveProject(int userID, string projectID) {
-            bool result = false;
-            try {
-                result = (1 == _projectAccessor.LeaveProject(userID, projectID));
-            } catch (Exception ex) {
-                throw ex;
-            }
-            return result;
-        }
-
-        public bool JoinProject(string projectID, int userID) {
-            bool result = false;
-            try {
-                result = (1 == _projectAccessor.JoinProject(projectID, userID));
-            } catch (Exception ex) {
-                throw ex;
-            }
-            return result;
-        }
-
         public bool RemoveProject(string projectID) {
             bool result = false;
             try {

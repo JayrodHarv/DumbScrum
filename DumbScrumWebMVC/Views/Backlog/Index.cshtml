@@ -13,12 +13,13 @@
                 <div class="d-flex w-100 justify-content-between" style="height: 50px">
                     <h2 class="p-0 m-0">Features</h2>
                     <p>
-                        <a href="@Url.Action("CreateFeature", "Backlog")" class="btn btn-success" data-bs-toggle="tooltip" data-bs-title="Create New Feature"><i class="bi bi-plus-lg"></i></a>
+                        <a href="@Url.Action("CreateFeature", "Backlog", new { projectID = Model.ProjectID })" class="btn btn-success" data-bs-toggle="tooltip" data-bs-title="Create New Feature"><i class="bi bi-plus-lg"></i></a>
                     </p>
                 </div>
 
                 <div class="container-fluid overflow-auto h-100" style="padding-bottom: 50px">
                     @using (Html.BeginForm("Index", "Backlog", FormMethod.Post, new { id = "feature-form" })) {
+                        @Html.HiddenFor(model => model.ProjectID)
                         <input type="hidden" name="selectedFeatureID" id="selectedFeatureID" value="@Model.SelectedFeatureID" />
                         <div class="list-group">
                             @foreach (DataObjects.Feature f in Model.Features) {
@@ -39,7 +40,7 @@
                 <div class="d-flex w-100 justify-content-between" style="height: 50px">
                     <h2 class="p-0 m-0">User Stories</h2>
                     <p>
-                        <a href="@Url.Action("CreateUserStory", "Backlog", Model)" class="btn btn-success" data-bs-toggle="tooltip" data-bs-title="Create New Feature"><i class="bi bi-plus-lg"></i></a>
+                        <a href="@Url.Action("CreateUserStory", "Backlog", new { projectID=Model.ProjectID, featureID = Model.SelectedFeatureID })" class="btn btn-success" data-bs-toggle="tooltip" data-bs-title="Create New Feature"><i class="bi bi-plus-lg"></i></a>
                     </p>
                 </div>
                 <div class="container-fluid overflow-auto h-100" style="padding-bottom: 50px">

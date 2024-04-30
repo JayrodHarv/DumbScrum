@@ -10,7 +10,6 @@ namespace DataAccessInterfaces {
         User SelectUserByUserID(int userID);
         int AuthenticateUserWithEmailAndPasswordHash(string email, string passwordHash);
         UserVM SelectUserVMByEmail(string email);
-        List<UserVM> SelectMembersByProjectID(string projectID);
         int InsertUser(User user);
         int UpdateUser(User newUser, User oldUser);
         int CheckIfEmailHasBeenUsedAlready(string email);

@@ -203,10 +203,14 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BacklogVM.cs" />
     <Compile Include="Models\BoardVM.cs" />
+    <Compile Include="Models\CreateSprintVM.cs" />
+    <Compile Include="Models\CreateUserStoryVM.cs" />
     <Compile Include="Models\FeedListVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Models\SprintListVM.cs" />
+    <Compile Include="Models\TaskItemVM.cs" />
     <Compile Include="Models\UseCasesVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

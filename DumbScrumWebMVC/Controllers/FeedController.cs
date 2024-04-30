@@ -10,21 +10,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace DumbScrumWebMVC.Controllers
-{
-    public class FeedController : Controller
-    {
-        FeedMessageManager _feedMessageManager = new FeedMessageManager();
-        SprintManager _sprintManager = new SprintManager();
-        ProjectVM _currentProject;
+namespace DumbScrumWebMVC.Controllers {
+    public class FeedController : Controller {
+        MainManager _manager;
+
+        public FeedController() {
+            _manager = MainManager.GetMainManager();
+        }
 
         [HttpGet]
-        public ActionResult Index() {
-            _currentProject = (ProjectVM)Session["CurrentProject"];
+        public ActionResult Index(string projectID) {
             FeedListVM feedListVM = new FeedListVM();
+            feedListVM.ProjectID = projectID;
             feedListVM.FeedMessages = new List<FeedMessageVM>();
             try {
-                feedListVM.Sprints = _sprintManager.GetSprintVMsByProjectID(_currentProject.ProjectID);
+                feedListVM.Sprints = _manager.SprintManager.GetSprintVMsByProjectID(projectID);
                 if(feedListVM.Sprints.Count == 0) {
                     ViewBag.FeedError = "This project has no sprints";
                     return View(feedListVM);
@@ -36,27 +36,26 @@ namespace DumbScrumWebMVC.Controllers
                 feedListVM.SprintDropdownItems = sprints;
                 feedListVM.CurrentSprint = feedListVM.Sprints.Find(sprint => sprint.StartDate >= DateTime.Now && sprint.EndDate <= DateTime.Now);
                 if(feedListVM.CurrentSprint != null) {
-                    feedListVM.FeedMessages = _feedMessageManager.GetSprintFeedMessages(feedListVM.CurrentSprint.SprintID);
+                    feedListVM.FeedMessages = _manager.FeedMessageManager.GetSprintFeedMessages(feedListVM.CurrentSprint.SprintID);
                 } else {
                     List<SprintVM> temp = feedListVM.Sprints.OrderBy(sprint => sprint.StartDate).ToList();
-                    feedListVM.FeedMessages = _feedMessageManager.GetSprintFeedMessages(temp[0].SprintID);
+                    feedListVM.FeedMessages = _manager.FeedMessageManager.GetSprintFeedMessages(temp[0].SprintID);
                 }
-            } catch (Exception) {
-
-                throw;
+            } catch (Exception ex) {
+                TempData["Error"] = ex.Message;
             }
             return View(feedListVM);
         }
 
         [HttpPost]
-        public ActionResult Index(string sprintFilter, string feedMessageInput) {
-            _currentProject = (ProjectVM)Session["CurrentProject"];
+        public ActionResult Index(string projectID, string sprintFilter, string feedMessageInput) {
             ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var user = userManager.FindById(User.Identity.GetUserId());
             FeedListVM feedListVM = new FeedListVM();
+            feedListVM.ProjectID = projectID;
             feedListVM.FeedMessages = new List<FeedMessageVM>();
             try {
-                feedListVM.Sprints = _sprintManager.GetSprintVMsByProjectID(_currentProject.ProjectID);
+                feedListVM.Sprints = _manager.SprintManager.GetSprintVMsByProjectID(projectID);
                 if (feedListVM.Sprints.Count == 0) {
                     ViewBag.FeedError = "This project has no sprints";
                     return View(feedListVM);
@@ -69,82 +68,23 @@ namespace DumbScrumWebMVC.Controllers
                 feedListVM.CurrentSprint = feedListVM.Sprints.Find(sprint => sprint.SprintID == Convert.ToInt32(sprintFilter));
                 if (feedListVM.CurrentSprint != null) {
                     if(feedMessageInput != null && feedMessageInput != "") {
-                        _feedMessageManager.CreateFeedMessage(new FeedMessage() {
+                        _manager.FeedMessageManager.CreateFeedMessage(new FeedMessage() {
                             SprintID = feedListVM.CurrentSprint.SprintID,
                             UserID = (int)user.UserID,
                             Text = feedMessageInput,
                             SentAt = DateTime.Now,
                         });
                     }
-                    feedListVM.FeedMessages = _feedMessageManager.GetSprintFeedMessages(feedListVM.CurrentSprint.SprintID);
+                    feedListVM.FeedMessages = _manager.FeedMessageManager.GetSprintFeedMessages(feedListVM.CurrentSprint.SprintID);
                 } else {
                     List<SprintVM> temp = feedListVM.Sprints.OrderBy(sprint => sprint.StartDate).ToList();
-                    feedListVM.FeedMessages = _feedMessageManager.GetSprintFeedMessages(temp[0].SprintID);
+                    feedListVM.FeedMessages = _manager.FeedMessageManager.GetSprintFeedMessages(temp[0].SprintID);
                 }
             } catch (Exception) {
 
                 throw;
             }
             return View(feedListVM);
-        }
-
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Feed/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Feed/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Feed/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Feed/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

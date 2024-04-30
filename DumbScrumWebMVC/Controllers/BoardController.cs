@@ -12,44 +12,45 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.UI;
 
-namespace DumbScrumWebMVC.Controllers
-{
-    public class BoardController : Controller
-    {
-        SprintManager sprintManager = new SprintManager();
-        TaskManager taskManager = new TaskManager();
-        // GET: Board
-        public ActionResult Index()
+namespace DumbScrumWebMVC.Controllers {
+    public class BoardController : Controller {
+        MainManager _manager;
+
+        public BoardController() {
+            _manager = MainManager.GetMainManager();
+        }
+
+        [HttpGet]
+        public ActionResult Index(string projectID)
         {
             BoardVM boardVM = new BoardVM();
+            boardVM.ProjectID = projectID;
             try {
-                boardVM = GetBoard(0);
-
+                boardVM = GetBoard(projectID, 0);
             } catch (Exception ex) {
-                ViewBag.Error = "Something went wrong while trying to retrieve data for board.\n" + ex.Message;
+                TempData["Error"] = "Something went wrong while trying to retrieve data for board.\n" + ex.Message;
             }
             return View(boardVM);
         }
 
         [HttpPost]
-        public ActionResult Index(string sprintFilter) {
+        public ActionResult Index(string projectID, string sprintFilter) {
             BoardVM boardVM = new BoardVM();
-
+            boardVM.ProjectID = projectID;
             try {
-                boardVM = GetBoard(Convert.ToInt32(sprintFilter));
+                boardVM = GetBoard(projectID, Convert.ToInt32(sprintFilter));
             } catch (Exception ex) {
-                ViewBag.Error = "Something went wrong while trying to retrieve data for board.\n" + ex.Message;
+                TempData["Error"] = "Something went wrong while trying to retrieve data for board.\n" + ex.Message;
             }
 
             return View(boardVM);
         }
 
-        private BoardVM GetBoard(int sprintID) {
+        private BoardVM GetBoard(string projectID, int sprintID) {
             BoardVM boardVM = new BoardVM();
-
+            boardVM.ProjectID = projectID;
             try {
-                ProjectVM project = (ProjectVM)Session["CurrentProject"];
-                boardVM.Sprints = sprintManager.GetSprintVMsByProjectID(project.ProjectID);
+                boardVM.Sprints = _manager.SprintManager.GetSprintVMsByProjectID(projectID);
 
                 // select the current sprint by checking if the current date is in-between the start and end date of a sprint
                 if (sprintID == 0) {
@@ -60,7 +61,7 @@ namespace DumbScrumWebMVC.Controllers
                         }
                     }
                 } else {
-                    boardVM.CurrentSprint = sprintManager.GetSprintVMBySprintID(sprintID);
+                    boardVM.CurrentSprint = _manager.SprintManager.GetSprintVMBySprintID(sprintID);
                 }
 
                 List<SelectListItem> sprints = new List<SelectListItem>();
@@ -71,29 +72,30 @@ namespace DumbScrumWebMVC.Controllers
 
                 List<TaskVM> tasks = new List<TaskVM>();
                 if (boardVM.CurrentSprint != null) {
-                    tasks = taskManager.GetSprintTaskVMs(boardVM.CurrentSprint.SprintID);
+                    tasks = _manager.TaskManager.GetSprintTaskVMs(boardVM.CurrentSprint.SprintID);
                 }
                 boardVM.ToDoTasks = tasks.Where(t => t.Status == "To Do");
                 boardVM.InProgressTasks = tasks.Where(t => t.Status == "In Progress");
                 boardVM.NeedsReviewedTasks = tasks.Where(t => t.Status == "Needs Reviewed");
                 boardVM.CompleteTasks = tasks.Where(t => t.Status == "Complete");
-            } catch (Exception) {
-                throw;
+            } catch (Exception ex) {
+                TempData["Error"] = ex.Message;
             }
 
             return boardVM;
         }
 
-        public ActionResult ClaimTask(string taskID) {
+        [HttpGet]
+        public ActionResult ClaimTask(string projectID, string taskID) {
             ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var user = userManager.FindById(User.Identity.GetUserId());
 
             try {
-                taskManager.UpdateTaskUserID(Convert.ToInt32(taskID), (int)user.UserID);
+                _manager.TaskManager.UpdateTaskUserID(Convert.ToInt32(taskID), (int)user.UserID);
             } catch (Exception ex) {
-                ViewBag.Error = "Failed to claim task, please try again.\n" + ex.Message;
+                TempData["Error"] = "Failed to claim task, please try again.\n" + ex.Message;
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Board", new { projectID = projectID });
         }
     }
 }

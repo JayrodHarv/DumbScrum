@@ -171,7 +171,8 @@ namespace DumbScrumWebMVC.Controllers
                             AddErrors(result);
                         }
                     }
-                } catch {
+                } catch (Exception ex) {
+                    TempData["Error"] = ex.Message;
                     return View(model);
                 }
             }
@@ -238,7 +239,7 @@ namespace DumbScrumWebMVC.Controllers
                         AddErrors(result);
                     }
                 } catch(Exception ex) {
-                    ViewBag.Error = ex.Message;
+                    TempData["Error"] = ex.Message;
                     return View(model);
                 }
             }

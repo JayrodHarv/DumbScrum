@@ -168,44 +168,22 @@ namespace DataAccessLayer {
             return result;
         }
 
-        public int LeaveProject(int userID, string projectID) {
+        public int UpdateProject(Project project) {
             int result = 0;
 
             var conn = SqlConnectionProvider.GetConnection();
-            var cmdText = "sp_user_leave_project";
+            var cmdText = "sp_update_project";
             var cmd = new SqlCommand(cmdText, conn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add("@UserID", SqlDbType.Int);
             cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
+            cmd.Parameters.Add("@Status", SqlDbType.NVarChar, 50);
+            cmd.Parameters.Add("@Description", SqlDbType.NVarChar, 255);
 
-            cmd.Parameters["@UserID"].Value = userID;
-            cmd.Parameters["@ProjectID"].Value = projectID;
 
-            try {
-                conn.Open();
-                result = cmd.ExecuteNonQuery();
-            } catch (Exception ex) {
-                throw ex;
-            } finally {
-                conn.Close();
-            }
-            return result;
-        }
-
-        public int JoinProject(string projectID, int userID) {
-            int result = 0;
-
-            var conn = SqlConnectionProvider.GetConnection();
-            var cmdText = "sp_user_join_project";
-            var cmd = new SqlCommand(cmdText, conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.Add("@UserID", SqlDbType.Int);
-            cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
-
-            cmd.Parameters["@UserID"].Value = userID;
-            cmd.Parameters["@ProjectID"].Value = projectID;
+            cmd.Parameters["@ProjectID"].Value = project.ProjectID;
+            cmd.Parameters["@Status"].Value = project.Status;
+            cmd.Parameters["@Description"].Value = project.Description;
 
             try {
                 conn.Open();

@@ -9,12 +9,10 @@ using System.Web.Mvc;
 
 namespace DumbScrumWebMVC.Controllers {
     public class TaskController : Controller {
-        private TaskManager _taskManager;
-        private FileManager _fileManager;
+        MainManager _manager;
 
         public TaskController() {
-            _taskManager = new TaskManager();
-            _fileManager = new FileManager();
+            _manager = MainManager.GetMainManager();
         }
 
         [HttpGet]
@@ -22,9 +20,9 @@ namespace DumbScrumWebMVC.Controllers {
             ViewBag.Tab = "Overview";
             TaskVM taskVM = new TaskVM();
             try {
-                taskVM = _taskManager.GetTask(taskID);
+                taskVM = _manager.TaskManager.GetTask(taskID);
             } catch (Exception ex) {
-                ViewBag.Error = "Unable to retrieve task.\n" + ex.Message;
+                TempData["Error"] = "Unable to retrieve task.\n" + ex.Message;
             }
             return View(taskVM);
         }
@@ -35,10 +33,10 @@ namespace DumbScrumWebMVC.Controllers {
             UseCasesVM useCasesVM = new UseCasesVM();
             useCasesVM.TaskID = taskID;
             try {
-                useCasesVM.Task = _taskManager.GetTask(taskID);
-                useCasesVM.Files = _fileManager.GetTaskFilesByType(taskID, "Use Case");
+                useCasesVM.Task = _manager.TaskManager.GetTask(taskID);
+                useCasesVM.Files = _manager.FileManager.GetTaskFilesByType(taskID, "Use Case");
             } catch (Exception ex) {
-                ViewBag.Error = "Unable to retrieve use cases.\n" + ex.Message;
+                TempData["Error"] = "Unable to retrieve use cases.\n" + ex.Message;
             }
             return View(useCasesVM);
         }

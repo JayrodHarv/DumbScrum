@@ -45,6 +45,8 @@
     <Compile Include="FeedMessageAccessor.cs" />
     <Compile Include="FileAccessor.cs" />
     <Compile Include="ProjectAccessor.cs" />
+    <Compile Include="ProjectMemberAccessor.cs" />
+    <Compile Include="ProjectRoleAccessor.cs" />
     <Compile Include="SprintAccessor.cs" />
     <Compile Include="SqlConnectionProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

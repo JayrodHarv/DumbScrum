@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace DumbScrumWebMVC.Models {
     public class BoardVM {
+        public string ProjectID { get; set; }
         public SprintVM CurrentSprint { get; set; }
         public IEnumerable<SprintVM> Sprints { get; set; } = Enumerable.Empty<SprintVM>();
         public IEnumerable<TaskVM> ToDoTasks { get; set; } = Enumerable.Empty<TaskVM>();

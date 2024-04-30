@@ -48,11 +48,16 @@
     <Compile Include="IFeedMessageManager.cs" />
     <Compile Include="IFileManager.cs" />
     <Compile Include="IProjectManager.cs" />
+    <Compile Include="IProjectMemberManager.cs" />
+    <Compile Include="IProjectRoleManager.cs" />
     <Compile Include="ISprintManager.cs" />
     <Compile Include="ITaskManager.cs" />
     <Compile Include="IUserManager.cs" />
     <Compile Include="IUserStoryManager.cs" />
+    <Compile Include="MainManager.cs" />
     <Compile Include="ProjectManager.cs" />
+    <Compile Include="ProjectMemberManager.cs" />
+    <Compile Include="ProjectRoleManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SprintManager.cs" />
     <Compile Include="TaskManager.cs" />

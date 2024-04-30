@@ -1,5 +1,6 @@
 ﻿@model DumbScrumWebMVC.Models.BoardVM
 @using DataObjects
+@using DumbScrumWebMVC.Models
 
 @{
     ViewBag.Title = "Scrum Board";
@@ -14,6 +15,9 @@
             <h2>Scrum Board</h2>
             <div class="d-flex mb-4">
                 @using (Html.BeginForm("Index", "Board", FormMethod.Post, new { id = "feature-form" })) {
+
+                    @Html.HiddenFor(model => model.ProjectID)
+
                     <label class="align-self-center" style="padding-right: 5px;">Sprint: </label>
                     <select name="sprintFilter" class="form-select" onchange="submit()">
                         @foreach(SprintVM sprint in Model.Sprints) {
@@ -28,7 +32,7 @@
                 <span class="badge bg-danger mb-2 p-2">To Do</span>
                 <div>
                     @foreach (DataObjects.TaskVM t in Model.ToDoTasks) {
-                        @Html.Partial("_TaskItemPartial", t)
+                        @Html.Partial("_TaskItemPartial", new TaskItemVM() { Task = t, ProjectID = Model.ProjectID })
                     }
                 </div>
             </div>
@@ -36,7 +40,7 @@
                 <span class="badge mb-2 p-2" style="background-color: orange">In Progress</span>
                 <div>
                     @foreach (DataObjects.TaskVM t in Model.InProgressTasks) {
-                        @Html.Partial("_TaskItemPartial", t)
+                        @Html.Partial("_TaskItemPartial", new TaskItemVM() { Task = t, ProjectID = Model.ProjectID })
                     }
                 </div>
             </div>
@@ -44,7 +48,7 @@
                 <span class="badge bg-warning mb-2 p-2">Needs Reviewed</span>
                 <div>
                     @foreach (DataObjects.TaskVM t in Model.NeedsReviewedTasks) {
-                        @Html.Partial("_TaskItemPartial", t)
+                        @Html.Partial("_TaskItemPartial", new TaskItemVM() { Task = t, ProjectID = Model.ProjectID })
                     }
                 </div>
             </div>
@@ -52,7 +56,7 @@
                 <span class="badge bg-success mb-2 p-2">Completed</span>
                 <div>
                     @foreach (DataObjects.TaskVM t in Model.CompleteTasks) {
-                        @Html.Partial("_TaskItemPartial", t)
+                        @Html.Partial("_TaskItemPartial", new TaskItemVM() { Task = t, ProjectID = Model.ProjectID })
                     }
                 </div>
             </div>

@@ -92,6 +92,8 @@
     <Compile Include="File.cs" />
     <Compile Include="GoogleDriveHelper.cs" />
     <Compile Include="Project.cs" />
+    <Compile Include="ProjectMember.cs" />
+    <Compile Include="ProjectRole.cs" />
     <Compile Include="Sprint.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="User.cs" />

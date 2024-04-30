@@ -42,7 +42,7 @@ namespace LogicLayer {
         }
 
         public SprintVM GetSprintVMBySprintID(int sprintID) {
-            SprintVM result = new SprintVM();
+            SprintVM result;
             try {
                 result = _sprintAccessor.SelectSprintVMBySprintID(sprintID);
             } catch (Exception ex) {
@@ -52,7 +52,7 @@ namespace LogicLayer {
         }
 
         public SprintVM GetSprintVMByFeatureID(string featureID) {
-            SprintVM result = new SprintVM();
+            SprintVM result;
             try {
                 result = _sprintAccessor.SelectSprintVMByFeatureID(featureID);
             } catch (Exception ex) {

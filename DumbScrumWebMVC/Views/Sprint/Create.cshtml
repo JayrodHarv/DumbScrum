@@ -1,18 +1,11 @@
-﻿@model DataObjects.Sprint
+﻿@model DumbScrumWebMVC.Models.CreateSprintVM
 
 @{
     ViewBag.Title = "Create";
-    List<SelectListItem> FeaturesSelectList = (List<SelectListItem>)ViewData["Features"];
 }
 
 <div class="container-fluid p-2">
     <h2>Plan New Sprint</h2>
-
-    @if (ViewBag.ErrorMessage != null) {
-        <div class="alert alert-warning" role="alert">
-            @ViewBag.ErrorMessage
-        </div>
-    }
 
     @using (Html.BeginForm("Create", "Sprint", FormMethod.Post)) {
         @Html.AntiForgeryToken()
@@ -20,10 +13,19 @@
         <div class="form-horizontal">
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.ProjectID)
+
+            @Html.HiddenFor(model => model.Features)
+
             <div class="form-group">
                 <label class="align-self-center" style="padding-right: 5px;">Feature: </label>
                 <div class="col-md-10">
-                    @Html.DropDownList("featureID", FeaturesSelectList, new { @class = "form-control", style = "width: fit-content;", id = "featureID", runat = "server" })
+                    <select name="FeatureID" class = "form-control", style = "width: fit-content;">
+                        @foreach(DataObjects.FeatureVM feature in Model.Features) {
+                            <option value="@feature.FeatureID">@feature.Name</option>
+                        }
+                    </select>
                 </div>
             </div>
 
@@ -64,7 +66,7 @@
             </div>
 
             <div class="btn-group" role="group">
-                <a href="@Url.Action("Index", "Sprint")" class="btn btn-outline-secondary">Back</a>
+                <a href="@Url.Action("Index", "Sprint", new { projectID = Model.ProjectID })" class="btn btn-outline-secondary">Back</a>
                 <button type="submit" class="btn btn-outline-success">Plan Sprint</button>
             </div>
         </div>

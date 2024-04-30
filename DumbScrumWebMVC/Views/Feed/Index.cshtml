@@ -12,6 +12,9 @@
 
         @if(Model.Sprints.Count != 0) {
             using (Html.BeginForm("Index", "Feed", FormMethod.Post)) {
+
+                @Html.HiddenFor(model => model.ProjectID)
+
                 <div class="d-flex justify-content-center w-50 m-auto">
                     <input type="text" class="form-control" placeholder="Write Message" name="feedMessageInput">
                     <input type="submit" value="Send" class="btn btn-success btn-lg gradient-custom-4 text-body" />

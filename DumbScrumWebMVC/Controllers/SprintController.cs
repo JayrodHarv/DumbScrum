@@ -13,123 +13,72 @@ using System.Web.UI;
 namespace DumbScrumWebMVC.Controllers
 {
     public class SprintController : Controller {
-        SprintManager _sprintManager = new SprintManager();
-        FeatureManager _featureManager = new FeatureManager();
-        UserStoryManager _userStoryManager = new UserStoryManager();
-        TaskManager _taskManager = new TaskManager();
-        ProjectVM _currentProject;
-        // GET: Sprint
-        public ActionResult Index() {
-            _currentProject = (ProjectVM)Session["CurrentProject"];
-            List<SprintVM> sprints = new List<SprintVM>();
+        MainManager _manager;
+
+        public SprintController() {
+            _manager = MainManager.GetMainManager();
+        }
+
+        [HttpGet]
+        public ActionResult Index(string projectID) {
+            SprintListVM sprintListVM = new SprintListVM();
+            sprintListVM.ProjectID = projectID;
             try {
-                sprints = _sprintManager.GetSprintVMsByProjectID(_currentProject.ProjectID);
-            } catch (Exception) {
-
-                throw;
+                sprintListVM.Sprints = _manager.SprintManager.GetSprintVMsByProjectID(projectID);
+            } catch (Exception ex) {
+                TempData["Error"] = ex.Message;
             }
-            return View(sprints);
+            return View(sprintListVM);
         }
 
-        // GET: Sprint/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Sprint/Create
-        public ActionResult Create() {
-            _currentProject = (ProjectVM)Session["CurrentProject"];
-            List<FeatureVM> _features = _featureManager.GetFeaturesByProjectID(_currentProject.ProjectID);
-            List<SelectListItem> FeaturesSelectList = new List<SelectListItem>();
-            foreach (FeatureVM f in _features) {
-                FeaturesSelectList.Add(new SelectListItem { Text = f.Name, Value = f.FeatureID.ToString() });
+        [HttpGet]
+        public ActionResult Create(string projectID) {
+            CreateSprintVM createSprintVM = new CreateSprintVM();
+            createSprintVM.ProjectID = projectID;
+            try {
+                createSprintVM.Features = _manager.FeatureManager.GetFeaturesByProjectID(projectID);
+            } catch (Exception ex) {
+                TempData["Error"] = ex.Message;
             }
-            ViewData["Features"] = FeaturesSelectList;
-            return View();
+            return View(createSprintVM);
         }
 
-        // POST: Sprint/Create
         [HttpPost]
-        public ActionResult Create(Sprint inputSprint) {
-            _currentProject = Session["CurrentProject"] as ProjectVM;
+        public ActionResult Create(CreateSprintVM createSprintVM) {
             try {
-                List<SprintVM> sprints = _sprintManager.GetSprintVMsByProjectID(_currentProject.ProjectID);
-                foreach (Sprint s in sprints) {
-                    if (s.FeatureID == inputSprint.FeatureID) {
-                        ViewBag.ErrorMessage = "Sprint already exists for the feature you selected.";
-                        List<FeatureVM> _features = _featureManager.GetFeaturesByProjectID(_currentProject.ProjectID);
-                        List<SelectListItem> FeaturesSelectList = new List<SelectListItem>();
-                        foreach (FeatureVM f in _features) {
-                            FeaturesSelectList.Add(new SelectListItem { Text = f.Name, Value = f.FeatureID.ToString() });
-                        }
-                        ViewData["Features"] = FeaturesSelectList;
-                        return View(inputSprint);
-                    }
+                SprintVM temp = _manager.SprintManager.GetSprintVMByFeatureID(createSprintVM.FeatureID);
+                
+                if (temp != null) {
+                    TempData["Error"] = "Sprint already exists for the feature you selected.";
+                    return View(createSprintVM);
                 }
-                if(!_sprintManager.AddSprint(inputSprint)) {
-                    ViewBag.ErrorMessage = "Something went wrong while trying to plan this sprint.";
-                    return View(inputSprint);
+
+                if(!_manager.SprintManager.AddSprint(new Sprint() {
+                    FeatureID = createSprintVM.FeatureID,
+                    Name = createSprintVM.Name,
+                    StartDate = createSprintVM.StartDate, 
+                    EndDate = createSprintVM.EndDate
+                })) {
+                    TempData["Error"] = "Something went wrong while trying to plan this sprint.";
+                    return View(createSprintVM);
                 }
-                List<UserStory> stories = _userStoryManager.GetFeatureUserStories(inputSprint.FeatureID);
-                Sprint sprint = _sprintManager.GetSprintVMByFeatureID(inputSprint.FeatureID);
+
+                List<UserStory> stories = _manager.UserStoryManager.GetFeatureUserStories(createSprintVM.FeatureID);
+                Sprint sprint = _manager.SprintManager.GetSprintVMByFeatureID(createSprintVM.FeatureID);
                 foreach (UserStory story in stories) {
                     Task task = new Task() {
                         SprintID = sprint.SprintID,
                         StoryID = story.StoryID,
                         Status = "To Do"
                     };
-                    _taskManager.CreateTask(task);
+                    _manager.TaskManager.CreateTask(task);
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Sprint", new { projectID = createSprintVM.ProjectID });
             }
-            catch {
-                throw;
+            catch (Exception ex) {
+                TempData["Error"] = ex.Message;
             }
-        }
-
-        // GET: Sprint/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Sprint/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Sprint/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Sprint/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View(createSprintVM);
         }
     }
 }

@@ -66,16 +66,6 @@ namespace LogicLayer {
             return result;
         }
 
-        public List<UserVM> GetProjectMembers(string projectID) {
-            List<UserVM> users = new List<UserVM>();
-            try {
-                users = _userAccessor.SelectMembersByProjectID(projectID);
-            } catch (Exception ex) {
-                throw ex;
-            }
-            return users;
-        }
-
         public User GetUser(int userID) {
             User user = null;
             try {

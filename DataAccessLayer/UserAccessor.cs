@@ -132,61 +132,6 @@ namespace DataAccessLayer {
             return rows;
         }
 
-        public List<UserVM> SelectMembersByProjectID(string projectID) {
-            List<UserVM> result = new List<UserVM>();
-
-            // connection
-            var conn = SqlConnectionProvider.GetConnection();
-
-            // command text
-            var cmdText = "sp_select_project_members";
-
-            // create command
-            var cmd = new SqlCommand(cmdText, conn);
-
-            // set command type
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            // add parameters to command
-            cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
-
-            // set parameter values
-            cmd.Parameters["@ProjectID"].Value = projectID;
-
-            try {
-                // open connection
-                conn.Open();
-
-                // execute command
-                var reader = cmd.ExecuteReader();
-
-                // process results
-                if (reader.HasRows) {
-                    while (reader.Read()) {
-                        UserVM userVM = new UserVM();
-                        userVM.UserID = reader.GetInt32(0);
-                        userVM.DisplayName = reader.GetString(1);
-                        userVM.Email = reader.GetString(2);
-                        userVM.Pfp = (byte[])reader[3];
-                        userVM.Bio = reader.IsDBNull(4) ? "" : reader.GetString(3);
-                        userVM.Active = reader.GetBoolean(5);
-                        userVM.MemberRole = reader.GetString(6);
-
-                        result.Add(userVM);
-                    }
-                } else {
-                    throw new ArgumentException("User not found");
-                }
-
-            } catch (Exception ex) {
-                throw ex;
-            } finally {
-                conn.Close();
-            }
-
-            return result;
-        }
-
         public User SelectUserByUserID(int userID) {
             User user = new User();
 

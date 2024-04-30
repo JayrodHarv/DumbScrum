@@ -10,7 +10,6 @@ namespace LogicLayer {
         int GetUserIDFromEmail(string email);
         bool FindUser(string email);
         User GetUser(int userID);
-        List<UserVM> GetProjectMembers(string projectID);
         bool AuthenticateUser(string email, string password);
         UserVM SignInUser(string email, string password);
         UserVM SignUpUser(User user);

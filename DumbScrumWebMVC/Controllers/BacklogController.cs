@@ -9,138 +9,91 @@ using System.Web.Mvc;
 
 namespace DumbScrumWebMVC.Controllers {
     public class BacklogController : Controller {
-        FeatureManager _featureManager = new FeatureManager();
-        UserStoryManager _userStoryManager = new UserStoryManager();
-        ProjectVM _currentProject;
-        BacklogVM _backlogVM = new BacklogVM();
-        // GET: Backlog
-        public ActionResult Index() {
-            _currentProject = (ProjectVM)Session["CurrentProject"];
-            _backlogVM.UserStories = new List<UserStory>();
-            try {
-                _backlogVM.Features = _featureManager.GetFeaturesByProjectID(_currentProject.ProjectID);
-            } catch (Exception) {
+        MainManager _manager;
 
-                throw;
+        public BacklogController() {
+            _manager = MainManager.GetMainManager();
+        }
+
+        [HttpGet]
+        public ActionResult Index(string projectID) {
+            BacklogVM backlogVM = new BacklogVM();
+            backlogVM.ProjectID = projectID;
+            backlogVM.UserStories = new List<UserStory>();
+            try {
+                backlogVM.Features = _manager.FeatureManager.GetFeaturesByProjectID(projectID);
+            } catch (Exception ex) {
+                TempData["Error"] = ex.Message;
             }
-            return View(_backlogVM);
+            return View(backlogVM);
         }
 
         [HttpPost]
-        public ActionResult Index(string selectedFeatureID) {
-            _currentProject = (ProjectVM)Session["CurrentProject"];
-            _backlogVM.SelectedFeatureID = selectedFeatureID;
-            _backlogVM.UserStories = new List<UserStory>();
+        public ActionResult Index(string projectID, string selectedFeatureID) {
+            BacklogVM backlogVM = new BacklogVM();
+            backlogVM.ProjectID = projectID;
+            backlogVM.SelectedFeatureID = selectedFeatureID;
+            backlogVM.UserStories = new List<UserStory>();
             try {
-                _backlogVM.Features = _featureManager.GetFeaturesByProjectID(_currentProject.ProjectID);
-                _backlogVM.UserStories = _userStoryManager.GetFeatureUserStories(selectedFeatureID);
-            } catch (Exception) {
-
-                throw;
+                backlogVM.Features = _manager.FeatureManager.GetFeaturesByProjectID(projectID);
+                backlogVM.UserStories = _manager.UserStoryManager.GetFeatureUserStories(selectedFeatureID);
+            } catch (Exception ex) {
+                TempData["Error"] = ex.Message;
             }
-            return View(_backlogVM);
+            return View(backlogVM);
         }
 
-        // GET: Backlog/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
+        [HttpGet]
+        public ActionResult CreateFeature(string projectID) {
+            Feature feature = new Feature();
+            feature.ProjectID = projectID;
+            return View(feature);
         }
 
-        // GET: Backlog/Create
-        public ActionResult CreateFeature() {
-            return View();
-        }
-
-        // POST: Backlog/Create
         [HttpPost]
         public ActionResult CreateFeature(Feature feature) {
-            _currentProject = (ProjectVM)Session["CurrentProject"];
+            BacklogVM backlogVM = new BacklogVM();
             try {
-                // TODO: Add insert logic here
-                _backlogVM.Features = _featureManager.GetFeaturesByProjectID(_currentProject.ProjectID);
-                _featureManager.AddProjectFeature(new Feature() {
-                    FeatureID = _currentProject.ProjectID + "." + (_backlogVM.Features.Count + 1),
-                    ProjectID = _currentProject.ProjectID,
+                backlogVM.Features = _manager.FeatureManager.GetFeaturesByProjectID(feature.ProjectID);
+                _manager.FeatureManager.AddProjectFeature(new Feature() {
+                    FeatureID = feature.ProjectID + "." + (backlogVM.Features.Count + 1),
+                    ProjectID = feature.ProjectID,
                     Name = feature.Name,
                     Description = feature.Description,
                     Priority = feature.Priority
                 });
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Backlog", new { projectID = feature.ProjectID });
             }
             catch(Exception ex) {
-                ViewBag.Error = ex.Message;
+                TempData["Error"] = ex.Message;
             }
             return View(feature);
         }
 
-        public ActionResult CreateUserStory(BacklogVM backlog) {
-            Session["FeatureID"] = backlog.SelectedFeatureID;
-            return View();
+        [HttpGet]
+        public ActionResult CreateUserStory(string projectID, string featureID) {
+            CreateUserStoryVM createStoryVM = new CreateUserStoryVM();
+            createStoryVM.ProjectID = projectID;
+            createStoryVM.FeatureID = featureID;
+            return View(createStoryVM);
         }
 
         [HttpPost]
-        public ActionResult CreateUserStory(UserStory story) {
-            string featureID = Session["FeatureID"].ToString();
-            _currentProject = (ProjectVM)Session["CurrentProject"];
+        public ActionResult CreateUserStory(CreateUserStoryVM createStoryVM) {
             try {
-                List<UserStory> stories = _userStoryManager.GetFeatureUserStories(featureID);
-                _userStoryManager.AddFeatureUserStory(new UserStory() {
-                    StoryID = featureID + "." + (stories.Count + 1),
-                    Person = story.Person,
-                    FeatureID = featureID,
-                    Action = story.Action,
-                    Reason = story.Reason
+                List<UserStory> stories = _manager.UserStoryManager.GetFeatureUserStories(createStoryVM.FeatureID);
+                _manager.UserStoryManager.AddFeatureUserStory(new UserStory() {
+                    StoryID = createStoryVM.FeatureID + "." + (stories.Count + 1),
+                    Person = createStoryVM.Person,
+                    FeatureID = createStoryVM.FeatureID,
+                    Action = createStoryVM.Action,
+                    Reason = createStoryVM.Reason
                 });
-                return RedirectToAction("Index", "Backlog", featureID);
+                return RedirectToAction("Index", "Backlog", new { projectID = createStoryVM.ProjectID });
             } catch (Exception ex) {
-                ViewBag.Error = ex.Message;
+                TempData["Error"] = ex.Message;
             }
-            return View(story);
-        }
-
-        // GET: Backlog/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Backlog/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Backlog/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Backlog/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View(createStoryVM);
         }
     }
 }

@@ -89,7 +89,7 @@ namespace DataAccessLayer {
         }
 
         public SprintVM SelectSprintVMBySprintID(int sprintID) {
-            SprintVM result = new SprintVM();
+            SprintVM result = null;
 
             // create connection object
             var conn = SqlConnectionProvider.GetConnection();
@@ -117,6 +117,7 @@ namespace DataAccessLayer {
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows) {
                     if (reader.Read()) {
+                        result = new SprintVM();
                         result.SprintID = reader.GetInt32(0);
                         result.FeatureID = reader.GetString(1);
                         result.Name = reader.GetString(2);
@@ -134,7 +135,7 @@ namespace DataAccessLayer {
         }
 
         public SprintVM SelectSprintVMByFeatureID(string featureID) {
-            SprintVM result = new SprintVM();
+            SprintVM result = null;
 
             // create connection object
             var conn = SqlConnectionProvider.GetConnection();
@@ -162,6 +163,7 @@ namespace DataAccessLayer {
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows) {
                     if (reader.Read()) {
+                        result = new SprintVM();
                         result.SprintID = reader.GetInt32(0);
                         result.FeatureID = reader.GetString(1);
                         result.Name = reader.GetString(2);

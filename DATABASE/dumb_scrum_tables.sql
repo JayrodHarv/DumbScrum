@@ -55,21 +55,6 @@ CREATE TABLE [dbo].[User] (
 )
 GO
 
-/* creating user role table 
-print '' print '*** creating user role table ***'
-GO
-CREATE TABLE [dbo].[UserRole] (
-	[UserID]		[int]			NOT NULL,
-	[RoleID]		[nvarchar] (100) NOT NULL,
-	CONSTRAINT [fk_UserRole_UserID] FOREIGN KEY ([UserID])
-		REFERENCES	[dbo].[User] ([UserID]),
-	CONSTRAINT [fk_UserRole_RoleID] FOREIGN KEY ([RoleID])
-		REFERENCES	[dbo].[Role] ([RoleID]),
-	CONSTRAINT [pk_UserRole] PRIMARY KEY([UserID],[RoleID])
-)
-GO
-*/
-
 /* creating project table */
 print '' print '*** creating project table ***'
 GO
@@ -89,6 +74,13 @@ GO
 CREATE TABLE [dbo].[ProjectRole] (
 	ProjectRoleID				[nvarchar]	(100)			NOT NULL,
 	ProjectID					[nvarchar]	(50)			NOT NULL,
+	FeaturePrivileges			bit							NOT NULL DEFAULT 0, 
+	UserStoryPrivileges			bit							NOT NULL DEFAULT 0, 
+	SprintPlanningPrivileges	bit							NOT NULL DEFAULT 0, 
+	FeedMessagingPrivileges		bit							NOT NULL DEFAULT 0,
+	TaskPrivileges				bit							NOT NULL DEFAULT 0,
+	TaskReviewingPrivileges		bit							NOT NULL DEFAULT 0,
+	ProjectManagementPrivileges	bit							NOT NULL DEFAULT 0,
 	Description					[nvarchar]	(255)			NOT NULL,		
 	CONSTRAINT [pk_ProjectRole] PRIMARY KEY ([ProjectRoleID])
 )
@@ -98,7 +90,6 @@ GO
 print '' print '*** creating projectmember table ***'
 GO
 CREATE TABLE [dbo].[ProjectMember] (
-	[MemberID]		[int]		IDENTITY(1, 100000)		NOT NULL,
 	[UserID]		[int]								NOT NULL,
 	[ProjectID]		[nvarchar] 	(50)					NOT NULL,
 	[ProjectRoleID] [nvarchar] 	(100)					NULL,
@@ -113,8 +104,7 @@ CREATE TABLE [dbo].[ProjectMember] (
 		REFERENCES	[dbo].[ProjectRole] ([ProjectRoleID]) 
 		ON DELETE SET NULL
 		ON UPDATE CASCADE,
-	CONSTRAINT [pk_ProjectMember] PRIMARY KEY ([MemberID]),
-	CONSTRAINT [ak_ProjectMember] UNIQUE ([UserID], [ProjectID])
+	CONSTRAINT [pk_ProjectMember] PRIMARY KEY ([UserID], [ProjectID])
 )
 GO
 

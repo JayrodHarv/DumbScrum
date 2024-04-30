@@ -12,8 +12,13 @@ using System.Web.Mvc;
 namespace DumbScrumWebMVC.Controllers
 {
     public class ProjectController : Controller {
-        ProjectManager _projectManager = new ProjectManager();
-        // GET: Project
+        private MainManager _manager;
+
+        public ProjectController() {
+            _manager = MainManager.GetMainManager();
+        }
+
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
@@ -28,10 +33,10 @@ namespace DumbScrumWebMVC.Controllers
             ViewBag.Message = "My Projects";
             try {
                 // throw new ApplicationException();
-                projects = _projectManager.GetProjectsByUserID((int)user.UserID);
+                projects = _manager.ProjectManager.GetProjectsByUserID((int)user.UserID);
             } catch (Exception ex) {
                 // we need to go to an error page
-                ViewBag.Error = ex.Message;
+                TempData["Error"] = ex.Message;
             }
             return View(projects);
         }
@@ -39,42 +44,52 @@ namespace DumbScrumWebMVC.Controllers
         public ActionResult AllProjects() {
             List<ProjectVM> projects = null;
             try {
-                projects = _projectManager.GetAllProjects();
+                projects = _manager.ProjectManager.GetAllProjects();
             } catch (Exception ex) {
-                ViewBag.Error = ex.Message;
+                TempData["Error"] = ex.Message;
             }
             return View(projects);
         }
 
         [HttpGet]
-        public ActionResult ViewProject(string projectID)
-        {
+        [Authorize]
+        public ActionResult ViewProject(string projectID) {
+            ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var user = userManager.FindById(User.Identity.GetUserId());
+            // get member
+            ProjectMemberVM member = _manager.ProjectMemberManager.GetProjectMember((int)user.UserID, projectID);
+            if(member == null) {
+                TempData["Warning"] = "You are not a part of this project. Only project members can view this project.";
+                return RedirectToAction("MyProjects");
+            }
+
+            Session["ProjectMember"] = member;
+
             ProjectVM projectVM = null;
             try {
-                projectVM = _projectManager.GetProjectVMByProjectID(projectID);
-                Session["CurrentProject"] = projectVM;
+                projectVM = _manager.ProjectManager.GetProjectVMByProjectID(projectID);
             } catch (Exception ex) {
-                ViewBag.Error = ex.Message;
+                TempData["Error"] = ex.Message;
             }
             return View("Project", projectVM);
         }
 
-        [Authorize]
-        public ActionResult JoinProject(string projectID) {
-            try {
-                ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var user = userManager.FindById(User.Identity.GetUserId());
-                bool result = _projectManager.JoinProject(projectID, (int)user.UserID);
-                if (!result) {
-                    ViewBag.Error = "Something went wrong while trying to add you to this project.";
-                } else {
-                    ViewBag.Success = "Successfully joined project!";
-                }
-            } catch (Exception ex) {
-                ViewBag.Error = ex.Message;
-            }
-            return RedirectToAction("MyProjects");
-        }
+        //[Authorize]
+        //public ActionResult JoinProject(string projectID) {
+        //    try {
+        //        ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        //        var user = userManager.FindById(User.Identity.GetUserId());
+        //        bool result = _manager.ProjectMemberManager.AddProjectMember((int)user.UserID, projectID, );
+        //        if (!result) {
+        //            ViewBag.Error = "Something went wrong while trying to add you to this project.";
+        //        } else {
+        //            ViewBag.Success = "Successfully joined project!";
+        //        }
+        //    } catch (Exception ex) {
+        //        ViewBag.Error = ex.Message;
+        //    }
+        //    return RedirectToAction("MyProjects");
+        //}
 
         [HttpGet]
         public ActionResult Create()
@@ -82,23 +97,21 @@ namespace DumbScrumWebMVC.Controllers
             return View();
         }
 
-        // POST: Project/Create
         [HttpPost]
         public ActionResult Create(Project project)
         {
-            try
-            {
+            try {
                 ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var user = userManager.FindById(User.Identity.GetUserId());
                 project.UserID = (int)user.UserID;
                 project.DateCreated = DateTime.Now;
-                _projectManager.AddProject(project);
+                _manager.ProjectManager.AddProject(project);
                 return RedirectToAction("MyProjects");
             }
-            catch
-            {
-                return View("Error");
+            catch(Exception ex) {
+                TempData["Error"] = ex.Message;
             }
+            return View(project);
         }
 
         //[HttpGet]
@@ -126,15 +139,15 @@ namespace DumbScrumWebMVC.Controllers
         {
             try
             {
-                if(_projectManager.RemoveProject(projectID)) {
-                    ViewBag.Success = "Successfully deleted project.";
+                if(_manager.ProjectManager.RemoveProject(projectID)) {
+                    TempData["Success"] = "Successfully deleted project.";
                 } else {
-                    ViewBag.Error = "Failed to delete project.";
+                    TempData["Error"] = "Failed to delete project.";
                 }
             }
             catch(Exception ex)
             {
-                ViewBag.Error = "Failed to delete project. \n" + ex.Message;
+                TempData["Error"] = "Failed to delete project. \n" + ex.Message;
             }
             return RedirectToAction("MyProjects");
         }

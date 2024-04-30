@@ -16,6 +16,7 @@ namespace DataObjects {
     public class TaskVM : Task {
         public string ProjectName { get; set; }
         public string FeatureName { get; set; }
+        public string UserDisplayName { get; set; }
         public string Story { get; set; }
     }
 }

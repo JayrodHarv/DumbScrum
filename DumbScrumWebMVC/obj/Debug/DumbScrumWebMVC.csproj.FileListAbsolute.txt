@@ -785,3 +785,6 @@ C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.CoreCom
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.CopyComplete
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.dll
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.pdb
+C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.rsp
+C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.rsp
+C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.rsp

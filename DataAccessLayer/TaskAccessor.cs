@@ -73,6 +73,7 @@ namespace DataAccessLayer {
                         t.FeatureName = reader.GetString(6);
                         t.Story = "As a " + reader.GetString(7) + " I would like to " +
                             reader.GetString(8) + " so that " + reader.GetString(9) + ".";
+                        t.UserDisplayName = t.UserID == 0 ? null : reader.GetString(10);
                         result.Add(t);
                     }
                 }

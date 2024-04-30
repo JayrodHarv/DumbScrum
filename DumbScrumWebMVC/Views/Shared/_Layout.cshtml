@@ -39,21 +39,21 @@
     </header>
     <main class="container-fluid h-100 overflow-hidden" style="padding: 52px 0 25px 0;">
         @*Closable Alert Error Message*@
-        @if (ViewBag.Error != null) {
+        @if (TempData["Error"] != null) {
             <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <strong>@ViewBag.Error</strong>         
+                <strong>@TempData["Error"].ToString()</strong>         
                 <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
             </div>
         }
-        @if (ViewBag.Warning != null) {
+        @if (TempData["Warning"] != null) {
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>@ViewBag.Warning</strong>
+                <strong>@TempData["Warning"].ToString()</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        @if (ViewBag.Success != null) {
+        @if (TempData["Success"] != null) {
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>@ViewBag.Success</strong>
+                <strong>@TempData["Success"].ToString()</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
