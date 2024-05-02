@@ -136,5 +136,9 @@ namespace DataAccessFakes {
         public int InsertUserRole(int userID, string roleID) {
             throw new NotImplementedException();
         }
+
+        public List<UserVM> SelectAllUsers() {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -11,14 +11,14 @@
     }
 }
 
-<div class="container-xxl p-2">
+<div class="container-xxl p-2 h-100">
     <div class="d-flex justify-content-between mb-4">
         <h2>@ViewBag.Title</h2>
         <div class="text-end">
             <a href="@Url.Action("Create", "Project")" class="btn btn-success" data-bs-toggle="tooltip" data-bs-title="Create New Project"><i class="bi bi-plus-lg"></i></a>
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid h-90 overflow-y-auto">
         <div class="row row-cols-1 g-4">
             @foreach (var project in Model) {
                 <div class="col">

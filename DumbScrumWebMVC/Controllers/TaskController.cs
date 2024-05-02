@@ -16,21 +16,23 @@ namespace DumbScrumWebMVC.Controllers {
         }
 
         [HttpGet]
-        public ActionResult Overview(int taskID) {
-            ViewBag.Tab = "Overview";
-            TaskVM taskVM = new TaskVM();
+        public ActionResult Overview(string projectID, int taskID) {
+            ViewBag.Tab = "Board";
+            TaskOverviewVM taskOverviewVM = new TaskOverviewVM();
+            taskOverviewVM.ProjectID = projectID;
             try {
-                taskVM = _manager.TaskManager.GetTask(taskID);
+                taskOverviewVM.Task = _manager.TaskManager.GetTask(taskID);
             } catch (Exception ex) {
                 TempData["Error"] = "Unable to retrieve task.\n" + ex.Message;
             }
-            return View(taskVM);
+            return View(taskOverviewVM);
         }
 
         [HttpGet]
-        public ActionResult UseCases(int taskID) {
-            ViewBag.Tab = "Use Cases";
+        public ActionResult UseCases(string projectID, int taskID) {
+            ViewBag.Tab = "Board";
             UseCasesVM useCasesVM = new UseCasesVM();
+            useCasesVM.ProjectID = projectID;
             useCasesVM.TaskID = taskID;
             try {
                 useCasesVM.Task = _manager.TaskManager.GetTask(taskID);
@@ -39,6 +41,20 @@ namespace DumbScrumWebMVC.Controllers {
                 TempData["Error"] = "Unable to retrieve use cases.\n" + ex.Message;
             }
             return View(useCasesVM);
+        }
+
+        [HttpPost]
+        public ActionResult SendToBeReviewed(string projectID, int taskID) {
+            try {
+                if(_manager.TaskManager.UpdateTaskStatus(taskID, "Needs Reviewed")) {
+                    TempData["Success"] = "Successfully sent task to be reviewed";
+                } else {
+                    TempData["Warning"] = "Something went wrong while sending task to be reviewed";
+                }
+            } catch (Exception ex) {
+                TempData["Error"] = ex.Message;
+            }
+            return RedirectToAction("Overview", "Task", new { projectID, taskID });
         }
     }
 }

@@ -72,8 +72,9 @@ GO
 print '' print '*** creating projectrole table ***'
 GO
 CREATE TABLE [dbo].[ProjectRole] (
-	ProjectRoleID				[nvarchar]	(100)			NOT NULL,
-	ProjectID					[nvarchar]	(50)			NOT NULL,
+	ProjectRoleID				int	IDENTITY(1,100000)		NOT NULL,
+	ProjectID					nvarchar(50)				NOT NULL,
+	RoleName					nvarchar(100)				NOT NULL,
 	FeaturePrivileges			bit							NOT NULL DEFAULT 0, 
 	UserStoryPrivileges			bit							NOT NULL DEFAULT 0, 
 	SprintPlanningPrivileges	bit							NOT NULL DEFAULT 0, 
@@ -81,8 +82,9 @@ CREATE TABLE [dbo].[ProjectRole] (
 	TaskPrivileges				bit							NOT NULL DEFAULT 0,
 	TaskReviewingPrivileges		bit							NOT NULL DEFAULT 0,
 	ProjectManagementPrivileges	bit							NOT NULL DEFAULT 0,
-	Description					[nvarchar]	(255)			NOT NULL,		
-	CONSTRAINT [pk_ProjectRole] PRIMARY KEY ([ProjectRoleID])
+	Description					nvarchar(255)				NOT NULL,		
+	CONSTRAINT [pk_ProjectRole] PRIMARY KEY ([ProjectRoleID]),
+	CONSTRAINT [ak_ProjectRole] UNIQUE ([RoleName], [ProjectID])
 )
 GO
 
@@ -90,10 +92,10 @@ GO
 print '' print '*** creating projectmember table ***'
 GO
 CREATE TABLE [dbo].[ProjectMember] (
-	[UserID]		[int]								NOT NULL,
-	[ProjectID]		[nvarchar] 	(50)					NOT NULL,
-	[ProjectRoleID] [nvarchar] 	(100)					NULL,
-	[Active]		[bit]								NOT NULL DEFAULT 1,
+	[UserID]		int								NOT NULL,
+	[ProjectID]		nvarchar(50)					NOT NULL,
+	[ProjectRoleID] int								NULL,
+	[Active]		bit								NOT NULL DEFAULT 1,
 	CONSTRAINT	[fk_ProjectMember_UserID]	FOREIGN KEY ([UserID])
 		REFERENCES	[dbo].[User] ([UserID]),
 	CONSTRAINT	[fk_ProjectMember_ProjectID]	FOREIGN KEY ([ProjectID])
@@ -102,8 +104,7 @@ CREATE TABLE [dbo].[ProjectMember] (
 		ON UPDATE CASCADE,
 	CONSTRAINT	[fk_ProjectMember_ProjectRoleID]	FOREIGN KEY ([ProjectRoleID])
 		REFERENCES	[dbo].[ProjectRole] ([ProjectRoleID]) 
-		ON DELETE SET NULL
-		ON UPDATE CASCADE,
+		ON DELETE SET NULL,
 	CONSTRAINT [pk_ProjectMember] PRIMARY KEY ([UserID], [ProjectID])
 )
 GO
@@ -119,7 +120,9 @@ CREATE TABLE [dbo].[Feature] (
 	[Priority]		[nvarchar] (20)						NOT NULL,
 	[Status]		[nvarchar] (50)						NOT NULL DEFAULT "Awaiting Sprint",
 	CONSTRAINT	[fk_Feature_ProjectID]	FOREIGN KEY ([ProjectID])
-		REFERENCES	[dbo].[Project] ([ProjectID]) ON DELETE CASCADE,
+		REFERENCES	[dbo].[Project] ([ProjectID]) 
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
 	CONSTRAINT [pk_Feature] PRIMARY KEY ([FeatureID])
 )
 GO
@@ -134,7 +137,9 @@ CREATE TABLE [dbo].[UserStory] (
 	[Action]		[nvarchar]	(255)					NOT NULL,
 	[Reason]		[nvarchar]	(255)					NOT NULL,
 	CONSTRAINT	[fk_UserStory_FeatureID]	FOREIGN KEY ([FeatureID])
-		REFERENCES	[dbo].[Feature] ([FeatureID]) ON DELETE CASCADE,
+		REFERENCES	[dbo].[Feature] ([FeatureID]) 
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
 	CONSTRAINT [pk_Story] PRIMARY KEY ([StoryID])
 )
 GO
@@ -204,9 +209,9 @@ CREATE TABLE [dbo].[FeedMessage] (
 	[Text]			[Text]								NOT NULL,
 	[SentAt]		[datetime]							NOT NULL,
 	CONSTRAINT	[fk_Message_SprintID]	FOREIGN KEY ([SprintID])
-		REFERENCES	[dbo].[Sprint] ([SprintID]),
+		REFERENCES	[dbo].[Sprint] ([SprintID]) ON DELETE CASCADE,
 	CONSTRAINT	[fk_Message_UserID]	FOREIGN KEY ([UserID])
-		REFERENCES	[dbo].[User] ([UserID]),
+		REFERENCES	[dbo].[User] ([UserID]) ON DELETE CASCADE,
 	CONSTRAINT [pk_MessageID] PRIMARY KEY ([MessageID])
 )
 GO

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer {
     public class ProjectMemberAccessor : IProjectMemberAccessor {
-        public int InsertProjectMember(int userID, string projectID, string projectRoleID) {
+        public int InsertProjectMember(int userID, string projectID, int projectRoleID) {
             int rows = 0;
 
             // create connection object
@@ -28,7 +28,7 @@ namespace DataAccessLayer {
             // add parameters to command
             cmd.Parameters.Add("@UserID", SqlDbType.Int);
             cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
-            cmd.Parameters.Add("@ProjectRoleID", SqlDbType.NVarChar, 100);
+            cmd.Parameters.Add("@ProjectRoleID", SqlDbType.Int);
 
             // set parameter values
             cmd.Parameters["@UserID"].Value = userID;
@@ -83,7 +83,7 @@ namespace DataAccessLayer {
         }
 
         public ProjectMemberVM SelectProjectMember(int userID, string projectID) {
-            ProjectMemberVM result = new ProjectMemberVM();
+            ProjectMemberVM result = null;
 
             // connection
             var conn = SqlConnectionProvider.GetConnection();
@@ -115,6 +115,7 @@ namespace DataAccessLayer {
                 // process results
                 if (reader.HasRows) {
                     if (reader.Read()) {
+                        result = new ProjectMemberVM();
                         result.User = new User() {
                             UserID = reader.GetInt32(0),
                             Email = reader.GetString(1),
@@ -125,14 +126,15 @@ namespace DataAccessLayer {
                         result.Active = reader.GetBoolean(4);
 
                         result.ProjectRole = new ProjectRole() {
-                            ProjectRoleID = reader.GetString(5),
-                            FeaturePrivileges = reader.GetBoolean(6),
-                            UserStoryPrivileges = reader.GetBoolean(7),
-                            SprintPlanningPrivileges = reader.GetBoolean(8),
-                            FeedMessagingPrivileges = reader.GetBoolean(9),
-                            TaskPrivileges = reader.GetBoolean(10),
-                            TaskReviewingPrivileges = reader.GetBoolean(11),
-                            ProjectManagementPrivileges = reader.GetBoolean(12)
+                            ProjectRoleID = reader.GetInt32(5),
+                            RoleName = reader.GetString(6),
+                            FeaturePrivileges = reader.GetBoolean(7),
+                            UserStoryPrivileges = reader.GetBoolean(8),
+                            SprintPlanningPrivileges = reader.GetBoolean(9),
+                            FeedMessagingPrivileges = reader.GetBoolean(10),
+                            TaskPrivileges = reader.GetBoolean(11),
+                            TaskReviewingPrivileges = reader.GetBoolean(12),
+                            ProjectManagementPrivileges = reader.GetBoolean(13)
                         };
                     }
                 }
@@ -182,8 +184,9 @@ namespace DataAccessLayer {
                         member.Email = reader.GetString(1);
                         member.DisplayName = reader.GetString(2);
                         member.Pfp = (byte[])reader[3];
-                        member.ProjectRoleID = reader.GetString(4);
-                        member.Active = reader.GetBoolean(5);
+                        member.ProjectRoleID = reader.GetInt32(4);
+                        member.RoleName = reader.GetString(5);
+                        member.Active = reader.GetBoolean(6);
                         result.Add(member);
                     }
                 }
@@ -197,7 +200,7 @@ namespace DataAccessLayer {
             return result;
         }
 
-        public int UpdateMemberRole(int userID, string projectID, string projectRoleID) {
+        public int UpdateMemberRole(int userID, string projectID, int projectRoleID) {
             int rows = 0;
 
             // create connection object
@@ -215,7 +218,7 @@ namespace DataAccessLayer {
             // add parameters to command
             cmd.Parameters.Add("@UserID", SqlDbType.Int);
             cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
-            cmd.Parameters.Add("@ProjectRoleID", SqlDbType.NVarChar, 100);
+            cmd.Parameters.Add("@ProjectRoleID", SqlDbType.Int);
 
             // set parameter values
             cmd.Parameters["@UserID"].Value = userID;

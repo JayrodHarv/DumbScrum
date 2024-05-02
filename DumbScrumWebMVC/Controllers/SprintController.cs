@@ -21,6 +21,7 @@ namespace DumbScrumWebMVC.Controllers
 
         [HttpGet]
         public ActionResult Index(string projectID) {
+            ViewBag.Tab = "Sprints";
             SprintListVM sprintListVM = new SprintListVM();
             sprintListVM.ProjectID = projectID;
             try {
@@ -35,6 +36,8 @@ namespace DumbScrumWebMVC.Controllers
         public ActionResult Create(string projectID) {
             CreateSprintVM createSprintVM = new CreateSprintVM();
             createSprintVM.ProjectID = projectID;
+            createSprintVM.StartDate = DateTime.Now.Date;
+            createSprintVM.EndDate = DateTime.Now.Date;
             try {
                 createSprintVM.Features = _manager.FeatureManager.GetFeaturesByProjectID(projectID);
             } catch (Exception ex) {
@@ -46,36 +49,30 @@ namespace DumbScrumWebMVC.Controllers
         [HttpPost]
         public ActionResult Create(CreateSprintVM createSprintVM) {
             try {
-                SprintVM temp = _manager.SprintManager.GetSprintVMByFeatureID(createSprintVM.FeatureID);
-                
-                if (temp != null) {
-                    TempData["Error"] = "Sprint already exists for the feature you selected.";
-                    return View(createSprintVM);
-                }
-
-                if(!_manager.SprintManager.AddSprint(new Sprint() {
-                    FeatureID = createSprintVM.FeatureID,
-                    Name = createSprintVM.Name,
-                    StartDate = createSprintVM.StartDate, 
-                    EndDate = createSprintVM.EndDate
-                })) {
-                    TempData["Error"] = "Something went wrong while trying to plan this sprint.";
-                    return View(createSprintVM);
-                }
-
-                List<UserStory> stories = _manager.UserStoryManager.GetFeatureUserStories(createSprintVM.FeatureID);
-                Sprint sprint = _manager.SprintManager.GetSprintVMByFeatureID(createSprintVM.FeatureID);
-                foreach (UserStory story in stories) {
-                    Task task = new Task() {
-                        SprintID = sprint.SprintID,
-                        StoryID = story.StoryID,
-                        Status = "To Do"
+                if (_manager.SprintManager.GetSprintVMByFeatureID(createSprintVM.FeatureID) == null) {
+                    Sprint sprint = new Sprint() {
+                        FeatureID = createSprintVM.FeatureID,
+                        Name = createSprintVM.Name,
+                        StartDate = createSprintVM.StartDate,
+                        EndDate = createSprintVM.EndDate
                     };
-                    _manager.TaskManager.CreateTask(task);
+
+                    if (_manager.SprintManager.AddSprint(sprint)) {
+                        TempData["Success"] = "Successfully planned sprint: " + sprint.Name;
+                        return RedirectToAction("Index", "Sprint", new { projectID = createSprintVM.ProjectID });
+                    } else {
+                        TempData["Warning"] = "Something went wrong while trying to plan this sprint.";
+                    }
+                } else {
+                    TempData["Warning"] = "Sprint already exists for the feature you selected.";
                 }
-                return RedirectToAction("Index", "Sprint", new { projectID = createSprintVM.ProjectID });
+            } catch (Exception ex) {
+                TempData["Error"] = ex.Message;
             }
-            catch (Exception ex) {
+
+            try {
+                createSprintVM.Features = _manager.FeatureManager.GetFeaturesByProjectID(createSprintVM.ProjectID);
+            } catch (Exception ex) {
                 TempData["Error"] = ex.Message;
             }
             return View(createSprintVM);

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace DataAccessInterfaces {
     public interface IProjectRoleAccessor {
         List<ProjectRoleListVM> SelectProjectRoles(string projectID);
-        ProjectRoleVM SelectProjectRole(string projectRoleID);
+        ProjectRoleVM SelectProjectRole(int projectRoleID);
         int InsertProjectRole(ProjectRole projectRole);
         int UpdateProjectRole(ProjectRole projectRole);
-        int DeleteProjectRole(string projectRoleID);
+        int DeleteProjectRole(int projectRoleID);
     }
 }

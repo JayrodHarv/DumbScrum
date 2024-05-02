@@ -39,7 +39,7 @@ namespace LogicLayer {
             return projectMemberVM;
         }
 
-        public bool AddProjectMember(int userID, string projectID, string projectRoleID) {
+        public bool AddProjectMember(int userID, string projectID, int projectRoleID) {
             try {
                 return 0 < _projectMemberAccessor.InsertProjectMember(userID, projectID, projectRoleID);
             } catch (Exception ex) {
@@ -47,7 +47,7 @@ namespace LogicLayer {
             }
         }
 
-        public bool EditMemberRole(int userID, string projectID, string projectRoleID) {
+        public bool EditMemberRole(int userID, string projectID, int projectRoleID) {
             try {
                 return 0 < _projectMemberAccessor.UpdateMemberRole(userID, projectID, projectRoleID);
             } catch (Exception ex) {

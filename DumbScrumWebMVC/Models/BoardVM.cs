@@ -8,12 +8,12 @@ using System.Web.Mvc;
 namespace DumbScrumWebMVC.Models {
     public class BoardVM {
         public string ProjectID { get; set; }
+        public int SprintID { get; set; }
         public SprintVM CurrentSprint { get; set; }
-        public IEnumerable<SprintVM> Sprints { get; set; } = Enumerable.Empty<SprintVM>();
-        public IEnumerable<TaskVM> ToDoTasks { get; set; } = Enumerable.Empty<TaskVM>();
-        public IEnumerable<TaskVM> InProgressTasks { get; set; } = Enumerable.Empty<TaskVM>();
-        public IEnumerable<TaskVM> NeedsReviewedTasks { get; set; } = Enumerable.Empty<TaskVM>();
-        public IEnumerable<TaskVM> CompleteTasks { get; set; } = Enumerable.Empty<TaskVM>();
-        public List<SelectListItem> SprintDropdownItems { get; set; }
+        public List<SprintVM> Sprints { get; set; }
+        public List<TaskVM> ToDoTasks { get; set; }
+        public List<TaskVM> InProgressTasks { get; set; }
+        public List<TaskVM> NeedsReviewedTasks { get; set; }
+        public List<TaskVM> CompleteTasks { get; set; }
     }
 }

@@ -1,0 +1,8 @@
+﻿<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link @(ViewBag.Title == "Project Members" ? "active" : "")" href="@Url.Action("ProjectMembers", "ProjectMember", new { projectID=Model.ProjectID })">Project Members</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(ViewBag.Title == "Project Roles" ? "active" : "")" href="@Url.Action("ProjectRoles", "ProjectRole", new { projectID=Model.ProjectID })">Project Roles</a>
+    </li>
+</ul>

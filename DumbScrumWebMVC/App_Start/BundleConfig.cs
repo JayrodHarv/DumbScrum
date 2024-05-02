@@ -17,14 +17,12 @@ namespace DumbScrumWebMVC {
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
                       "~/Scripts/bootstrap.bundle.min.js",
-                      "~/Scripts/bootstrap-datepicker.min.js"));
+                      "~/Scripts/site.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.min.css",
-                      "~/Content/site.css",
-                      "~/Content/bootstrap-datepicker.min.css"));
+                      "~/Content/bootstrap/main.css",
+                      "~/Content/site.css"));
         }
     }
 }

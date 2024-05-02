@@ -8,10 +8,13 @@ using System.Web.UI.WebControls;
 
 namespace DumbScrumWebMVC.CustomHtmlHelpers {
     public static class CustomHtmlHelpers {
-        public static IHtmlString Image(this HtmlHelper helper, string src, string alt) {
+        public static IHtmlString ProfilePicture(this HtmlHelper helper, string base64, string alt) {
             TagBuilder tb = new TagBuilder("img");
-            tb.Attributes.Add("src", VirtualPathUtility.ToAbsolute(src));
+            tb.Attributes.Add("src", base64);
             tb.Attributes.Add("alt", alt);
+            tb.AddCssClass("rounded-circle");
+            tb.AddCssClass("m-1");
+            tb.Attributes.Add("style", "height:35px;width:35px;");
             return new MvcHtmlString(tb.ToString(TagRenderMode.SelfClosing));
         }
 

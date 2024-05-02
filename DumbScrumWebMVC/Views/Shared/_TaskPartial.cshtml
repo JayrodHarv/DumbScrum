@@ -1,23 +1,38 @@
-﻿<ul class="nav nav-tabs">
-    <li class="nav-item">
-        <a class="nav-link @(ViewBag.Tab == "Overview" ? "active" : "")" href="@Url.Action("Overview", "Task", new { taskID=Model.TaskID })">Overview</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link @(ViewBag.Tab == "Use Cases" ? "active" : "")" href="@Url.Action("UseCases", "Task", new { taskID=Model.TaskID })">Use Cases</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link @(ViewBag.Tab == "Stored Procedure Specifications" ? "active" : "")" href="@Url.Action("SPSpecs", "Task", new { taskID=Model.TaskID })">Stored Procedure Specifications</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link @(ViewBag.Tab == "User Interfaces" ? "active" : "")" href="@Url.Action("UserInterfaces", "Task", new { taskID=Model.TaskID })">User Interfaces</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link @(ViewBag.Tab == "ER Diagram" ? "active" : "")" href="@Url.Action("ERDiagram", "Task", new { taskID=Model.TaskID })">ER Diagram</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link @(ViewBag.Tab == "Data Dictionary" ? "active" : "")" @Url.Action("DataDictionary", "Task", new { taskID=Model.TaskID })>Data Dictionary</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link @(ViewBag.Tab == "Data Models" ? "active" : "")" href="@Url.Action("Data Models", "Task", new { taskID=Model.TaskID })">Data Models</a>
-    </li>
-</ul>
+﻿<div>
+    <div class="d-flex justify-content-between">
+        <h2>@Model.Task.StoryID</h2>
+        <div class="text-end">
+            @if (Model.Task.Status == "In Progress") {
+                using (Html.BeginForm("SendToBeReviewed", "Task", FormMethod.Post)) {
+                    <input type="hidden" name="ProjectID" value="@Model.ProjectID" />
+                    <input type="hidden" name="TaskID" value="@Model.Task.TaskID" />
+                    <button type="submit" class="btn btn-primary">Send To Be Reviewed</button>
+                }
+            }
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs mt-2">
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.Title == "Overview" ? "active" : "")" href="@Url.Action("Overview", "Task", new { projectID = Model.ProjectID, taskID=Model.Task.TaskID })">Overview</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.Title == "Use Cases" ? "active" : "")" href="@Url.Action("UseCases", "Task", new { projectID = Model.ProjectID, taskID=Model.Task.TaskID })">Use Cases</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.Title == "Stored Procedure Specifications" ? "active" : "")" href="@Url.Action("SPSpecs", "Task", new { projectID = Model.ProjectID, taskID=Model.Task.TaskID })">Stored Procedure Specifications</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.Title == "User Interfaces" ? "active" : "")" href="@Url.Action("UserInterfaces", "Task", new { projectID = Model.ProjectID, taskID=Model.Task.TaskID })">User Interfaces</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.Title == "ER Diagram" ? "active" : "")" href="@Url.Action("ERDiagram", "Task", new { projectID = Model.ProjectID, taskID=Model.Task.TaskID })">ER Diagram</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.Title == "Data Dictionary" ? "active" : "")" @Url.Action("DataDictionary", "Task", new { projectID = Model.ProjectID, taskID = Model.Task.TaskID })>Data Dictionary</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.Title == "Data Models" ? "active" : "")" href="@Url.Action("DataModels", "Task", new { projectID = Model.ProjectID, taskID=Model.Task.TaskID })">Data Models</a>
+        </li>
+    </ul>
+</div>

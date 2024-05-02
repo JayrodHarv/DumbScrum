@@ -74,39 +74,24 @@ namespace DumbScrumWebMVC.Controllers
             return View("Project", projectVM);
         }
 
-        //[Authorize]
-        //public ActionResult JoinProject(string projectID) {
-        //    try {
-        //        ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-        //        var user = userManager.FindById(User.Identity.GetUserId());
-        //        bool result = _manager.ProjectMemberManager.AddProjectMember((int)user.UserID, projectID, );
-        //        if (!result) {
-        //            ViewBag.Error = "Something went wrong while trying to add you to this project.";
-        //        } else {
-        //            ViewBag.Success = "Successfully joined project!";
-        //        }
-        //    } catch (Exception ex) {
-        //        ViewBag.Error = ex.Message;
-        //    }
-        //    return RedirectToAction("MyProjects");
-        //}
-
         [HttpGet]
-        public ActionResult Create()
-        {
+        public ActionResult Create() {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(Project project)
-        {
+        public ActionResult Create(Project project) {
             try {
                 ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var user = userManager.FindById(User.Identity.GetUserId());
                 project.UserID = (int)user.UserID;
                 project.DateCreated = DateTime.Now;
-                _manager.ProjectManager.AddProject(project);
-                return RedirectToAction("MyProjects");
+                if(_manager.ProjectManager.AddProject(project)) {
+                    TempData["Success"] = "Successfully created project: " + project.ProjectID;
+                    return RedirectToAction("MyProjects");
+                } else {
+                    TempData["Warning"] = "Something went wrong while creating project";
+                }
             }
             catch(Exception ex) {
                 TempData["Error"] = ex.Message;
@@ -114,39 +99,16 @@ namespace DumbScrumWebMVC.Controllers
             return View(project);
         }
 
-        //[HttpGet]
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public ActionResult Edit(Project project)
-        //{
-        //    try
-        //    {
-        //        _projectManager.
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
         [HttpPost]
-        public ActionResult Delete(string projectID)
-        {
-            try
-            {
+        public ActionResult Delete(string projectID) {
+            try {
                 if(_manager.ProjectManager.RemoveProject(projectID)) {
                     TempData["Success"] = "Successfully deleted project.";
                 } else {
-                    TempData["Error"] = "Failed to delete project.";
+                    TempData["Warning"] = "Something went wrong while deleting project";
                 }
             }
-            catch(Exception ex)
-            {
+            catch(Exception ex) {
                 TempData["Error"] = "Failed to delete project. \n" + ex.Message;
             }
             return RedirectToAction("MyProjects");

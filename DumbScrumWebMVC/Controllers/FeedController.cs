@@ -20,6 +20,7 @@ namespace DumbScrumWebMVC.Controllers {
 
         [HttpGet]
         public ActionResult Index(string projectID) {
+            ViewBag.Tab = "Feed";
             FeedListVM feedListVM = new FeedListVM();
             feedListVM.ProjectID = projectID;
             feedListVM.FeedMessages = new List<FeedMessageVM>();
@@ -49,6 +50,7 @@ namespace DumbScrumWebMVC.Controllers {
 
         [HttpPost]
         public ActionResult Index(string projectID, string sprintFilter, string feedMessageInput) {
+            ViewBag.Tab = "Feed";
             ApplicationUserManager userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var user = userManager.FindById(User.Identity.GetUserId());
             FeedListVM feedListVM = new FeedListVM();

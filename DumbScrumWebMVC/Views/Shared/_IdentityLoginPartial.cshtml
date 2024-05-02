@@ -7,12 +7,20 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" })) {
         @Html.AntiForgeryToken()
 
-        <ul class="navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink(user.DisplayName, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
-            </li>
-            <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Sign Out</a></li>
-        </ul>
+    <div class="navbar-nav navbar-right align-items-center">
+        <div class="dropdown text-end px-2" data-bs-theme="dark">
+            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="~/Images/Sample_User_Icon.png" alt="pfp" width="35" height="35" class="rounded-circle bg-light m-1">
+                @user.DisplayName
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end text-small">
+                <li>
+                    @Html.ActionLink("Profile", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
+                </li>
+                <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Sign Out</a></li>
+            </ul>
+        </div>
+    </div>
     }
 } else {
     <ul class="navbar-nav navbar-right">

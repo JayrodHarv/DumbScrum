@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer {
     public class ProjectRoleAccessor : IProjectRoleAccessor {
-        public int DeleteProjectRole(string projectRoleID) {
+        public int DeleteProjectRole(int projectRoleID) {
             int rows = 0;
 
             // create connection object
@@ -26,7 +26,7 @@ namespace DataAccessLayer {
             cmd.CommandType = CommandType.StoredProcedure;
 
             // add parameters to command
-            cmd.Parameters.Add("@ProjectRoleID", SqlDbType.NVarChar, 100);
+            cmd.Parameters.Add("@ProjectRoleID", SqlDbType.Int);
 
             // set parameter values
             cmd.Parameters["@ProjectRoleID"].Value = projectRoleID;
@@ -59,7 +59,7 @@ namespace DataAccessLayer {
             cmd.CommandType = CommandType.StoredProcedure;
 
             // add parameters to command
-            cmd.Parameters.Add("@ProjectRoleID", SqlDbType.NVarChar, 100);
+            cmd.Parameters.Add("@RoleName", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@FeaturePrivileges", SqlDbType.Bit);
             cmd.Parameters.Add("@UserStoryPrivileges", SqlDbType.Bit);
@@ -71,7 +71,7 @@ namespace DataAccessLayer {
             cmd.Parameters.Add("@Description", SqlDbType.NVarChar, 255);
 
             // set parameter values
-            cmd.Parameters["@ProjectRoleID"].Value = projectRole.ProjectRoleID;
+            cmd.Parameters["@RoleName"].Value = projectRole.RoleName;
             cmd.Parameters["@ProjectID"].Value = projectRole.ProjectID;
             cmd.Parameters["@FeaturePrivileges"].Value = projectRole.FeaturePrivileges;
             cmd.Parameters["@UserStoryPrivileges"].Value = projectRole.UserStoryPrivileges;
@@ -94,7 +94,7 @@ namespace DataAccessLayer {
             return rows;
         }
 
-        public ProjectRoleVM SelectProjectRole(string projectRoleID) {
+        public ProjectRoleVM SelectProjectRole(int projectRoleID) {
             ProjectRoleVM result = new ProjectRoleVM();
 
             // connection
@@ -110,7 +110,7 @@ namespace DataAccessLayer {
             cmd.CommandType = CommandType.StoredProcedure;
 
             // add parameters to command
-            cmd.Parameters.Add("@ProjectRoleID", SqlDbType.NVarChar, 100);
+            cmd.Parameters.Add("@ProjectRoleID", SqlDbType.Int);
 
             // set parameter values
             cmd.Parameters["@ProjectRoleID"].Value = projectRoleID;
@@ -125,15 +125,16 @@ namespace DataAccessLayer {
                 // process results
                 if (reader.HasRows) {
                     if (reader.Read()) {
-                        result.ProjectRoleID = reader.GetString(0);
-                        result.FeaturePrivileges = reader.GetBoolean(1);
-                        result.UserStoryPrivileges = reader.GetBoolean(2);
-                        result.SprintPlanningPrivileges = reader.GetBoolean(3);
-                        result.FeedMessagingPrivileges = reader.GetBoolean(4);
-                        result.TaskPrivileges = reader.GetBoolean(5);
-                        result.TaskReviewingPrivileges = reader.GetBoolean(6);
-                        result.ProjectManagementPrivileges = reader.GetBoolean(7);
-                        result.Description = reader.GetString(8);
+                        result.ProjectRoleID = reader.GetInt32(0);
+                        result.RoleName = reader.GetString(1);
+                        result.FeaturePrivileges = reader.GetBoolean(2);
+                        result.UserStoryPrivileges = reader.GetBoolean(3);
+                        result.SprintPlanningPrivileges = reader.GetBoolean(4);
+                        result.FeedMessagingPrivileges = reader.GetBoolean(5);
+                        result.TaskPrivileges = reader.GetBoolean(6);
+                        result.TaskReviewingPrivileges = reader.GetBoolean(7);
+                        result.ProjectManagementPrivileges = reader.GetBoolean(8);
+                        result.Description = reader.GetString(9);
                     }
                 }
 
@@ -178,9 +179,10 @@ namespace DataAccessLayer {
                 if (reader.HasRows) {
                     while (reader.Read()) {
                         ProjectRoleListVM role = new ProjectRoleListVM();
-                        role.ProjectRoleID = reader.GetString(0);
-                        role.MembersWithRole = reader.GetInt32(1);
-                        role.Description = reader.GetString(2);
+                        role.ProjectRoleID = reader.GetInt32(0);
+                        role.RoleName = reader.GetString(1);
+                        role.MembersWithRole = reader.GetInt32(2);
+                        role.Description = reader.GetString(3);
                         result.Add(role);
                     }
                 }
@@ -210,7 +212,8 @@ namespace DataAccessLayer {
             cmd.CommandType = CommandType.StoredProcedure;
 
             // add parameters to command
-            cmd.Parameters.Add("@ProjectRoleID", SqlDbType.NVarChar, 100);
+            cmd.Parameters.Add("@ProjectRoleID", SqlDbType.Int);
+            cmd.Parameters.Add("@RoleName", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@FeaturePrivileges", SqlDbType.Bit);
             cmd.Parameters.Add("@UserStoryPrivileges", SqlDbType.Bit);
@@ -223,6 +226,7 @@ namespace DataAccessLayer {
 
             // set parameter values
             cmd.Parameters["@ProjectRoleID"].Value = projectRole.ProjectRoleID;
+            cmd.Parameters["@RoleName"].Value = projectRole.RoleName;
             cmd.Parameters["@ProjectID"].Value = projectRole.ProjectID;
             cmd.Parameters["@FeaturePrivileges"].Value = projectRole.FeaturePrivileges;
             cmd.Parameters["@UserStoryPrivileges"].Value = projectRole.UserStoryPrivileges;

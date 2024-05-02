@@ -91,6 +91,7 @@
     <Compile Include="FeedMessage.cs" />
     <Compile Include="File.cs" />
     <Compile Include="GoogleDriveHelper.cs" />
+    <Compile Include="ImageHelper.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="ProjectMember.cs" />
     <Compile Include="ProjectRole.cs" />

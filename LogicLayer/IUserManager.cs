@@ -7,6 +7,7 @@ using DataObjects;
 
 namespace LogicLayer {
     public interface IUserManager {
+        List<UserVM> GetAllUsers();
         int GetUserIDFromEmail(string email);
         bool FindUser(string email);
         User GetUser(int userID);

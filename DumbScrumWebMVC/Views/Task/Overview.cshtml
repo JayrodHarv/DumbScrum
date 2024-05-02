@@ -1,4 +1,4 @@
-﻿@model DataObjects.TaskVM
+﻿@model DumbScrumWebMVC.Models.TaskOverviewVM
 
 @{ 
     ViewBag.Title = "Overview";
@@ -8,6 +8,40 @@
     @Html.Partial("_ProjectPartial")
     <div class="col p-2">
         @Html.Partial("_TaskPartial")
+
+        <dl class="p-2">
+            <dt>
+                @Html.DisplayNameFor(model => model.Task.TaskID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Task.TaskID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Task.UserDisplayName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Task.UserDisplayName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Task.Story)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Task.Story)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Task.Status)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Task.Status)
+            </dd>
+        </dl>
     </div>
 </div>
 

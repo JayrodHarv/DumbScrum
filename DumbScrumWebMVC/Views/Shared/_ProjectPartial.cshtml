@@ -3,54 +3,59 @@
 @{
     ApplicationUserManager userManager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
     var user = userManager.FindById(User.Identity.GetUserId());
+    DataObjects.ProjectMemberVM projectMember = (DataObjects.ProjectMemberVM)Session["ProjectMember"];
 }
 
-<div class="d-flex flex-nowrap flex-column bg-secondary flex-shrink-0 p-3 text-bg-dark">
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary shadow overflow-hidden" style="width: 280px; background-color: #bdbdbd !important ">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        @*<svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap" /></svg>*@
+        <span class="fs-4">@Model.ProjectID</span>
+    </a>
+    <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-        @if (user.UserID == ((DataObjects.ProjectMemberVM)Session["ProjectMember"]).User.UserID) {
-            <li>
-                <a href="@Url.Action("ProjectMembers", "ManageProject", new { projectID=Model.ProjectID })" class="nav-link text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-speedometer" viewBox="0 0 16 16">
-                        <path d="M8 2a.5.5 0 0 1 .5.5V4a.5.5 0 0 1-1 0V2.5A.5.5 0 0 1 8 2M3.732 3.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707M2 8a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8m9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5m.754-4.246a.39.39 0 0 0-.527-.02L7.547 7.31A.91.91 0 1 0 8.85 8.569l3.434-4.297a.39.39 0 0 0-.029-.518z" />
-                        <path fill-rule="evenodd" d="M6.664 15.889A8 8 0 1 1 9.336.11a8 8 0 0 1-2.672 15.78zm-4.665-4.283A11.95 11.95 0 0 1 8 10c2.186 0 4.236.585 6.001 1.606a7 7 0 1 0-12.002 0" />
-                    </svg>
+        @if (projectMember.ProjectRole.ProjectManagementPrivileges) {
+            <li class="nav-item">
+                <a href="@Url.Action("ProjectMembers", "ProjectMember", new { projectID = Model.ProjectID })" class="nav-link link-body-emphasis @(ViewBag.Tab == "Manage" ? "active text-white" : "")" aria-current="page">
+                    <img src="~/Images/BootstrapIcons/speedometer.svg" width="16" height="16" />
                     Manage
                 </a>
             </li>
         }
-        <li>
-            <a href="@Url.Action("Index", "Feed", new { projectID=Model.ProjectID })" class="nav-link text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
-                    <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
-                    <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
-                </svg>
-                Feed
-            </a>
-        </li>
-        <li>
-            <a href="@Url.Action("Index", "Sprint", new { projectID=Model.ProjectID })" class="nav-link text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-steps" viewBox="0 0 16 16">
-                    <path d="M.5 0a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-1 0V.5A.5.5 0 0 1 .5 0M2 1.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm2 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1-.5-.5zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5z" />
-                </svg>
-                Sprints
-            </a>
-        </li>
-        <li>
-            <a href="@Url.Action("Index", "Backlog", new { projectID=Model.ProjectID })" class="nav-link text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-columns-reverse" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M0 .5A.5.5 0 0 1 .5 0h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 0 .5m4 0a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1h-10A.5.5 0 0 1 4 .5m-4 2A.5.5 0 0 1 .5 2h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-4 2A.5.5 0 0 1 .5 4h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m-4 2A.5.5 0 0 1 .5 6h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5m-4 2A.5.5 0 0 1 .5 8h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5m-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1h-10a.5.5 0 0 1-.5-.5m-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
-                </svg>
-                Backlog
-            </a>
-        </li>
-        <li>
-            <a href="@Url.Action("Index", "Board", new { projectID=Model.ProjectID })" class="nav-link text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
-                    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z" />
-                    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z" />
-                </svg>
-                Board
-            </a>
-        </li>
+
+        @if (projectMember.ProjectRole.FeedMessagingPrivileges) {
+            <li>
+                <a href="@Url.Action("Index", "Feed", new { projectID = Model.ProjectID })" class="nav-link link-body-emphasis @(ViewBag.Tab == "Feed" ? "active text-white" : "")">
+                    <img src="~/Images/BootstrapIcons/chat-left-dots.svg" width="16" height="16" />
+                    Feed
+                </a>
+            </li>
+        }
+
+        @if (projectMember.ProjectRole.SprintPlanningPrivileges) {
+            <li>
+                <a href="@Url.Action("Index", "Sprint", new { projectID = Model.ProjectID })" class="nav-link link-body-emphasis @(ViewBag.Tab == "Sprints" ? "active text-white" : "")">
+                    <img src="~/Images/BootstrapIcons/bar-chart-steps.svg" width="16" height="16" />
+                    Sprints
+                </a>
+            </li>
+        }
+
+        @if (projectMember.ProjectRole.FeaturePrivileges) {
+            <li>
+                <a href="@Url.Action("Index", "Backlog", new { projectID = Model.ProjectID })" class="nav-link link-body-emphasis @(ViewBag.Tab == "Backlog" ? "active text-white" : "")">
+                    <img src="~/Images/BootstrapIcons/list-columns-reverse.svg" width="16" height="16" />
+                    Backlog
+                </a>
+            </li>
+        }
+
+        @if (projectMember.ProjectRole.TaskPrivileges) {
+            <li>
+                <a href="@Url.Action("Index", "Board", new { projectID = Model.ProjectID })" class="nav-link link-body-emphasis @(ViewBag.Tab == "Board" ? "active text-white" : "")">
+                    <img src="~/Images/BootstrapIcons/clipboard.svg" width="16" height="16" />
+                    Board
+                </a>
+            </li>
+        }
     </ul>
 </div>

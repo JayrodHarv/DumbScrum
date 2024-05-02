@@ -473,5 +473,49 @@ namespace DataAccessLayer {
 
             return rows;
         }
+
+        public List<UserVM> SelectAllUsers() {
+            List<UserVM> result = new List<UserVM>();
+
+            // connection
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // command text
+            var cmdText = "sp_select_all_users";
+
+            // create command
+            var cmd = new SqlCommand(cmdText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            try {
+                // open connection
+                conn.Open();
+
+                // execute command
+                var reader = cmd.ExecuteReader();
+
+                // process results
+                if (reader.HasRows) {
+                    while (reader.Read()) {
+                        UserVM userVM = new UserVM();
+                        userVM.UserID = reader.GetInt32(0);
+                        userVM.DisplayName = reader.GetString(1);
+                        userVM.Email = reader.GetString(2);
+                        userVM.Pfp = (byte[])reader[3];
+                        userVM.Bio = reader.IsDBNull(4) ? "" : reader.GetString(4);
+                        userVM.Active = reader.GetBoolean(5);
+                        result.Add(userVM);
+                    }
+                }
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+
+            return result;
+        }
     }
 }

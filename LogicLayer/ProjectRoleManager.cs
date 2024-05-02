@@ -29,7 +29,7 @@ namespace LogicLayer {
             return projectRoles;
         }
 
-        public ProjectRoleVM GetProjectRole(string projectRoleID) {
+        public ProjectRoleVM GetProjectRole(int projectRoleID) {
             ProjectRoleVM projectRole;
             try {
                 projectRole = _projectRoleAccessor.SelectProjectRole(projectRoleID);
@@ -55,7 +55,7 @@ namespace LogicLayer {
             }
         }
 
-        public bool RemoveProjectRole(string projectRoleID) {
+        public bool RemoveProjectRole(int projectRoleID) {
             try {
                 return 0 < _projectRoleAccessor.DeleteProjectRole(projectRoleID);
             } catch (Exception ex) {

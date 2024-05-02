@@ -37,22 +37,22 @@
             </div>
         </nav>
     </header>
-    <main class="container-fluid h-100 overflow-hidden" style="padding: 52px 0 25px 0;">
+    <main class="container-fluid h-100" style="padding: 52px 0 25px 0;">
         @*Closable Alert Error Message*@
         @if (TempData["Error"] != null) {
-            <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+            <div class='alert alert-danger alert-dismissible fade show position-absolute end-0 m-2 z-3' style="top: 52px" role='alert'>
                 <strong>@TempData["Error"].ToString()</strong>         
                 <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
             </div>
         }
         @if (TempData["Warning"] != null) {
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <div class="alert alert-warning alert-dismissible fade show position-absolute end-0 m-2 z-3" style="top: 52px" role="alert">
                 <strong>@TempData["Warning"].ToString()</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
         @if (TempData["Success"] != null) {
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <div class="alert alert-success alert-dismissible fade show position-absolute end-0 m-2 z-3" style="top: 52px" role="alert">
                 <strong>@TempData["Success"].ToString()</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>

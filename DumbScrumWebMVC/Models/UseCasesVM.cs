@@ -6,6 +6,7 @@ using System.Web;
 
 namespace DumbScrumWebMVC.Models {
     public class UseCasesVM {
+        public string ProjectID { get; set; }
         public int TaskID { get; set; }
         public TaskVM Task { get; set; }
         public List<File> Files { get; set; }

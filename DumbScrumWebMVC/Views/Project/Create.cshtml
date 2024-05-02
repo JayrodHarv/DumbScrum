@@ -11,8 +11,8 @@
 {
     @Html.AntiForgeryToken()
     
-<div class="form-horizontal">
-    <h4>New Project</h4>
+<div class="form-horizontal p-2">
+    <h2>New Project</h2>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -32,17 +32,12 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
+    <div class="btn-group mt-2">
+        <a href="@Url.Action("MyProjects", "Project")" class="btn btn-secondary">Back</a>
+        <button type="submit" class="btn btn-primary">Create Project</button>
     </div>
 </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

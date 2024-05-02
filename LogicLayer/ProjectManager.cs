@@ -53,7 +53,7 @@ namespace LogicLayer {
         public bool AddProject(Project project) {
             bool result = false;
             try {
-                result = (2 == _projectAccessor.CreateProject(project));
+                result = (0 < _projectAccessor.CreateProject(project));
             } catch (Exception ex) {
                 throw ex;
             }

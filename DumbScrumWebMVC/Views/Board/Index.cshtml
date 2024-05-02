@@ -10,7 +10,7 @@
 
 <div class="container-fluid p-0 d-flex h-100">
     @Html.Partial("_ProjectPartial")
-    <div class="container-fluid">
+    <div class="container-fluid h-100 p-2 mx-2">
         <div class="row">
             <h2>Scrum Board</h2>
             <div class="d-flex mb-4">
@@ -19,42 +19,44 @@
                     @Html.HiddenFor(model => model.ProjectID)
 
                     <label class="align-self-center" style="padding-right: 5px;">Sprint: </label>
-                    <select name="sprintFilter" class="form-select" onchange="submit()">
-                        @foreach(SprintVM sprint in Model.Sprints) {
-                            <option value="@sprint.SprintID" @(Model.CurrentSprint.SprintID == sprint.SprintID ? "selected" : "")>@sprint.Name</option>
+                    <select name="SprintID" class="form-select" onchange="submit()">
+                        @if (Model.CurrentSprint != null) {
+                            foreach (SprintVM sprint in Model.Sprints) {
+                                <option value="@sprint.SprintID" @(Model.CurrentSprint.SprintID == sprint.SprintID ? "selected" : "")>@sprint.Name</option>
+                            }
                         }
                     </select>
                 }
             </div>
         </div>
-        <div class="row column-gap-4">
-            <div class="col overflow-auto">
+        <div class="row column-gap-4 h-80">
+            <div class="col h-100">
                 <span class="badge bg-danger mb-2 p-2">To Do</span>
-                <div>
+                <div class="overflow-y-auto h-100">
                     @foreach (DataObjects.TaskVM t in Model.ToDoTasks) {
                         @Html.Partial("_TaskItemPartial", new TaskItemVM() { Task = t, ProjectID = Model.ProjectID })
                     }
                 </div>
             </div>
-            <div class="col overflow-auto">
+            <div class="col h-100">
                 <span class="badge mb-2 p-2" style="background-color: orange">In Progress</span>
-                <div>
+                <div class="overflow-y-auto h-100">
                     @foreach (DataObjects.TaskVM t in Model.InProgressTasks) {
                         @Html.Partial("_TaskItemPartial", new TaskItemVM() { Task = t, ProjectID = Model.ProjectID })
                     }
                 </div>
             </div>
-            <div class="col overflow-auto">
+            <div class="col h-100">
                 <span class="badge bg-warning mb-2 p-2">Needs Reviewed</span>
-                <div>
+                <div class="overflow-y-auto h-100">
                     @foreach (DataObjects.TaskVM t in Model.NeedsReviewedTasks) {
                         @Html.Partial("_TaskItemPartial", new TaskItemVM() { Task = t, ProjectID = Model.ProjectID })
                     }
                 </div>
             </div>
-            <div class="col overflow-auto">
+            <div class="col h-100">
                 <span class="badge bg-success mb-2 p-2">Completed</span>
-                <div>
+                <div class="overflow-y-auto h-100">
                     @foreach (DataObjects.TaskVM t in Model.CompleteTasks) {
                         @Html.Partial("_TaskItemPartial", new TaskItemVM() { Task = t, ProjectID = Model.ProjectID })
                     }

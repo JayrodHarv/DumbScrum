@@ -9,8 +9,8 @@ namespace LogicLayer {
     public interface IProjectMemberManager {
         List<ProjectMemberListVM> GetProjectMembers(string projectID);
         ProjectMemberVM GetProjectMember(int userID, string projectID);
-        bool AddProjectMember(int userID, string projectID, string projectRoleID);
+        bool AddProjectMember(int userID, string projectID, int projectRoleID);
         bool MemberLeaveProject(int userID, string projectID);
-        bool EditMemberRole(int userID, string projectID, string projectRoleID);
+        bool EditMemberRole(int userID, string projectID, int projectRoleID);
     }
 }

@@ -20,15 +20,11 @@ namespace LogicLayer {
         }
 
         public bool AddSprint(Sprint sprint) {
-            bool result = false;
-
             try {
-                result = (1 == _sprintAccessor.CreateSprint(sprint));
+                return 0 < _sprintAccessor.CreateSprint(sprint);
             } catch (Exception ex) {
                 throw ex;
             }
-
-            return result;
         }
 
         public List<SprintVM> GetSprintVMsByProjectID(string projectID) {

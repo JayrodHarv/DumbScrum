@@ -6,7 +6,7 @@
 <div class="d-flex h-100">
     @Html.Partial("_ProjectPartial")
     <div class="col p-2">
-        <h4>ProjectVM</h4>
+        <h2>@Model.ProjectID</h2>
         <hr />
         <dl class="dl-horizontal">
             <dt>
@@ -51,8 +51,4 @@
 
         </dl>
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ProjectID }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
 </div>

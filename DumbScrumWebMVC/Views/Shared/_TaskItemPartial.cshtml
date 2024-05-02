@@ -5,7 +5,7 @@
         @Model.Task.StoryID
     </div>
     <div class="card-body">
-        <p class="card-text">@Model.Task</p>
+        <p class="card-text">@Model.Task.Story</p>
         @if (Model.Task.Status == "To Do") {
             <a href="@Url.Action("ClaimTask", "Board", new { taskID = Model.Task.TaskID, projectID = Model.ProjectID })" class="btn btn-primary">Claim</a>
         } else {

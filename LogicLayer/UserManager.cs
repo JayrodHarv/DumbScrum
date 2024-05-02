@@ -197,5 +197,15 @@ namespace LogicLayer {
             }
             return result;
         }
+
+        public List<UserVM> GetAllUsers() {
+            List<UserVM> users = new List<UserVM>();
+            try {
+                users = _userAccessor.SelectAllUsers();
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return users;
+        }
     }
 }

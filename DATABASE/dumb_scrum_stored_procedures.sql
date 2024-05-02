@@ -65,6 +65,16 @@ AS
 	END
 GO
 
+print '' print '*** creating sp_select_all_users ***'
+GO
+CREATE PROCEDURE [dbo].[sp_select_all_users]
+AS
+	BEGIN
+		SELECT [UserID], [DisplayName], [Email], [Pfp], [Bio], [Active]
+		FROM [User]
+	END
+GO
+
 print '' print '*** creating sp_select_user_by_email ***'
 GO
 CREATE PROCEDURE [dbo].[sp_select_user_by_email] (
@@ -176,13 +186,14 @@ CREATE PROCEDURE [dbo].[sp_select_user_projects] (
 )
 AS
 	BEGIN
-		SELECT [Project].[ProjectID], [Project].[UserID], [DateCreated], [Status], [Description], [User].[DisplayName]
-		FROM [Project]
-		INNER JOIN [ProjectMember]
-		ON [ProjectMember].[ProjectID] = [Project].[ProjectID]
-		INNER JOIN [User]
-		ON [User].[UserID] = [Project].[UserID]
-		WHERE [ProjectMember].[UserID] = @UserID
+		SELECT p.[ProjectID], p.[UserID], [DateCreated], [Status], [Description], u.[DisplayName]
+		FROM [Project] AS p
+		INNER JOIN [ProjectMember] AS pm
+		ON pm.[ProjectID] = p.[ProjectID]
+		AND pm.Active = 1
+		LEFT JOIN [User] AS u
+		ON u.[UserID] = p.[UserID]
+		WHERE pm.[UserID] = @UserID
 	END
 GO
 
@@ -210,16 +221,18 @@ CREATE PROCEDURE [dbo].[sp_insert_project] (
 )
 AS
 	BEGIN
-	
 		BEGIN TRY
 			BEGIN TRANSACTION
+			
+				DECLARE @last_inserted TABLE (Id int);
+				
 				INSERT INTO [dbo].[Project]
 					([ProjectID], [UserID], [DateCreated], [Description])
 				VALUES
 					(@ProjectID, @UserID, GETDATE(), @Description)
 					
 				INSERT INTO ProjectRole (
-					ProjectRoleID, 
+					RoleName, 
 					ProjectID, 
 					FeaturePrivileges,		
 					UserStoryPrivileges,		
@@ -230,6 +243,7 @@ AS
 					ProjectManagementPrivileges,
 					Description
 				)
+				OUTPUT inserted.ProjectRoleID INTO @last_inserted(Id)
 				VALUES (
 					"Project Owner", 
 					@ProjectID,
@@ -246,7 +260,7 @@ AS
 				INSERT INTO [dbo].[ProjectMember]
 					([UserID], [ProjectID], [ProjectRoleID])
 				VALUES
-					(@UserID, @ProjectID, "Project Owner")
+					(@UserID, @ProjectID, (SELECT Id FROM @last_inserted))
 		
 			COMMIT TRANSACTION
 			SELECT @@ROWCOUNT
@@ -297,23 +311,25 @@ CREATE PROCEDURE [dbo].[sp_select_project_roles] (
 )
 AS
 	BEGIN
-		SELECT pr.ProjectRoleID, COUNT(UserID) AS 'MembersWithRole', pr.Description				
+		SELECT pr.ProjectRoleID, pr.RoleName, COUNT(pm.UserID) AS 'MembersWithRole', pr.Description				
 		FROM ProjectRole AS pr
-		INNER JOIN ProjectMember AS pm
+		LEFT JOIN ProjectMember AS pm
 		ON pm.ProjectRoleID = pr.ProjectRoleID
+		AND pm.Active = 1
 		WHERE pr.ProjectID = @ProjectID
-		GROUP BY pr.ProjectRoleID, pr.Description
+		GROUP BY pr.ProjectRoleID, pr.RoleName, pr.Description
 	END
 GO
 
 print '' print '*** creating sp_select_project_role ***'
 GO
 CREATE PROCEDURE [dbo].[sp_select_project_role] (
-	@ProjectRoleID [nvarchar] (100)
+	@ProjectRoleID int
 )
 AS
 	BEGIN
-		SELECT 	ProjectRoleID, 
+		SELECT 	ProjectRoleID,
+				RoleName,
 				FeaturePrivileges,		
 				UserStoryPrivileges,		
 				SprintPlanningPrivileges,
@@ -330,7 +346,7 @@ GO
 print '' print '*** creating sp_insert_project_role ***'
 GO
 CREATE PROCEDURE [dbo].[sp_insert_project_role] (
-	@ProjectRoleID nvarchar(100),
+	@RoleName nvarchar(100),
 	@ProjectID nvarchar(50),
 	@FeaturePrivileges bit,	
 	@UserStoryPrivileges bit,	
@@ -344,7 +360,7 @@ CREATE PROCEDURE [dbo].[sp_insert_project_role] (
 AS
 	BEGIN
 		INSERT INTO ProjectRole (
-			ProjectRoleID, 
+			RoleName, 
 			ProjectID, 
 			FeaturePrivileges,		
 			UserStoryPrivileges,		
@@ -356,7 +372,7 @@ AS
 			Description
 		)
 		VALUES (
-			@ProjectRoleID, 
+			@RoleName, 
 			@ProjectID,
 			@FeaturePrivileges,		
 			@UserStoryPrivileges,		
@@ -373,7 +389,8 @@ GO
 print '' print '*** creating sp_update_project_role ***'
 GO
 CREATE PROCEDURE [dbo].[sp_update_project_role] (
-	@ProjectRoleID nvarchar(100),
+	@ProjectRoleID int,
+	@RoleName nvarchar(100),
 	@FeaturePrivileges bit,	
 	@UserStoryPrivileges bit,	
 	@SprintPlanningPrivileges bit,	
@@ -386,7 +403,7 @@ CREATE PROCEDURE [dbo].[sp_update_project_role] (
 AS
 	BEGIN
 		UPDATE ProjectRole
-		SET ProjectRoleID = @ProjectRoleID,
+		SET RoleName = @RoleName,
 			FeaturePrivileges = @FeaturePrivileges,		
 			UserStoryPrivileges = @UserStoryPrivileges,		
 			SprintPlanningPrivileges = @SprintPlanningPrivileges,
@@ -402,7 +419,7 @@ GO
 print '' print '*** creating sp_delete_project_role ***'
 GO
 CREATE PROCEDURE [dbo].[sp_delete_project_role] (
-	@ProjectRoleID nvarchar(100)
+	@ProjectRoleID int
 )
 AS
 	BEGIN
@@ -421,11 +438,14 @@ CREATE PROCEDURE [dbo].[sp_select_project_members] (
 )
 AS
 	BEGIN
-		SELECT  u.UserID, u.Email, u.DisplayName, u.Pfp, pm.ProjectRoleID, pm.Active
+		SELECT  u.UserID, u.Email, u.DisplayName, u.Pfp, pr.ProjectRoleID, pr.RoleName, pm.Active
 		FROM ProjectMember AS pm
 		INNER JOIN [User] AS u
 		ON u.[UserID] = pm.[UserID]
-		WHERE ProjectID = @ProjectID
+		INNER JOIN ProjectRole AS pr
+		ON pr.ProjectRoleID = pm.ProjectRoleID
+		WHERE pr.ProjectID = @ProjectID
+		AND pm.Active = 1
 	END
 GO
 
@@ -438,7 +458,7 @@ CREATE PROCEDURE [dbo].[sp_select_project_member] (
 AS
 	BEGIN
 		SELECT 	u.UserID, u.Email, u.DisplayName, u.Pfp, 
-				pm.Active, pr.ProjectRoleID,
+				pm.Active, pr.ProjectRoleID, pr.RoleName,
 				pr.FeaturePrivileges, pr.UserStoryPrivileges,
 				pr.SprintPlanningPrivileges, pr.FeedMessagingPrivileges,
 				pr.TaskPrivileges, pr.TaskReviewingPrivileges,
@@ -450,6 +470,7 @@ AS
 		ON pr.[ProjectRoleID] = pm.[ProjectRoleID]
 		WHERE pm.ProjectID = @ProjectID
 		AND pm.UserID = @UserID
+		AND pm.Active = 1
 	END
 GO
 
@@ -458,7 +479,7 @@ GO
 CREATE PROCEDURE [dbo].[sp_insert_project_member] (
 	@UserID			int,
 	@ProjectID		nvarchar(50),
-	@ProjectRoleID	nvarchar(100)
+	@ProjectRoleID	int
 )
 AS
 	BEGIN
@@ -489,7 +510,7 @@ GO
 CREATE PROCEDURE [dbo].[sp_update_member_role] (
 	@UserID	int,
 	@ProjectID nvarchar(50),
-	@ProjectRoleID nvarchar(100)
+	@ProjectRoleID int
 )
 AS
 	BEGIN
@@ -638,10 +659,53 @@ CREATE PROCEDURE [dbo].[sp_insert_sprint] (
 )
 AS
 	BEGIN
-		INSERT INTO [dbo].[Sprint]
-			([Name], [FeatureID], [StartDate], [EndDate])
-		VALUES
-			(@Name, @FeatureID, @StartDate, @EndDate)
+		BEGIN TRY
+			BEGIN TRANSACTION
+				/* This aparently has to be prefixed with @ not # */
+				DECLARE @story_id nvarchar(50)
+				
+				CREATE TABLE #last_inserted(Id int)
+				
+				/* Insert sprint & output the auto generated sprintid field into temp table */
+				INSERT INTO [dbo].[Sprint]
+					([Name], [FeatureID], [StartDate], [EndDate])
+				OUTPUT inserted.SprintID INTO #last_inserted(Id)
+				VALUES
+					(@Name, @FeatureID, @StartDate, @EndDate)
+				
+				/* Creates cursor that loops though each user story for the sprint feature */
+				DECLARE Story_Cursor CURSOR FOR
+				SELECT StoryID FROM UserStory 
+				WHERE FeatureID = @FeatureID;
+				
+				OPEN Story_Cursor;
+				
+				/* Gets initial story id before loop */
+				FETCH NEXT FROM Story_Cursor INTO @story_id;
+				
+				/* While there are still user stories in temp table */
+				WHILE @@FETCH_STATUS = 0
+				BEGIN
+					/* Insert Task */
+					INSERT INTO Task
+						(SprintID, StoryID, Status)
+					VALUES
+						((SELECT Id FROM #last_inserted), @story_id, "To Do")
+					
+					/* Gets next value, breaks loop if none left */
+					FETCH NEXT FROM Story_Cursor INTO @story_id;
+				END
+			COMMIT TRANSACTION
+			SELECT 1
+		END TRY
+		BEGIN CATCH
+			ROLLBACK TRANSACTION
+			SELECT 0
+		END CATCH
+		/* Drop temp table */
+		DROP TABLE #last_inserted
+		/* Just to be explicit */
+		RETURN @@ROWCOUNT
 	END
 GO
 
@@ -737,15 +801,16 @@ CREATE PROCEDURE [dbo].[sp_select_sprint_tasks] (
 )
 AS
 	BEGIN
-		SELECT 	TaskID, SprintID, t.StoryID, t.UserID, t.Status,
-				f.ProjectID, f.Name, us.Person,
-				us.[Action], us.Reason, u.DisplayName
+		SELECT 	t.TaskID, t.SprintID, t.StoryID, t.UserID, t.Status,
+				f.ProjectID, f.Name, 
+				us.Person, us.[Action], us.Reason, 
+				u.DisplayName
 		FROM Task AS t
 		INNER JOIN UserStory AS us
 		ON us.StoryID = t.StoryID
 		INNER JOIN Feature AS f
 		ON f.FeatureID = us.FeatureID
-		INNER JOIN [User] AS u
+		LEFT JOIN [User] AS u
 		ON u.UserID = t.UserID
 		WHERE t.SprintID = @SprintID
 	END

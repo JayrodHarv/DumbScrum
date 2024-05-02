@@ -17,6 +17,7 @@ namespace DumbScrumWebMVC.Controllers {
 
         [HttpGet]
         public ActionResult Index(string projectID) {
+            ViewBag.Tab = "Backlog";
             BacklogVM backlogVM = new BacklogVM();
             backlogVM.ProjectID = projectID;
             backlogVM.UserStories = new List<UserStory>();
@@ -30,6 +31,7 @@ namespace DumbScrumWebMVC.Controllers {
 
         [HttpPost]
         public ActionResult Index(string projectID, string selectedFeatureID) {
+            ViewBag.Tab = "Backlog";
             BacklogVM backlogVM = new BacklogVM();
             backlogVM.ProjectID = projectID;
             backlogVM.SelectedFeatureID = selectedFeatureID;
@@ -55,14 +57,21 @@ namespace DumbScrumWebMVC.Controllers {
             BacklogVM backlogVM = new BacklogVM();
             try {
                 backlogVM.Features = _manager.FeatureManager.GetFeaturesByProjectID(feature.ProjectID);
-                _manager.FeatureManager.AddProjectFeature(new Feature() {
+
+                Feature newFeature = new Feature() {
                     FeatureID = feature.ProjectID + "." + (backlogVM.Features.Count + 1),
                     ProjectID = feature.ProjectID,
                     Name = feature.Name,
                     Description = feature.Description,
                     Priority = feature.Priority
-                });
-                return RedirectToAction("Index", "Backlog", new { projectID = feature.ProjectID });
+                };
+
+                if(_manager.FeatureManager.AddProjectFeature(newFeature)) {
+                    TempData["Success"] = "Successfully created feature: " + feature.Name;
+                    return RedirectToAction("Index", "Backlog", new { projectID = feature.ProjectID });
+                } else {
+                    TempData["Warning"] = "Something went wrong while creating feature: " + feature.Name;
+                }
             }
             catch(Exception ex) {
                 TempData["Error"] = ex.Message;

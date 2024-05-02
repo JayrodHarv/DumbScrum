@@ -1,0 +1,50 @@
+﻿@model DumbScrumWebMVC.Models.CreateProjectMemberVM
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm("Create", "ProjectMember", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal p-2">
+        <h2>Add New Project Member</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        @Html.HiddenFor(model => model.ProjectID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="UserID" class="form-select">
+                    @foreach (DataObjects.UserVM user in Model.Users) {
+                        <option value="@user.UserID" @(Model.UserID == user.UserID ? "selected" : "")>@user.Email - @user.DisplayName</option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProjectRoleID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="ProjectRoleID" class="form-select">
+                    @foreach (DataObjects.ProjectRoleListVM role in Model.ProjectRoles) {
+                        <option value="@role.ProjectRoleID" @(Model.ProjectRoleID == role.ProjectRoleID ? "selected" : "")>@role.RoleName: @role.Description</option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(model => model.ProjectRoleID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="btn-group mt-2">
+            <a href="@Url.Action("ProjectMembers", "ProjectMember", new { projectID=Model.ProjectID })" class="btn btn-secondary">Back</a>
+            <button type="submit" class="btn btn-primary">Add Member</button>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

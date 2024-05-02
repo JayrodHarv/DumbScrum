@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace LogicLayer {
     public interface IProjectRoleManager {
         List<ProjectRoleListVM> GetProjectRoles(string projectID);
-        ProjectRoleVM GetProjectRole(string projectRoleID);
+        ProjectRoleVM GetProjectRole(int projectRoleID);
         bool AddProjectRole(ProjectRole projectRole);
         bool EditProjectRole(ProjectRole projectRole);
-        bool RemoveProjectRole(string projectRoleID);
+        bool RemoveProjectRole(int projectRoleID);
     }
 }

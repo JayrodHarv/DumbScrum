@@ -214,8 +214,7 @@ namespace DumbScrumWebMVC.Controllers
                         AddErrors(result);
                     } else { // not an existing user
                         LogicLayer.UserManager usrMgr = new LogicLayer.UserManager();
-                        // can't figure out how to do relative paths, should change later
-                        string path = @"C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\Images\Sample_User_Icon.png";
+                        string path = Path.Combine(Request.PhysicalApplicationPath, "Images/Sample_User_Icon.png");
                         User user = new User() {
                             DisplayName = model.DisplayName,
                             Email = model.Email,

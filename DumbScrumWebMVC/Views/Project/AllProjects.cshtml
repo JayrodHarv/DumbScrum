@@ -12,14 +12,14 @@
     }
 }
 
-<div class="container-xxl p-2">
+<div class="container-xxl h-100 p-2">
     <div class="d-flex justify-content-between mb-4">
         <h2>@ViewBag.Title</h2>
         <div class="text-end">
             <a href="@Url.Action("Create", "Project")" class="btn btn-success" data-bs-toggle="tooltip" data-bs-title="Create New Project"><i class="bi bi-plus-lg"></i></a>
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid h-90 overflow-y-auto">
         <div class="row row-cols-1 g-4">
             @foreach (var project in Model) {
                 <div class="col">
@@ -61,7 +61,7 @@
 <div class="modal fade" id="deleteModal" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            @using(Html.BeginForm("Delete", "Project", FormMethod.Post)){
+            @using (Html.BeginForm("Delete", "Project", FormMethod.Post)) {
                 <input type="hidden" id="projectID" name="projectID" />
                 <div class="modal-header justify-content-between">
                     <h5 class="modal-title">Delete Project</h5>
@@ -81,9 +81,11 @@
     </div>
 </div>
 
-<script>
-    function Confirm(id) {
-        $('#projectID').val(id);
-        $('#deleteModal').modal('show');
-    }
-</script>
+@section scripts {
+    <script>
+        function Confirm(id) {
+            $('#projectID').val(id);
+            $('#deleteModal').modal('show');
+        }
+    </script>
+}

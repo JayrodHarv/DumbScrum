@@ -298,3 +298,42 @@ C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\obj\Debug\DumbScrum.c
 C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\obj\Debug\DumbScrum.csproj.CopyComplete
 C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\obj\Debug\DumbScrum.exe
 C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DumbScrum\obj\Debug\DumbScrum.pdb
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\DumbScrum.csproj.AssemblyReference.cache
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Themes\MenuButtonTheme.baml
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Themes\MenuItemTheme.baml
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Themes\ProjectButtonTheme.baml
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Themes\ProjectListItemTheme.baml
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Themes\TaskItemTheme.baml
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\App.baml
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\ToolWindows\AddFeatureWindow.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\ToolWindows\AddStoryWindow.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\ToolWindows\ChangePasswordWindow.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\ToolWindows\CreateNewTaskFileWindow.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\ToolWindows\CreateProjectWindow.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\MainWindow.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\ToolWindows\PlanNewSprintWindow.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\UserControls\FeatureListItem.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\UserControls\FeedListItem.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\UserControls\SrumBoardItem.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\UserControls\TemplateFilePicker.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\UserControls\UserStoryListItem.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Views\BoardView.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Views\FileUploadView.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Views\HomeView.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Views\ManageProjectView.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Views\MyProjectsView.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Views\ProjectFeedView.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Views\ProjectListView.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Views\BacklogView.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Views\ProjectMembersView.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Views\ProjectSettingsView.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Views\ProjectView.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Views\SprintListView.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Views\TaskView.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\Views\UserSettingsView.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\WelcomeWindow.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\App.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\DumbScrum_MarkupCompile.cache
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\DumbScrum_MarkupCompile.lref
+C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\DumbScrum.exe

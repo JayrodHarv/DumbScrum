@@ -9,8 +9,8 @@ namespace DataAccessInterfaces {
     public interface IProjectMemberAccessor {
         List<ProjectMemberListVM> SelectProjectMembers(string projectID);
         ProjectMemberVM SelectProjectMember(int userID, string projectID);
-        int InsertProjectMember(int userID, string projectID, string projectRoleID);
+        int InsertProjectMember(int userID, string projectID, int projectRoleID);
         int MemberLeaveProject(int userID, string projectID);
-        int UpdateMemberRole(int userID, string projectID, string projectRoleID);
+        int UpdateMemberRole(int userID, string projectID, int projectRoleID);
     }
 }
