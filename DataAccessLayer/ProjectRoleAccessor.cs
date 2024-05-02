@@ -95,7 +95,7 @@ namespace DataAccessLayer {
         }
 
         public ProjectRoleVM SelectProjectRole(int projectRoleID) {
-            ProjectRoleVM result = new ProjectRoleVM();
+            ProjectRoleVM result = null;
 
             // connection
             var conn = SqlConnectionProvider.GetConnection();
@@ -125,6 +125,7 @@ namespace DataAccessLayer {
                 // process results
                 if (reader.HasRows) {
                     if (reader.Read()) {
+                        result = new ProjectRoleVM();
                         result.ProjectRoleID = reader.GetInt32(0);
                         result.RoleName = reader.GetString(1);
                         result.FeaturePrivileges = reader.GetBoolean(2);

@@ -788,3 +788,6 @@ C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.pdb
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.rsp
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.rsp
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.rsp
+C:\DumbScrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.rsp
+C:\DumbScrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.rsp
+C:\DumbScrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.rsp

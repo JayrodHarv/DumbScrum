@@ -1,30 +1,30 @@
-﻿C:\Dumb Scrum\DumbScrum\DumbScrum\obj\Debug\GeneratedInternalTypeHelper.g.cs
+﻿
 
-FC:\Dumb Scrum\DumbScrum\DumbScrum\ToolWindows\AddFeatureWindow.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\ToolWindows\AddStoryWindow.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\ToolWindows\ChangePasswordWindow.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\ToolWindows\CreateNewTaskFileWindow.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\ToolWindows\CreateProjectWindow.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\MainWindow.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\ToolWindows\PlanNewSprintWindow.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\UserControls\FeatureListItem.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\UserControls\FeedListItem.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\UserControls\SrumBoardItem.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\UserControls\TemplateFilePicker.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\UserControls\UserStoryListItem.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\Views\BoardView.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\Views\FileUploadView.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\Views\HomeView.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\Views\ManageProjectView.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\Views\MyProjectsView.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\Views\ProjectFeedView.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\Views\ProjectListView.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\Views\BacklogView.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\Views\ProjectMembersView.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\Views\ProjectSettingsView.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\Views\ProjectView.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\Views\SprintListView.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\Views\TaskView.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\Views\UserSettingsView.xaml;;
-FC:\Dumb Scrum\DumbScrum\DumbScrum\WelcomeWindow.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\ToolWindows\AddFeatureWindow.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\ToolWindows\AddStoryWindow.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\ToolWindows\ChangePasswordWindow.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\ToolWindows\CreateNewTaskFileWindow.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\ToolWindows\CreateProjectWindow.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\MainWindow.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\ToolWindows\PlanNewSprintWindow.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\UserControls\FeatureListItem.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\UserControls\FeedListItem.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\UserControls\SrumBoardItem.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\UserControls\TemplateFilePicker.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\UserControls\UserStoryListItem.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\Views\BoardView.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\Views\FileUploadView.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\Views\HomeView.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\Views\ManageProjectView.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\Views\MyProjectsView.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\Views\ProjectFeedView.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\Views\ProjectListView.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\Views\BacklogView.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\Views\ProjectMembersView.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\Views\ProjectSettingsView.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\Views\ProjectView.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\Views\SprintListView.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\Views\TaskView.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\Views\UserSettingsView.xaml;;
+FC:\DumbScrum\DumbScrum\DumbScrum\WelcomeWindow.xaml;;
 

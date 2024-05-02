@@ -50,6 +50,36 @@ namespace DumbScrumWebMVC.Controllers {
             return View(projectRole);
         }
 
+        [HttpGet]
+        public ActionResult Edit(string projectID, int projectRoleID) {
+            ProjectRole projectRole = null;
+            try {
+                projectRole = _manager.ProjectRoleManager.GetProjectRole(projectRoleID);
+                if(projectRole == null) {
+                    TempData["Warning"] = "Was not able to retreive project role data";
+                    return RedirectToAction("Index", "ProjectRole", new { projectID });
+                }
+            } catch (Exception ex) {
+                TempData["Error"] = ex.Message;
+            }
+            return View(projectRole);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ProjectRole projectRole) {
+            try {
+                if (_manager.ProjectRoleManager.EditProjectRole(projectRole)) {
+                    TempData["Success"] = "Successfully added new project role.";
+                    return RedirectToAction("ProjectRoles", new { projectID = projectRole.ProjectID });
+                } else {
+                    TempData["Warning"] = "Something went wrong while trying to add new role.";
+                }
+            } catch (Exception ex) {
+                TempData["Error"] = "Something went wrong while trying to add new role." + ex.Message;
+            }
+            return View(projectRole);
+        }
+
         [HttpPost]
         public ActionResult Delete(string projectID, string projectRoleID) {
             try {

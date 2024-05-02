@@ -210,6 +210,7 @@
     <Compile Include="Models\CreateProjectMemberVM.cs" />
     <Compile Include="Models\CreateSprintVM.cs" />
     <Compile Include="Models\CreateUserStoryVM.cs" />
+    <Compile Include="Models\EditProjectRoleVM.cs" />
     <Compile Include="Models\EditSprintVM.cs" />
     <Compile Include="Models\FeedListVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -529,6 +530,7 @@
     <Content Include="Views\ProjectMember\Create.cshtml" />
     <Content Include="Views\Task\_TaskFilePartial.cshtml" />
     <Content Include="Views\Sprint\Edit.cshtml" />
+    <Content Include="Views\ProjectRole\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

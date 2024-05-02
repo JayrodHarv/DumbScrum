@@ -1,0 +1,114 @@
+﻿@model DataObjects.ProjectRole
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal p-2">
+        <h2>Project Role</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.ProjectRoleID)
+
+        @Html.HiddenFor(model => model.ProjectID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 col-lg-3">
+                @Html.EditorFor(model => model.RoleName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FeaturePrivileges, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 col-lg-3">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.FeaturePrivileges)
+                    @Html.ValidationMessageFor(model => model.FeaturePrivileges, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserStoryPrivileges, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 col-lg-3">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.UserStoryPrivileges)
+                    @Html.ValidationMessageFor(model => model.UserStoryPrivileges, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SprintPlanningPrivileges, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 col-lg-3">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.SprintPlanningPrivileges)
+                    @Html.ValidationMessageFor(model => model.SprintPlanningPrivileges, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FeedMessagingPrivileges, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 col-lg-3">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.FeedMessagingPrivileges)
+                    @Html.ValidationMessageFor(model => model.FeedMessagingPrivileges, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TaskPrivileges, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 col-lg-3">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.TaskPrivileges)
+                    @Html.ValidationMessageFor(model => model.TaskPrivileges, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TaskReviewingPrivileges, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 col-lg-3">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.TaskReviewingPrivileges)
+                    @Html.ValidationMessageFor(model => model.TaskReviewingPrivileges, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProjectManagementPrivileges, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 col-lg-3">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.ProjectManagementPrivileges)
+                    @Html.ValidationMessageFor(model => model.ProjectManagementPrivileges, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10 col-lg-3">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="btn-group mt-2">
+            <a href="@Url.Action("ProjectRoles", "ProjectRole", new { projectID=Model.ProjectID })" class="btn btn-secondary">Back</a>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
