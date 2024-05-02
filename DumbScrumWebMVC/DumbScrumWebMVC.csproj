@@ -210,6 +210,7 @@
     <Compile Include="Models\CreateProjectMemberVM.cs" />
     <Compile Include="Models\CreateSprintVM.cs" />
     <Compile Include="Models\CreateUserStoryVM.cs" />
+    <Compile Include="Models\EditSprintVM.cs" />
     <Compile Include="Models\FeedListVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -225,6 +226,14 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap-datepicker.min.css" />
+    <Content Include="Content\bootstrap-datepicker.standalone.css" />
+    <Content Include="Content\bootstrap-datepicker.standalone.min.css" />
+    <Content Include="Content\bootstrap-datepicker3.css" />
+    <Content Include="Content\bootstrap-datepicker3.min.css" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.css" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.min.css" />
     <Content Include="Content\bootstrap\main.css">
       <DependentUpon>main.scss</DependentUpon>
     </Content>
@@ -357,6 +366,10 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Content\bootstrap\main.scss" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.css.map" />
+    <Content Include="Content\bootstrap-datepicker3.css.map" />
+    <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
+    <Content Include="Content\bootstrap-datepicker.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -495,7 +508,6 @@
     <Content Include="Views\Feed\Index.cshtml" />
     <Content Include="Views\Feed\FeedList.cshtml" />
     <Content Include="Views\Sprint\Index.cshtml" />
-    <Content Include="Views\Sprint\SprintList.cshtml" />
     <Content Include="Views\Backlog\Index.cshtml" />
     <Content Include="Views\Backlog\CreateFeature.cshtml" />
     <Content Include="Views\Backlog\CreateUserStory.cshtml" />
@@ -516,6 +528,7 @@
     <Content Include="Views\ProjectRole\Create.cshtml" />
     <Content Include="Views\ProjectMember\Create.cshtml" />
     <Content Include="Views\Task\_TaskFilePartial.cshtml" />
+    <Content Include="Views\Sprint\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

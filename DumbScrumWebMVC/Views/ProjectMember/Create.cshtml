@@ -17,6 +17,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                @* Use Bootstrap datalist for this to make it searchable *@
                 <select name="UserID" class="form-select">
                     @foreach (DataObjects.UserVM user in Model.Users) {
                         <option value="@user.UserID" @(Model.UserID == user.UserID ? "selected" : "")>@user.Email - @user.DisplayName</option>

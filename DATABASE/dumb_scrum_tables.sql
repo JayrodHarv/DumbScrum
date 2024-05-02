@@ -82,7 +82,11 @@ CREATE TABLE [dbo].[ProjectRole] (
 	TaskPrivileges				bit							NOT NULL DEFAULT 0,
 	TaskReviewingPrivileges		bit							NOT NULL DEFAULT 0,
 	ProjectManagementPrivileges	bit							NOT NULL DEFAULT 0,
-	Description					nvarchar(255)				NOT NULL,		
+	Description					nvarchar(255)				NOT NULL,
+	CONSTRAINT	[fk_ProjectRole_ProjectID]	FOREIGN KEY ([ProjectID])
+		REFERENCES	[dbo].[Project] ([ProjectID]) 
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,	
 	CONSTRAINT [pk_ProjectRole] PRIMARY KEY ([ProjectRoleID]),
 	CONSTRAINT [ak_ProjectRole] UNIQUE ([RoleName], [ProjectID])
 )
@@ -103,8 +107,8 @@ CREATE TABLE [dbo].[ProjectMember] (
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
 	CONSTRAINT	[fk_ProjectMember_ProjectRoleID]	FOREIGN KEY ([ProjectRoleID])
-		REFERENCES	[dbo].[ProjectRole] ([ProjectRoleID]) 
-		ON DELETE SET NULL,
+		REFERENCES	[dbo].[ProjectRole] ([ProjectRoleID])
+		ON DELETE NO ACTION,
 	CONSTRAINT [pk_ProjectMember] PRIMARY KEY ([UserID], [ProjectID])
 )
 GO
@@ -155,7 +159,8 @@ CREATE TABLE [dbo].[Sprint] (
 	[EndDate]		[date]								NOT NULL,
 	[Active]		[bit]								NOT NULL DEFAULT 1,
 	CONSTRAINT	[fk_Sprint_FeatureID]	FOREIGN KEY ([FeatureID])
-		REFERENCES	[dbo].[Feature] ([FeatureID]) ON DELETE CASCADE,
+		REFERENCES	[dbo].[Feature] ([FeatureID]) 
+		ON DELETE CASCADE,
 	CONSTRAINT [pk_Sprint] PRIMARY KEY ([SprintID])
 )
 GO
@@ -170,11 +175,13 @@ CREATE TABLE [dbo].[Task] (
 	[UserID]		[int]								NULL,
 	[Status]		[nvarchar]	(50)					NOT NULL,
 	CONSTRAINT	[fk_Task_SprintID]	FOREIGN KEY ([SprintID])
-		REFERENCES	[dbo].[Sprint] ([SprintID]) ON DELETE CASCADE,
+		REFERENCES	[dbo].[Sprint] ([SprintID]) 
+		ON DELETE CASCADE,
 	CONSTRAINT	[fk_Task_StoryID]	FOREIGN KEY ([StoryID])
-		REFERENCES	[dbo].[UserStory] ([StoryID]) ON DELETE NO ACTION,
+		REFERENCES	[dbo].[UserStory] ([StoryID]) 
+		ON DELETE NO ACTION,
 	CONSTRAINT	[fk_Task_UserID]	FOREIGN KEY ([UserID])
-		REFERENCES	[dbo].[User] ([UserID]) ON DELETE NO ACTION,
+		REFERENCES	[dbo].[User] ([UserID]),
 	CONSTRAINT [pk_TaskID] PRIMARY KEY ([TaskID])
 )
 GO
@@ -192,9 +199,11 @@ CREATE TABLE [dbo].[FileStore] (
 	[Type]			[nvarchar]	(50)					NOT NULL,
 	[LastEdited]	[datetime]							NOT NULL,
 	CONSTRAINT [fk_FileStore_TaskID] FOREIGN KEY ([TaskID])
-		REFERENCES [dbo].[Task] ([TaskID]) ON DELETE CASCADE,
+		REFERENCES [dbo].[Task] ([TaskID]) 
+		ON DELETE CASCADE,
 	CONSTRAINT [fk_FileStore_ProjectID] FOREIGN KEY ([ProjectID])
-		REFERENCES [dbo].[Project] ([ProjectID]) ON DELETE NO ACTION,
+		REFERENCES [dbo].[Project] ([ProjectID]) 
+		ON DELETE NO ACTION,
 	CONSTRAINT [pk_FileStore] PRIMARY KEY ([FileID])
 )
 GO

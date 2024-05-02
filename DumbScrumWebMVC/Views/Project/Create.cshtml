@@ -4,11 +4,7 @@
     ViewBag.Title = "Create Project";
 }
 
-<h2>CreateProject</h2>
-
-
-@using (Html.BeginForm("Create", "Project", FormMethod.Post)) 
-{
+@using (Html.BeginForm("Create", "Project", FormMethod.Post)) {
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal p-2">

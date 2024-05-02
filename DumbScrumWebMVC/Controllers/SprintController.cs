@@ -77,5 +77,89 @@ namespace DumbScrumWebMVC.Controllers
             }
             return View(createSprintVM);
         }
+
+        [HttpGet]
+        public ActionResult Edit(string projectID, int sprintID) {
+            EditSprintVM editSprintVM = new EditSprintVM();
+            editSprintVM.ProjectID = projectID;
+            try {
+                SprintVM sprintVM = _manager.SprintManager.GetSprintVMBySprintID(sprintID);
+                Session["OldSprint"] = sprintVM;
+                if (sprintVM != null) {
+                    editSprintVM.SprintID = sprintVM.SprintID;
+                    editSprintVM.FeatureID = sprintVM.FeatureID;
+                    editSprintVM.Name = sprintVM.Name;
+                    editSprintVM.StartDate = sprintVM.StartDate;
+                    editSprintVM.EndDate = sprintVM.EndDate;
+                } else {
+                    TempData["Warning"] = "Couldn't retreive data for sprint";
+                    return RedirectToAction("Index", new { projectID });
+                }
+            } catch (Exception ex) {
+                TempData["Error"] = ex.Message;
+            }
+            return View(editSprintVM);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EditSprintVM editSprintVM) {
+            // TODO: Add ability to change sprint feature
+            Sprint sprintFromSession = (SprintVM)Session["OldSprint"];
+            try {
+                Sprint newSprint = new Sprint() {
+                    FeatureID = editSprintVM.FeatureID,
+                    Name = editSprintVM.Name,
+                    StartDate = editSprintVM.StartDate,
+                    EndDate = editSprintVM.EndDate
+                };
+
+                Sprint oldSprint = new Sprint() {
+                    SprintID = sprintFromSession.SprintID,
+                    FeatureID = sprintFromSession.FeatureID,
+                    Name = sprintFromSession.Name,
+                    StartDate = sprintFromSession.StartDate,
+                    EndDate = sprintFromSession.EndDate
+                };
+
+                if (_manager.SprintManager.EditSprint(newSprint, oldSprint)) {
+                    TempData["Success"] = "Successfully edited sprint: " + newSprint.Name;
+                    return RedirectToAction("Index", "Sprint", new { projectID = editSprintVM.ProjectID });
+                } else {
+                    TempData["Warning"] = "Something went wrong while trying to plan this sprint.";
+                }
+            } catch (Exception ex) {
+                TempData["Error"] = ex.Message;
+            }
+
+            try {
+                if (sprintFromSession != null) {
+                    editSprintVM.SprintID = sprintFromSession.SprintID;
+                    editSprintVM.FeatureID = sprintFromSession.FeatureID;
+                    editSprintVM.Name = sprintFromSession.Name;
+                    editSprintVM.StartDate = sprintFromSession.StartDate;
+                    editSprintVM.EndDate = sprintFromSession.EndDate;
+                } else {
+                    TempData["Warning"] = "Couldn't retreive data for sprint";
+                    return RedirectToAction("Index", new { projectID = editSprintVM.ProjectID });
+                }
+            } catch (Exception ex) {
+                TempData["Error"] = ex.Message;
+            }
+            return View(editSprintVM);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(string projectID, int sprintID) {
+            try {
+                if(_manager.SprintManager.CancelSprint(sprintID)) {
+                    TempData["Success"] = "Successfully cancelled sprint";
+                } else {
+                    TempData["Warning"] = "Something went wrong while cancelling sprint";
+                }
+            } catch (Exception ex) {
+                TempData["Error"] = ex.Message;
+            }
+            return RedirectToAction("Index", "Sprint", new { projectID });
+        }
     }
 }

@@ -18,10 +18,12 @@ namespace DumbScrumWebMVC {
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.bundle.min.js",
+                      "~/Scripts/bootstrap-datepicker.min.js",
                       "~/Scripts/site.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap/main.css",
+                      "~/Content/bootstrap-datepicker.min.css",
                       "~/Content/site.css"));
         }
     }
