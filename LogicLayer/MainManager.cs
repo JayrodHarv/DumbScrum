@@ -9,7 +9,9 @@ namespace LogicLayer {
     public class MainManager {
         // Tyler Moment
         private static MainManager instance = null;
-        public User LoggedInUser { get; set; }
+        public UserVM LoggedInUser { get; set; }
+
+        public ProjectMemberVM ProjectMember { get; set; }
 
         private readonly Lazy<IUserManager> _userManager = new Lazy<IUserManager>(() => new UserManager());
         private readonly Lazy<IProjectManager> _projectManager = new Lazy<IProjectManager>(() => new ProjectManager());

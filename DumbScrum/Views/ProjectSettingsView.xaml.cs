@@ -116,7 +116,7 @@ namespace DumbScrum.Views {
                     if (projectManager.RemoveProject(projectID)) {
                         MessageBox.Show("Project Successfully Deleted.");
                         MainWindow window = (MainWindow)Window.GetWindow(this);
-                        window.CurrentView = new MyProjectsView(window.LoggedInUser);
+                        window.CurrentView = new MyProjectsView();
                     }
                 } catch (Exception ex) {
                     MessageBox.Show(ex.Message);

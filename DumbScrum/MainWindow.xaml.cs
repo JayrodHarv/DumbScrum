@@ -13,10 +13,7 @@ namespace DumbScrum {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged {
-        ProjectManager _projectManager = new ProjectManager();
-
-        public UserVM LoggedInUser { get; set; }
-        
+        MainManager _manager;
 
         private object _currentView;
 
@@ -30,10 +27,10 @@ namespace DumbScrum {
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public MainWindow(UserVM user) {
+        public MainWindow() {
+            _manager = MainManager.GetMainManager();
             DataContext = this;
-            LoggedInUser = user;
-            CurrentView = new HomeView(LoggedInUser);
+            CurrentView = new HomeView();
             InitializeComponent();
 
             // AppData.DataPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "data";
@@ -41,28 +38,28 @@ namespace DumbScrum {
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
-            txtDisplayName.Text = LoggedInUser.DisplayName;
+            txtDisplayName.Text = _manager.LoggedInUser.DisplayName;
             ImageSourceConverter imageSourceConverter = new ImageSourceConverter();
-            ImageSource pfp = (ImageSource)imageSourceConverter.ConvertFrom(LoggedInUser.Pfp);
+            ImageSource pfp = (ImageSource)imageSourceConverter.ConvertFrom(_manager.LoggedInUser.Pfp);
             imgPfp.ImageSource = pfp;
             ImageSource logo = (ImageSource)imageSourceConverter.ConvertFrom(@".\Images\dumb_scrum_icon.png");
             imgLogo.Source = logo;
         }
 
         private void mnuHome_Click(object sender, RoutedEventArgs e) {
-            CurrentView = new HomeView(LoggedInUser);
+            CurrentView = new HomeView();
         }
 
         private void mnuMyProjects_Click(object sender, RoutedEventArgs e) {
-            CurrentView = new MyProjectsView(LoggedInUser);
+            CurrentView = new MyProjectsView();
         }
 
         private void mnuBrowseProjects_Click(object sender, RoutedEventArgs e) {
-            CurrentView = new ProjectListView(LoggedInUser.UserID);
+            CurrentView = new ProjectListView();
         }
 
-        private void userBox_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
-            CurrentView = new UserSettingsView(LoggedInUser);
+        private void userBox_Click(object sender, RoutedEventArgs e) {
+            CurrentView = new UserSettingsView();
         }
     }
 }

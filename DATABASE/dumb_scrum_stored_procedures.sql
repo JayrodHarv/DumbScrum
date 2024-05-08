@@ -861,7 +861,7 @@ print '' print '*** creating sp_insert_task_file ***'
 GO
 CREATE PROCEDURE [dbo].[sp_insert_task_file] (	
 	@Data			[varbinary] (max),
-	@Extension		[nvarchar] (10),
+	@Extension		[nvarchar] (255),
 	@TaskID			[int],
 	@FileName		[nvarchar] (100),
 	@Type			[nvarchar] (50),
@@ -880,7 +880,7 @@ print '' print '*** creating sp_insert_template_file ***'
 GO
 CREATE PROCEDURE [dbo].[sp_insert_template_file] (	
 	@Data			[varbinary] (max),
-	@Extension		[nvarchar] (10),
+	@Extension		[nvarchar] (255),
 	@ProjectID		[nvarchar] (50),
 	@FileName		[nvarchar] (100),
 	@Type			[nvarchar] (50),
@@ -958,6 +958,19 @@ AS
 		FROM [dbo].[FileStore]
 		WHERE [FileStore].[ProjectID] = @ProjectID
 		AND [FileStore].[Type] = @Type
+	END
+GO
+
+print '' print '*** creating sp_get_task_file ***'
+GO
+CREATE PROCEDURE [dbo].[sp_get_task_file] (
+	@FileID		[int]
+)
+AS
+	BEGIN
+		SELECT [FileID], [Data], [Extension], [FileName], [Type], [LastEdited]
+		FROM FileStore
+		WHERE FileID = @FileID
 	END
 GO
 

@@ -1,30 +1,17 @@
-﻿using DataAccessFakes;
-using DataObjects;
+﻿using DataObjects;
 using LogicLayer;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DumbScrum {
     /// <summary>
     /// Interaction logic for SignInWindow.xaml
     /// </summary>
     public partial class WelcomeWindow : Window {
-        UserManager _userManager = null;
-        UserVM loggedInUser = null;
+        MainManager _manager;
         bool isSigningUp = false;
         public WelcomeWindow() {
+            _manager = MainManager.GetMainManager();
             InitializeComponent();
         }
 
@@ -33,7 +20,6 @@ namespace DumbScrum {
             // _userManager = new UserManager(new UserAccessorFake());
 
             // real code that uses database
-            _userManager = new UserManager();
             btnSignIn.IsDefault = true;
             txtEmail.Focus();
         }
@@ -62,8 +48,10 @@ namespace DumbScrum {
             if (btnSignIn.Content.ToString() == "Sign In") {
                 // try to sign in the user
                 try {
-                    loggedInUser = _userManager.SignInUser(email, password);
-                    SignIn(loggedInUser);
+                    _manager.LoggedInUser = _manager.UserManager.SignInUser(email, password);
+                    var mainWindow = new MainWindow();
+                    this.Close();
+                    mainWindow.ShowDialog();
                 } catch (Exception ex) {
                     MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
                         "Sign In Failed", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -71,18 +59,19 @@ namespace DumbScrum {
                 }
             } else {
                 // sign up user
-
                 try {
                     string path = @"./Images/Sample_User_Icon.png";
-                    byte[] pfp = _userManager.GetFileInBinary(path);
+                    byte[] pfp = _manager.UserManager.GetFileInBinary(path);
                     User user = new User() {
                         Email = email,
                         Password = password,
                         Pfp = pfp,
                         DisplayName = "New User"
                     };
-                    loggedInUser = _userManager.SignUpUser(user);
-                    SignIn(loggedInUser);
+                    _manager.LoggedInUser = _manager.UserManager.SignUpUser(user);
+                    var mainWindow = new MainWindow();
+                    this.Close();
+                    mainWindow.ShowDialog();
                 } catch (Exception ex) {
                     MessageBox.Show(ex.Message + "\n\n" + ex.InnerException.Message,
                         "Sign Up Failed", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -90,18 +79,13 @@ namespace DumbScrum {
             }
         }
 
-        private void SignIn(UserVM loggedInUser) {
-            var mainWindow = new MainWindow(loggedInUser);
-            this.Close();
-            mainWindow.ShowDialog();
-        }
-
         private void hypSignIn_Click(object sender, RoutedEventArgs e) {
             if (!isSigningUp) {
                 txtEmail.Text = "";
                 pwdPassword.Password = "";
                 lblMessage.Content = "Sign up for a Dumb Scrum account";
-                lblForgotPassword.Visibility = Visibility.Hidden;
+                lblForgotPassword.Visibility = Visibility.Collapsed;
+                spDisplayName.Visibility = Visibility.Visible;
                 btnSignIn.Content = "Sign Up";
                 hyperlinkText.Text = "Already have an account? Sign In";
                 isSigningUp = true;
@@ -110,6 +94,7 @@ namespace DumbScrum {
                 pwdPassword.Password = "";
                 lblMessage.Content = "Sign in to a Dumb Scrum account";
                 lblForgotPassword.Visibility = Visibility.Visible;
+                spDisplayName.Visibility = Visibility.Collapsed;
                 btnSignIn.Content = "Sign In";
                 hyperlinkText.Text = "Don't have an account? Sign Up";
                 isSigningUp = false;

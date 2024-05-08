@@ -26,7 +26,7 @@ namespace DataObjects {
         public string DisplayName { get; set; }
         public byte[] Pfp { get; set; }
         [DisplayName("Project Role")]
-        public int ProjectRoleID { get; set; }
+        public int ProjectRoleId { get; set; }
         public string RoleName { get; set; }
         public bool Active { get; set; }
 

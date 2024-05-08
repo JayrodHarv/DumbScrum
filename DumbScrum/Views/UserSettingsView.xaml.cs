@@ -22,20 +22,20 @@ namespace DumbScrum.Views {
     /// Interaction logic for UserSettingsView.xaml
     /// </summary>
     public partial class UserSettingsView : UserControl {
+        MainManager _manager;
         ImageSourceConverter imageSourceConverter = new ImageSourceConverter();
-        UserVM user;
         UserVM newUser;
-        public UserSettingsView(UserVM user) {
-            this.user = user;
+        public UserSettingsView() {
+            _manager = MainManager.GetMainManager();
             InitializeComponent();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e) {
-            newUser = user;
-            ImageSource pfp = (ImageSource)imageSourceConverter.ConvertFrom(user.Pfp);
+            newUser = _manager.LoggedInUser;
+            ImageSource pfp = (ImageSource)imageSourceConverter.ConvertFrom(_manager.LoggedInUser.Pfp);
             imgPfp.ImageSource = pfp;
 
-            tbDisplayName.Text = user.DisplayName;
+            tbDisplayName.Text = _manager.LoggedInUser.DisplayName;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e) {
@@ -46,11 +46,11 @@ namespace DumbScrum.Views {
             newUser.DisplayName = tbDisplayName.Text;
             UserManager userManager = new UserManager();
             try {
-                if (userManager.EditUser(newUser, user)) {
+                if (userManager.EditUser(newUser, _manager.LoggedInUser)) {
                     MainWindow window = (MainWindow)Window.GetWindow(this);
-                    window.LoggedInUser = newUser;
-                    window.txtDisplayName.Text = user.DisplayName;
-                    ImageSource pfp = (ImageSource)imageSourceConverter.ConvertFrom(user.Pfp);
+                    _manager.LoggedInUser = newUser;
+                    window.txtDisplayName.Text = _manager.LoggedInUser.DisplayName;
+                    ImageSource pfp = (ImageSource)imageSourceConverter.ConvertFrom(_manager.LoggedInUser.Pfp);
                     window.imgPfp.ImageSource = pfp;
                     MessageBox.Show("Settings Changed!");
                 }

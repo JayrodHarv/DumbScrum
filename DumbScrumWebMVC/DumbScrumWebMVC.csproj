@@ -222,7 +222,6 @@
     <Compile Include="Models\TaskFilesVM.cs" />
     <Compile Include="Models\TaskItemVM.cs" />
     <Compile Include="Models\TaskOverviewVM.cs" />
-    <Compile Include="Models\UseCasesVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -531,6 +530,8 @@
     <Content Include="Views\Task\_TaskFilePartial.cshtml" />
     <Content Include="Views\Sprint\Edit.cshtml" />
     <Content Include="Views\ProjectRole\Edit.cshtml" />
+    <Content Include="Views\Task\UserInterfaces.cshtml" />
+    <Content Include="Views\Task\ERDiagram.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,14 +1,85 @@
 ﻿@model DumbScrumWebMVC.Models.TaskFilesVM
 <div class="container-fluid p-2">
-    <div class="row">
-        <div class="col">
-            <input class="form-control" type="file" id="formFile">
-        </div>
-        <div class="col">
-            
-        </div>
-    </div>
-    <div class="row">
+    <form action="UploadTaskFile" runat="server" method="POST" enctype="multipart/form-data">
+        @Html.HiddenFor(model => model.ProjectID)
+        <input type="hidden" name="TaskID" value="@Model.Task.TaskID" />
+        @Html.HiddenFor(model => model.FileType)
 
+        <div class="mb-4">
+            <div class="col col-md-6 d-flex">
+                <input class="form-control" type="file" id="fileInput" name="file" />
+                <button type="submit" class="btn btn-outline-success" data-bs-toggle="tooltip" data-bs-title="Upload File"><i class="bi bi-upload"></i></button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>
+                File Name
+            </th>
+            <th>
+                Extension
+            </th>
+            <th>
+                Last Edited
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Files) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Extension)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastEdited)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a href="@Url.Action("DownloadTaskFile", "Task", new { fileID = item.FileID })" class="btn btn-outline-warning" data-bs-toggle="tooltip" data-bs-title="Download File" download="@item.FileName"><i class="bi bi-download"></i></a>
+                        <a class="btn btn-outline-danger" onclick="Confirm('@Model.ProjectID', '@Model.Task.TaskID', '@item.FileID')" data-bs-toggle="tooltip" data-bs-title="Delete File"><i class="bi bi-trash3-fill"></i></a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @using (Html.BeginForm("DeleteTaskFile", "Task", FormMethod.Post)) {
+                <input type="hidden" id="projectID" name="projectID" />
+                <input type="hidden" id="taskID" name="taskID" />
+                <input type="hidden" id="fileID" name="fileID" />
+                <div class="modal-header justify-content-between">
+                    <h5 class="modal-title">Delete File</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this file?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Confirm</button>
+                </div>
+            }
+        </div>
     </div>
 </div>
+
+<script>
+    function Confirm(projectID, taskID, fileID) {
+        $('#projectID').val(projectID);
+        $('#taskID').val(taskID);
+        $('#fileID').val(fileID);
+        $('#deleteModal').modal('show');
+    }
+</script>

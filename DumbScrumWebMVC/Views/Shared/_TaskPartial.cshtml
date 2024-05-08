@@ -20,16 +20,16 @@
             <a class="nav-link @(ViewBag.Title == "Use Cases" ? "active" : "")" href="@Url.Action("UseCases", "Task", new { projectID = Model.ProjectID, taskID=Model.Task.TaskID })">Use Cases</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link @(ViewBag.Title == "Stored Procedure Specifications" ? "active" : "")" href="@Url.Action("SPSpecs", "Task", new { projectID = Model.ProjectID, taskID=Model.Task.TaskID })">Stored Procedure Specifications</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link @(ViewBag.Title == "User Interfaces" ? "active" : "")" href="@Url.Action("UserInterfaces", "Task", new { projectID = Model.ProjectID, taskID=Model.Task.TaskID })">User Interfaces</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link @(ViewBag.Title == "ER Diagram" ? "active" : "")" href="@Url.Action("ERDiagram", "Task", new { projectID = Model.ProjectID, taskID=Model.Task.TaskID })">ER Diagram</a>
+            <a class="nav-link @(ViewBag.Title == "Entity Relationship Diagram" ? "active" : "")" href="@Url.Action("ERDiagram", "Task", new { projectID = Model.ProjectID, taskID=Model.Task.TaskID })">ER Diagram</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link @(ViewBag.Title == "Data Dictionary" ? "active" : "")" @Url.Action("DataDictionary", "Task", new { projectID = Model.ProjectID, taskID = Model.Task.TaskID })>Data Dictionary</a>
+            <a class="nav-link @(ViewBag.Title == "Data Dictionary" ? "active" : "")" href="@Url.Action("DataDictionary", "Task", new { projectID = Model.ProjectID, taskID = Model.Task.TaskID })">Data Dictionary</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.Title == "Stored Procedure Specifications" ? "active" : "")" href="@Url.Action("SPSpecs", "Task", new { projectID = Model.ProjectID, taskID=Model.Task.TaskID })">Stored Procedure Specifications</a>
         </li>
         <li class="nav-item">
             <a class="nav-link @(ViewBag.Title == "Data Models" ? "active" : "")" href="@Url.Action("DataModels", "Task", new { projectID = Model.ProjectID, taskID=Model.Task.TaskID })">Data Models</a>

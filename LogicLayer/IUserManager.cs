@@ -22,5 +22,6 @@ namespace LogicLayer {
         List<string> GetAllRoles();
         bool RemoveUserRole(int userID, string roleID);
         bool AddUserRole(int userID, string roleID);
+        byte[] GetFileInBinary(string filePath);
     }
 }

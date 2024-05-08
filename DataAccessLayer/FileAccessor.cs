@@ -42,7 +42,7 @@ namespace DataAccessLayer {
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("@Data", SqlDbType.VarBinary);
-            cmd.Parameters.Add("@Extension", SqlDbType.NVarChar, 10);
+            cmd.Parameters.Add("@Extension", SqlDbType.NVarChar, 255);
             cmd.Parameters.Add("@TaskID", SqlDbType.Int);
             cmd.Parameters.Add("@FileName", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@Type", SqlDbType.NVarChar, 50);
@@ -75,7 +75,7 @@ namespace DataAccessLayer {
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("@Data", SqlDbType.VarBinary);
-            cmd.Parameters.Add("@Extension", SqlDbType.NVarChar, 10);
+            cmd.Parameters.Add("@Extension", SqlDbType.NVarChar, 255);
             cmd.Parameters.Add("@ProjectID", SqlDbType.NVarChar, 50);
             cmd.Parameters.Add("@FileName", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@Type", SqlDbType.NVarChar, 50);
@@ -230,6 +230,53 @@ namespace DataAccessLayer {
             try {
                 conn.Open();
                 result = cmd.ExecuteNonQuery();
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                conn.Close();
+            }
+            return result;
+        }
+
+        public File SelectTaskFile(int fileID) {
+            File result = null;
+
+            // create connection object
+            var conn = SqlConnectionProvider.GetConnection();
+
+            // set the command text
+            var commandText = "sp_get_task_file";
+
+            // create command object
+            var cmd = new SqlCommand(commandText, conn);
+
+            // set command type
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // add parameters to command
+            cmd.Parameters.Add("@FileID", SqlDbType.Int);
+
+            // set parameter values
+            cmd.Parameters["@FileID"].Value = fileID;
+
+            try {
+                // open connection
+                conn.Open();
+
+                // execute command
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows) {
+                    if (reader.Read()) {
+                        result = new File() {
+                            FileID = reader.GetInt32(0),
+                            Data = (byte[])reader[1],
+                            Extension = reader.GetString(2),
+                            FileName = reader.GetString(3),
+                            Type = reader.GetString(4),
+                            LastEdited = reader.GetDateTime(5)
+                        };
+                    }
+                }
             } catch (Exception ex) {
                 throw ex;
             } finally {

@@ -1,0 +1,14 @@
+﻿@model DumbScrumWebMVC.Models.TaskFilesVM
+
+@{
+    ViewBag.Title = "User Interfaces";
+}
+
+<div class="d-flex h-100">
+    @Html.Partial("_ProjectPartial")
+    <div class="col p-2">
+        @Html.Partial("_TaskPartial")
+
+        @Html.Partial("_TaskFilePartial", Model)
+    </div>
+</div>

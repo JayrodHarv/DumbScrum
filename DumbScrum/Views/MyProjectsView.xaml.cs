@@ -9,15 +9,14 @@ namespace DumbScrum.Views {
     /// Interaction logic for MyProjectsView.xaml
     /// </summary>
     public partial class MyProjectsView : UserControl {
-        ProjectManager projectManager = new ProjectManager();
-        UserVM user;
-        public MyProjectsView(UserVM user) {
+        MainManager _manager;
+        public MyProjectsView() {
+            _manager = MainManager.GetMainManager();
             InitializeComponent();
-            this.user = user;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e) {
-            lvProjects.ItemsSource = projectManager.GetProjectsByUserID(user.UserID);
+            lvProjects.ItemsSource = _manager.ProjectManager.GetProjectsByUserID(_manager.LoggedInUser.UserID);
         }
 
         private void OpenProject() {
@@ -29,7 +28,7 @@ namespace DumbScrum.Views {
 
             ProjectVM selectedProject = (ProjectVM)lvProjects.SelectedItem;
 
-            parentWindow.CurrentView = new ProjectView(selectedProject.ProjectID, user);
+            parentWindow.CurrentView = new ProjectView(selectedProject.ProjectID, _manager.LoggedInUser);
         }
 
         private void btnOpenProject_Click(object sender, RoutedEventArgs e) {
@@ -38,12 +37,12 @@ namespace DumbScrum.Views {
 
         private void btnCreateProject_Click(object sender, RoutedEventArgs e) {
             try {
-                var createProjectWindow = new CreateProjectWindow(user);
+                var createProjectWindow = new CreateProjectWindow();
                 var result = createProjectWindow.ShowDialog();
                 if (result == true) {
                     MessageBox.Show("Project Successfully Created.", "Success",
                         MessageBoxButton.OK, MessageBoxImage.Information);
-                    lvProjects.ItemsSource = projectManager.GetProjectsByUserID(user.UserID);
+                    lvProjects.ItemsSource = _manager.ProjectManager.GetProjectsByUserID(_manager.LoggedInUser.UserID);
                 } else {
                     MessageBox.Show("Project Not Created", "Operation Aborted",
                         MessageBoxButton.OK, MessageBoxImage.Information);
@@ -58,14 +57,14 @@ namespace DumbScrum.Views {
             if(lvProjects.SelectedItem != null) {
                 try {
                     Project project = lvProjects.SelectedItem as Project;
-                    if(project.UserID == user.UserID) {
+                    if(project.UserID == _manager.LoggedInUser.UserID) {
                         MessageBox.Show("You can't leave your own project. If you wish to delete your project, you can do so in its project settings.");
                         return;
                     }
-                    if (projectManager.LeaveProject(user.UserID, project.ProjectID)) {
+                    if (_manager.ProjectMemberManager.MemberLeaveProject(_manager.LoggedInUser.UserID, project.ProjectID)) {
                         MessageBox.Show("Project Successfully Left.", "Success",
                         MessageBoxButton.OK, MessageBoxImage.Information);
-                        lvProjects.ItemsSource = projectManager.GetProjectsByUserID(user.UserID);
+                        lvProjects.ItemsSource = _manager.ProjectManager.GetProjectsByUserID(_manager.LoggedInUser.UserID);
                     } else {
                         MessageBox.Show("Project Was Not Left", "Operation Aborted",
                         MessageBoxButton.OK, MessageBoxImage.Information);

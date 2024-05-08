@@ -49,6 +49,16 @@ namespace LogicLayer {
             return result;
         }
 
+        public File GetTaskFile(int fileID) {
+            File result = null;
+            try {
+                result = fileAccessor.SelectTaskFile(fileID);
+            } catch (Exception ex) {
+                throw ex;
+            }
+            return result;
+        }
+
         public List<File> GetTaskFilesByType(int taskID, string type) {
             List<File> result = new List<File>();
             try {

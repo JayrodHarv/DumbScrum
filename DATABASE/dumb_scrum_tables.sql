@@ -192,7 +192,7 @@ GO
 CREATE TABLE [dbo].[FileStore] (
 	[FileID]		[int]		IDENTITY(100000, 1)		NOT NULL,
 	[Data]			[varbinary]	(max)					NOT NULL,
-	[Extension]		[nvarchar]	(10)					NOT NULL,
+	[Extension]		[nvarchar]	(255)					NOT NULL,
 	[TaskID]		[int]								NULL,
 	[ProjectID]		[nvarchar]	(50)					NULL,
 	[FileName]		[nvarchar]	(100)					NOT NULL,

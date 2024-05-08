@@ -9,10 +9,10 @@ namespace DumbScrum {
     /// Interaction logic for CreateProjectWindow.xaml
     /// </summary>
     public partial class CreateProjectWindow : Window {
-        User user;
-        public CreateProjectWindow(User user) {
+        MainManager _manager;
+        public CreateProjectWindow() {
+            _manager = MainManager.GetMainManager();
             InitializeComponent();
-            this.user = user;
         }
 
         private void btnCreateProject_Click(object sender, RoutedEventArgs e) {
@@ -38,7 +38,7 @@ namespace DumbScrum {
 
             Project project = new Project() {
                 ProjectID = txtProjectTitle.Text, 
-                UserID = user.UserID, 
+                UserID = _manager.LoggedInUser.UserID, 
                 Description = txtDescription.Text, 
             };
 

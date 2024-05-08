@@ -20,11 +20,10 @@ namespace DumbScrum.Views {
     /// Interaction logic for ProjectMembersView.xaml
     /// </summary>
     public partial class ProjectMembersView : UserControl {
-        UserManager userManager = new UserManager();
-        TaskManager taskManager = new TaskManager();
-        ProjectManager projectManager = new ProjectManager();
+        MainManager _manager;
         string projectID;
         public ProjectMembersView(string projectID) {
+            _manager = MainManager.GetMainManager();
             this.projectID = projectID;
             InitializeComponent();
         }
@@ -34,13 +33,7 @@ namespace DumbScrum.Views {
         }
 
         private void RefreshMemberList() {
-            List<UserVM> members = userManager.GetProjectMembers(projectID);
-            foreach (UserVM member in members) {
-                List<TaskVM> tasks = taskManager.GetTaskVMsByUserID(member.UserID);
-                member.InProgressTasksCount = tasks.FindAll(t => t.Status == "In Progress").Count();
-                member.InReviewTasksCount = tasks.FindAll(t => t.Status == "Needs Reviewed").Count();
-                member.CompletedTasksCount = tasks.FindAll(t => t.Status == "Complete").Count();
-            }
+            List<ProjectMemberListVM> members = _manager.ProjectMemberManager.GetProjectMembers(projectID);
             lvMembers.ItemsSource = members;
         }
 
@@ -51,7 +44,7 @@ namespace DumbScrum.Views {
             }
             UserVM user = (UserVM)lvMembers.SelectedItem;
             // check if user is project owner
-            ProjectVM project = projectManager.GetProjectVMByProjectID(projectID);
+            ProjectVM project = _manager.ProjectManager.GetProjectVMByProjectID(projectID);
             if(user.UserID == project.UserID) {
                 MessageBox.Show("You can't kick yourself from your own project");
                 return;
@@ -59,7 +52,7 @@ namespace DumbScrum.Views {
             var result = MessageBox.Show("Are you sure that you want to kick " + user.DisplayName + " from this project?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes) {
                 try {
-                    if (projectManager.LeaveProject(user.UserID, projectID)) {
+                    if (_manager.ProjectMemberManager.MemberLeaveProject(user.UserID, projectID)) {
                         RefreshMemberList();
                         MessageBox.Show("Member Kicked From Project.");
                     }

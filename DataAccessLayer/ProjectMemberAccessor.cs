@@ -184,7 +184,7 @@ namespace DataAccessLayer {
                         member.Email = reader.GetString(1);
                         member.DisplayName = reader.GetString(2);
                         member.Pfp = (byte[])reader[3];
-                        member.ProjectRoleID = reader.GetInt32(4);
+                        member.ProjectRoleId = reader.GetInt32(4);
                         member.RoleName = reader.GetString(5);
                         member.Active = reader.GetBoolean(6);
                         result.Add(member);

@@ -1,0 +1,12 @@
+C:\Dumb Scrum\DumbScrum\DumbScrum.Models\obj\Debug\net8.0\DumbScrum.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dumb Scrum\DumbScrum\DumbScrum.Models\obj\Debug\net8.0\DumbScrum.Models.AssemblyInfoInputs.cache
+C:\Dumb Scrum\DumbScrum\DumbScrum.Models\obj\Debug\net8.0\DumbScrum.Models.AssemblyInfo.cs
+C:\Dumb Scrum\DumbScrum\DumbScrum.Models\obj\Debug\net8.0\DumbScrum.Models.csproj.CoreCompileInputs.cache
+C:\Dumb Scrum\DumbScrum\DumbScrum.Models\obj\Debug\net8.0\DumbScrum.Models.sourcelink.json
+C:\Dumb Scrum\DumbScrum\DumbScrum.Models\bin\Debug\net8.0\DumbScrum.Models.deps.json
+C:\Dumb Scrum\DumbScrum\DumbScrum.Models\bin\Debug\net8.0\DumbScrum.Models.dll
+C:\Dumb Scrum\DumbScrum\DumbScrum.Models\bin\Debug\net8.0\DumbScrum.Models.pdb
+C:\Dumb Scrum\DumbScrum\DumbScrum.Models\obj\Debug\net8.0\DumbScrum.Models.dll
+C:\Dumb Scrum\DumbScrum\DumbScrum.Models\obj\Debug\net8.0\refint\DumbScrum.Models.dll
+C:\Dumb Scrum\DumbScrum\DumbScrum.Models\obj\Debug\net8.0\DumbScrum.Models.pdb
+C:\Dumb Scrum\DumbScrum\DumbScrum.Models\obj\Debug\net8.0\ref\DumbScrum.Models.dll

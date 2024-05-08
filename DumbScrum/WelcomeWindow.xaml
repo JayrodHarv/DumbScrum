@@ -6,55 +6,46 @@
         xmlns:local="clr-namespace:DumbScrum"
         mc:Ignorable="d"
         Title="Welcome To Dumb Scrum" Height="385" Width="715" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" WindowStyle="ToolWindow" ResizeMode="NoResize">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="350"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition Width="700"/>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        
-        <Grid Grid.Row="1" Grid.Column="1" Background="WhiteSmoke">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="35"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Label x:Name="lblMessage" Grid.Row="1" Content="Sign in to Dumb Scrum account" FontWeight="Bold"
-                   HorizontalContentAlignment="Center" FontSize="16"></Label>
-            <Label x:Name="lblEmail" Grid.Row="2" Content="Email:" FontWeight="DemiBold" FontSize="14" Margin="15,0" ></Label>
-            <TextBox x:Name="txtEmail" Grid.Row="3" Margin="20, 0"
-                     HorizontalContentAlignment="Left" VerticalContentAlignment="Center">
-            </TextBox>
+    <Grid Background="WhiteSmoke">
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" Margin="10" VerticalAlignment="Center" Width="400">
+            <Label x:Name="lblMessage" Content="Sign in to Dumb Scrum account" FontWeight="Bold"
+       HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" FontSize="16"></Label>
 
-            <Label x:Name="lblPassword" Grid.Row="5" Content="Password:" FontWeight="DemiBold" FontSize="14" Margin="15,0"></Label>
-            <PasswordBox x:Name="pwdPassword" Grid.Row="6" Margin="20, 0"
-                     HorizontalContentAlignment="Left" VerticalContentAlignment="Center">
-            </PasswordBox>
-            <Label x:Name="lblForgotPassword" Grid.Row="7" FontWeight="Light" 
-                   Foreground="#FF0139CC" Margin="15,0">
-                <Hyperlink Click="hypForgotPassword_Click">Forgot your password?</Hyperlink>
-            </Label>
-            <Button x:Name="btnSignIn" Grid.Row="8" Content="Sign In" Margin="20, 0" FontSize="14" Click="btnSignIn_Click"></Button>
-            <Label x:Name="lblAccount" Grid.Row="9" FontWeight="Light" 
-                   Foreground="#FF0139CC" Margin="15,0" HorizontalAlignment="Center">
-                <Hyperlink x:Name="hypSignIn" Click="hypSignIn_Click">
-                    <TextBlock x:Name="hyperlinkText">
+            <StackPanel x:Name="spDisplayName" Orientation="Vertical" Margin="0,8,0,8" Visibility="Collapsed">
+                <Label x:Name="lblDisplayName" Content="Display Name:" FontWeight="DemiBold" FontSize="14" Padding="0,2"></Label>
+                <TextBox x:Name="txtDisplayName" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="25">
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Margin="0,0,0,8">
+                <Label x:Name="lblEmail" Content="Email:" FontWeight="DemiBold" FontSize="14" Padding="0,2"></Label>
+                <TextBox x:Name="txtEmail" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Height="25">
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Margin="0,0,0,8">
+                <Label x:Name="lblPassword" Content="Password:" FontWeight="DemiBold" FontSize="14" Padding="0,2"></Label>
+                <PasswordBox 
+                    x:Name="pwdPassword" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+                    Height="25">
+                </PasswordBox>
+                <Label x:Name="lblForgotPassword" FontWeight="Light" 
+                       Foreground="#FF0139CC" Padding="0,2">
+                    <Hyperlink Click="hypForgotPassword_Click">Forgot your password?</Hyperlink>
+                </Label>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Margin="0,8,0,0">
+                <Button x:Name="btnSignIn" Content="Sign In" FontSize="14" Click="btnSignIn_Click"></Button>
+                <Label x:Name="lblAccount" FontWeight="Light" 
+                   Foreground="#FF0139CC" HorizontalAlignment="Center">
+                    <Hyperlink x:Name="hypSignIn" Click="hypSignIn_Click">
+                        <TextBlock x:Name="hyperlinkText">
                         Don't have an account? Sign Up
-                    </TextBlock></Hyperlink>
-            </Label>
-        </Grid>
+                        </TextBlock>
+                    </Hyperlink>
+                </Label>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>

@@ -654,13 +654,18 @@ C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbS
 C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.CopyComplete
 C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.dll
 C:\Users\Jared\source\repos\JayrodHarv\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.pdb
+C:\DumbScrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.rsp
+C:\DumbScrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.rsp
+C:\DumbScrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.rsp
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\DumbScrumWebMVC.dll.config
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\DumbScrumWebMVC.dll
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\DumbScrumWebMVC.pdb
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.exe
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.exe.config
+C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.rsp
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.exe
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.exe.config
+C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.rsp
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
@@ -701,6 +706,7 @@ C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Xml.XPath.dll
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\System.Xml.XPath.XDocument.dll
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.exe
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.exe.config
+C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.rsp
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\VBCSCompiler.exe
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\VBCSCompiler.exe.config
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\Antlr3.Runtime.dll
@@ -785,9 +791,3 @@ C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.CoreCom
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.csproj.CopyComplete
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.dll
 C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\obj\Debug\DumbScrumWebMVC.pdb
-C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.rsp
-C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.rsp
-C:\Dumb Scrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.rsp
-C:\DumbScrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csc.rsp
-C:\DumbScrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\csi.rsp
-C:\DumbScrum\DumbScrum\DumbScrumWebMVC\bin\roslyn\vbc.rsp
