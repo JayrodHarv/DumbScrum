@@ -1,5 +1,5 @@
 # DumbScrum
-Dumb Scrum is a project managment application created for my final project at Kirkwood Community College.
+Dumb Scrum is a project managment application created for my final project at Kirkwood Community College. This project uses WPF, ASP.NET, .NET Framework, TSQL, C#, HTML, CSS, and JavaScript.
 
 ## Project Planning Documents
 
