@@ -1,5 +1,5 @@
 # DumbScrum
-
+Dumb Scrum is a project managment application created for my final project at Kirkwood Community College
 ## Project Planning Documents
 
 ### Enitity Relationship Diagram
